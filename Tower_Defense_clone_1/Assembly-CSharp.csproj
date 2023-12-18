@@ -109,11 +109,11 @@
     <Compile Include="Assets\Origin\FORGE3D\Sci-Fi Effects\Code\F3DTime.cs" />
     <Compile Include="Assets\Origin\FORGE3D\Sci-Fi Effects\Code\F3DBeam.cs" />
     <Compile Include="Assets\Origin\FORGE3D\Sci-Fi Effects\Code\F3DDespawn.cs" />
+    <Compile Include="Assets\3.Script\Minki\Room_Scene.cs" />
     <Compile Include="Assets\Origin\SlimUI\Modern Menu 1\Scripts\Audio\CheckMusicVolume.cs" />
     <Compile Include="Assets\Origin\FORGE3D\Sci-Fi Effects\Code\F3DAudioController.cs" />
     <Compile Include="Assets\Origin\FORGE3D\Sci-Fi Effects\Code\F3DProjectile.cs" />
     <Compile Include="Assets\Origin\FORGE3D\Sci-Fi Effects\Code\F3DRift.cs" />
-    <Compile Include="Assets\3.Script\Minki\Room_Scene.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Origin\FORGE3D\Sci-Fi Effects\Install.txt" />
