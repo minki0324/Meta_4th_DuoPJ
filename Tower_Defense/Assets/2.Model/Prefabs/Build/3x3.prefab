@@ -94,7 +94,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.999, y: 0.25, z: 5.999}
+  m_Size: {x: 5.9, y: 0.25, z: 5.9}
   m_Center: {x: 3, y: -0.125, z: 2.9999995}
 --- !u!114 &5742367314911995612
 MonoBehaviour:
@@ -113,6 +113,10 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 192
+  buildAreaLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isCanBuild: 0
 --- !u!1 &4965672963812490143
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +211,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.999, y: 0.25, z: 5.999}
+  m_Size: {x: 5.9, y: 0.25, z: 5.9}
   m_Center: {x: 3, y: -0.125, z: 2.9999995}
 --- !u!114 &4736418218268027483
 MonoBehaviour:
@@ -226,6 +230,10 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 192
+  buildAreaLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isCanBuild: 0
 --- !u!1 &5784998090613105546
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +328,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.999, y: 0.25, z: 5.999}
+  m_Size: {x: 5.9, y: 0.25, z: 5.9}
   m_Center: {x: 3, y: -0.125, z: 2.9999995}
 --- !u!114 &6379850396670400215
 MonoBehaviour:
@@ -339,6 +347,10 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 192
+  buildAreaLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isCanBuild: 0
 --- !u!1 &6068177234131376701
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +445,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.999, y: 0.25, z: 5.999}
+  m_Size: {x: 5.9, y: 0.25, z: 5.9}
   m_Center: {x: 3, y: -0.125, z: 2.9999995}
 --- !u!114 &4082135105593998396
 MonoBehaviour:
@@ -452,6 +464,10 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 192
+  buildAreaLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isCanBuild: 0
 --- !u!1 &6553001376911094067
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +562,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.999, y: 0.25, z: 5.999}
+  m_Size: {x: 5.9, y: 0.25, z: 5.9}
   m_Center: {x: 3, y: -0.125, z: 2.9999995}
 --- !u!114 &6811776072094546881
 MonoBehaviour:
@@ -565,6 +581,10 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 192
+  buildAreaLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isCanBuild: 0
 --- !u!1 &6966307722861084080
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +679,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.999, y: 0.25, z: 5.999}
+  m_Size: {x: 5.9, y: 0.25, z: 5.9}
   m_Center: {x: 3, y: -0.125, z: 2.9999995}
 --- !u!114 &1850294726036824815
 MonoBehaviour:
@@ -678,6 +698,10 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 192
+  buildAreaLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isCanBuild: 0
 --- !u!1 &7222491412806626930
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +796,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.999, y: 0.25, z: 5.999}
+  m_Size: {x: 5.9, y: 0.25, z: 5.9}
   m_Center: {x: 3, y: -0.125, z: 2.9999995}
 --- !u!114 &2655130236725109850
 MonoBehaviour:
@@ -791,6 +815,10 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 192
+  buildAreaLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isCanBuild: 0
 --- !u!1 &8029186214761899043
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +968,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.999, y: 0.25, z: 5.999}
+  m_Size: {x: 5.9, y: 0.25, z: 5.9}
   m_Center: {x: 3, y: -0.125, z: 2.9999995}
 --- !u!114 &7420554891281698587
 MonoBehaviour:
@@ -959,6 +987,10 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 192
+  buildAreaLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isCanBuild: 0
 --- !u!1 &9025778574719741947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1085,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.999, y: 0.25, z: 5.999}
+  m_Size: {x: 5.9, y: 0.25, z: 5.9}
   m_Center: {x: 3, y: -0.125, z: 2.9999995}
 --- !u!114 &9125734849525966461
 MonoBehaviour:
@@ -1072,3 +1104,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 192
+  buildAreaLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isCanBuild: 0

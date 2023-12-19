@@ -11,9 +11,11 @@ public class BuildManager : NetworkBehaviour
     public GameObject pointPrefab; // 가상의 점을 나타낼 프리팹
     public bool isCanBuild ;  // BuildArea에서 한개라도 적색으로 변할 시 false 반환함.
     private bool isBuilding;
+    private int TowerIndex;
     public GameObject[] towers;
     private GameObject currentTower;
     private GameObject currentArea;
+    private GameObject SendOB;
     [SerializeField] private BuildAreaPrents[] area; //타워마다 22 32 33 등 크기가 다른 Area 할당해줘야함
     private KeyCode k;
 
@@ -32,6 +34,7 @@ public class BuildManager : NetworkBehaviour
         }
         isCanBuild = true;
     }
+  
 
     private void Update()
     {
@@ -65,8 +68,11 @@ public class BuildManager : NetworkBehaviour
 
         if (Input.GetMouseButtonDown(0) && isCanBuild)
         {
-            //지어
-            currentTower.GetComponent<BoxCollider>().enabled = true;
+            Vector3 targetPos = currentTower.transform.position;
+            ClientBuildOrder(targetPos , TowerIndex);
+            //지어 위치 타워 보내줘야함
+            Destroy(currentTower);
+            //currentTower.GetComponent<BoxCollider>().enabled = true;
             currentArea.SetActive(false);
             isBuilding = false;
         }
@@ -104,9 +110,9 @@ public class BuildManager : NetworkBehaviour
     private void BuildSetting(int index)
     {
         isBuilding = true;
-
+        TowerIndex = index;
         AreaActiveTrue(index);
-
+        SendOB = towers[index];
         GameObject tower = Instantiate(towers[index], area[index].transform.position, Quaternion.identity);
         currentTower = tower;
         currentArea = area[index].gameObject;
@@ -132,15 +138,29 @@ public class BuildManager : NetworkBehaviour
 
         area[index].gameObject.SetActive(true);
     }
-    private void CreateVirtualPoints()
+
+
+    #region Client
+    [Client]
+    private void ClientBuildOrder(Vector3 targetPos , int towerindex)
     {
-        for (float x = -9f; x <= 13.5f; x += 1.5f)
-        {
-            for (float z = -9f; z <= 13.5f; z += 1.5f)
-            {
-                Vector3 position = new Vector3(x, 0.0f, z);
-                Instantiate(pointPrefab, position, Quaternion.identity);
-            }
-        }
+        CMDBuildOrder(targetPos , towerindex);
+        
     }
+    #endregion
+    #region Command
+    [Command(requiresAuthority = false)]
+    private void CMDBuildOrder(Vector3 targetPos , int towerindex)
+    {
+        GameObject newTower = Instantiate(towers[towerindex], targetPos, Quaternion.identity);
+
+            NetworkServer.Spawn(newTower/* , senderConnection*/);
+       
+
+      
+    }
+
+    #endregion
+    #region ClientRPC
+    #endregion
 }
