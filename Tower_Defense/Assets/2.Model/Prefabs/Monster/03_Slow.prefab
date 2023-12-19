@@ -2600,6 +2600,7 @@ GameObject:
   - component: {fileID: 2576828166710889802}
   - component: {fileID: 7448133428400678295}
   - component: {fileID: 4327065226137620119}
+  - component: {fileID: -7371252050798641851}
   m_Layer: 6
   m_Name: 03_Slow
   m_TagString: Untagged
@@ -2755,7 +2756,7 @@ MonoBehaviour:
   radius: 0.5
   height: 2
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 10
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -2857,6 +2858,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-7371252050798641851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588166508417776201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0fd6d696e05c542a9d53da5b7fbae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  goalCount: 0
 --- !u!1 &8786804647327270238
 GameObject:
   m_ObjectHideFlags: 0

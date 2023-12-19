@@ -424,6 +424,7 @@ GameObject:
   - component: {fileID: 32561701473401170}
   - component: {fileID: -5446363431741991048}
   - component: {fileID: -8408436129287105311}
+  - component: {fileID: -2494805442905383862}
   m_Layer: 6
   m_Name: 01_fast
   m_TagString: Untagged
@@ -579,7 +580,7 @@ MonoBehaviour:
   radius: 0.5
   height: 2
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 10
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -681,6 +682,22 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   Astar: {fileID: 654619145482808579}
+--- !u!114 &-2494805442905383862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156367174078436003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0fd6d696e05c542a9d53da5b7fbae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  goalCount: 0
 --- !u!1 &2385198031884895084
 GameObject:
   m_ObjectHideFlags: 0

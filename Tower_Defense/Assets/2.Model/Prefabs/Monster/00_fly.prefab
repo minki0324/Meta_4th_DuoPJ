@@ -1156,6 +1156,7 @@ GameObject:
   - component: {fileID: 7026635142632321580}
   - component: {fileID: -8709671319269997148}
   - component: {fileID: -8384921617185265276}
+  - component: {fileID: -7427411584844288389}
   m_Layer: 6
   m_Name: 00_fly
   m_TagString: Untagged
@@ -1311,7 +1312,7 @@ MonoBehaviour:
   radius: 0.5
   height: 2
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 10
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -1413,6 +1414,22 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   Astar: {fileID: 5701771309300756101}
+--- !u!114 &-7427411584844288389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5616818532696494380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a0fd6d696e05c542a9d53da5b7fbae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  goalCount: 0
 --- !u!1 &5635863503711859319
 GameObject:
   m_ObjectHideFlags: 0
