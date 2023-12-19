@@ -3,44 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-    public class BuildArea : MonoBehaviour
+public class BuildArea : MonoBehaviour
+{
+    private BuildManager buildManager;
+
+
+    [SerializeField] private Material validMaterial;
+    [SerializeField] private Material invalidMaterial;
+    [SerializeField] private LayerMask obstacleLayer; //레이어마스크
+ 
+   
+
+
+    private void OnTriggerStay(Collider other)
     {
-        [SerializeField] private GameObject[] BuildAreas;
-        [SerializeField] private Material validMaterial;
-        [SerializeField] private Material invalidMaterial;
-        [SerializeField] private LayerMask obstacleLayer;
-        [SerializeField] private float raycastDistance = 5f;
-
-        private void Update()
+        //지정한장애물(몬스터,타워) 와 other의 레이어가 동일한경우 == 건물을 못짓는다.
+        if ((obstacleLayer.value & (1 << other.gameObject.layer)) != 0)
         {
-            MovePlaneWithMouse();
-            DetectObstacle();
+            //적색으로 바꿔주기
+            GetComponent<Renderer>().material = invalidMaterial;
+            BuildManager.Instance.isCanBuild = false;
         }
 
-        private void MovePlaneWithMouse()
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
-            {
-                transform.position = hit.point;
-            }
-        }
-
-        private void DetectObstacle()
-        {
-            for (int i = 0; i < BuildAreas.Length; i++)
-            {
-                RaycastHit hit;
-
-                // 레이어 마스크 설정을 추가하여 obstacleLayer 레이어만 감지하도록 함
-                if (Physics.Raycast(BuildAreas[i].transform.position, -BuildAreas[i].transform.up, out hit, raycastDistance, obstacleLayer))
-                {
-                    BuildAreas[i].GetComponent<Renderer>().material = invalidMaterial;
-                }
-                else
-                {
-                    BuildAreas[i].GetComponent<Renderer>().material = validMaterial;
-                }
-            }
-        }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        //녹색으로 바꿔주기
+        GetComponent<Renderer>().material = validMaterial;
+        BuildManager.Instance.isCanBuild = true;
+    }
+}
