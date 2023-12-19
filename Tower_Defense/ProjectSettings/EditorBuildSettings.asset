@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1.Scene/01_Room.unity
     guid: ec0647951833a924caaf4a15dd2994c5
-  - enabled: 1
+  - enabled: 0
     path: Assets/1.Scene/02_MainGame.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/1.Scene/Minki.unity
+    guid: 395a0bb3a19224f4594474c675e498c1
   m_configObjects: {}
