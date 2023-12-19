@@ -577,8 +577,13 @@ MonoBehaviour:
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 180358175359967910, guid: a737bcd1d6e897648b6890be06114a43, type: 3}
   autoCreatePlayer: 1
-  playerSpawnMethod: 0
-  spawnPrefabs: []
+  playerSpawnMethod: 1
+  spawnPrefabs:
+  - {fileID: 5616818532696494380, guid: 9643ef1a132d1e848a19b8dde55e351e, type: 3}
+  - {fileID: 2156367174078436003, guid: 2f2517bbfbd46e94bbf0daab533d0d33, type: 3}
+  - {fileID: 9214614053171815319, guid: 974204383f7364a498cd076b21d7bb23, type: 3}
+  - {fileID: 8588166508417776201, guid: 55351d3645f34494f8746ce0a5529b2d, type: 3}
+  - {fileID: 3974143642561148006, guid: cbd36af795bcb0240a3c97ba33d71bdb, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -598,7 +603,7 @@ MonoBehaviour:
   minPlayers: 2
   roomPlayerPrefab: {fileID: 3945291912152814873, guid: 952f3b5d21ceb5b4aa5bc8b1be050269, type: 3}
   RoomScene: Assets/1.Scene/01_Room.unity
-  GameplayScene: Assets/1.Scene/02_MainGame.unity
+  GameplayScene: Assets/1.Scene/Minki.unity
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
