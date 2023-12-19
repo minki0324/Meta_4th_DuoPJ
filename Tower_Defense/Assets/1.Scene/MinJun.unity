@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 510128874, guid: e2bd16df598240c4f937350ab0bbc7f3, type: 3}
+      propertyPath: sceneId
+      value: 3504076499
+      objectReference: {fileID: 0}
     - target: {fileID: 1521966002932466678, guid: e2bd16df598240c4f937350ab0bbc7f3, type: 3}
       propertyPath: m_BoundingSphereOverride.w
       value: 1e-45
@@ -384,6 +388,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 510128874, guid: e2bd16df598240c4f937350ab0bbc7f3, type: 3}
+      propertyPath: sceneId
+      value: 2366457979
+      objectReference: {fileID: 0}
     - target: {fileID: 1521966002932466678, guid: e2bd16df598240c4f937350ab0bbc7f3, type: 3}
       propertyPath: m_BoundingSphereOverride.w
       value: 1e-45
@@ -999,6 +1007,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 510128874, guid: e2bd16df598240c4f937350ab0bbc7f3, type: 3}
+      propertyPath: sceneId
+      value: 2763518868
+      objectReference: {fileID: 0}
     - target: {fileID: 1521966002592042419, guid: e2bd16df598240c4f937350ab0bbc7f3, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -2558,6 +2570,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 510128874, guid: e2bd16df598240c4f937350ab0bbc7f3, type: 3}
+      propertyPath: sceneId
+      value: 590904066
+      objectReference: {fileID: 0}
     - target: {fileID: 1521966002932466678, guid: e2bd16df598240c4f937350ab0bbc7f3, type: 3}
       propertyPath: m_BoundingSphereOverride.w
       value: 1e-45
