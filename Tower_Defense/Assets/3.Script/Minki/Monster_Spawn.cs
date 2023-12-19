@@ -12,16 +12,13 @@ public class Monster_Spawn : NetworkBehaviour
         2. 리스트에 담아놓고 비활성화 되어있는 몬스터가 있으면 해당 몬스터를 활성화하면서 스폰
     */
 
-    [SerializeField] private Transform[] SpawnPoint;
+    public Transform[] SpawnPoint;
+    public Transform[] FinPoint;
 
     [SerializeField] private GameObject[] Mon_Prefabs;
-    [SerializeField] private Transform[] FinPoint;
     [SerializeField] private GameObject[] test_Build;
 
     #region Unity Callback
-    private void Start()
-    {
-    }
     #endregion
     #region SyncVar
     #endregion
@@ -31,38 +28,23 @@ public class Monster_Spawn : NetworkBehaviour
     {
         CMD_SpawnMonster(index, (int)GameManager.instance.Player_Num);
     }
-
-    [Client]
-    public void testClick()
-    {
-        test_Build[0].SetActive(true);
-        test_Build[1].SetActive(true);
-        CMD_TestBuild();
-    }
     #endregion
     #region Command
     [Command(requiresAuthority = false)]
     private void CMD_SpawnMonster(int index, int player_num)
     {
-        /*GameObject monster = Instantiate(Mon_Prefabs[index], SpawnPoint.position, Quaternion.identity);
+        // 초기화 메소드 가져와야됨
+        Transform spawnpoint = Get_SpawnPoint(player_num);
+        GameObject monster = Instantiate(Mon_Prefabs[index], spawnpoint.position, Quaternion.identity);
         NetworkServer.Spawn(monster);
 
         // 태그 할당
         monster.tag = $"{player_num}P";
 
         Monster_Movement move = monster.GetComponent<Monster_Movement>();
-        move.Astar.target = FinPoint;
-        Rpc_SpawnMonster(monster, player_num);*/
-    }
-
-    [Command(requiresAuthority = false)]
-    private void CMD_TestBuild()
-    {
-        test_Build[0].SetActive(true);
-        test_Build[1].SetActive(true);
-        AstarPath.active.Scan();
-        Test_MonSetup();
-        RPC_TestBuild();
+        Transform finpoint = Get_FinPoint(player_num);
+        move.Astar.target = finpoint;
+        Rpc_SpawnMonster(monster, player_num);
     }
     #endregion
     #region ClientRPC
@@ -75,26 +57,46 @@ public class Monster_Spawn : NetworkBehaviour
             mon.tag = $"{player_num}P";
         }
     }
-
-    [ClientRpc]
-    private void RPC_TestBuild()
-    {
-        if(isLocalPlayer)
-        {
-            Test_MonSetup();
-            test_Build[0].SetActive(true);
-            test_Build[1].SetActive(true);
-        }
-    }
     #endregion
     #region Hook Method
     #endregion
-    private void Test_MonSetup()
+
+    private Transform Get_SpawnPoint(int player_num)
     {
-        /*AIDestinationSetter[] monsters = FindObjectsOfType<AIDestinationSetter>();
-        foreach (var monster in monsters)
+        switch(player_num)
         {
-            monster.target = FinPoint;
-        }*/
+            /*
+                나중에 플레이어 목숨 다하면 다음 플레이어로 소환하는 로직 필요함 Todo 
+            */
+            case 1:
+                return SpawnPoint[1];
+            case 2:
+                return SpawnPoint[2];
+            case 3:
+                return SpawnPoint[3];
+            case 4:
+                return SpawnPoint[0];
+            default:
+                return null;
+        }
+    }
+    private Transform Get_FinPoint(int player_num)
+    {
+        switch (player_num)
+        {
+            /*
+                나중에 피니시라인 넘어갔을 때 그 다음 플레이어에게 가는 로직 필요함 Todo
+            */
+            case 1:
+                return FinPoint[1];
+            case 2:
+                return FinPoint[2];
+            case 3:
+                return FinPoint[3];
+            case 4:
+                return FinPoint[0];
+            default:
+                return null;
+        }
     }
 }
