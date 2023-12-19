@@ -21,7 +21,6 @@ public class Monster_Spawn : NetworkBehaviour
     #region Unity Callback
     private void Start()
     {
-        
     }
     #endregion
     #region SyncVar
@@ -45,15 +44,15 @@ public class Monster_Spawn : NetworkBehaviour
     [Command(requiresAuthority = false)]
     private void CMD_SpawnMonster(int index, int player_num)
     {
-        GameObject monster = Instantiate(Mon_Prefabs[index], SpawnPoint[0].position, Quaternion.identity);
+        /*GameObject monster = Instantiate(Mon_Prefabs[index], SpawnPoint.position, Quaternion.identity);
         NetworkServer.Spawn(monster);
 
         // 태그 할당
         monster.tag = $"{player_num}P";
 
         Monster_Movement move = monster.GetComponent<Monster_Movement>();
-        move.Astar.target = FinPoint[0];
-        Rpc_SpawnMonster(monster, player_num);
+        move.Astar.target = FinPoint;
+        Rpc_SpawnMonster(monster, player_num);*/
     }
 
     [Command(requiresAuthority = false)]
@@ -92,10 +91,10 @@ public class Monster_Spawn : NetworkBehaviour
     #endregion
     private void Test_MonSetup()
     {
-        AIDestinationSetter[] monsters = FindObjectsOfType<AIDestinationSetter>();
+        /*AIDestinationSetter[] monsters = FindObjectsOfType<AIDestinationSetter>();
         foreach (var monster in monsters)
         {
-            monster.target = FinPoint[0];
-        }
+            monster.target = FinPoint;
+        }*/
     }
 }
