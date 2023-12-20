@@ -93,27 +93,27 @@ namespace FORGE3D
                     {
                         case F3DFXType.Vulcan:
                             F3DFXController.instance.VulcanImpact(hitPoint.point + hitPoint.normal * fxOffset);
-                            ApplyForce(2.5f);
+                            /*ApplyForce(2.5f);*/
                             break;
 
                         case F3DFXType.SoloGun:
                             F3DFXController.instance.SoloGunImpact(hitPoint.point + hitPoint.normal * fxOffset);
-                            ApplyForce(25f);
+                            /*ApplyForce(25f);*/
                             break;
 
                         case F3DFXType.Seeker:
                             F3DFXController.instance.SeekerImpact(hitPoint.point + hitPoint.normal * fxOffset);
-                            ApplyForce(30f);
+                            /*ApplyForce(30f);*/
                             break;
 
                         case F3DFXType.PlasmaGun:
                             F3DFXController.instance.PlasmaGunImpact(hitPoint.point + hitPoint.normal * fxOffset);
-                            ApplyForce(25f);
+                            /*ApplyForce(25f);*/
                             break;
 
                         case F3DFXType.LaserImpulse:
                             F3DFXController.instance.LaserImpulseImpact(hitPoint.point + hitPoint.normal * fxOffset);
-                            ApplyForce(25f);
+                            /*ApplyForce(25f);*/
                             break;
                     }
 

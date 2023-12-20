@@ -116,9 +116,9 @@ public class BuildManager : NetworkBehaviour
         GameObject tower = Instantiate(towers[index], area[index].transform.position, Quaternion.identity);
         currentTower = tower;
         currentArea = area[index].gameObject;
-        tower.GetComponent<BoxCollider>().enabled = false;
+        tower.transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
 
-        
+
 
 
 
