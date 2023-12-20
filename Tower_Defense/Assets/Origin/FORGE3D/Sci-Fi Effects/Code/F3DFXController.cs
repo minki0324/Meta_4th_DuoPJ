@@ -141,7 +141,7 @@ namespace FORGE3D
             {
                 case F3DFXType.Vulcan:
                     // Fire vulcan at specified rate until canceled
-                    timerID = F3DTime.time.AddTimer(VulcanFireRate, Vulcan);
+                    /*timerID = F3DTime.time.AddTimer(VulcanFireRate, Vulcan);*/
                     // Invoke manually before the timer ticked to avoid initial delay
                     Vulcan();
                     break;

@@ -9,18 +9,18 @@ public class BuildManager : NetworkBehaviour
 {
     public static BuildManager Instance;
 
-    public GameObject pointPrefab; // °¡»óÀÇ Á¡À» ³ªÅ¸³¾ ÇÁ¸®ÆÕ
-    public bool isCanBuild ;  // BuildArea¿¡¼­ ÇÑ°³¶óµµ Àû»öÀ¸·Î º¯ÇÒ ½Ã false ¹İÈ¯ÇÔ.
+    public GameObject pointPrefab; // ê°€ìƒì˜ ì ì„ ë‚˜íƒ€ë‚¼ í”„ë¦¬íŒ¹
+    public bool isCanBuild ;  // BuildAreaì—ì„œ í•œê°œë¼ë„ ì ìƒ‰ìœ¼ë¡œ ë³€í•  ì‹œ false ë°˜í™˜í•¨.
     private bool isBuilding;
     private int TowerIndex;
     public GameObject[] towers;
     private GameObject currentTower;
     private GameObject currentArea;
     private GameObject SendOB;
-    [SerializeField] private BuildAreaPrents[] area; //Å¸¿ö¸¶´Ù 22 32 33 µî Å©±â°¡ ´Ù¸¥ Area ÇÒ´çÇØÁà¾ßÇÔ
+    [SerializeField] private BuildAreaPrents[] area; //íƒ€ì›Œë§ˆë‹¤ 22 32 33 ë“± í¬ê¸°ê°€ ë‹¤ë¥¸ Area í• ë‹¹í•´ì¤˜ì•¼í•¨
     private KeyCode k;
 
-    //¾î¶»°Ô ÇÒ´çÇØÁÙ±î...
+    //ì–´ë–»ê²Œ í• ë‹¹í•´ì¤„ê¹Œ...
     // 
     private void Awake()
     {
@@ -39,25 +39,25 @@ public class BuildManager : NetworkBehaviour
 
     private void Update()
     {
-        // QWER ´­·¶À»¶§ Å¸¿öÁöÁ¤
-        // Area È°¼ºÈ­
-        // ¸¶¿ì½º UI ¾ø¾Ö±â
-        //¸¶¿ì½º ¿ŞÂÊÅ° ´­·¶À»¶§ °Ç¼³ ¸Ş¼Òµå È£Ãâ(À§Ä¡,Å¸¿öÁ¾·ù)
-        //¸¶¿ì½º ¿À¸¥ÂÊÅ° ´­·¶À»¶§ Area ºñÈ°¼ºÈ­
+        // QWER ëˆŒë €ì„ë•Œ íƒ€ì›Œì§€ì •
+        // Area í™œì„±í™”
+        // ë§ˆìš°ìŠ¤ UI ì—†ì• ê¸°
+        //ë§ˆìš°ìŠ¤ ì™¼ìª½í‚¤ ëˆŒë €ì„ë•Œ ê±´ì„¤ ë©”ì†Œë“œ í˜¸ì¶œ(ìœ„ì¹˜,íƒ€ì›Œì¢…ë¥˜)
+        //ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½í‚¤ ëˆŒë €ì„ë•Œ Area ë¹„í™œì„±í™”
        
         Debug.Log("isCanBuild : " + isCanBuild);
 
         if (!isBuilding)
         {
-            //ºôµåÅ° ´­·¶À»¶§ (ÃßÈÄ ¹öÆ°Å¬¸¯À¸·Î´ëÃ¼)
-            //Å°¿¡¸Â´Â Area ,Tower ¼¼ÆÃÇÏ°í Preview º¸¿©ÁÖ´ÂÀÛ¾÷
+            //ë¹Œë“œí‚¤ ëˆŒë €ì„ë•Œ (ì¶”í›„ ë²„íŠ¼í´ë¦­ìœ¼ë¡œëŒ€ì²´)
+            //í‚¤ì—ë§ëŠ” Area ,Tower ì„¸íŒ…í•˜ê³  Preview ë³´ì—¬ì£¼ëŠ”ì‘ì—…
             BuildReady();
         }
         else
         {
             
-            //Preview »óÅÂ¿¡¼­ ¿ŞÂÊ ¸¶¿ì½º ´©¸£¸é °Ç¼³ ( Äİ¶óÀÌ´õ ÄÑÁÖ±â,±×À§Ä¡¿¡ °Ç¼³)
-            //¿À¸¥ÂÊÅ° ´­·¶À»¶§ DestroyÇÏ¸é¼­ Ãë¼Ò.
+            //Preview ìƒíƒœì—ì„œ ì™¼ìª½ ë§ˆìš°ìŠ¤ ëˆ„ë¥´ë©´ ê±´ì„¤ ( ì½œë¼ì´ë” ì¼œì£¼ê¸°,ê·¸ìœ„ì¹˜ì— ê±´ì„¤)
+            //ì˜¤ë¥¸ìª½í‚¤ ëˆŒë €ì„ë•Œ Destroyí•˜ë©´ì„œ ì·¨ì†Œ.
             BuildDecision();
         }
 
@@ -71,7 +71,7 @@ public class BuildManager : NetworkBehaviour
         {
             Vector3 targetPos = currentTower.transform.position;
             ClientBuildOrder(targetPos , TowerIndex);
-            //Áö¾î À§Ä¡ Å¸¿ö º¸³»Áà¾ßÇÔ
+            //ì§€ì–´ ìœ„ì¹˜ íƒ€ì›Œ ë³´ë‚´ì¤˜ì•¼í•¨
             Destroy(currentTower);
             //currentTower.GetComponent<BoxCollider>().enabled = true;
             currentArea.SetActive(false);
@@ -79,10 +79,10 @@ public class BuildManager : NetworkBehaviour
         }
         else if (Input.GetMouseButtonDown(1))
         {
-            //Ãë¼Ò
+            //ì·¨ì†Œ
             Destroy(currentTower);
             currentArea.SetActive(false);
-            //Å¸¿öÃÊ±âÈ­, Area ÃÊ±âÈ­
+            //íƒ€ì›Œì´ˆê¸°í™”, Area ì´ˆê¸°í™”
             currentTower = null;
             currentArea = null;
             isBuilding = false;
@@ -117,7 +117,8 @@ public class BuildManager : NetworkBehaviour
         GameObject tower = Instantiate(towers[index], area[index].transform.position, Quaternion.identity);
         currentTower = tower;
         currentArea = area[index].gameObject;
-        tower.GetComponent<BoxCollider>().enabled = false;
+        tower.transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
+
 
 
 
@@ -127,7 +128,7 @@ public class BuildManager : NetworkBehaviour
 
     private void AreaActiveTrue(int index)
     {
-        //±âÁ¸¿¡ ´Ù¸¥ Area°¡ ÄÑÁ®ÀÖ´Ù¸é ²¨ÁØ´Ù.
+        //ê¸°ì¡´ì— ë‹¤ë¥¸ Areaê°€ ì¼œì ¸ìˆë‹¤ë©´ êº¼ì¤€ë‹¤.
 
         for (int i = 0; i < area.Length; i++)
         {
