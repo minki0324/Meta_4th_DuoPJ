@@ -20,6 +20,11 @@ public class BuildManager : NetworkBehaviour
     [SerializeField] private BuildAreaPrents[] area; //타워마다 22 32 33 등 크기가 다른 Area 할당해줘야함
     private KeyCode k;
 
+    #region SyncVar
+    public SyncList<Tower> AllTower = new SyncList<Tower>();
+    #endregion
+
+
     //어떻게 할당해줄까...
     // 
     private void Awake()
@@ -45,7 +50,6 @@ public class BuildManager : NetworkBehaviour
         //마우스 왼쪽키 눌렀을때 건설 메소드 호출(위치,타워종류)
         //마우스 오른쪽키 눌렀을때 Area 비활성화
        
-        Debug.Log("isCanBuild : " + isCanBuild);
 
         if (!isBuilding)
         {
@@ -157,6 +161,7 @@ public class BuildManager : NetworkBehaviour
         GameObject newTower = Instantiate(towers[towerindex], targetPos, Quaternion.identity);
 
         NetworkServer.Spawn(newTower/* , senderConnection*/);
+        AllTower.Add(newTower.GetComponent<Tower>());
         AstarPath.active.Scan();
 
 

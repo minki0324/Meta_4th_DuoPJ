@@ -9094,12 +9094,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Mon_Prefabs:
-  - {fileID: 5616818532696494380, guid: 9643ef1a132d1e848a19b8dde55e351e, type: 3}
+  - {fileID: 4413417171863260773, guid: 3f7d96517e50a584fb71ed9cd97ada1a, type: 3}
   - {fileID: 2156367174078436003, guid: 2f2517bbfbd46e94bbf0daab533d0d33, type: 3}
   - {fileID: 9214614053171815319, guid: 974204383f7364a498cd076b21d7bb23, type: 3}
   - {fileID: 8588166508417776201, guid: 55351d3645f34494f8746ce0a5529b2d, type: 3}
   - {fileID: 3974143642561148006, guid: cbd36af795bcb0240a3c97ba33d71bdb, type: 3}
-  test_Build: []
 --- !u!1 &6590126368896354044
 GameObject:
   m_ObjectHideFlags: 0

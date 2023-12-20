@@ -8,6 +8,10 @@ public class Monster_Control : NetworkBehaviour
     public MonsterState state;
     public AIDestinationSetter Astar;
     public AIPath aiPath;
+    [SerializeField]
+    public GameObject marker;
+
+   
     #region Unity Callback
     private void Start()
     {
@@ -33,4 +37,13 @@ public class Monster_Control : NetworkBehaviour
     #endregion
     #region Hook Method
     #endregion
+    public void Selectunit()
+    {
+        marker.SetActive(true);
+    }
+
+    public void DeSelectunit()
+    {
+        marker.SetActive(false);
+    }
 }
