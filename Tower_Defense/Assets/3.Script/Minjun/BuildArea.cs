@@ -11,8 +11,6 @@ public class BuildArea : MonoBehaviour
     [SerializeField] private Material validMaterial;
     [SerializeField] private Material invalidMaterial;
     [SerializeField] private LayerMask obstacleLayer; //레이어마스크
-    [SerializeField] private LayerMask buildAreaLayer; //레이어마스크
-    private Vector3 rayStartPos;
     public bool isCanBuild;
     private void OnTriggerStay(Collider other)
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using System;
+using Pathfinding;
 
 public class BuildManager : NetworkBehaviour
 {
@@ -118,7 +119,7 @@ public class BuildManager : NetworkBehaviour
         currentArea = area[index].gameObject;
         tower.GetComponent<BoxCollider>().enabled = false;
 
-        
+
 
 
 
@@ -142,22 +143,23 @@ public class BuildManager : NetworkBehaviour
 
     #region Client
     [Client]
-    private void ClientBuildOrder(Vector3 targetPos , int towerindex)
+    private void ClientBuildOrder(Vector3 targetPos, int towerindex)
     {
-        CMDBuildOrder(targetPos , towerindex);
-        
+        CMDBuildOrder(targetPos, towerindex);
+
     }
     #endregion
     #region Command
     [Command(requiresAuthority = false)]
-    private void CMDBuildOrder(Vector3 targetPos , int towerindex)
+    private void CMDBuildOrder(Vector3 targetPos, int towerindex)
     {
         GameObject newTower = Instantiate(towers[towerindex], targetPos, Quaternion.identity);
 
-            NetworkServer.Spawn(newTower/* , senderConnection*/);
-       
+        NetworkServer.Spawn(newTower/* , senderConnection*/);
+        AstarPath.active.Scan();
 
-      
+
+
     }
 
     #endregion
