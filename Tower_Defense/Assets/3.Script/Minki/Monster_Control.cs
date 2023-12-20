@@ -2,10 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-
+using Pathfinding;
 public class Monster_Control : NetworkBehaviour
 {
+    public MonsterState state;
+    public AIDestinationSetter Astar;
+    public AIPath aiPath;
     #region Unity Callback
+    private void Start()
+    {
+        if(state.type != MonsterState.monType.Fly) {
+            TryGetComponent(out aiPath);
+            aiPath.maxSpeed = state.speed;
+        }
+        else
+        {
+
+        }
+    }
     #endregion
     #region SyncVar
     [SyncVar]

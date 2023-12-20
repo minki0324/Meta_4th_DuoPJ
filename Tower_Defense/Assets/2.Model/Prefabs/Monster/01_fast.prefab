@@ -423,7 +423,6 @@ GameObject:
   - component: {fileID: 4030972312949011511}
   - component: {fileID: 32561701473401170}
   - component: {fileID: -5446363431741991048}
-  - component: {fileID: -8408436129287105311}
   - component: {fileID: -2494805442905383862}
   m_Layer: 6
   m_Name: 01_fast
@@ -594,7 +593,7 @@ MonoBehaviour:
     mode: 2
     interval: 0.5
     sensitivity: 10
-    maximumInterval: 2
+    maximumInterval: 0.1
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
@@ -666,22 +665,6 @@ MonoBehaviour:
   syncInterval: 0
   monster_Animation: {fileID: -5446363431741991048}
   ani: {fileID: 3010607388900667531}
---- !u!114 &-8408436129287105311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2156367174078436003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5232efd16adcf94fa94bd0e124d7f8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  Astar: {fileID: 654619145482808579}
 --- !u!114 &-2494805442905383862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,6 +680,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  state: {fileID: 11400000, guid: 074790e9deb15ea439fd99d13d9f60e8, type: 2}
+  Astar: {fileID: 654619145482808579}
+  aiPath: {fileID: 0}
   goalCount: 0
 --- !u!1 &2385198031884895084
 GameObject:

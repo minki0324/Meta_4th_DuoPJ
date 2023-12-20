@@ -16,7 +16,6 @@ public class Monster_Spawn : NetworkBehaviour
     public Transform[] FinPoint;
 
     [SerializeField] private GameObject[] Mon_Prefabs;
-    [SerializeField] private GameObject[] test_Build;
 
     #region Unity Callback
     #endregion
@@ -33,17 +32,25 @@ public class Monster_Spawn : NetworkBehaviour
     [Command(requiresAuthority = false)]
     private void CMD_SpawnMonster(int index, int player_num)
     {
+
         // 초기화 메소드 가져와야됨
         Transform spawnpoint = Get_SpawnPoint(player_num);
-        GameObject monster = Instantiate(Mon_Prefabs[index], spawnpoint.position, Quaternion.identity);
+        int randIndexX = Random.Range(-10, 11);
+        int randIndexZ = Random.Range(-1, 2);
+        Vector3 spawnPos = new Vector3(spawnpoint.position.x + randIndexX, spawnpoint.position.y+ Mon_Prefabs[index].transform.position.y, spawnpoint.position.z + randIndexZ);
+        GameObject monster = Instantiate(Mon_Prefabs[index], spawnPos, Mon_Prefabs[index].transform.rotation);
         NetworkServer.Spawn(monster);
 
         // 태그 할당
         monster.tag = $"{player_num}P";
 
-        Monster_Movement move = monster.GetComponent<Monster_Movement>();
+        Monster_Control monster_con = monster.GetComponent<Monster_Control>();
         Transform finpoint = Get_FinPoint(player_num);
-        move.Astar.target = finpoint;
+        //플라이는 에이스타안씀
+        Debug.Log(monster_con);
+        if (monster_con.state.type != MonsterState.monType.Fly) { monster_con.Astar.target = finpoint; }
+
+
         Rpc_SpawnMonster(monster, player_num);
     }
     #endregion

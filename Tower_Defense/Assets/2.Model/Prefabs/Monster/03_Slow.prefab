@@ -2597,7 +2597,6 @@ GameObject:
   - component: {fileID: -2359009828770443293}
   - component: {fileID: 1994667405962139253}
   - component: {fileID: 512357107828826199}
-  - component: {fileID: 2576828166710889802}
   - component: {fileID: 7448133428400678295}
   - component: {fileID: 4327065226137620119}
   - component: {fileID: -7371252050798641851}
@@ -2770,7 +2769,7 @@ MonoBehaviour:
     mode: 2
     interval: 0.5
     sensitivity: 10
-    maximumInterval: 2
+    maximumInterval: 0.1
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
@@ -2812,22 +2811,6 @@ MonoBehaviour:
   syncInterval: 0
   monster_Animation: {fileID: 512357107828826199}
   ani: {fileID: 4604078591973907408}
---- !u!114 &2576828166710889802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8588166508417776201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5232efd16adcf94fa94bd0e124d7f8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  Astar: {fileID: 1994667405962139253}
 --- !u!136 &7448133428400678295
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2873,6 +2856,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  state: {fileID: 11400000, guid: 421538f2fa30727408fc4f2062cb7497, type: 2}
+  Astar: {fileID: 0}
+  aiPath: {fileID: 0}
   goalCount: 0
 --- !u!1 &8786804647327270238
 GameObject:

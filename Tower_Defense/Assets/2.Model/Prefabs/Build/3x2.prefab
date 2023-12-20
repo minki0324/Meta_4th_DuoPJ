@@ -112,7 +112,7 @@ MonoBehaviour:
   invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   buildAreaLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
   invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   buildAreaLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
   invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   buildAreaLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -515,7 +515,7 @@ MonoBehaviour:
   invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   buildAreaLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -632,7 +632,7 @@ MonoBehaviour:
   invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   buildAreaLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -749,7 +749,7 @@ MonoBehaviour:
   invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   buildAreaLayer:
     serializedVersion: 2
     m_Bits: 0
