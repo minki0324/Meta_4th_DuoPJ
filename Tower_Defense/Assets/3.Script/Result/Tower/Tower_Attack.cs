@@ -65,7 +65,7 @@ public class Tower_Attack : NetworkBehaviour
         Vector3 m_euler = Quaternion.RotateTowards(mount.rotation, look_Rot, M_Rot_Speed * Time.deltaTime).eulerAngles;
         Vector3 h_euler = Quaternion.Slerp(transform.rotation, Quaternion.Euler(look_Rot.eulerAngles.x, look_Rot.eulerAngles.y, 0), H_Rot_Speed * Time.deltaTime).eulerAngles;
         h_euler.x = Mathf.Clamp(h_euler.x, -20f, 20f);
-        transform.rotation = Quaternion.Euler(h_euler.x, h_euler.y, 0);
+        transform.rotation = Quaternion.Euler(h_euler.x, 0, 0);
         mount.rotation = Quaternion.Euler(0, m_euler.y, 0);
         Quaternion fire_Rot = Quaternion.Euler(0, look_Rot.eulerAngles.y, 0);
 

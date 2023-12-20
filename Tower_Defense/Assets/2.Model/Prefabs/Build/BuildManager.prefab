@@ -50,7 +50,7 @@ MonoBehaviour:
   pointPrefab: {fileID: 0}
   isCanBuild: 0
   towers:
-  - {fileID: 8177763453560955956, guid: 708fc95a40761ae438eee8d0c64b3035, type: 3}
+  - {fileID: 2287224107247296021, guid: 8668d7c75a134534abeee9c30ca4c5c3, type: 3}
   - {fileID: 3847485461186069710, guid: 64c846e6c4bf1a645ac06b2b03bd0f43, type: 3}
   - {fileID: 5382741764567797810, guid: 0c6584530ca14984dbae9aba5bc3f1b9, type: 3}
   area:
