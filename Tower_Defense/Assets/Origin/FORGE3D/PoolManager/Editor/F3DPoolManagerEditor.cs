@@ -51,7 +51,7 @@ public class F3DPoolManagerEditor : Editor
 
     string lastLoadedDatabaseName = "";
 
-    private string assetPath = "Assets/FORGE3D/Resources/F3DPoolManagerCache/";
+    private string assetPath = "Assets/Origin/FORGE3D/Resources/F3DPoolManagerCache/";
 
     /// <summary>
     /// Update info and data

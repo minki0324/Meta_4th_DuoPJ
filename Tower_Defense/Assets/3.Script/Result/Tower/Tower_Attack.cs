@@ -8,7 +8,11 @@ public class Tower_Attack : NetworkBehaviour
 {
     public Head_Data head_Data;
 
+    [Header("Turret Setup")]
+    [SerializeField] private Transform[] turretSocket;
+
     [SerializeField] private F3DFXController start_fire;
+    [SerializeField] private Effect_Pooling pool;
     [SerializeField] private Transform mount;
     [SerializeField] private LayerMask target_Layer;
     private Transform target;
@@ -26,7 +30,8 @@ public class Tower_Attack : NetworkBehaviour
     {
         mount = transform.root.GetChild(1);
         Init_Data(head_Data);
-        if(isServer)
+        pool = FindObjectOfType<Effect_Pooling>();
+        if (isServer)
         {
             InvokeRepeating("Search_Enemy", 0f, 0.5f);
         }
@@ -48,14 +53,39 @@ public class Tower_Attack : NetworkBehaviour
     }
     #endregion
     #region SyncVar
+    [SyncVar(hook = nameof(OnCurSocketChanged))]
+    private int curSocket = 0;
     #endregion
     #region Client
+    [Server]
+    private void Fire()
+    {
+        switch(head_Data.atk_Type)
+        {
+            case Head_Data.Atk_Type.Vulcan:
+                vulcan();
+                break;
+        }
+    }
+
+
     #endregion
     #region Command
     #endregion
     #region ClientRPC
+    [ClientRpc]
+    private void RPC_AdvanceSocket()
+    {
+        curSocket++;
+        if (curSocket >= turretSocket.Length)
+            curSocket = 0;
+    }
     #endregion
     #region Hook Method
+    private void OnCurSocketChanged(int old_, int new_)
+    {
+        curSocket = new_;
+    }
     #endregion
 
     private void Look_Target()
@@ -64,8 +94,8 @@ public class Tower_Attack : NetworkBehaviour
         Quaternion look_Rot = Quaternion.LookRotation(target.position - transform.position);
         Vector3 m_euler = Quaternion.RotateTowards(mount.rotation, look_Rot, M_Rot_Speed * Time.deltaTime).eulerAngles;
         Vector3 h_euler = Quaternion.Slerp(transform.rotation, Quaternion.Euler(look_Rot.eulerAngles.x, look_Rot.eulerAngles.y, 0), H_Rot_Speed * Time.deltaTime).eulerAngles;
-        h_euler.x = Mathf.Clamp(h_euler.x, -20f, 20f);
-        transform.rotation = Quaternion.Euler(h_euler.x, 0, 0);
+       /* h_euler.x = Mathf.Clamp(h_euler.x, -20f, 20f);
+        transform.rotation = Quaternion.Euler(h_euler.x, 0, 0);*/
         mount.rotation = Quaternion.Euler(0, m_euler.y, 0);
         Quaternion fire_Rot = Quaternion.Euler(0, look_Rot.eulerAngles.y, 0);
 
@@ -75,7 +105,7 @@ public class Tower_Attack : NetworkBehaviour
             if (current_ATK_Speed <= 0)
             {
                 current_ATK_Speed = H_ATK_Speed;
-                start_fire.Fire();
+                Fire();
             }
         }
     }
@@ -112,5 +142,54 @@ public class Tower_Attack : NetworkBehaviour
         target = nearest_target;
     }
 
-    
+    private IEnumerator Calculate_Fire(Head_Data head_Data, Transform target)
+    {
+        Monster_Control mon = target.GetComponent<Monster_Control>();
+        switch(head_Data.weapon_Type)
+        {
+            case Head_Data.Weapon_Type.Targeting:
+                if(mon.state.type == MonsterState.monType.Fly)
+                {
+                    if(head_Data.atk_Area == Head_Data.Atk_Area.Ground)
+                    {
+                        yield return null;
+                    }
+                }
+                else
+                {
+                    yield return new WaitForSeconds(head_Data.DelayTime);
+                    Monster_Control mon_con = target.gameObject.GetComponent<Monster_Control>();
+
+                }
+                break;
+            case Head_Data.Weapon_Type.Splash:
+                break;
+        }
+    }
+
+    private void vulcan()
+    {
+        var offset = Quaternion.Euler(Random.onUnitSphere);
+        
+        // ÃÑ½Å ÀÌÆåÆ®
+        GameObject Muzzle = pool.GetEffect(1);
+        Muzzle.transform.position = turretSocket[curSocket].position;
+        Muzzle.transform.rotation = turretSocket[curSocket].rotation;
+
+        Vector3 pos = Muzzle.transform.position;
+        Quaternion rot = Muzzle.transform.rotation;
+        GameManager.instance.RPC_TransformSet(Muzzle, pos, rot);
+
+        // ´ÙÀ½ ÃÑ½Å¿¡¼­ ¹ß»ç
+        AdvanceSocket();
+        RPC_AdvanceSocket();
+    }
+
+    // Advance to next turret socket
+    private void AdvanceSocket()
+    {
+        curSocket++;
+        if (curSocket >= turretSocket.Length)
+            curSocket = 0;
+    }
 }

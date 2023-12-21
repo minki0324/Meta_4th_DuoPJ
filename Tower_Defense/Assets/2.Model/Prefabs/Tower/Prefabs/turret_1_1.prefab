@@ -245,6 +245,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   head_Data: {fileID: 11400000, guid: 6b7d7654f4ef0c5469d8c8f92210c8cb, type: 2}
+  turretSocket:
+  - {fileID: 5738604696692427014}
+  - {fileID: 7482070845548574998}
   start_fire: {fileID: 8512278858316715448}
   mount: {fileID: 0}
   target_Layer:

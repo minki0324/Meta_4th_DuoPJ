@@ -18,11 +18,8 @@ MonoBehaviour:
   Level: 0
   Position: {x: 0, y: 4.6, z: 0}
   Cost: 20
-  Rot_Speed: 270
+  Rot_Speed: 60
   Damage: 10
   ATK_Speed: 1
   ATK_Range: 15
   Reload: 0
-  projectile: {fileID: 100000, guid: 6899da3c9998ff742890dcfadd978e36, type: 3}
-  muzzle: {fileID: 100002, guid: c14c8854c9e7ef345ab71d021683a729, type: 3}
-  impact: {fileID: 100000, guid: 33aa311f562a0dc4ebcd2575f13cee03, type: 3}
