@@ -26,20 +26,17 @@ public class MouseDrag : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("버튼한번누름");
             start = Input.mousePosition;
             dragRect = new Rect();
         }
         if (Input.GetMouseButton(0))
         {
-            Debug.Log("버튼누르는중");
             end = Input.mousePosition;
 
             DrawDragRectangle();
         }
 
         if (Input.GetMouseButtonUp(0)){
-            Debug.Log("버튼 뗏음");
             CalculateDragRact();
             SelectUnits();
 

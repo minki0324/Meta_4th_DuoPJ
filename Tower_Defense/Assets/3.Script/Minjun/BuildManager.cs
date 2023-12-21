@@ -11,7 +11,7 @@ public class BuildManager : NetworkBehaviour
 
     public GameObject pointPrefab; // 가상의 점을 나타낼 프리팹
     public bool isCanBuild ;  // BuildArea에서 한개라도 적색으로 변할 시 false 반환함.
-    private bool isBuilding;
+    public bool isBuilding;
     private int TowerIndex;
     public GameObject[] towers;
     private GameObject currentTower;
@@ -29,18 +29,25 @@ public class BuildManager : NetworkBehaviour
     // 
     private void Awake()
     {
-        if(Instance == null)
+        Debug.Log("1");
+        if (Instance == null)
         {
+            Debug.Log("2");
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
+            Debug.Log("3");
             Destroy(gameObject);
         }
         isCanBuild = true;
     }
-  
+    private void Start()
+    {
+        
+    }
+
 
     private void Update()
     {

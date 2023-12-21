@@ -7,6 +7,27 @@ public class Tower : NetworkBehaviour
 {
     [SerializeField]
     public GameObject marker;
+
+    public float maxHP;
+    public float currentHP;
+    public float damage;
+    public float range;
+    public float atkSpeed;
+    public string Speed;
+    public int level;
+
+    private void Awake()
+    {
+        maxHP = 50;
+        currentHP = 20;
+        damage = 5;
+        range = 6;
+        atkSpeed = 7;
+        Speed = "-";
+        level = 9;
+    }
+
+
     private void Update()
     {
      
