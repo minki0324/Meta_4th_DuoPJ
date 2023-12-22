@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 
 public class Tower : NetworkBehaviour
@@ -15,11 +16,11 @@ public class Tower : NetworkBehaviour
     public float atkSpeed;
     public string Speed;
     public int level;
-
+    public Sprite unitSprite;
     private void Awake()
     {
         maxHP = 50;
-        currentHP = 20;
+        currentHP = Random.Range(0 ,51);
         damage = 5;
         range = 6;
         atkSpeed = 7;

@@ -20,6 +20,10 @@ public class RTSControlSystem : MonoBehaviour
     }
     public void SelectUnit(Tower newunit)
     {
+        if (selectTowers.Count > 35)
+        {
+            return;
+        }
         newunit.Selectunit();
         selectTowers.Add(newunit);
     }
@@ -57,15 +61,21 @@ public class RTSControlSystem : MonoBehaviour
         }
         else
         {
+            if (selectTowers.Count > 35)
+            {
+                return;
+            }
             SelectUnit(newunit);
         }
     }
     public void DoubleClick(Tower hittower)
     {
-        if (hittower == selectTowers[0])
+        if (hittower == selectTowers[0]) //더블클릭했을때 기존클릭한 타워와 같다면.
         {
+            selectTowers.Clear();
             for (int i = 0; i < BuildManager.Instance.AllTower.Count; i++)
             {
+                
                 //조건 : 같은팀(미구현) , 같은 종류의 타워 (이름비교)
                 if (hittower.name == BuildManager.Instance.AllTower[i].name )
                 {
@@ -81,6 +91,10 @@ public class RTSControlSystem : MonoBehaviour
                         {
                             Debug.Log("보임");
                             // 여기에 보이는 경우의 로직 추가
+                            if (selectTowers.Count > 35)
+                            {
+                                return;
+                            }
                             SelectUnit(BuildManager.Instance.AllTower[i]);
                         }
                         else

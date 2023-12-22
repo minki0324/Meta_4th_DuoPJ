@@ -13,12 +13,13 @@ public class MouseDrag : MonoBehaviour
 
     private Camera maincamera;
     private RTSControlSystem rts;
+    private MouseControl mouseCon;
 
     private void Awake()
     {
         maincamera = Camera.main;
         rts = GetComponent<RTSControlSystem>();
-
+        mouseCon = GetComponent<MouseControl>();
         DrawDragRectangle();
     }
 
@@ -39,6 +40,7 @@ public class MouseDrag : MonoBehaviour
         if (Input.GetMouseButtonUp(0)){
             CalculateDragRact();
             SelectUnits();
+            mouseCon.infoUI.SetInfoPanel();
 
             start = end = Vector2.zero;
             DrawDragRectangle();
@@ -50,6 +52,7 @@ public class MouseDrag : MonoBehaviour
     {
         foreach (Tower tower in BuildManager.Instance.AllTower)
         {
+            if (rts.selectTowers.Count > 35) { return; }
 
             if (dragRect.Contains(maincamera.WorldToScreenPoint(tower.transform.position)))
             {
