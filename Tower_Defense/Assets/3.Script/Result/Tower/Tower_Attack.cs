@@ -6,10 +6,14 @@ using FORGE3D;
 
 public class Tower_Attack : NetworkBehaviour
 {
+    public static Tower_Attack instance;
     public Head_Data head_Data;
 
     [Header("Turret Setup")]
     [SerializeField] private Transform[] turretSocket;
+
+    [Header("Vulcan")]
+    public float vulcanOffset;
 
     [SerializeField] private F3DFXController start_fire;
     [SerializeField] private Effect_Pooling pool;
@@ -28,6 +32,8 @@ public class Tower_Attack : NetworkBehaviour
     #region Unity Callback
     private void Start()
     {
+        // Initialize singleton  
+        instance = this;
         mount = transform.root.GetChild(1);
         Init_Data(head_Data);
         pool = FindObjectOfType<Effect_Pooling>();
@@ -57,18 +63,6 @@ public class Tower_Attack : NetworkBehaviour
     private int curSocket = 0;
     #endregion
     #region Client
-    [Server]
-    private void Fire()
-    {
-        switch(head_Data.atk_Type)
-        {
-            case Head_Data.Atk_Type.Vulcan:
-                vulcan();
-                break;
-        }
-    }
-
-
     #endregion
     #region Command
     #endregion
@@ -85,6 +79,18 @@ public class Tower_Attack : NetworkBehaviour
     private void OnCurSocketChanged(int old_, int new_)
     {
         curSocket = new_;
+    }
+    #endregion
+    #region Server
+    [Server]
+    private void Fire()
+    {
+        switch(head_Data.atk_Type)
+        {
+            case Head_Data.Atk_Type.Vulcan:
+                vulcan();
+                break;
+        }
     }
     #endregion
 
@@ -173,16 +179,26 @@ public class Tower_Attack : NetworkBehaviour
         
         // 총신 이펙트
         GameObject Muzzle = pool.GetEffect(1);
-        Muzzle.transform.position = turretSocket[curSocket].position;
-        Muzzle.transform.rotation = turretSocket[curSocket].rotation;
+        Set_Pos_Rot(Muzzle, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
 
-        Vector3 pos = Muzzle.transform.position;
-        Quaternion rot = Muzzle.transform.rotation;
-        GameManager.instance.RPC_TransformSet(Muzzle, pos, rot);
+        GameObject Projectile = pool.GetEffect(0);
+        Set_Pos_Rot(Projectile, turretSocket[curSocket].position + turretSocket[curSocket].forward, offset * turretSocket[curSocket].rotation);
+
+        var proj = Projectile.gameObject.GetComponent<F3DProjectile>();
+        if(proj)
+        {
+            proj.SetOffset(vulcanOffset);
+        }
 
         // 다음 총신에서 발사
         AdvanceSocket();
         RPC_AdvanceSocket();
+    }
+
+    public void VulcanImpact(Vector3 pos)
+    {
+        GameObject impact = pool.GetEffect(2);
+        Set_Pos_Rot(impact, pos, Quaternion.identity);
     }
 
     // Advance to next turret socket
@@ -191,5 +207,24 @@ public class Tower_Attack : NetworkBehaviour
         curSocket++;
         if (curSocket >= turretSocket.Length)
             curSocket = 0;
+    }
+
+    private void Set_Pos_Rot(GameObject obj, Vector3 pos, Quaternion rot)
+    {
+        if(obj == null)
+        {
+            Debug.Log("obj 가 널");
+        }
+        else if (pos == null)
+        {
+            Debug.Log("pos 가 널");
+        }
+        else if (rot == null)
+        {
+            Debug.Log("rot 가 널");
+        }
+        obj.transform.position = pos;
+        obj.transform.rotation = rot;
+        GameManager.instance.RPC_TransformSet(obj, pos, rot);
     }
 }

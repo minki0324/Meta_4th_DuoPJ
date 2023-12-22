@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 11400000}
   - component: {fileID: -6588550061265892334}
   - component: {fileID: 4573408743220046118}
+  - component: {fileID: -5727319366090102309}
   m_Layer: 0
   m_Name: vulcan_projectile_example
   m_TagString: Untagged
@@ -61,7 +62,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71d84e8c92ffdf1438c9798f91d60981, type: 3}
   m_Name: 
@@ -128,6 +129,29 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!114 &-5727319366090102309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b858aeb0da13c014f98c60b741d5b437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head_Data: {fileID: 11400000, guid: 6b7d7654f4ef0c5469d8c8f92210c8cb, type: 2}
+  type: 1
+  delay: 2
+  despawnDelay: 0
+  DelayDespawn: 0
+  delayedParticles: []
+  velocity: 555
+  RaycastAdvance: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 832
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
