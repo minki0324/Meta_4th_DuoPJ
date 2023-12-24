@@ -9,17 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7d490a468d84014fb47f07e7a7cc373, type: 3}
-  m_Name: 00_Vulcan
+  m_Script: {fileID: 11500000, guid: 823a01e1a8405204aa5004b587512505, type: 3}
+  m_Name: 01_Mount
   m_EditorClassIdentifier: 
-  weapon_Type: 0
-  atk_Area: 2
-  BaseID: 0
+  BaseID: 1
   Level: 0
-  Position: {x: 0, y: 4.6, z: 0}
-  Cost: 20
-  Rot_Speed: 60
-  Damage: 10
-  ATK_Speed: 1
-  ATK_Range: 15
-  Reload: 0
+  Position: {x: 0, y: 0.8, z: 0}
+  Cost: 10
+  Rot_Speed: 180

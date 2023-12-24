@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 12000000}
   - component: {fileID: 11400000}
   - component: {fileID: 11400002}
+  - component: {fileID: 6604583880519063222}
   - component: {fileID: 970680312146672930}
   - component: {fileID: 6351467245315298120}
   m_Layer: 0
@@ -107,18 +108,18 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0, b: 0, a: 0}
-      key1: {r: 1, g: 0.69803923, b: 0.42745098, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0.9528302, g: 0.88648075, b: 0.22921856, a: 0.5882353}
+      key1: {r: 0.9528302, g: 0.63282925, b: 0.3460751, a: 1}
+      key2: {r: 0.9528302, g: 0.63282925, b: 0.3460751, a: 0}
+      key3: {r: 0.9528302, g: 0.63282925, b: 0.3460751, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 0
-      ctime3: 0
+      ctime2: 65535
+      ctime3: 65535
       ctime4: 0
       ctime5: 0
       ctime6: 0
@@ -183,13 +184,39 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af19da7458dc9174699d0b34f404eafc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DespawnDelay: 0.05
   DespawnOnMouseUp: 0
+--- !u!114 &6604583880519063222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b858aeb0da13c014f98c60b741d5b437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 11400000, guid: f777a698c75a71f42a12f7f1d1fe363b, type: 2}
+  type: 1
+  delay: 0.1
+  despawnDelay: 0
+  DelayDespawn: 0
+  delayedParticles: []
+  velocity: 300
+  RaycastAdvance: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &970680312146672930
 MonoBehaviour:
   m_ObjectHideFlags: 0

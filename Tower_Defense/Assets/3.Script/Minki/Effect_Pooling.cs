@@ -6,14 +6,14 @@ using Mirror;
 public class Effect_Pooling : NetworkBehaviour
 {
     [Header("Vulcan")]
-    public SyncList<GameObject> Vulcan_Projectile_List = new SyncList<GameObject>();
-    public SyncList<GameObject> Vulcan_Muzzle_List = new SyncList<GameObject>();
-    public SyncList<GameObject> Vulcan_Impact_List = new SyncList<GameObject>();
+    public SyncList<GameObject> Vulcan_Projectile_List = new SyncList<GameObject>();    // 0
+    public SyncList<GameObject> Vulcan_Muzzle_List = new SyncList<GameObject>();        // 1
+    public SyncList<GameObject> Vulcan_Impact_List = new SyncList<GameObject>();        // 2
 
     [Header("Sniper")]
-    public SyncList<GameObject> Sniper_Beam_List = new SyncList<GameObject>();
-    public SyncList<GameObject> Sniper_Muzzle_List = new SyncList<GameObject>();
-    public SyncList<GameObject> Sniper_Impact_List = new SyncList<GameObject>();
+    public SyncList<GameObject> Sniper_Beam_List = new SyncList<GameObject>();          // 3
+    public SyncList<GameObject> Sniper_Muzzle_List = new SyncList<GameObject>();        // 4
+    public SyncList<GameObject> Sniper_Impact_List = new SyncList<GameObject>();        // 5
 
     [Header("Laser")]
     public SyncList<GameObject> Laser_List = new SyncList<GameObject>();
@@ -144,6 +144,7 @@ public class Effect_Pooling : NetworkBehaviour
             {
                 effect.SetActive(true);
                 GameManager.instance.RPC_ActiveSet(true, effect);
+                Debug.Log(effect.name);
                 return effect;
             }
         }
@@ -155,6 +156,7 @@ public class Effect_Pooling : NetworkBehaviour
         int parentIndex = GetParentIndex(Prefabs_Parents[index]);
         newEffect.transform.SetParent(Prefabs_Parents[index].transform);
         RpcSyncMonsterInfo(newEffect, parentIndex);
+        GameManager.instance.RPC_ActiveSet(true, newEffect);
 
         return newEffect;
     }

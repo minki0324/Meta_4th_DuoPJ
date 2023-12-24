@@ -95,7 +95,7 @@ namespace FORGE3D
                 {
                     case F3DFXType.Sniper:
                         F3DFXController.instance.SniperImpact(hitPoint.point + hitPoint.normal * fxOffset);
-                        ApplyForce(4f);
+                        /*ApplyForce(4f);*/
                         break;
 
                     case F3DFXType.RailGun:

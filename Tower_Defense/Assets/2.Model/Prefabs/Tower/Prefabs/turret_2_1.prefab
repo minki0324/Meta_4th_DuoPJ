@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7601520184561032020}
   - component: {fileID: 8373965619526907109}
   - component: {fileID: 4065011283879840795}
+  - component: {fileID: 4601039297591559950}
+  - component: {fileID: 1104475356262142182}
   m_Layer: 0
   m_Name: turret_mount2
   m_TagString: Untagged
@@ -82,6 +84,58 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4601039297591559950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934295529015707782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c46e05b86566247a105c1c5a341547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  mount_Data: {fileID: 11400000, guid: b7dd913b103b7e4408e883bb807006d7, type: 2}
+  M_cost: 0
+  M_Rot_Speed: 0
+--- !u!114 &1104475356262142182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934295529015707782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a553cb17010b2403e8523b558bffbc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 7601520184561032020}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  compressRotation: 1
+  bufferResetMultiplier: 3
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
 --- !u!1 &3907319872444430483
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,6 +279,7 @@ GameObject:
   - component: {fileID: 1581084724478315854}
   - component: {fileID: 6177632304306332808}
   - component: {fileID: 4027543627882522584}
+  - component: {fileID: 8646889131699201180}
   m_Layer: 0
   m_Name: turret_head2
   m_TagString: Untagged
@@ -296,6 +351,39 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8646889131699201180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175945537760983150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d745b9e2658d74c843695088c304e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 11400000, guid: f777a698c75a71f42a12f7f1d1fe363b, type: 2}
+  turretSocket:
+  - {fileID: 5622082859810055469}
+  vulcanOffset: 0
+  sniperOffset: 0
+  start_fire: {fileID: 0}
+  pool: {fileID: 0}
+  mount: {fileID: 0}
+  target_Layer:
+    serializedVersion: 2
+    m_Bits: 64
+  H_Cost: 0
+  H_Rot_Speed: 0
+  H_Damage: 0
+  H_ATK_Speed: 0
+  H_ATK_Range: 0
+  H_Reload: 0
+  current_ATK_Speed: 0
 --- !u!1 &8606252999935168124
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +395,7 @@ GameObject:
   - component: {fileID: 1090689839934609676}
   - component: {fileID: 9108127434897343867}
   - component: {fileID: 4500299972504690240}
+  - component: {fileID: 1850429249605184627}
   m_Layer: 0
   m_Name: turret_base2
   m_TagString: Untagged
@@ -377,3 +466,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1850429249605184627
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8606252999935168124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.24999, y: 6, z: 7.24999}
+  m_Center: {x: 0, y: 2.5, z: 0}

@@ -200,7 +200,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b858aeb0da13c014f98c60b741d5b437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.05
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 0}
+  type: 0
+  delay: 0.1
+  despawnDelay: 0
+  DelayDespawn: 0
+  delayedParticles: []
+  velocity: 300
+  RaycastAdvance: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &100004
 GameObject:
   m_ObjectHideFlags: 0

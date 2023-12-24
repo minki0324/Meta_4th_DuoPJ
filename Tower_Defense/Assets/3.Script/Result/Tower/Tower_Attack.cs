@@ -12,14 +12,14 @@ public class Tower_Attack : NetworkBehaviour
     [Header("Turret Setup")]
     [SerializeField] private Transform[] turretSocket;
 
-    [Header("Vulcan")]
+    [Header("Offset")]
     public float vulcanOffset;
+    public float sniperOffset;
 
     [SerializeField] private F3DFXController start_fire;
     [SerializeField] private Effect_Pooling pool;
     [SerializeField] private Transform mount;
     [SerializeField] private LayerMask target_Layer;
-    private Transform target;
 
     public int H_Cost;
     public float H_Rot_Speed;
@@ -27,6 +27,7 @@ public class Tower_Attack : NetworkBehaviour
     public float H_ATK_Speed;
     public float H_ATK_Range;
     public int H_Reload;
+    public Transform target;
 
     public float current_ATK_Speed;
     #region Unity Callback
@@ -39,7 +40,7 @@ public class Tower_Attack : NetworkBehaviour
         pool = FindObjectOfType<Effect_Pooling>();
         if (isServer)
         {
-            InvokeRepeating("Search_Enemy", 0f, 0.5f);
+            InvokeRepeating("Search_Enemy", 0f, 0.2f);
         }
     }
 
@@ -87,9 +88,8 @@ public class Tower_Attack : NetworkBehaviour
     {
         switch(head_Data.atk_Type)
         {
-            case Head_Data.Atk_Type.Vulcan:
-                vulcan();
-                break;
+            case Head_Data.Atk_Type.Vulcan: vulcan(); break;
+            case Head_Data.Atk_Type.Sniper: Sniper(); break;
         }
     }
     #endregion
@@ -105,13 +105,17 @@ public class Tower_Attack : NetworkBehaviour
         mount.rotation = Quaternion.Euler(0, m_euler.y, 0);
         Quaternion fire_Rot = Quaternion.Euler(0, look_Rot.eulerAngles.y, 0);
 
-        if (Quaternion.Angle(mount.rotation, fire_Rot) < 5f)
+        if(target != null)
         {
             current_ATK_Speed -= Time.deltaTime;
+        }
+
+        if (Quaternion.Angle(mount.rotation, fire_Rot) < 5f)
+        {
             if (current_ATK_Speed <= 0)
             {
-                current_ATK_Speed = H_ATK_Speed;
                 Fire();
+                current_ATK_Speed = H_ATK_Speed;
             }
         }
     }
@@ -130,9 +134,10 @@ public class Tower_Attack : NetworkBehaviour
     private void Search_Enemy()
     {
         Collider[] cols = Physics.OverlapSphere(transform.position, H_ATK_Range, target_Layer);
-        Transform nearest_target = null;
-        if(cols.Length > 0)
+
+        if(cols.Length > 0 && target == null)
         {
+            Transform nearest_target = null;
             float Near_Dis = Mathf.Infinity;
             foreach (Collider coltarget in cols)
             {
@@ -141,11 +146,25 @@ public class Tower_Attack : NetworkBehaviour
                 {
                     Near_Dis = dis;
                     nearest_target = coltarget.transform;
+                    target = nearest_target;
                 }
             }
         }
 
-        target = nearest_target;
+        CheckTargetOutOfRange();
+    }
+
+    private void CheckTargetOutOfRange()
+    {
+        if (target != null)
+        {
+            float distanceToTarget = Vector3.Distance(transform.position, target.position);
+            if (distanceToTarget > H_ATK_Range)
+            {
+                // Å¸°ÙÀÌ °ø°Ý ¹üÀ§¸¦ ¹þ¾î³µÀ¸¹Ç·Î null·Î ¼³Á¤
+                target = null;
+            }
+        }
     }
 
     private IEnumerator Calculate_Fire(Head_Data head_Data, Transform target)
@@ -194,11 +213,27 @@ public class Tower_Attack : NetworkBehaviour
         AdvanceSocket();
         RPC_AdvanceSocket();
     }
-
-    public void VulcanImpact(Vector3 pos)
+    
+    private void Sniper()
     {
-        GameObject impact = pool.GetEffect(2);
-        Set_Pos_Rot(impact, pos, Quaternion.identity);
+        var offset = Quaternion.Euler(Random.onUnitSphere);
+
+        // ÃÑ½Å ÀÌÆåÆ®
+        GameObject Sniper = pool.GetEffect(4);
+        Set_Pos_Rot(Sniper, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+
+        GameObject Projectile = pool.GetEffect(3);
+        Set_Pos_Rot(Projectile, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
+
+        var beam = Projectile.GetComponent<F3DBeam>();
+        if(beam)
+        {
+            beam.SetOffset(sniperOffset);
+        }
+
+        // ´ÙÀ½ ÃÑ½Å¿¡¼­ ¹ß»ç
+        AdvanceSocket();
+        RPC_AdvanceSocket();
     }
 
     // Advance to next turret socket
@@ -209,7 +244,7 @@ public class Tower_Attack : NetworkBehaviour
             curSocket = 0;
     }
 
-    private void Set_Pos_Rot(GameObject obj, Vector3 pos, Quaternion rot)
+    public void Set_Pos_Rot(GameObject obj, Vector3 pos, Quaternion rot)
     {
         if(obj == null)
         {

@@ -42,7 +42,7 @@ public class GameManager : NetworkBehaviour
 
     #endregion
     #region Command
-    [Command(requiresAuthority = false)]
+    [Command(requiresAuthority = true)]
     public void CMD_TransformSet(GameObject gameObject, Vector3 pos, Quaternion rot)
     {
         gameObject.transform.position = pos;
@@ -50,7 +50,7 @@ public class GameManager : NetworkBehaviour
         RPC_TransformSet(gameObject, pos, rot);
     }
 
-    [Command(requiresAuthority =false)]
+    [Command(requiresAuthority = false)]
     private void CMD_ActiveSet(bool isActive, GameObject monster)
     {
         RPC_ActiveSet(isActive, monster);

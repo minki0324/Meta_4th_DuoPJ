@@ -14,6 +14,7 @@ public class Effect_Control : NetworkBehaviour
 
     public Head_Data head_Data;
     public Effect_type type;
+
     [Header("시간 관련")]
     [SerializeField] private float delay;       // 활성화 후 일정 delay 뒤에 비활성화 하는 시간
     public float despawnDelay;                  // hit된 후 이펙트 활성화 되고 사라지는 시간
@@ -38,12 +39,15 @@ public class Effect_Control : NetworkBehaviour
     public float RaycastAdvance = 2f;           // 레이캐스트 진행 배율
     public LayerMask layerMask;                 // 레이어 마스크
 
+    private Effect_Pooling pool;
+
     #region Unity Callback
     private void Awake()
     {
         // 변환 캐시 및 연결된 모든 입자 시스템 가져오기
         transform = GetComponent<Transform>();
         particles = GetComponentsInChildren<ParticleSystem>();
+        pool = FindObjectOfType<Effect_Pooling>();
     }
 
     private void Update()
@@ -71,19 +75,27 @@ public class Effect_Control : NetworkBehaviour
     #region SyncVar
     #endregion
     #region Client
-    [Client]
+    /*[Client]
     private void Request_Impact()
     {
-        CMD_Request_Impact();
-    }
+        // 클라이언트에서 서버 명령 호출 시 권한 확인
+        if (isOwned)
+        {
+            Vector3 pos = hitPoint.point + hitPoint.normal * fxOffset;
+            CMD_VulcanImpact(pos);
+        }
+    }*/
     #endregion
     #region Command
-    [Command(requiresAuthority = false)]
-    private void CMD_Request_Impact()
+    [Server]
+    public void VulcanImpact(Vector3 pos)
     {
-        Vector3 pos = hitPoint.point + hitPoint.normal * fxOffset;
-        Tower_Attack.instance.VulcanImpact(pos);
+        GameObject impact = pool.GetEffect(2);
+        GameManager.instance.RPC_ActiveSet(true, impact);
+        Tower_Attack.instance.Set_Pos_Rot(impact, pos, Quaternion.identity);
+        GameManager.instance.RPC_TransformSet(impact, pos, Quaternion.identity);
     }
+
     #endregion
     #region ClientRPC
     #endregion
@@ -111,21 +123,18 @@ public class Effect_Control : NetworkBehaviour
             // 임팩트 한번만 실행
             if (!isFXSpawned)
             {
-                // 임팩트를 생성하는 해당 메소드를 호출
+                // 추후 시간 남으면 임팩트 생성하는 메소드 재정비
+                /*// 임팩트를 생성하는 해당 메소드를 호출
                 switch (head_Data.atk_Type)
                 {
                     case Head_Data.Atk_Type.Vulcan:
-                        if(isClient)
+                        if (isServer)
                         {
-                            Request_Impact();
-                        }
-                        else if(isServer)
-                        {
-                            Tower_Attack.instance.VulcanImpact(hitPoint.point + hitPoint.normal * fxOffset);
+                            VulcanImpact(hitPoint.point + hitPoint.normal * fxOffset);
                         }
                         break;
                 }
-
+*/
                 isFXSpawned = true;
             }
 
