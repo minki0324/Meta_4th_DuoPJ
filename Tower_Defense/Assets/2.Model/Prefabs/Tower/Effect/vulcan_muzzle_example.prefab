@@ -205,7 +205,7 @@ MonoBehaviour:
   syncInterval: 0
   head_Data: {fileID: 0}
   type: 0
-  delay: 0.1
+  delay: 0.05
   despawnDelay: 0
   DelayDespawn: 0
   delayedParticles: []

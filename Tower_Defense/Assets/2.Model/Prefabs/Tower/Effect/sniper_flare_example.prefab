@@ -9536,9 +9536,9 @@ GameObject:
   - component: {fileID: 400004}
   - component: {fileID: 19800004}
   - component: {fileID: 19900004}
-  - component: {fileID: 11400000}
   - component: {fileID: 8933802523352856186}
   - component: {fileID: 7299934787671145425}
+  - component: {fileID: 3910860144753170611}
   m_Layer: 0
   m_Name: sniper_flare_example
   m_TagString: Untagged
@@ -14378,20 +14378,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af19da7458dc9174699d0b34f404eafc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DespawnDelay: 1.1
-  DespawnOnMouseUp: 0
 --- !u!114 &8933802523352856186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14444,3 +14430,38 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!114 &3910860144753170611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b858aeb0da13c014f98c60b741d5b437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 0}
+  type: 3
+  delay: 1.1
+  despawnDelay: 0
+  DelayDespawn: 0
+  OneShot: 0
+  delayedParticles: []
+  velocity: 300
+  rayImpact: {fileID: 0}
+  rayMuzzle: {fileID: 0}
+  RaycastAdvance: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  BeamFrames: []
+  FrameStep: 0
+  AnimateUV: 0
+  UVTime: 0
+  beamScale: 0
+  MaxBeamLength: 0

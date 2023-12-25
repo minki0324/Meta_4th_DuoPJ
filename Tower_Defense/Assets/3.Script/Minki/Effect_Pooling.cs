@@ -92,6 +92,18 @@ public class Effect_Pooling : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
+    public void RPC_ActiveSet(bool isActive, GameObject monster)
+    {
+        if (isActive)
+        {
+            monster.SetActive(isActive);
+        }
+        else
+        {
+            monster.SetActive(!isActive);
+        }
+    }
     #endregion
     #region Hook Method
     #endregion
@@ -143,20 +155,19 @@ public class Effect_Pooling : NetworkBehaviour
             if (!effect.activeInHierarchy)
             {
                 effect.SetActive(true);
-                GameManager.instance.RPC_ActiveSet(true, effect);
-                Debug.Log(effect.name);
+                RPC_ActiveSet(true, effect);
                 return effect;
             }
         }
 
         GameObject newEffect = Instantiate(EffectPrefab[index], Vector3.zero, Quaternion.identity);
         NetworkServer.Spawn(newEffect);
+        RPC_ActiveSet(true, newEffect);
         targetList.Add(newEffect);
 
         int parentIndex = GetParentIndex(Prefabs_Parents[index]);
         newEffect.transform.SetParent(Prefabs_Parents[index].transform);
         RpcSyncMonsterInfo(newEffect, parentIndex);
-        GameManager.instance.RPC_ActiveSet(true, newEffect);
 
         return newEffect;
     }

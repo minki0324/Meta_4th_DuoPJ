@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 19800000}
   - component: {fileID: 19900000}
-  - component: {fileID: 11400000}
   - component: {fileID: -3140174114477740409}
   - component: {fileID: 963984008714566947}
   - component: {fileID: 8077734893860806353}
@@ -4827,20 +4826,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af19da7458dc9174699d0b34f404eafc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DespawnDelay: 1
-  DespawnOnMouseUp: 0
 --- !u!114 &-3140174114477740409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4909,16 +4894,25 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   head_Data: {fileID: 0}
-  type: 2
+  type: 3
   delay: 1
   despawnDelay: 0
   DelayDespawn: 0
+  OneShot: 0
   delayedParticles: []
   velocity: 300
+  rayImpact: {fileID: 0}
+  rayMuzzle: {fileID: 0}
   RaycastAdvance: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 0
+  BeamFrames: []
+  FrameStep: 0
+  AnimateUV: 0
+  UVTime: 0
+  beamScale: 0
+  MaxBeamLength: 0
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0

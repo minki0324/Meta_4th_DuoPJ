@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 12000000}
   - component: {fileID: 11400000}
-  - component: {fileID: 11400002}
   - component: {fileID: 6604583880519063222}
   - component: {fileID: 970680312146672930}
   - component: {fileID: 6351467245315298120}
@@ -150,7 +149,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a9aefbed78059c4c965f18823e35186, type: 3}
   m_Name: 
@@ -177,20 +176,6 @@ MonoBehaviour:
   rayImpact: {fileID: 0}
   rayMuzzle: {fileID: 0}
   fxOffset: 0
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af19da7458dc9174699d0b34f404eafc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DespawnDelay: 0.05
-  DespawnOnMouseUp: 0
 --- !u!114 &6604583880519063222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,16 +192,33 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   head_Data: {fileID: 11400000, guid: f777a698c75a71f42a12f7f1d1fe363b, type: 2}
-  type: 1
-  delay: 0.1
+  type: 2
+  delay: 0.05
   despawnDelay: 0
   DelayDespawn: 0
+  OneShot: 1
   delayedParticles: []
   velocity: 300
+  rayImpact: {fileID: 0}
+  rayMuzzle: {fileID: 0}
   RaycastAdvance: 2
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 832
+  BeamFrames:
+  - {fileID: 2800000, guid: 878afa98c5c39d6449b94f371a1732b6, type: 3}
+  - {fileID: 2800000, guid: 157ed50bbc6a89c40879f3ae97120629, type: 3}
+  - {fileID: 2800000, guid: 878afa98c5c39d6449b94f371a1732b6, type: 3}
+  - {fileID: 2800000, guid: 3c2dfaa7befbd904490453d8595431fa, type: 3}
+  - {fileID: 2800000, guid: 9c3d07c0736a94a498465f4fcab93eef, type: 3}
+  - {fileID: 2800000, guid: 8fe4bb7cb088e414c8b987e5d50e1a28, type: 3}
+  - {fileID: 2800000, guid: 7dd4e50cc1ba5c84096d32f046d96c3e, type: 3}
+  - {fileID: 2800000, guid: 7dd4e50cc1ba5c84096d32f046d96c3e, type: 3}
+  FrameStep: 0.015
+  AnimateUV: 0
+  UVTime: 0
+  beamScale: 1
+  MaxBeamLength: 500
 --- !u!114 &970680312146672930
 MonoBehaviour:
   m_ObjectHideFlags: 0
