@@ -11,7 +11,7 @@ public class BuildManager : NetworkBehaviour
 
     public GameObject pointPrefab; // 가상의 점을 나타낼 프리팹
     public bool isCanBuild ;  // BuildArea에서 한개라도 적색으로 변할 시 false 반환함.
-    private bool isBuilding;
+    public bool isBuilding;
     private int TowerIndex;
     public GameObject[] towers;
     private GameObject currentTower;
@@ -20,22 +20,34 @@ public class BuildManager : NetworkBehaviour
     [SerializeField] private BuildAreaPrents[] area; //타워마다 22 32 33 등 크기가 다른 Area 할당해줘야함
     private KeyCode k;
 
+    #region SyncVar
+    public SyncList<Tower> AllTower = new SyncList<Tower>();
+    #endregion
+
+
     //어떻게 할당해줄까...
     // 
     private void Awake()
     {
-        if(Instance == null)
+        Debug.Log("1");
+        if (Instance == null)
         {
+            Debug.Log("2");
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
+            Debug.Log("3");
             Destroy(gameObject);
         }
         isCanBuild = true;
     }
-  
+    private void Start()
+    {
+        
+    }
+
 
     private void Update()
     {
@@ -45,7 +57,6 @@ public class BuildManager : NetworkBehaviour
         //마우스 왼쪽키 눌렀을때 건설 메소드 호출(위치,타워종류)
         //마우스 오른쪽키 눌렀을때 Area 비활성화
        
-        Debug.Log("isCanBuild : " + isCanBuild);
 
         if (!isBuilding)
         {
@@ -157,6 +168,7 @@ public class BuildManager : NetworkBehaviour
         GameObject newTower = Instantiate(towers[towerindex], targetPos, Quaternion.identity);
 
         NetworkServer.Spawn(newTower/* , senderConnection*/);
+        AllTower.Add(newTower.GetComponent<Tower>());
         AstarPath.active.Scan();
 
 

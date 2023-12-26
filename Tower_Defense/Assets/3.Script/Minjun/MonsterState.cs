@@ -14,6 +14,7 @@ public class MonsterState : ScriptableObject
         Attack,
         Invisible
     }
+    public int MonsterID;
     public int level;
     public monType type;
     public float maxHp;

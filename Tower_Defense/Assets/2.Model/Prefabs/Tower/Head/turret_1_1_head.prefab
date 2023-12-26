@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4229121768847323785}
   - component: {fileID: 1912572046388557565}
   - component: {fileID: 2596017609908360752}
+  - component: {fileID: 4892270377685035090}
+  - component: {fileID: 1005794734799811747}
   m_Layer: 0
   m_Name: turret_1_1_head
   m_TagString: Untagged
@@ -85,6 +87,73 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4892270377685035090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140295210831180643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a553cb17010b2403e8523b558bffbc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 4229121768847323785}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  compressRotation: 1
+  bufferResetMultiplier: 3
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
+--- !u!114 &1005794734799811747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140295210831180643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d745b9e2658d74c843695088c304e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 11400000, guid: 6b7d7654f4ef0c5469d8c8f92210c8cb, type: 2}
+  turretSocket:
+  - {fileID: 362092391346505323}
+  - {fileID: 3274205196776093307}
+  vulcanOffset: 0
+  start_fire: {fileID: 0}
+  pool: {fileID: 0}
+  mount: {fileID: 0}
+  target_Layer:
+    serializedVersion: 2
+    m_Bits: 64
+  H_Cost: 0
+  H_Rot_Speed: 0
+  H_Damage: 0
+  H_ATK_Speed: 0
+  H_ATK_Range: 0
+  H_Reload: 0
+  current_ATK_Speed: 0
 --- !u!1 &4749325366453345183
 GameObject:
   m_ObjectHideFlags: 0
