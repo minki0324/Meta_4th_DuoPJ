@@ -17,9 +17,12 @@ public class Monster_Spawn : NetworkBehaviour
 
     [SerializeField] private GameObject[] Mon_Prefabs;
 
-    #region Unity Callback
-    #endregion
     #region SyncVar
+    
+    public SyncList<Monster_Control> AllMonster = new SyncList<Monster_Control>();
+
+    #endregion
+    #region Unity Callback
     #endregion
     #region Client
     [Client]
@@ -40,11 +43,11 @@ public class Monster_Spawn : NetworkBehaviour
         Vector3 spawnPos = new Vector3(spawnpoint.position.x + randIndexX, spawnpoint.position.y+ Mon_Prefabs[index].transform.position.y, spawnpoint.position.z + randIndexZ);
         GameObject monster = Instantiate(Mon_Prefabs[index], spawnPos, Mon_Prefabs[index].transform.rotation);
         NetworkServer.Spawn(monster);
-
         // 태그 할당
         monster.tag = $"{player_num}P";
 
         Monster_Control monster_con = monster.GetComponent<Monster_Control>();
+        AllMonster.Add(monster_con);
         Transform finpoint = Get_FinPoint(player_num);
         //플라이는 에이스타안씀
         Debug.Log(monster_con);

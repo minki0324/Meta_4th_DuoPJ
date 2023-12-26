@@ -13,11 +13,14 @@ public class MouseDrag : MonoBehaviour
 
     private Camera maincamera;
     private RTSControlSystem rts;
+    private MouseControl mouseCon;
 
     private void Awake()
     {
         maincamera = Camera.main;
         rts = GetComponent<RTSControlSystem>();
+        mouseCon = GetComponent<MouseControl>();
+        DrawDragRectangle();
     }
 
     private void Update()
@@ -35,9 +38,9 @@ public class MouseDrag : MonoBehaviour
         }
 
         if (Input.GetMouseButtonUp(0)){
-
             CalculateDragRact();
             SelectUnits();
+            mouseCon.infoUI.SetInfoPanel();
 
             start = end = Vector2.zero;
             DrawDragRectangle();
@@ -47,11 +50,15 @@ public class MouseDrag : MonoBehaviour
 
     private void SelectUnits()
     {
-        //foreach (var item in collection)
-        //{
+        foreach (Tower tower in BuildManager.Instance.AllTower)
+        {
+            if (rts.selectTowers.Count > 35) { return; }
 
-        //    if(dragRect.Contains(maincamera.WorldToScreenPoint()))
-        //}
+            if (dragRect.Contains(maincamera.WorldToScreenPoint(tower.transform.position)))
+            {
+                rts.DragSelectUnit(tower);
+            }
+        }
     }
 
     private void CalculateDragRact()
@@ -84,6 +91,6 @@ public class MouseDrag : MonoBehaviour
         dragRectangle.position = (start + end) * 0.5f;
         // Abs = 절댓값.
         // Image 크기 설정 
-        dragRectangle.sizeDelta = new Vector2(Mathf.Abs(start.x-+ end.x), Mathf.Abs(start.y - end.y));
+        dragRectangle.sizeDelta = new Vector2(Mathf.Abs(start.x - end.x), Mathf.Abs(start.y - end.y));
     }
 }
