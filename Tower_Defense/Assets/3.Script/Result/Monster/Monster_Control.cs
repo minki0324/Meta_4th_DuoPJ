@@ -9,12 +9,13 @@ public class Monster_Control : NetworkBehaviour
     public MonsterState state;
     public AIDestinationSetter Astar;
     public AIPath aiPath;
-
     public float M_maxHp;
     public float M_currentHP;
     public float M_speed;
     public float M_damage;
     public float M_cost;
+    [SerializeField]
+    public GameObject marker;
 
     #region Unity Callback
     private void Start()
@@ -46,7 +47,6 @@ public class Monster_Control : NetworkBehaviour
     #endregion
     #region Hook Method
     #endregion
-
     public void Init_Data(MonsterState monsterState)
     {
         M_maxHp = monsterState.maxHp;
@@ -54,5 +54,13 @@ public class Monster_Control : NetworkBehaviour
         M_speed = monsterState.speed;
         M_damage = monsterState.damage;
         M_cost = monsterState.cost;
+    public void Selectunit()
+    {
+        marker.SetActive(true);
+    }
+
+    public void DeSelectunit()
+    {
+        marker.SetActive(false);
     }
 }
