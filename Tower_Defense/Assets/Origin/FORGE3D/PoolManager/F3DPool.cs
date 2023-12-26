@@ -251,7 +251,8 @@ namespace FORGE3D
                     {
                         tempTransform.SetParent(par);
                     }
-                    tempTransform.gameObject.SetActive(true); 
+                    tempTransform.gameObject.SetActive(true);
+                    GameManager.instance.Active_Set(true, tempTransform.gameObject);
                     if (needBroadcasting && broadcastSpawnName != "")
                         tempTransform.BroadcastMessage(broadcastSpawnName, SendMessageOptions.DontRequireReceiver); 
                     return tempTransform;
@@ -263,6 +264,7 @@ namespace FORGE3D
                 Transform newGO = Instantiate(templates[curPos], Vector3.zero, Quaternion.identity) as Transform;
                 newGO.transform.parent = this.gameObject.transform;
                 newGO.gameObject.SetActive(true);
+                GameManager.instance.Active_Set(true, newGO.gameObject);
                 newGO.position = pos;
                 newGO.rotation = rot; 
                 if (par == null)
@@ -314,6 +316,7 @@ namespace FORGE3D
                     }
 
                     tempTransform.gameObject.SetActive(true);
+                    GameManager.instance.Active_Set(true, tempTransform.gameObject);
                     if (needBroadcasting && broadcastSpawnName != "")
                         tempTransform.BroadcastMessage(broadcastSpawnName, SendMessageOptions.DontRequireReceiver); 
                     return tempTransform;
@@ -326,6 +329,7 @@ namespace FORGE3D
                 Transform newGO = Instantiate(templates[curPos], Vector3.zero, Quaternion.identity) as Transform; 
                 newGO.transform.parent = this.gameObject.transform;
                 newGO.gameObject.SetActive(true);
+                GameManager.instance.Active_Set(true, newGO.gameObject);
                 newGO.position = pos;
                 newGO.rotation = rot; 
                 if (par == null)
@@ -367,6 +371,7 @@ namespace FORGE3D
                     tempTransform.rotation = rot;
                     tempTransform.SetParent(null); 
                     tempTransform.gameObject.SetActive(true);
+                    GameManager.instance.Active_Set(true, tempTransform.gameObject);
                     if (needBroadcasting && broadcastSpawnName != "")
                         tempTransform.BroadcastMessage(broadcastSpawnName, SendMessageOptions.DontRequireReceiver); 
                     return tempTransform;
@@ -378,6 +383,7 @@ namespace FORGE3D
                 Transform newGO = Instantiate(templates[curPos], Vector3.zero, Quaternion.identity) as Transform;
                 newGO.transform.parent = this.gameObject.transform;
                 newGO.gameObject.SetActive(true);
+                GameManager.instance.Active_Set(true, newGO.gameObject);
                 newGO.position = pos;
                 newGO.rotation = rot;
                 newGO.SetParent(null);
@@ -506,6 +512,7 @@ namespace FORGE3D
             Transform newGO = Instantiate(temp, Vector3.zero, Quaternion.identity) as Transform;
             newGO.transform.SetParent(par);
             newGO.gameObject.SetActive(false);
+            GameManager.instance.Active_Set(false, newGO.gameObject);
             readyObjects[temp].Add(newGO);
             poolLengthCurrent[templatePosition]++;
             return newGO;

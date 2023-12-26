@@ -5,45 +5,45 @@ namespace FORGE3D
 {
     public class F3DProjectile : MonoBehaviour
     {
-        public F3DFXType fxType; // Weapon type 
+        public F3DFXType fxType; // 무기 타입
         public LayerMask layerMask;
-        public float lifeTime = 5f; // Projectile life time
-        public float despawnDelay; // Delay despawn in ms
-        public float velocity = 300f; // Projectile velocity
-        public float RaycastAdvance = 2f; // Raycast advance multiplier 
-        public bool DelayDespawn = false; // Projectile despawn flag 
-        public ParticleSystem[] delayedParticles; // Array of delayed particles
-        ParticleSystem[] particles; // Array of projectile particles 
-        new Transform transform; // Cached transform 
-        RaycastHit hitPoint; // Raycast structure 
-        bool isHit = false; // Projectile hit flag
-        bool isFXSpawned = false; // Hit FX prefab spawned flag 
-        float timer = 0f; // Projectile timer
-        float fxOffset; // Offset of fxImpact
+        public float lifeTime = 5f; // 발사체 수명
+        public float despawnDelay; // 지연 소멸(ms)
+        public float velocity = 300f; // 발사체 속도
+        public float RaycastAdvance = 2f; // 레이캐스트 진행 배율
+        public bool DelayDespawn = false; // 발사체 소멸 플래그
+        public ParticleSystem[] delayedParticles; // 지연된 입자의 배열
+        ParticleSystem[] particles; // 발사체 입자의 배열
+        new Transform transform; // 캐시된 변환
+        RaycastHit hitPoint; // 레이캐스트 구조체
+        bool isHit = false; // 발사체 충돌 플래그
+        bool isFXSpawned = false; // 충돌 FX 프리팹 생성 플래그
+        float timer = 0f; // 발사체 타이머
+        float fxOffset; // fxImpact의 오프셋
 
         void Awake()
         {
-            // Cache transform and get all particle systems attached
+            // 변환 캐시 및 연결된 모든 입자 시스템 가져오기
             transform = GetComponent<Transform>();
             particles = GetComponentsInChildren<ParticleSystem>();
         }
 
-        // OnSpawned called by pool manager 
+        // 풀 매니저에 의해 호출되는 OnSpawned
         public void OnSpawned()
         {
-            // Reset flags and raycast structure
+            // 플래그 및 레이캐스트 구조체 재설정
             isHit = false;
             isFXSpawned = false;
             timer = 0f;
             hitPoint = new RaycastHit();
         }
 
-        // OnDespawned called by pool manager 
+        // 풀 매니저에 의해 호출되는 OnDespawned
         public void OnDespawned()
         {
         }
 
-        // Stop attached particle systems emission and allow them to fade out before despawning
+        // 연결된 입자 시스템의 방출을 중지하고 소멸되기 전에 페이드 아웃될 수 있도록 허용
         void Delay()
         {
             if (particles.Length > 0 && delayedParticles.Length > 0)
@@ -66,13 +66,13 @@ namespace FORGE3D
             }
         }
 
-        // OnDespawned called by pool manager 
+        // 풀 매니저에 의해 호출되는 OnDespawned
         void OnProjectileDestroy()
         {
             F3DPoolManager.Pools["GeneratedPool"].Despawn(transform);
         }
 
-        // Apply hit force on impact
+        // 충돌 시 힘 적용
         void ApplyForce(float force)
         {
             if (hitPoint.rigidbody != null)
@@ -82,13 +82,13 @@ namespace FORGE3D
 
         void Update()
         {
-            // If something was hit
+            // 무언가가 충돌한 경우
             if (isHit)
             {
-                // Execute once
+                // 한 번만 실행
                 if (!isFXSpawned)
                 {
-                    // Invoke corresponding method that spawns FX
+                    // FX를 생성하는 해당 메소드를 호출
                     switch (fxType)
                     {
                         case F3DFXType.Vulcan:
@@ -120,49 +120,49 @@ namespace FORGE3D
                     isFXSpawned = true;
                 }
 
-                // Despawn current projectile 
+                // 현재 발사체 소멸
                 if (!DelayDespawn || (DelayDespawn && (timer >= despawnDelay)))
                     OnProjectileDestroy();
             }
 
-            // No collision occurred yet
+            // 아직 충돌이 발생하지 않음
             else
             {
-                // Projectile step per frame based on velocity and time
+                // 발사체 단계당 프레임 기반 속도 및 시간
                 Vector3 step = transform.forward * Time.deltaTime * velocity;
 
-                // Raycast for targets with ray length based on frame step by ray cast advance multiplier
+                // 레이캐스트 길이 기반의 대상을 위한 레이캐스트
                 if (Physics.Raycast(transform.position, transform.forward, out hitPoint,
                     step.magnitude * RaycastAdvance,
                     layerMask))
                 {
                     isHit = true;
 
-                    // Invoke delay routine if required
+                    // 필요한 경우 지연 루틴을 호출
                     if (DelayDespawn)
                     {
-                        // Reset projectile timer and let particles systems stop emitting and fade out correctly
+                        // 발사체 타이머를 재설정하고 입자 시스템이 올바르게 방출을 중지하고 페이드 아웃되도록 함
                         timer = 0f;
                         Delay();
                     }
                 }
-                // Nothing hit
+                // 아무것도 충돌하지 않음
                 else
                 {
-                    // Projectile despawn after run out of time
+                    // 시간이 다 되어 발사체 소멸
                     if (timer >= lifeTime)
                         OnProjectileDestroy();
                 }
 
-                // Advances projectile forward
+                // 발사체 전진
                 transform.position += step;
             }
 
-            // Updates projectile timer
+            // 발사체 타이머 업데이트
             timer += Time.deltaTime;
         }
 
-        //Set offset
+        // 오프셋 설정
         public void SetOffset(float offset)
         {
             fxOffset = offset;
