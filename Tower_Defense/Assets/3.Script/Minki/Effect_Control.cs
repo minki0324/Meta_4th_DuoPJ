@@ -217,7 +217,7 @@ public class Effect_Control : NetworkBehaviour
             }
 
             // 현재 발사체 소멸
-            if (!DelayDespawn || (DelayDespawn && (timer >= despawnDelay)))
+            if (DelayDespawn && (timer >= despawnDelay))
                 active();
         }
 

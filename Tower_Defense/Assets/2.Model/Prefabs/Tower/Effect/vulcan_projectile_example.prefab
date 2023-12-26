@@ -141,17 +141,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b858aeb0da13c014f98c60b741d5b437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   head_Data: {fileID: 11400000, guid: 6b7d7654f4ef0c5469d8c8f92210c8cb, type: 2}
   type: 1
   delay: 2
-  despawnDelay: 0
-  DelayDespawn: 0
+  despawnDelay: 0.1
+  DelayDespawn: 1
+  OneShot: 0
   delayedParticles: []
   velocity: 555
+  rayImpact: {fileID: 0}
+  rayMuzzle: {fileID: 0}
   RaycastAdvance: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 832
+  BeamFrames: []
+  FrameStep: 0
+  AnimateUV: 0
+  UVTime: 0
+  beamScale: 0
+  MaxBeamLength: 0
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0

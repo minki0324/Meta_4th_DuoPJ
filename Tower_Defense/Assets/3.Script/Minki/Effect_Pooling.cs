@@ -16,7 +16,7 @@ public class Effect_Pooling : NetworkBehaviour
     public SyncList<GameObject> Sniper_Impact_List = new SyncList<GameObject>();        // 5
 
     [Header("Laser")]
-    public SyncList<GameObject> Laser_List = new SyncList<GameObject>();
+    public SyncList<GameObject> Laser_List = new SyncList<GameObject>();                // 6
 
     [Header("Missle")]
     public SyncList<GameObject> Missle_List = new SyncList<GameObject>();

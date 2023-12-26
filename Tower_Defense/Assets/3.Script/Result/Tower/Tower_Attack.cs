@@ -88,8 +88,9 @@ public class Tower_Attack : NetworkBehaviour
     {
         switch(head_Data.atk_Type)
         {
-            case Head_Data.Atk_Type.Vulcan: vulcan(); break;
-            case Head_Data.Atk_Type.Sniper: Sniper(); break;
+            case Head_Data.Atk_Type.Vulcan: Projectile(head_Data.atk_Type, 1, 0); break;
+            case Head_Data.Atk_Type.Sniper: Beam(head_Data.atk_Type, 4, 3); break;
+            case Head_Data.Atk_Type.Laser: Beam(head_Data.atk_Type, 6); break;
         }
     }
     #endregion
@@ -192,43 +193,55 @@ public class Tower_Attack : NetworkBehaviour
         }
     }
 
-    private void vulcan()
+    private void Projectile(Head_Data.Atk_Type atk_Type, int Muzzle_index, int Pro_index)
     {
         var offset = Quaternion.Euler(Random.onUnitSphere);
-        
-        // √—Ω≈ ¿Ã∆Â∆Æ
-        GameObject Muzzle = pool.GetEffect(1);
-        Set_Pos_Rot(Muzzle, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
 
-        GameObject Projectile = pool.GetEffect(0);
-        Set_Pos_Rot(Projectile, turretSocket[curSocket].position + turretSocket[curSocket].forward, offset * turretSocket[curSocket].rotation);
-
-        var proj = Projectile.gameObject.GetComponent<F3DProjectile>();
-        if(proj)
+        GameObject Muzzle;
+        GameObject Projectile;
+        switch (atk_Type)
         {
-            proj.SetOffset(vulcanOffset);
+            case Head_Data.Atk_Type.Vulcan:
+                // √—Ω≈ ¿Ã∆Â∆Æ
+                Muzzle = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Muzzle, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+
+                Projectile = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile, turretSocket[curSocket].position + turretSocket[curSocket].forward, offset * turretSocket[curSocket].rotation);
+
+                var proj = Projectile.gameObject.GetComponent<F3DProjectile>();
+                if (proj) { proj.SetOffset(vulcanOffset); }
+                break;
         }
 
         // ¥Ÿ¿Ω √—Ω≈ø°º≠ πﬂªÁ
         AdvanceSocket();
         RPC_AdvanceSocket();
     }
-    
-    private void Sniper()
+
+    private void Beam(Head_Data.Atk_Type atk_Type, int Muzzle_index, int Pro_index = -1)
     {
-        var offset = Quaternion.Euler(Random.onUnitSphere);
-
-        // √—Ω≈ ¿Ã∆Â∆Æ
-        GameObject Sniper = pool.GetEffect(4);
-        Set_Pos_Rot(Sniper, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
-
-        GameObject Projectile = pool.GetEffect(3);
-        Set_Pos_Rot(Projectile, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
-
-        var beam = Projectile.GetComponent<F3DBeam>();
-        if(beam)
+        switch(atk_Type)
         {
-            beam.SetOffset(sniperOffset);
+            case Head_Data.Atk_Type.Sniper:
+                var offset = Quaternion.Euler(Random.onUnitSphere);
+                // √—Ω≈ ¿Ã∆Â∆Æ
+                GameObject Sniper = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Sniper, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+
+                GameObject Projectile = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
+
+                var beam = Projectile.GetComponent<F3DBeam>();
+                if (beam) { beam.SetOffset(sniperOffset); }
+                break;
+            case Head_Data.Atk_Type.Laser:
+                for(int i = 0; i < turretSocket.Length; i++)
+                {
+                    GameObject laser = pool.GetEffect(Muzzle_index);
+                    Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);
+                }
+                break;
         }
 
         // ¥Ÿ¿Ω √—Ω≈ø°º≠ πﬂªÁ
@@ -246,18 +259,6 @@ public class Tower_Attack : NetworkBehaviour
 
     public void Set_Pos_Rot(GameObject obj, Vector3 pos, Quaternion rot)
     {
-        if(obj == null)
-        {
-            Debug.Log("obj ∞° ≥Œ");
-        }
-        else if (pos == null)
-        {
-            Debug.Log("pos ∞° ≥Œ");
-        }
-        else if (rot == null)
-        {
-            Debug.Log("rot ∞° ≥Œ");
-        }
         obj.transform.position = pos;
         obj.transform.rotation = rot;
         GameManager.instance.RPC_TransformSet(obj, pos, rot);

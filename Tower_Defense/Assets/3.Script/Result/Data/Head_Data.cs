@@ -10,7 +10,8 @@ public class Head_Data : ScriptableObject
     public enum Atk_Type
     {
         Vulcan,
-        Sniper
+        Sniper,
+        Laser
     }
 
     [Header("기본 정보")]
