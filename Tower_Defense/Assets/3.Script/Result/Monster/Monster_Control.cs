@@ -54,6 +54,7 @@ public class Monster_Control : NetworkBehaviour
         M_speed = monsterState.speed;
         M_damage = monsterState.damage;
         M_cost = monsterState.cost;
+    }
     public void Selectunit()
     {
         marker.SetActive(true);
