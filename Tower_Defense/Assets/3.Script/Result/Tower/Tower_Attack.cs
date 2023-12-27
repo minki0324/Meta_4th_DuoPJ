@@ -15,6 +15,9 @@ public class Tower_Attack : NetworkBehaviour
     [Header("Offset")]
     public float vulcanOffset;
     public float sniperOffset;
+    public float seekerOffset;
+    public float soloGunOffset;
+    public float laserImpulseOffset;
 
     [SerializeField] private F3DFXController start_fire;
     [SerializeField] private Effect_Pooling pool;
@@ -91,18 +94,26 @@ public class Tower_Attack : NetworkBehaviour
             case Head_Data.Atk_Type.Vulcan: Projectile(head_Data.atk_Type, 1, 0); break;
             case Head_Data.Atk_Type.Sniper: Beam(head_Data.atk_Type, 4, 3); break;
             case Head_Data.Atk_Type.Laser: Beam(head_Data.atk_Type, 6); break;
+            case Head_Data.Atk_Type.Missile: break;
+            case Head_Data.Atk_Type.Seeker: Projectile(head_Data.atk_Type, 11, 10); break;
+            case Head_Data.Atk_Type.Air: Projectile(head_Data.atk_Type, 14, 13); break;
+            case Head_Data.Atk_Type.Flame: Beam(head_Data.atk_Type, 16); break;
+            case Head_Data.Atk_Type.PlasmaBeam: Beam(head_Data.atk_Type, 17); break;
+            case Head_Data.Atk_Type.LaserImpulse: Projectile(head_Data.atk_Type, 19, 18); break;
         }
     }
     #endregion
 
     private void Look_Target()
     {
+        // Á¶°Ç¿¡ ¾È¸ÂÀ¸¸é ±×³É »±»±ÀÌ
+        Monster_Control mon = target.gameObject.GetComponent<Monster_Control>();
+        if (mon.state.type == MonsterState.monType.Fly && head_Data.atk_Area == Head_Data.Atk_Area.Ground) return;
+        else if (mon.state.type != MonsterState.monType.Fly && head_Data.atk_Area == Head_Data.Atk_Area.Air) return;
+
         float M_Rot_Speed = mount.gameObject.GetComponent<Tower_Mount>().M_Rot_Speed;
         Quaternion look_Rot = Quaternion.LookRotation(target.position - transform.position);
         Vector3 m_euler = Quaternion.RotateTowards(mount.rotation, look_Rot, M_Rot_Speed * Time.deltaTime).eulerAngles;
-        Vector3 h_euler = Quaternion.Slerp(transform.rotation, Quaternion.Euler(look_Rot.eulerAngles.x, look_Rot.eulerAngles.y, 0), H_Rot_Speed * Time.deltaTime).eulerAngles;
-       /* h_euler.x = Mathf.Clamp(h_euler.x, -20f, 20f);
-        transform.rotation = Quaternion.Euler(h_euler.x, 0, 0);*/
         mount.rotation = Quaternion.Euler(0, m_euler.y, 0);
         Quaternion fire_Rot = Quaternion.Euler(0, look_Rot.eulerAngles.y, 0);
 
@@ -197,20 +208,51 @@ public class Tower_Attack : NetworkBehaviour
     {
         var offset = Quaternion.Euler(Random.onUnitSphere);
 
-        GameObject Muzzle;
-        GameObject Projectile;
         switch (atk_Type)
         {
             case Head_Data.Atk_Type.Vulcan:
                 // ÃÑ½Å ÀÌÆåÆ®
-                Muzzle = pool.GetEffect(Muzzle_index);
-                Set_Pos_Rot(Muzzle, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+                GameObject Muzzle_vul = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Muzzle_vul, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
 
-                Projectile = pool.GetEffect(Pro_index);
-                Set_Pos_Rot(Projectile, turretSocket[curSocket].position + turretSocket[curSocket].forward, offset * turretSocket[curSocket].rotation);
+                GameObject Projectile_vul = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile_vul, turretSocket[curSocket].position + turretSocket[curSocket].forward, offset * turretSocket[curSocket].rotation);
 
-                var proj = Projectile.gameObject.GetComponent<F3DProjectile>();
-                if (proj) { proj.SetOffset(vulcanOffset); }
+                var proj_vul = Projectile_vul.gameObject.GetComponent<Effect_Control>();
+                if (proj_vul) { proj_vul.SetOffset(vulcanOffset); }
+                break;
+            case Head_Data.Atk_Type.Missile:
+                // ½Ã°£ ³²À¸¸é ±¸Çö
+                break;
+            case Head_Data.Atk_Type.Seeker:
+                GameObject Muzzle_seeker = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Muzzle_seeker, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+
+                GameObject Projectile_seeker = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile_seeker, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
+
+                var proj_seeker = Projectile_seeker.gameObject.GetComponent<Effect_Control>();
+                if (proj_seeker) { proj_seeker.SetOffset(seekerOffset); }
+                break;
+            case Head_Data.Atk_Type.Air:
+                GameObject Muzzle_Air = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Muzzle_Air, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+
+                GameObject Projectile_Air = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile_Air, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
+
+                var proj_Air = Projectile_Air.gameObject.GetComponent<Effect_Control>();
+                if (proj_Air) { proj_Air.SetOffset(soloGunOffset); }
+                break;
+            case Head_Data.Atk_Type.LaserImpulse:
+                GameObject Muzzle_LaserImpulse = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Muzzle_LaserImpulse, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+
+                GameObject Projectile_LaserImpulse = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile_LaserImpulse, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
+
+                var proj_LaserImpulse = Projectile_LaserImpulse.gameObject.GetComponent<Effect_Control>();
+                if (proj_LaserImpulse) { proj_LaserImpulse.SetOffset(soloGunOffset); }
                 break;
         }
 
@@ -226,17 +268,28 @@ public class Tower_Attack : NetworkBehaviour
             case Head_Data.Atk_Type.Sniper:
                 var offset = Quaternion.Euler(Random.onUnitSphere);
                 // ÃÑ½Å ÀÌÆåÆ®
-                GameObject Sniper = pool.GetEffect(Muzzle_index);
-                Set_Pos_Rot(Sniper, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+                GameObject Muzzle_sni = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Muzzle_sni, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
 
-                GameObject Projectile = pool.GetEffect(Pro_index);
-                Set_Pos_Rot(Projectile, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
+                GameObject Projectile_sni = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile_sni, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
 
-                var beam = Projectile.GetComponent<F3DBeam>();
+                var beam = Projectile_sni.GetComponent<Effect_Control>();
                 if (beam) { beam.SetOffset(sniperOffset); }
                 break;
             case Head_Data.Atk_Type.Laser:
                 for(int i = 0; i < turretSocket.Length; i++)
+                {
+                    GameObject laser = pool.GetEffect(Muzzle_index);
+                    Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);
+                }
+                break;
+            case Head_Data.Atk_Type.Flame:
+                GameObject flame = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(flame, turretSocket[0].position, turretSocket[0].rotation);
+                break;
+            case Head_Data.Atk_Type.PlasmaBeam:
+                for (int i = 0; i < turretSocket.Length; i++)
                 {
                     GameObject laser = pool.GetEffect(Muzzle_index);
                     Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);

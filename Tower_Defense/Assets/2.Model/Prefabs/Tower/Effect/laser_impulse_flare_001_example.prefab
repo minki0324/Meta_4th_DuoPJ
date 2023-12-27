@@ -24017,9 +24017,9 @@ GameObject:
   - component: {fileID: 400010}
   - component: {fileID: 19800010}
   - component: {fileID: 19900010}
-  - component: {fileID: 11400000}
   - component: {fileID: 5092543258055656720}
   - component: {fileID: -2858881613911782984}
+  - component: {fileID: -8527380201536016043}
   m_Layer: 0
   m_Name: laser_impulse_flare_001_example
   m_TagString: Untagged
@@ -28862,20 +28862,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af19da7458dc9174699d0b34f404eafc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DespawnDelay: 2
-  DespawnOnMouseUp: 0
 --- !u!114 &5092543258055656720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28928,3 +28914,42 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!114 &-8527380201536016043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b858aeb0da13c014f98c60b741d5b437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 11400000, guid: 1c9b7baa913e3d445861cee6c65ff78e, type: 2}
+  type: 4
+  delay: 2
+  despawnDelay: 0
+  timer: 0
+  DelayDespawn: 0
+  OneShot: 0
+  isHit: 0
+  delayedParticles: []
+  velocity: 300
+  rayImpact: {fileID: 0}
+  rayMuzzle: {fileID: 0}
+  RaycastAdvance: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  BeamFrames: []
+  FrameStep: 0
+  AnimateUV: 0
+  UVTime: 0
+  beamScale: 0
+  MaxBeamLength: 0
+  pLight: {fileID: 0}
+  heat: {fileID: 0}

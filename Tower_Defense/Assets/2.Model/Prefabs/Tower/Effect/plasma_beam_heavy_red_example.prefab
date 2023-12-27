@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 400000}
   - component: {fileID: 12000000}
-  - component: {fileID: 11400000}
-  - component: {fileID: 11400004}
   - component: {fileID: 6375188332450693683}
   - component: {fileID: -4885610398867460430}
+  - component: {fileID: -1187229282299028953}
   m_Layer: 0
   m_Name: plasma_beam_heavy_red_example
   m_TagString: Untagged
@@ -144,46 +143,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a9aefbed78059c4c965f18823e35186, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  fxType: 8
-  OneShot: 0
-  BeamFrames: []
-  FrameStep: 0.001
-  beamScale: 0.5
-  MaxBeamLength: 500
-  AnimateUV: 1
-  UVTime: -6
-  rayImpact: {fileID: 400010}
-  rayMuzzle: {fileID: 400002}
-  fxOffset: 0
---- !u!114 &11400004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af19da7458dc9174699d0b34f404eafc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DespawnDelay: 0
-  DespawnOnMouseUp: 1
 --- !u!114 &6375188332450693683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +195,45 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!114 &-1187229282299028953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b858aeb0da13c014f98c60b741d5b437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 11400000, guid: e16bd1c0e83109d46b8313427ffdfc5a, type: 2}
+  type: 2
+  delay: 0.1
+  despawnDelay: 0
+  timer: 0
+  DelayDespawn: 0
+  OneShot: 0
+  isHit: 0
+  delayedParticles: []
+  velocity: 300
+  rayImpact: {fileID: 400010}
+  rayMuzzle: {fileID: 400002}
+  RaycastAdvance: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 832
+  BeamFrames: []
+  FrameStep: 0.001
+  AnimateUV: 1
+  UVTime: -6
+  beamScale: 0.5
+  MaxBeamLength: 500
+  pLight: {fileID: 0}
+  heat: {fileID: 0}
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0

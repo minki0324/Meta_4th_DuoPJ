@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 11400000}
   - component: {fileID: 8813293904136594286}
   - component: {fileID: -6221600591010189310}
+  - component: {fileID: 8229799051669643880}
   m_Layer: 0
   m_Name: seeker_bolt_flare_example
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400004}
   m_Father: {fileID: 0}
@@ -5058,7 +5059,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 70e19691dd8f9be459ad349a5e64f4c0, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5111,7 +5111,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71d84e8c92ffdf1438c9798f91d60981, type: 3}
   m_Name: 
@@ -5179,6 +5179,43 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!114 &8229799051669643880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b858aeb0da13c014f98c60b741d5b437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 11400000, guid: 1b934e003201c8d4a8e4d09832038c18, type: 2}
+  type: 1
+  delay: 5
+  despawnDelay: 1
+  DelayDespawn: 1
+  OneShot: 0
+  isHit: 0
+  delayedParticles:
+  - {fileID: 19800004}
+  velocity: 200
+  rayImpact: {fileID: 0}
+  rayMuzzle: {fileID: 0}
+  RaycastAdvance: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 832
+  BeamFrames: []
+  FrameStep: 0
+  AnimateUV: 0
+  UVTime: 0
+  beamScale: 0
+  MaxBeamLength: 0
 --- !u!1 &100004
 GameObject:
   m_ObjectHideFlags: 0
@@ -9806,7 +9843,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 60e0f0e152ea91143a1c3dce3bc39b30, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
