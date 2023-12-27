@@ -14,7 +14,7 @@ public class Monster_Control : NetworkBehaviour
     public float M_speed;
     public float M_damage;
     public float M_cost;
-
+    public bool isInvi;
     [SerializeField]
     public GameObject marker;
 

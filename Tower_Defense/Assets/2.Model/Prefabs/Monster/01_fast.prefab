@@ -683,6 +683,12 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 074790e9deb15ea439fd99d13d9f60e8, type: 2}
   Astar: {fileID: 654619145482808579}
   aiPath: {fileID: 0}
+  M_maxHp: 0
+  M_currentHP: 0
+  M_speed: 0
+  M_damage: 0
+  M_cost: 0
+  marker: {fileID: 0}
   goalCount: 0
 --- !u!1 &2385198031884895084
 GameObject:
@@ -1356,6 +1362,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2375401b69d38f048b9085d8c6c7a942, type: 2}
+  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

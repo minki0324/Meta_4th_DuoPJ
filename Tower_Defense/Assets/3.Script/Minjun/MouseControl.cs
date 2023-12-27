@@ -98,8 +98,8 @@ public class MouseControl : MonoBehaviour
             if (!Input.GetKey(KeyCode.LeftShift))   
             {
                 //todo юс╫ц╬ъ..
-                StartCoroutine(test()); 
-                //rts.DeSelectAll();
+                //StartCoroutine(test()); 
+                rts.DeSelectAll();
             }
         }
 

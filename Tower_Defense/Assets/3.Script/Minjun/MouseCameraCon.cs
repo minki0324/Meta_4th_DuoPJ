@@ -9,6 +9,7 @@ public class MouseCameraCon : MonoBehaviour
     private float edgeThreshold = 3f;
     [SerializeField] private BoxCollider CameraZoneCol;
     private Bounds CameraZone;
+    private bool isScreenLock;
     private void Start()
     {
         CameraZone = CameraZoneCol.bounds;
@@ -16,8 +17,16 @@ public class MouseCameraCon : MonoBehaviour
 
     private void Update()
     {
-        KeybordMove();
-        MoveCameraWithMouse();
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            isScreenLock = !isScreenLock;
+        }
+
+        if (!isScreenLock)
+        {
+            KeybordMove();
+            MoveCameraWithMouse();
+        }
     }
 
     void MoveCameraWithMouse()
