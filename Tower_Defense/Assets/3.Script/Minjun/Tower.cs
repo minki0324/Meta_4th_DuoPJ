@@ -8,7 +8,7 @@ public class Tower : NetworkBehaviour
 {
     [SerializeField]
     public GameObject marker;
-
+    [SerializeField] private Material holoColor;
     public float maxHP;
     public float currentHP;
     public float damage;
@@ -17,6 +17,7 @@ public class Tower : NetworkBehaviour
     public string Speed;
     public int level;
     public Sprite unitSprite;
+    
     private void Awake()
     {
         maxHP = 50;
@@ -44,5 +45,19 @@ public class Tower : NetworkBehaviour
     public void DeSelectunit()
     {
         marker.SetActive(false);
+    }
+    public void HologramTower(GameObject gameObject)
+    {
+        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        if (meshRenderer )
+        {
+            meshRenderer.materials = new Material[0];
+            meshRenderer.material = holoColor;
+            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+        foreach (Transform child in gameObject.transform)
+        {
+            HologramTower(child.gameObject);
+        }
     }
 }

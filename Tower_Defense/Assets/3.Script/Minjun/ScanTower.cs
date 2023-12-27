@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class ScanTower : MonoBehaviour
 {
+
+    [SerializeField] private Transform mount;
+
+    private void Start()
+    {
+        mount = transform.root.GetChild(1);
+    }
+    private void Update()
+    {
+        mount.Rotate(new Vector3(0, 45, 0) * Time.deltaTime);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
@@ -12,10 +23,7 @@ public class ScanTower : MonoBehaviour
             if (mon.state.type == MonsterState.monType.Invisible)
             {
 
-                Debug.Log("인비들어와용");
                 IvisibleControl ivisibleControl = other/*.transform.root*/.GetComponent<IvisibleControl>();
-                mon.isInvi = false;
-                Debug.Log(ivisibleControl);
                 // ivisibleControl이 null이 아닌 경우 DisInvisible() 메서드를 호출하고, 그렇지 않으면 아무것도 수행하지 않습니다.
                 ivisibleControl?.DisInvisible();
             }
@@ -30,7 +38,6 @@ public class ScanTower : MonoBehaviour
             if (mon.state.type == MonsterState.monType.Invisible)
             {
                 IvisibleControl ivisibleControl = other/*.transform.root*/.GetComponent<IvisibleControl>();
-                mon.isInvi = true;
                 // ivisibleControl이 null이 아닌 경우 DisInvisible() 메서드를 호출하고, 그렇지 않으면 아무것도 수행하지 않습니다.
                 ivisibleControl?.OnInvisible();
             }

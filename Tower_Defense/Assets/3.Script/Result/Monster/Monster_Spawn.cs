@@ -43,7 +43,7 @@ public class Monster_Spawn : NetworkBehaviour
         Vector3 spawnPos = new Vector3(spawnpoint.position.x + randIndexX, spawnpoint.position.y+ Mon_Prefabs[index].transform.position.y, spawnpoint.position.z + randIndexZ);
         GameObject monster = pools.GetMonster(index);
         monster.transform.SetPositionAndRotation(spawnPos, Mon_Prefabs[index].transform.rotation);
-        NetworkServer.Spawn(monster);
+        //NetworkServer.Spawn(monster);
         // 태그 할당
         monster.tag = $"{player_num}P";
 

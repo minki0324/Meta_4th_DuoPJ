@@ -41,7 +41,6 @@ public class MouseControl : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (IsPointerOverUI()) return;
-            Debug.Log("리턴안당함");
             GetTargetInfo();
           
         }
