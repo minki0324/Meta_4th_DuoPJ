@@ -4694,7 +4694,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2bf35c054b179184aa0e153c62d17f6f, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4754,6 +4753,7 @@ GameObject:
   - component: {fileID: 11400000}
   - component: {fileID: -4715887183960463838}
   - component: {fileID: 2210517895235374427}
+  - component: {fileID: 71184572611208533}
   m_Layer: 0
   m_Name: flames_flame_red_example
   m_TagString: Untagged
@@ -9457,7 +9457,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 53d87384bf6da8b40867ee27978bcb0e, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9510,7 +9509,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 842145e30d6938c49848dd118ba75ff1, type: 3}
   m_Name: 
@@ -9569,6 +9568,45 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!114 &71184572611208533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b858aeb0da13c014f98c60b741d5b437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 11400000, guid: 98f230924dd73ca4cb5ddafefcbb7c99, type: 2}
+  type: 3
+  delay: 1
+  despawnDelay: 0
+  timer: 0
+  DelayDespawn: 0
+  OneShot: 0
+  isHit: 0
+  delayedParticles: []
+  velocity: 300
+  rayImpact: {fileID: 0}
+  rayMuzzle: {fileID: 0}
+  RaycastAdvance: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 832
+  BeamFrames: []
+  FrameStep: 0
+  AnimateUV: 0
+  UVTime: 0
+  beamScale: 0
+  MaxBeamLength: 0
+  pLight: {fileID: 10800004}
+  heat: {fileID: 19800000}
 --- !u!1 &100006
 GameObject:
   m_ObjectHideFlags: 0

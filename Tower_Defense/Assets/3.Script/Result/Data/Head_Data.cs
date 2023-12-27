@@ -11,7 +11,13 @@ public class Head_Data : ScriptableObject
     {
         Vulcan,
         Sniper,
-        Laser
+        Laser,
+        Missile,
+        Seeker,
+        Air,
+        Flame,
+        PlasmaBeam,
+        LaserImpulse
     }
 
     [Header("기본 정보")]

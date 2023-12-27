@@ -4894,11 +4894,13 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   head_Data: {fileID: 0}
-  type: 3
+  type: 4
   delay: 1
   despawnDelay: 0
+  timer: 0
   DelayDespawn: 0
   OneShot: 0
+  isHit: 0
   delayedParticles: []
   velocity: 300
   rayImpact: {fileID: 0}
@@ -4913,6 +4915,8 @@ MonoBehaviour:
   UVTime: 0
   beamScale: 0
   MaxBeamLength: 0
+  pLight: {fileID: 0}
+  heat: {fileID: 0}
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
