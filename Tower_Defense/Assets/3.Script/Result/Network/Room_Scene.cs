@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class Room_Scene : MonoBehaviour
 {
-    [SerializeField] private Text P1_Ready;
-    [SerializeField] private Text P2_Ready;
+    [SerializeField] private GameObject P1_Ready;
+    [SerializeField] private GameObject P1_Wait;
+    [SerializeField] private GameObject P2_Ready;
+    [SerializeField] private GameObject P2_Wait;
 
     [SerializeField] private Image P1_Character;
     [SerializeField] private Image P2_Character;
@@ -57,32 +59,37 @@ public class Room_Scene : MonoBehaviour
         {
             if (P1_Component.readyToBegin)
             {
-                P1_Ready.text = "Ready";
+                P1_Wait.SetActive(false);
+                P1_Ready.SetActive(true);
             }
             else
             {
-                P1_Ready.text = "Wait For Player";
+                P1_Ready.SetActive(false);
+                P1_Wait.SetActive(true);
             }
-            P2_Ready.text = "";
         }
         else if (manager.roomSlots.Count == 2)
         {
             if (P1_Component.readyToBegin)
             {
-                P1_Ready.text = "Ready";
+                P1_Wait.SetActive(false);
+                P1_Ready.SetActive(true);
             }
             else
             {
-                P1_Ready.text = "Wait For Player";
+                P1_Ready.SetActive(false);
+                P1_Wait.SetActive(true);
             }
 
             if (P2_Component.readyToBegin)
             {
-                P2_Ready.text = "Ready";
+                P2_Wait.SetActive(false);
+                P2_Ready.SetActive(true);
             }
             else
             {
-                P2_Ready.text = "Wait For Player";
+                P2_Ready.SetActive(false);
+                P2_Wait.SetActive(true);
             }
         }
     }

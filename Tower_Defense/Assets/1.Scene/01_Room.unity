@@ -6416,10 +6416,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e300f0128818d48b01eacea48678a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P1_Ready: {fileID: 1371747251}
-  P2_Ready: {fileID: 0}
+  P1_Ready: {fileID: 1371747249}
+  P1_Wait: {fileID: 114959276}
+  P2_Ready: {fileID: 2016626882}
+  P2_Wait: {fileID: 1521511108}
   P1_Character: {fileID: 1927869118}
-  P2_Character: {fileID: 0}
+  P2_Character: {fileID: 878608210}
   Cha_img:
   - {fileID: 21300000, guid: 25ffd0599e69e9c47bd3f4f3b49ccded, type: 3}
   - {fileID: 21300000, guid: 22e7edc72d2772640b5cc41407a9686c, type: 3}
