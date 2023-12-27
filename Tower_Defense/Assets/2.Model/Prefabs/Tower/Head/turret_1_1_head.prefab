@@ -141,6 +141,7 @@ MonoBehaviour:
   - {fileID: 362092391346505323}
   - {fileID: 3274205196776093307}
   vulcanOffset: 0
+  sniperOffset: 0
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
@@ -153,6 +154,7 @@ MonoBehaviour:
   H_ATK_Speed: 0
   H_ATK_Range: 0
   H_Reload: 0
+  target: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!1 &4749325366453345183
 GameObject:

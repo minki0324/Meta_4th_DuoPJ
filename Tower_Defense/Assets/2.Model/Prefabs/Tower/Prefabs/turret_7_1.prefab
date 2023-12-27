@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4345681855635493651}
   - component: {fileID: 8130373091285647798}
   - component: {fileID: 3911423043102030937}
+  - component: {fileID: 2370285859410238151}
+  - component: {fileID: 8366127953847888536}
   m_Layer: 0
   m_Name: turret_head7
   m_TagString: Untagged
@@ -83,6 +85,76 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2370285859410238151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350328016905499807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d745b9e2658d74c843695088c304e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 11400000, guid: fae367f32166c144e8df529cf01bfa0e, type: 2}
+  turretSocket:
+  - {fileID: 4345681855635493651}
+  vulcanOffset: 0
+  sniperOffset: 0
+  seekerOffset: 0
+  soloGunOffset: 0
+  start_fire: {fileID: 0}
+  pool: {fileID: 0}
+  mount: {fileID: 0}
+  target_Layer:
+    serializedVersion: 2
+    m_Bits: 64
+  H_Cost: 0
+  H_Rot_Speed: 0
+  H_Damage: 0
+  H_ATK_Speed: 0
+  H_ATK_Range: 0
+  H_Reload: 0
+  target: {fileID: 0}
+  current_ATK_Speed: 0
+--- !u!114 &8366127953847888536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350328016905499807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a553cb17010b2403e8523b558bffbc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 4345681855635493651}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  compressRotation: 1
+  bufferResetMultiplier: 3
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
 --- !u!1 &1245807854226560068
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +262,7 @@ Transform:
   m_GameObject: {fileID: 2110457930456749143}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 8975979264342996025}
   - {fileID: 1231190080015632457}
@@ -226,6 +298,8 @@ GameObject:
   - component: {fileID: 8975979264342996025}
   - component: {fileID: 7985289108459720674}
   - component: {fileID: 1603303027567600406}
+  - component: {fileID: 8222236791204725666}
+  - component: {fileID: 7862806317201645408}
   m_Layer: 0
   m_Name: turret_base7
   m_TagString: Untagged
@@ -296,6 +370,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8222236791204725666
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112805876636701758}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.5, y: 6, z: 7.5}
+  m_Center: {x: 0, y: 2.5, z: 0}
+--- !u!54 &7862806317201645408
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112805876636701758}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &7873837195986105689
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +491,8 @@ GameObject:
   - component: {fileID: 1231190080015632457}
   - component: {fileID: 4325826044400452923}
   - component: {fileID: 7002566571788812830}
+  - component: {fileID: 247029217898749853}
+  - component: {fileID: 6822093354131387733}
   m_Layer: 0
   m_Name: turret_mount7
   m_TagString: Untagged
@@ -459,3 +564,55 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &247029217898749853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7963232240710378038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a553cb17010b2403e8523b558bffbc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1231190080015632457}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  compressRotation: 1
+  bufferResetMultiplier: 3
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
+--- !u!114 &6822093354131387733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7963232240710378038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c46e05b86566247a105c1c5a341547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  mount_Data: {fileID: 11400000, guid: 873192440b8d9f448a434eec1e3602e5, type: 2}
+  M_cost: 0
+  M_Rot_Speed: 0

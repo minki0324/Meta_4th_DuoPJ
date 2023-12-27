@@ -10,6 +10,7 @@ public class Effect_Control : NetworkBehaviour
         muzzle,
         projectile,
         Beam,
+        Flame,
         impact
     }
 
@@ -21,17 +22,19 @@ public class Effect_Control : NetworkBehaviour
     [Header("시간 관련")]
     [SerializeField] private float delay;       // 활성화 후 일정 delay 뒤에 비활성화 하는 시간
     public float despawnDelay;                  // hit된 후 이펙트 활성화 되고 사라지는 시간
-    private float timer = 0f;                   // 실시간 타이머
+    public float timer = 0f;                   // 실시간 타이머
 
     [Header("Bool값")]
     public bool DelayDespawn = false;           
     public bool OneShot;                        // 빔 관련 지속 빔인지 단일 빔인지
-    private bool isHit = false;                 // 히트 됐는지 안됐는지
+    public bool isHit = false;                 // 히트 됐는지 안됐는지
     private bool isFXSpawned = false;           // 임팩트가 터졌는지 안터졌는지
+    private bool despawn;                       // 소멸 상태 플래그
 
     [Header("파티클")]
     public ParticleSystem[] delayedParticles;   
     private ParticleSystem[] particles;
+    private ParticleSystem flame;               // 화염방사기
 
     [Header("위치 관련")]
     new Transform transform;                    // 캐시 된 트랜스폼
@@ -61,6 +64,10 @@ public class Effect_Control : NetworkBehaviour
     public float MaxBeamLength;                 // 최대 빔 길이
     private float beamLength;                   // 현재 빔 길이
 
+    [Header("Flame")]
+    public Light pLight;                        // 연결된 라이트
+    public ParticleSystem heat;                 // heat 파티클
+    private int lightState;                     // 포인트 라이트 상태 플래그 (fade in, out)
 
     #region Unity Callback
     private void Awake()
@@ -68,7 +75,7 @@ public class Effect_Control : NetworkBehaviour
         pool = FindObjectOfType<Effect_Pooling>();
         transform = GetComponent<Transform>();
         // 변환 캐시 및 연결된 모든 입자 시스템 가져오기
-        if(type == Effect_type.projectile)
+        if (type == Effect_type.projectile)
         {
             particles = GetComponentsInChildren<ParticleSystem>();
         }
@@ -83,6 +90,10 @@ public class Effect_Control : NetworkBehaviour
 
             // 무작위 UV 오프셋 설정
             initialBeamOffset = Random.Range(0f, 5f);
+        }
+        else if(type == Effect_type.Flame)
+        {
+            flame = GetComponent<ParticleSystem>();
         }
     }
 
@@ -109,16 +120,27 @@ public class Effect_Control : NetworkBehaviour
             if (!OneShot)
                 isBeam();
         }
+        else if(type ==  Effect_type.Flame)
+        {
+            StartCoroutine(Flame());
+        }
     }
 
     // 활성화 후 초기화 및 일정 시간 뒤 액티브 끄기
     private void OnEnable()
     {
-        if(isServer)
+        if (isServer)
+        {
+            if (type == Effect_type.projectile) { OnSpawned_Pro(); }
+            else if (type == Effect_type.Beam) { OnSpawned_Beam(); }
+            else if (type == Effect_type.Flame) { OnSpawned_Flame(); }
+        }
+        else
         {
             if(type == Effect_type.projectile) { OnSpawned_Pro(); }
-            else if(type == Effect_type.Beam) { OnSpawned_Beam(); }
+            else if (type == Effect_type.Flame) { OnSpawned_Flame(); }
         }
+
         Invoke("active", delay);
     }
 
@@ -161,6 +183,20 @@ public class Effect_Control : NetworkBehaviour
                 GameObject sni_impact = pool.GetEffect(index);
                 GameManager.instance.RPC_TransformSet(sni_impact, pos, Quaternion.identity);
                 break;
+            case Head_Data.Atk_Type.Missile:
+                break;
+            case Head_Data.Atk_Type.Seeker:
+                GameObject Seeker_impact = pool.GetEffect(index);
+                GameManager.instance.RPC_TransformSet(Seeker_impact, pos, Quaternion.identity);
+                break;
+            case Head_Data.Atk_Type.Air:
+                GameObject Air_impact = pool.GetEffect(index);
+                GameManager.instance.RPC_TransformSet(Air_impact, pos, Quaternion.identity);
+                break;
+            case Head_Data.Atk_Type.LaserImpulse:
+                GameObject LaserImpulse_impact = pool.GetEffect(index);
+                GameManager.instance.RPC_TransformSet(LaserImpulse_impact, pos, Quaternion.identity);
+                break;
         }
     }
     #endregion
@@ -182,7 +218,7 @@ public class Effect_Control : NetworkBehaviour
         hitPoint = new RaycastHit();
     }
 
-    void OnSpawned_Beam()
+    private void OnSpawned_Beam()
     {
         // OneShot 플래그가 true일 경우 한 번만 레이캐스트 수행
         if (OneShot)
@@ -193,6 +229,14 @@ public class Effect_Control : NetworkBehaviour
             Animate();
     }
 
+    private void OnSpawned_Flame()
+    {
+        despawn = false;
+
+        lightState = 1;
+        pLight.intensity = 0f;
+    }
+
     private void isProjectile()
     {
         // 무언가 충돌한 경우
@@ -201,15 +245,22 @@ public class Effect_Control : NetworkBehaviour
             // 임팩트 한번만 실행
             if (!isFXSpawned)
             {
-                // 추후 시간 남으면 임팩트 생성하는 메소드 재정비
                 // 임팩트를 생성하는 해당 메소드를 호출
                 switch (head_Data.atk_Type)
                 {
                     case Head_Data.Atk_Type.Vulcan:
-                        if (isServer)
-                        {
-                            Request_Impact(hitPoint.point + hitPoint.normal * fxOffset, 2);
-                        }
+                        if (isServer) { Request_Impact(hitPoint.point + hitPoint.normal * fxOffset, 2); }
+                        break;
+                    case Head_Data.Atk_Type.Missile:
+                        break;
+                    case Head_Data.Atk_Type.Seeker:
+                        if (isServer) { Request_Impact(hitPoint.point + hitPoint.normal * fxOffset, 12); }
+                        break;
+                    case Head_Data.Atk_Type.Air:
+                        if(isServer) { Request_Impact(hitPoint.point + hitPoint.normal * fxOffset, 15); }
+                        break;
+                    case Head_Data.Atk_Type.LaserImpulse:
+                        if(isServer) { Request_Impact(hitPoint.point + hitPoint.normal * fxOffset, 20); }
                         break;
                 }
 
@@ -331,6 +382,42 @@ public class Effect_Control : NetworkBehaviour
 
         // 빔 길이에 따라 빔 스케일 조정
         lineRenderer.material.SetTextureScale("_BaseMap", new Vector2(propMult, 1f));
+    }
+
+    private IEnumerator Flame()
+    {
+        if (!despawn)
+        {
+            yield return new WaitForSeconds(0.2f);
+            // 소멸 플래그 설정 및 입자가 서서히 사라지도록 소멸 타이머 추가
+            despawn = true;
+
+            // 입자 시스템 정지
+            flame.Stop();
+            if (heat)
+                heat.Stop();
+
+            // 라이트 상태 전환
+            pLight.intensity = 0.6f;
+            lightState = -1;
+
+            // 포인트 라이트 페이드 인
+            if (lightState == 1)
+            {
+                pLight.intensity = Mathf.Lerp(pLight.intensity, 0.7f, Time.deltaTime * 10f);
+
+                if (pLight.intensity >= 0.5f)
+                    lightState = 0;
+            }
+            // 포인트 라이트 페이드 아웃
+            else if (lightState == -1)
+            {
+                pLight.intensity = Mathf.Lerp(pLight.intensity, -0.1f, Time.deltaTime * 10f);
+
+                if (pLight.intensity <= 0f)
+                    lightState = 0;
+            }
+        }
     }
 
     private void Delay()

@@ -19,30 +19,30 @@ public class Effect_Pooling : NetworkBehaviour
     public SyncList<GameObject> Laser_List = new SyncList<GameObject>();                // 6
 
     [Header("Missle")]
-    public SyncList<GameObject> Missle_List = new SyncList<GameObject>();
-    public SyncList<GameObject> Missle_Flame_List = new SyncList<GameObject>();
-    public SyncList<GameObject> Missle_Smoke_List = new SyncList<GameObject>();
+    public SyncList<GameObject> Missle_List = new SyncList<GameObject>();               // 7
+    public SyncList<GameObject> Missle_Flame_List = new SyncList<GameObject>();         // 8
+    public SyncList<GameObject> Missle_Smoke_List = new SyncList<GameObject>();         // 9
 
     [Header("Seeker")]
-    public SyncList<GameObject> Seeker_Projectile_List = new SyncList<GameObject>();
-    public SyncList<GameObject> Seeker_Muzzle_List = new SyncList<GameObject>();
-    public SyncList<GameObject> Seeker_Impact_List = new SyncList<GameObject>();
+    public SyncList<GameObject> Seeker_Projectile_List = new SyncList<GameObject>();    // 10
+    public SyncList<GameObject> Seeker_Muzzle_List = new SyncList<GameObject>();        // 11
+    public SyncList<GameObject> Seeker_Impact_List = new SyncList<GameObject>();        // 12
 
     [Header("Solo Gun(Air)")]
-    public SyncList<GameObject> Air_Projectile_List = new SyncList<GameObject>();
-    public SyncList<GameObject> Air_Muzzle_List = new SyncList<GameObject>();
-    public SyncList<GameObject> Air_Gun_List = new SyncList<GameObject>();
+    public SyncList<GameObject> Air_Projectile_List = new SyncList<GameObject>();       // 13
+    public SyncList<GameObject> Air_Muzzle_List = new SyncList<GameObject>();           // 14
+    public SyncList<GameObject> Air_Gun_List = new SyncList<GameObject>();              // 15
 
     [Header("Flame")]
-    public SyncList<GameObject> FlameRed_List = new SyncList<GameObject>();
+    public SyncList<GameObject> FlameRed_List = new SyncList<GameObject>();             // 16
 
     [Header("PlasmaBeam")]
-    public SyncList<GameObject> PlasmaBeamHeavy_List = new SyncList<GameObject>();
+    public SyncList<GameObject> PlasmaBeamHeavy_List = new SyncList<GameObject>();      // 17
 
     [Header("LaserImpulse")]
-    public SyncList<GameObject> LaserImpulse_Projectile_List = new SyncList<GameObject>();
-    public SyncList<GameObject> LaserImpulse_Muzzle_List = new SyncList<GameObject>();
-    public SyncList<GameObject> LaserImpulse_Impact_List = new SyncList<GameObject>();
+    public SyncList<GameObject> LaserImpulse_Projectile_List = new SyncList<GameObject>();// 18
+    public SyncList<GameObject> LaserImpulse_Muzzle_List = new SyncList<GameObject>();  // 19
+    public SyncList<GameObject> LaserImpulse_Impact_List = new SyncList<GameObject>();  // 20
 
 
     public GameObject[] EffectPrefab;
@@ -97,6 +97,7 @@ public class Effect_Pooling : NetworkBehaviour
     {
         if (isActive)
         {
+            Debug.Log(monster.name);
             monster.SetActive(isActive);
         }
         else
