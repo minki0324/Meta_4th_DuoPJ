@@ -323,7 +323,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  state: {fileID: 11400000, guid: 8232b39aa03fcb64bbf055ad3c385dee, type: 2}
+  state: {fileID: 11400000, guid: 666c1957fa65faf4c9de5b690513c36f, type: 2}
   Astar: {fileID: 956331631191889187}
   aiPath: {fileID: 956331631191889186}
   M_maxHp: 0
@@ -415,7 +415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5358739217211436850
 Transform:
   m_ObjectHideFlags: 0
@@ -1721,7 +1721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6642416081053759365
 Transform:
   m_ObjectHideFlags: 0
