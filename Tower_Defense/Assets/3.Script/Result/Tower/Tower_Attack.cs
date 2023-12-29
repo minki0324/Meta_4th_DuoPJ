@@ -32,7 +32,7 @@ public class Tower_Attack : NetworkBehaviour
     public float H_ATK_Range;
     public int H_Reload;
     public Transform target;
-
+    public Transform testTarget;
     public float current_ATK_Speed = 0;
     #region Unity Callback
     private void Start()
@@ -42,16 +42,17 @@ public class Tower_Attack : NetworkBehaviour
         mount = transform.root.GetChild(1);
         Init_Data(head_Data);
         pool = FindObjectOfType<Effect_Pooling>();
-        if (isServer)
-        {
-            InvokeRepeating("Search_Enemy", 0f, 0.2f);
-        }
+        //if (isServer)
+        //{
+        //    InvokeRepeating("Search_Enemy", 0f, 0.05f);
+        //}
     }
 
     private void Update()
     {
         if (isServer)
         {
+            Search_Enemy();
 
             if (target == null)
             {
@@ -138,7 +139,7 @@ public class Tower_Attack : NetworkBehaviour
             current_ATK_Speed -= Time.deltaTime;
      
 
-        if (Quaternion.Angle(mount.rotation, fire_Rot) < 5f)
+        if (Quaternion.Angle(mount.rotation, fire_Rot) < 3f)
         {
 
             if (current_ATK_Speed <= 0)
@@ -198,7 +199,13 @@ public class Tower_Attack : NetworkBehaviour
             }
         }
     }
+    private void OnDrawGizmos()
+    {
+        // 디버그 렌더링을 통해 원통 모양의 캡슐을 에디터에서 시각적으로 표시
 
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position + transform.forward, 1.5f); // 캡슐의 시작점
+    }
     private IEnumerator Calculate_Fire(Transform _target)
     {
         Monster_Control mon = _target.GetComponent<Monster_Control>();
@@ -216,8 +223,55 @@ public class Tower_Attack : NetworkBehaviour
                 }
                 break;
             case Head_Data.Weapon_Type.Splash:
+                Fire();
+                if (head_Data.atk_Type == Head_Data.Atk_Type.Flame)
+                {
+                    FlameAttack();
+                }
+                else if (head_Data.atk_Type == Head_Data.Atk_Type.Seeker)
+                {
+                    yield return new WaitForSeconds(head_Data.DelayTime);
+                    SeekerAttack();
+                }
+
                 break;
         }
+    }
+
+    private void UnitsInRange_Damage(Collider[] col)
+    {
+        foreach (Collider item in col)
+        {
+            //item.collider.gameObject
+            Monster_Control monster = item.gameObject.GetComponent<Monster_Control>();
+            if (monster.isDie || monster.isInvi) continue;
+
+            monster.M_currentHP -= H_Damage;
+            Debug.Log(monster.M_currentHP);
+            if (monster.M_currentHP <= 0)
+            {
+                StartCoroutine(monster.onDie());
+                RPC_Die(monster);
+
+            }
+        }
+    }
+
+    private void SeekerAttack()
+    {
+        Collider[] col = Physics.OverlapSphere(target.position , 3, target_Layer);
+
+        UnitsInRange_Damage(col);
+        
+
+    }
+
+    private void FlameAttack()
+    {
+        Collider[] col = Physics.OverlapCapsule(transform.position + transform.forward, transform.position + transform.forward * 6.0f, 1.5f, target_Layer);
+        Debug.Log(col.Length);
+
+        UnitsInRange_Damage(col);
     }
 
     private void Projectile(Head_Data.Atk_Type atk_Type, int Muzzle_index, int Pro_index)

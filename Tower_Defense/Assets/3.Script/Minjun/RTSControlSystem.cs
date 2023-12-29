@@ -28,6 +28,10 @@ public class RTSControlSystem : MonoBehaviour
         newunit.Selectunit();
         selectTowers.Add(newunit);
     }
+    public void SetAttackRange(Tower newunit)
+    {
+        newunit.AttackRange.SetActive(true);
+    }
     //유닛이 선택취소 됬을때 호출하는 메소드
     //이미지 false , 리스트 삭제
     public void DeSelectUnit(Tower newunit)
@@ -56,6 +60,10 @@ public class RTSControlSystem : MonoBehaviour
 
     public void ShiftClickSelectUnit(Tower newunit)
     {
+        if (selectTowers.Count == 1)
+        {
+            selectTowers[0].AttackRange.SetActive(false);
+        }
         if (selectTowers.Contains(newunit))
         {
             DeSelectUnit(newunit);

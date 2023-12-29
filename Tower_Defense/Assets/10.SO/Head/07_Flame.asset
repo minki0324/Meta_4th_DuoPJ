@@ -18,10 +18,10 @@ MonoBehaviour:
   BaseID: 7
   Level: 0
   Position: {x: 0, y: 0, z: 0}
-  DelayTime: 0
+  DelayTime: 0.12
   Cost: 30
   Rot_Speed: 30
-  Damage: 10
-  ATK_Speed: 0.8
-  ATK_Range: 10
+  Damage: 1
+  ATK_Speed: 0.1
+  ATK_Range: 8
   Reload: 0

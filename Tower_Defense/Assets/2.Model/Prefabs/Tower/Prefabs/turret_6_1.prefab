@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -6876191827422674689}
   - component: {fileID: 7877191822788255236}
   - component: {fileID: 3794086506262565561}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_6_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3113863079888309275}
   - component: {fileID: 8595457528151463040}
   - component: {fileID: 6452485043773823307}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_base6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 8072102178544235491}
   - component: {fileID: 3770101870790284746}
   - component: {fileID: 7626830141965369704}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 6329943060701491199}
   - component: {fileID: 3392139574640010965}
   - component: {fileID: 1330658347143649105}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_mount6
   m_TagString: Untagged
   m_Icon: {fileID: 0}

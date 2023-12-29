@@ -16,4 +16,4 @@ MonoBehaviour:
   Level: 0
   Position: {x: 0, y: 0.8, z: 0}
   Cost: 10
-  Rot_Speed: 180
+  Rot_Speed: 700

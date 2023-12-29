@@ -138,7 +138,9 @@ public class BuildManager : NetworkBehaviour
     {
         Tower tower = gameobject.GetComponent<Tower>();
         tower?.HologramTower(gameobject);
-      
+        tower?.AttackRange.SetActive(true);
+
+
     }
     private void AreaActiveTrue(int index)
     {
