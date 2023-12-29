@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823a01e1a8405204aa5004b587512505, type: 3}
   m_Name: 08_Mount
   m_EditorClassIdentifier: 
+  name_: No.8 Mount
   BaseID: 8
   Level: 0
   Position: {x: 0, y: 0, z: 0}

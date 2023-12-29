@@ -15,6 +15,7 @@ MonoBehaviour:
   weapon_Type: 0
   atk_Area: 1
   atk_Type: 5
+  name_: Air Turret
   BaseID: 6
   Level: 0
   Position: {x: 0, y: 0, z: 0}

@@ -24,6 +24,7 @@ public class Head_Data : ScriptableObject
     public Weapon_Type weapon_Type;
     public Atk_Area atk_Area;
     public Atk_Type atk_Type;
+    public string name_;
     public int BaseID;
     public int Level;
     public Vector3 Position;

@@ -31,8 +31,13 @@ public class Tower : NetworkBehaviour
 
     private void Update()
     {
-     
-    Vector3 currentEulerAngles = marker.transform.eulerAngles;
+
+        Spin_Marker();
+    }
+
+    private void Spin_Marker()
+    {
+        Vector3 currentEulerAngles = marker.transform.eulerAngles;
         currentEulerAngles.y += Time.deltaTime * 65; // 회전 속도를 조절할 수 있습니다.
         marker.transform.eulerAngles = currentEulerAngles;
     }
