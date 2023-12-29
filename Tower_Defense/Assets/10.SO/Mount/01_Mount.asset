@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823a01e1a8405204aa5004b587512505, type: 3}
   m_Name: 01_Mount
   m_EditorClassIdentifier: 
+  name_: No.1 Mount
   BaseID: 1
   Level: 0
   Position: {x: 0, y: 0.8, z: 0}
   Cost: 10
-  Rot_Speed: 180
+  Rot_Speed: 700

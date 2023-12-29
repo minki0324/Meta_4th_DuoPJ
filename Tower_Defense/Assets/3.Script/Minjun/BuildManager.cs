@@ -18,7 +18,6 @@ public class BuildManager : NetworkBehaviour
     private GameObject currentArea;
     private GameObject SendOB;
     [SerializeField] private BuildAreaPrents[] area; //타워마다 22 32 33 등 크기가 다른 Area 할당해줘야함
-    private KeyCode k;
 
     #region SyncVar
     public SyncList<Tower> AllTower = new SyncList<Tower>();
@@ -29,16 +28,13 @@ public class BuildManager : NetworkBehaviour
     // 
     private void Awake()
     {
-        Debug.Log("1");
         if (Instance == null)
         {
-            Debug.Log("2");
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Debug.Log("3");
             Destroy(gameObject);
         }
         isCanBuild = true;
@@ -126,6 +122,7 @@ public class BuildManager : NetworkBehaviour
         AreaActiveTrue(index);
         SendOB = towers[index];
         GameObject tower = Instantiate(towers[index], area[index].transform.position, Quaternion.identity);
+        HologramTower(tower);
         currentTower = tower;
         currentArea = area[index].gameObject;
         tower.transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
@@ -137,6 +134,14 @@ public class BuildManager : NetworkBehaviour
 
     }
 
+    private void HologramTower(GameObject gameobject)
+    {
+        Tower tower = gameobject.GetComponent<Tower>();
+        tower?.HologramTower(gameobject);
+        tower?.AttackRange.SetActive(true);
+
+
+    }
     private void AreaActiveTrue(int index)
     {
         //기존에 다른 Area가 켜져있다면 꺼준다.

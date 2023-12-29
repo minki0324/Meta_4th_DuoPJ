@@ -171,7 +171,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400012, guid: 157253c33b5e2ae4c99dd92c193b5413, type: 3}
   m_PrefabInstance: {fileID: 6391351660618341151}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-8093627500212825932
+--- !u!114 &-6648109411719225181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,19 +180,68 @@ MonoBehaviour:
   m_GameObject: {fileID: 6391351660618440115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71d84e8c92ffdf1438c9798f91d60981, type: 3}
+  m_Script: {fileID: 11500000, guid: b858aeb0da13c014f98c60b741d5b437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fxType: 1
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 11400000, guid: fae367f32166c144e8df529cf01bfa0e, type: 2}
+  type: 1
+  delay: 2
+  despawnDelay: 0
+  timer: 0
+  DelayDespawn: 0
+  OneShot: 0
+  isHit: 0
+  delayedParticles: []
+  velocity: 200
+  rayImpact: {fileID: 0}
+  rayMuzzle: {fileID: 0}
+  RaycastAdvance: 2
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
-  lifeTime: 2
-  despawnDelay: 0
-  velocity: 200
-  RaycastAdvance: 2
-  DelayDespawn: 0
-  delayedParticles: []
+    m_Bits: 832
+  BeamFrames: []
+  FrameStep: 0
+  AnimateUV: 0
+  UVTime: 0
+  beamScale: 0
+  MaxBeamLength: 0
+--- !u!114 &-5911641664654947740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6391351660618440115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a553cb17010b2403e8523b558bffbc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 6391351660618465683}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  sendIntervalMultiplier: 1
+  timelineOffset: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  compressRotation: 1
+  bufferResetMultiplier: 3
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
 --- !u!114 &190425449586700619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,37 +278,3 @@ MonoBehaviour:
   MaxScale: 1.2
   MinRotation: -360
   MaxRotaion: 360
---- !u!114 &-5911641664654947740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6391351660618440115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a553cb17010b2403e8523b558bffbc14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 6391351660618465683}
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  coordinateSpace: 0
-  sendIntervalMultiplier: 1
-  timelineOffset: 0
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  compressRotation: 1
-  bufferResetMultiplier: 3
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01

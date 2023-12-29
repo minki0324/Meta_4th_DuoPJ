@@ -15,13 +15,14 @@ MonoBehaviour:
   weapon_Type: 0
   atk_Area: 2
   atk_Type: 0
+  name_: Vulcan
   BaseID: 1
   Level: 0
   Position: {x: 0, y: 4.6, z: 0}
-  DelayTime: 0
+  DelayTime: 0.12
   Cost: 20
   Rot_Speed: 60
   Damage: 10
-  ATK_Speed: 1
+  ATK_Speed: 2
   ATK_Range: 15
   Reload: 0

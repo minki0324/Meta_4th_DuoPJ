@@ -585,7 +585,9 @@ MonoBehaviour:
   - {fileID: 9214614053171815319, guid: 974204383f7364a498cd076b21d7bb23, type: 3}
   - {fileID: 8588166508417776201, guid: 55351d3645f34494f8746ce0a5529b2d, type: 3}
   - {fileID: 3974143642561148006, guid: cbd36af795bcb0240a3c97ba33d71bdb, type: 3}
+  - {fileID: 956331631191889180, guid: efa339c240a5a034a80b44fe208859c4, type: 3}
   - {fileID: 3761308563669819811, guid: 68ada55d3f7bc17448e0e23e4e42eff6, type: 3}
+  - {fileID: 8382315727152946744, guid: 12dbac7caa44d8b4e8ff66b418c1556e, type: 3}
   - {fileID: 1722666483129094422, guid: 62edb8d53fad5374d97b79921e445cfd, type: 3}
   - {fileID: 100002, guid: a1019cea5f836db4d811e29442cad418, type: 3}
   - {fileID: 192552, guid: c7e9f38264df9af438839ee9c90e07c4, type: 3}
@@ -665,6 +667,27 @@ MonoBehaviour:
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
+  Player_images:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Player_name:
+  - 
+  - 
+  - 
+  - 
+  Print_images:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Print_names:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  image_indexs: 
 --- !u!114 &893505135
 MonoBehaviour:
   m_ObjectHideFlags: 0

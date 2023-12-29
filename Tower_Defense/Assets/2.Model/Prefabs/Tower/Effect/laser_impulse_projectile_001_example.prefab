@@ -90,10 +90,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400004}
-  - component: {fileID: 11400000}
   - component: {fileID: 11400002}
   - component: {fileID: 1240343617003433141}
   - component: {fileID: -7756852450419363752}
+  - component: {fileID: -5647678862100102646}
   m_Layer: 0
   m_Name: laser_impulse_projectile_001_example
   m_TagString: Untagged
@@ -117,28 +117,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71d84e8c92ffdf1438c9798f91d60981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fxType: 11
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  lifeTime: 1
-  despawnDelay: 0
-  velocity: 300
-  RaycastAdvance: 2
-  DelayDespawn: 0
-  delayedParticles: []
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +187,45 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
+--- !u!114 &-5647678862100102646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b858aeb0da13c014f98c60b741d5b437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  head_Data: {fileID: 11400000, guid: 1c9b7baa913e3d445861cee6c65ff78e, type: 2}
+  type: 1
+  delay: 0.4
+  despawnDelay: 0
+  timer: 0
+  DelayDespawn: 0
+  OneShot: 0
+  isHit: 0
+  delayedParticles: []
+  velocity: 300
+  rayImpact: {fileID: 0}
+  rayMuzzle: {fileID: 0}
+  RaycastAdvance: 2
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 832
+  BeamFrames: []
+  FrameStep: 0
+  AnimateUV: 0
+  UVTime: 0
+  beamScale: 0
+  MaxBeamLength: 0
+  pLight: {fileID: 0}
+  heat: {fileID: 0}
 --- !u!1 &1000010589384354
 GameObject:
   m_ObjectHideFlags: 0

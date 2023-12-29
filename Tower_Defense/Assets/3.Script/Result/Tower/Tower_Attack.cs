@@ -15,10 +15,14 @@ public class Tower_Attack : NetworkBehaviour
     [Header("Offset")]
     public float vulcanOffset;
     public float sniperOffset;
+    public float seekerOffset;
+    public float soloGunOffset;
+    public float laserImpulseOffset;
 
     [SerializeField] private F3DFXController start_fire;
     [SerializeField] private Effect_Pooling pool;
     [SerializeField] private Transform mount;
+    
     [SerializeField] private LayerMask target_Layer;
 
     public int H_Cost;
@@ -28,8 +32,8 @@ public class Tower_Attack : NetworkBehaviour
     public float H_ATK_Range;
     public int H_Reload;
     public Transform target;
-
-    public float current_ATK_Speed;
+    public Transform testTarget;
+    public float current_ATK_Speed = 0;
     #region Unity Callback
     private void Start()
     {
@@ -38,24 +42,35 @@ public class Tower_Attack : NetworkBehaviour
         mount = transform.root.GetChild(1);
         Init_Data(head_Data);
         pool = FindObjectOfType<Effect_Pooling>();
-        if (isServer)
-        {
-            InvokeRepeating("Search_Enemy", 0f, 0.2f);
-        }
+        //if (isServer)
+        //{
+        //    InvokeRepeating("Search_Enemy", 0f, 0.05f);
+        //}
     }
 
     private void Update()
     {
         if (isServer)
         {
+            Search_Enemy();
+
             if (target == null)
             {
                 mount.Rotate(new Vector3(0, 45, 0) * Time.deltaTime);
             }
             else
             {
-                Look_Target();
+                if (target.GetComponent<Monster_Control>().isDie)
+                {
+                    target = null;
+                }
+                else
+                {
+                    Look_Target();
+                }
             }
+
+
         }
     }
     #endregion
@@ -75,6 +90,11 @@ public class Tower_Attack : NetworkBehaviour
         if (curSocket >= turretSocket.Length)
             curSocket = 0;
     }
+    [ClientRpc]
+    private void RPC_Die(Monster_Control mon)
+    {
+        StartCoroutine(mon.onDie());
+    }
     #endregion
     #region Hook Method
     private void OnCurSocketChanged(int old_, int new_)
@@ -91,31 +111,41 @@ public class Tower_Attack : NetworkBehaviour
             case Head_Data.Atk_Type.Vulcan: Projectile(head_Data.atk_Type, 1, 0); break;
             case Head_Data.Atk_Type.Sniper: Beam(head_Data.atk_Type, 4, 3); break;
             case Head_Data.Atk_Type.Laser: Beam(head_Data.atk_Type, 6); break;
+            case Head_Data.Atk_Type.Missile: break;
+            case Head_Data.Atk_Type.Seeker: Projectile(head_Data.atk_Type, 11, 10); break;
+            case Head_Data.Atk_Type.Air: Projectile(head_Data.atk_Type, 14, 13); break;
+            case Head_Data.Atk_Type.Flame: Beam(head_Data.atk_Type, 16); break;
+            case Head_Data.Atk_Type.PlasmaBeam: Beam(head_Data.atk_Type, 17); break;
+            case Head_Data.Atk_Type.LaserImpulse: Projectile(head_Data.atk_Type, 19, 18); break;
         }
     }
     #endregion
 
     private void Look_Target()
     {
+        // 조건에 안맞으면 그냥 뺑뺑이
+        Monster_Control mon = target.gameObject.GetComponent<Monster_Control>();
+        if (mon.state.type == MonsterState.monType.Fly && head_Data.atk_Area == Head_Data.Atk_Area.Ground) return;
+        else if (mon.state.type != MonsterState.monType.Fly && head_Data.atk_Area == Head_Data.Atk_Area.Air) return;
+        else if (mon.isInvi || mon.isDie) return; //대상이 투명상태이면 공격못함 / 죽어도 공격안함
+
         float M_Rot_Speed = mount.gameObject.GetComponent<Tower_Mount>().M_Rot_Speed;
         Quaternion look_Rot = Quaternion.LookRotation(target.position - transform.position);
         Vector3 m_euler = Quaternion.RotateTowards(mount.rotation, look_Rot, M_Rot_Speed * Time.deltaTime).eulerAngles;
-        Vector3 h_euler = Quaternion.Slerp(transform.rotation, Quaternion.Euler(look_Rot.eulerAngles.x, look_Rot.eulerAngles.y, 0), H_Rot_Speed * Time.deltaTime).eulerAngles;
-       /* h_euler.x = Mathf.Clamp(h_euler.x, -20f, 20f);
-        transform.rotation = Quaternion.Euler(h_euler.x, 0, 0);*/
         mount.rotation = Quaternion.Euler(0, m_euler.y, 0);
         Quaternion fire_Rot = Quaternion.Euler(0, look_Rot.eulerAngles.y, 0);
 
-        if(target != null)
-        {
+       
             current_ATK_Speed -= Time.deltaTime;
-        }
+     
 
-        if (Quaternion.Angle(mount.rotation, fire_Rot) < 5f)
+        if (Quaternion.Angle(mount.rotation, fire_Rot) < 3f)
         {
+
             if (current_ATK_Speed <= 0)
             {
-                Fire();
+                StartCoroutine(Calculate_Fire(target));
+                
                 current_ATK_Speed = H_ATK_Speed;
             }
         }
@@ -129,7 +159,6 @@ public class Tower_Attack : NetworkBehaviour
         H_ATK_Speed = head_Data.ATK_Speed;
         H_ATK_Range = head_Data.ATK_Range;
         H_Reload = head_Data.Reload;
-        current_ATK_Speed = H_ATK_Speed;
     }
 
     private void Search_Enemy()
@@ -142,11 +171,14 @@ public class Tower_Attack : NetworkBehaviour
             float Near_Dis = Mathf.Infinity;
             foreach (Collider coltarget in cols)
             {
+                if (coltarget.gameObject.GetComponent<Monster_Control>().isInvi) continue;
                 float dis = Vector3.SqrMagnitude(transform.position - coltarget.transform.position);
                 if (Near_Dis > dis) 
                 {
                     Near_Dis = dis;
                     nearest_target = coltarget.transform;
+
+                   
                     target = nearest_target;
                 }
             }
@@ -167,50 +199,130 @@ public class Tower_Attack : NetworkBehaviour
             }
         }
     }
-
-    private IEnumerator Calculate_Fire(Head_Data head_Data, Transform target)
+    private void OnDrawGizmos()
     {
-        Monster_Control mon = target.GetComponent<Monster_Control>();
-        switch(head_Data.weapon_Type)
+        // 디버그 렌더링을 통해 원통 모양의 캡슐을 에디터에서 시각적으로 표시
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position + transform.forward, 1.5f); // 캡슐의 시작점
+    }
+    private IEnumerator Calculate_Fire(Transform _target)
+    {
+        Monster_Control mon = _target.GetComponent<Monster_Control>();
+        switch (head_Data.weapon_Type)
         {
             case Head_Data.Weapon_Type.Targeting:
-                if(mon.state.type == MonsterState.monType.Fly)
+                Fire();
+                yield return new WaitForSeconds(head_Data.DelayTime);
+                mon.M_currentHP -= H_Damage;
+                if (mon.M_currentHP <= 0)
                 {
-                    if(head_Data.atk_Area == Head_Data.Atk_Area.Ground)
-                    {
-                        yield return null;
-                    }
-                }
-                else
-                {
-                    yield return new WaitForSeconds(head_Data.DelayTime);
-                    Monster_Control mon_con = target.gameObject.GetComponent<Monster_Control>();
+                    StartCoroutine(mon.onDie());
+                    RPC_Die(mon);
 
                 }
                 break;
             case Head_Data.Weapon_Type.Splash:
+                Fire();
+                if (head_Data.atk_Type == Head_Data.Atk_Type.Flame)
+                {
+                    FlameAttack();
+                }
+                else if (head_Data.atk_Type == Head_Data.Atk_Type.Seeker)
+                {
+                    yield return new WaitForSeconds(head_Data.DelayTime);
+                    SeekerAttack();
+                }
+
                 break;
         }
+    }
+
+    private void UnitsInRange_Damage(Collider[] col)
+    {
+        foreach (Collider item in col)
+        {
+            //item.collider.gameObject
+            Monster_Control monster = item.gameObject.GetComponent<Monster_Control>();
+            if (monster.isDie || monster.isInvi) continue;
+
+            monster.M_currentHP -= H_Damage;
+            Debug.Log(monster.M_currentHP);
+            if (monster.M_currentHP <= 0)
+            {
+                StartCoroutine(monster.onDie());
+                RPC_Die(monster);
+
+            }
+        }
+    }
+
+    private void SeekerAttack()
+    {
+        Collider[] col = Physics.OverlapSphere(target.position , 3, target_Layer);
+
+        UnitsInRange_Damage(col);
+        
+
+    }
+
+    private void FlameAttack()
+    {
+        Collider[] col = Physics.OverlapCapsule(transform.position + transform.forward, transform.position + transform.forward * 6.0f, 1.5f, target_Layer);
+        Debug.Log(col.Length);
+
+        UnitsInRange_Damage(col);
     }
 
     private void Projectile(Head_Data.Atk_Type atk_Type, int Muzzle_index, int Pro_index)
     {
         var offset = Quaternion.Euler(Random.onUnitSphere);
 
-        GameObject Muzzle;
-        GameObject Projectile;
         switch (atk_Type)
         {
             case Head_Data.Atk_Type.Vulcan:
                 // 총신 이펙트
-                Muzzle = pool.GetEffect(Muzzle_index);
-                Set_Pos_Rot(Muzzle, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+                GameObject Muzzle_vul = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Muzzle_vul, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
 
-                Projectile = pool.GetEffect(Pro_index);
-                Set_Pos_Rot(Projectile, turretSocket[curSocket].position + turretSocket[curSocket].forward, offset * turretSocket[curSocket].rotation);
+                GameObject Projectile_vul = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile_vul, turretSocket[curSocket].position + turretSocket[curSocket].forward, offset * turretSocket[curSocket].rotation);
 
-                var proj = Projectile.gameObject.GetComponent<F3DProjectile>();
-                if (proj) { proj.SetOffset(vulcanOffset); }
+                var proj_vul = Projectile_vul.gameObject.GetComponent<Effect_Control>();
+                if (proj_vul) { proj_vul.SetOffset(vulcanOffset); }
+                break;
+            case Head_Data.Atk_Type.Missile:
+                // 시간 남으면 구현
+                break;
+            case Head_Data.Atk_Type.Seeker:
+                GameObject Muzzle_seeker = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Muzzle_seeker, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+
+                GameObject Projectile_seeker = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile_seeker, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
+
+                var proj_seeker = Projectile_seeker.gameObject.GetComponent<Effect_Control>();
+                if (proj_seeker) { proj_seeker.SetOffset(seekerOffset); }
+                break;
+            case Head_Data.Atk_Type.Air:
+                GameObject Muzzle_Air = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Muzzle_Air, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+
+                GameObject Projectile_Air = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile_Air, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
+
+                var proj_Air = Projectile_Air.gameObject.GetComponent<Effect_Control>();
+                if (proj_Air) { proj_Air.SetOffset(soloGunOffset); }
+                break;
+            case Head_Data.Atk_Type.LaserImpulse:
+                GameObject Muzzle_LaserImpulse = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Muzzle_LaserImpulse, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+
+                GameObject Projectile_LaserImpulse = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile_LaserImpulse, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
+
+                var proj_LaserImpulse = Projectile_LaserImpulse.gameObject.GetComponent<Effect_Control>();
+                if (proj_LaserImpulse) { proj_LaserImpulse.SetOffset(soloGunOffset); }
                 break;
         }
 
@@ -226,17 +338,28 @@ public class Tower_Attack : NetworkBehaviour
             case Head_Data.Atk_Type.Sniper:
                 var offset = Quaternion.Euler(Random.onUnitSphere);
                 // 총신 이펙트
-                GameObject Sniper = pool.GetEffect(Muzzle_index);
-                Set_Pos_Rot(Sniper, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
+                GameObject Muzzle_sni = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(Muzzle_sni, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
 
-                GameObject Projectile = pool.GetEffect(Pro_index);
-                Set_Pos_Rot(Projectile, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
+                GameObject Projectile_sni = pool.GetEffect(Pro_index);
+                Set_Pos_Rot(Projectile_sni, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
 
-                var beam = Projectile.GetComponent<F3DBeam>();
+                var beam = Projectile_sni.GetComponent<Effect_Control>();
                 if (beam) { beam.SetOffset(sniperOffset); }
                 break;
             case Head_Data.Atk_Type.Laser:
                 for(int i = 0; i < turretSocket.Length; i++)
+                {
+                    GameObject laser = pool.GetEffect(Muzzle_index);
+                    Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);
+                }
+                break;
+            case Head_Data.Atk_Type.Flame:
+                GameObject flame = pool.GetEffect(Muzzle_index);
+                Set_Pos_Rot(flame, turretSocket[0].position, turretSocket[0].rotation);
+                break;
+            case Head_Data.Atk_Type.PlasmaBeam:
+                for (int i = 0; i < turretSocket.Length; i++)
                 {
                     GameObject laser = pool.GetEffect(Muzzle_index);
                     Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);

@@ -45,8 +45,8 @@ public class BuildAreaPrents : MonoBehaviour
     private void MouseMove()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
-        {
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity ,1<< LayerMask.NameToLayer("Ground")))
+        {   
             RealPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
         }
         // 가장 가까운 1.5 간격의 격자로 좌표 보정

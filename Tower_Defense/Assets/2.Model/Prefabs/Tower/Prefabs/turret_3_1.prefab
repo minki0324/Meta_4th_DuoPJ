@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4554070235692427587}
   - component: {fileID: 6479784728363802678}
   - component: {fileID: 3368739648155264054}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head3_barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 2669399127652896470}
   - component: {fileID: 8968982747232784342}
   - component: {fileID: 899114994637404341}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head4_small_rocket8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6792097432298577444}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: _small_rocket2_position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4933970327729546593}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: _small_rocket1_position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 1328889944989428305}
   - component: {fileID: 6472959844021227132}
   - component: {fileID: 5726385662107562679}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head4_small_rocket4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 4257897301082943780}
   - component: {fileID: 5611433750793184971}
   - component: {fileID: 506256969694685789}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head4_small_rocket2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8054313096737420632}
   - component: {fileID: 5413597661102587290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_3_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 8209257822880411439}
   - component: {fileID: 4209848191270621112}
   - component: {fileID: 1718005553525938800}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head4_small_rocket7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 5485319803153185744}
   - component: {fileID: 5350759010173863011}
   - component: {fileID: 5919375393322609633}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head4_small_rocket3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 1107850706606867856}
   - component: {fileID: 6169231917711101438}
   - component: {fileID: 3495198524251011151}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head4_small_rocket1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -689,7 +689,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3562098328013866570}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: _small_rocket4_position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,7 +720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8722554092829605894}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: _small_rocket5_position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -751,7 +751,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6701408880492554569}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: _small_rocket6_position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -786,7 +786,7 @@ GameObject:
   - component: {fileID: 1654584141525140820}
   - component: {fileID: 2391860223357242648}
   - component: {fileID: 6388246919785811214}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -892,6 +892,9 @@ MonoBehaviour:
   - {fileID: 2847197418623220945}
   vulcanOffset: 0
   sniperOffset: 0
+  seekerOffset: 0
+  soloGunOffset: 0
+  laserImpulseOffset: 0
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
@@ -905,6 +908,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &6388246919785811214
 MonoBehaviour:
@@ -949,7 +953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7194554468341608056}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: _small_rocket7_position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +988,7 @@ GameObject:
   - component: {fileID: 4625681325243002536}
   - component: {fileID: 351613901547852444}
   - component: {fileID: 7395148752861750084}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_mount3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1119,7 +1123,7 @@ GameObject:
   - component: {fileID: 6612484288940055185}
   - component: {fileID: 2738093603803418173}
   - component: {fileID: 4766676504368904489}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_base3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1211,7 +1215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2847197418623220945}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: _small_rocket8_position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1244,7 +1248,7 @@ GameObject:
   - component: {fileID: 1096989078772603339}
   - component: {fileID: 1920094304691509689}
   - component: {fileID: 1428052254449336645}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head4_small_rocket6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1323,7 +1327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6258506034244047893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: _small_rocket3_position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1356,7 +1360,7 @@ GameObject:
   - component: {fileID: 2688570269528554622}
   - component: {fileID: 4428620152153858243}
   - component: {fileID: 6777940019532536889}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head4_small_rocket5
   m_TagString: Untagged
   m_Icon: {fileID: 0}

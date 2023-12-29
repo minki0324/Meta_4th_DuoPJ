@@ -22,5 +22,6 @@ public class MonsterState : ScriptableObject
     public float speed;
     public float damage;
     public float cost;
+    public bool isDie;
 
 }

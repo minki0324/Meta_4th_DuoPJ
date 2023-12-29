@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 860a66ca4259b384f9ec01b687f71c3c, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 7059cfdd72ab2b2418e78edd6f731cf7, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04518666, g: 0.039375115, b: 0.047922775, a: 1}
+  m_IndirectSpecularColor: {r: 0.12947175, g: 0.08724087, b: 0.057682842, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1182,11 +1182,11 @@ PrefabInstance:
     - target: {fileID: 3761308563669819836, guid: 68ada55d3f7bc17448e0e23e4e42eff6, type: 3}
       propertyPath: towers.Array.data[1]
       value: 
-      objectReference: {fileID: 7759248597619263279, guid: fc3389a2980972144a73d5ec2c5c183e, type: 3}
+      objectReference: {fileID: 8077211683498879351, guid: ab902d2fd78cd474abcd3cc76d492bd1, type: 3}
     - target: {fileID: 3761308563669819836, guid: 68ada55d3f7bc17448e0e23e4e42eff6, type: 3}
       propertyPath: towers.Array.data[2]
       value: 
-      objectReference: {fileID: 2602965293446455869, guid: 09e15cc9ef441b4488be6f0146e91545, type: 3}
+      objectReference: {fileID: 311577640106964909, guid: 9335a3c5851e12a4986661ca9418347b, type: 3}
     - target: {fileID: 3761308563669819837, guid: 68ada55d3f7bc17448e0e23e4e42eff6, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1293,6 +1293,22 @@ PrefabInstance:
       propertyPath: PoolSize
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 1922728507, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
+      propertyPath: MonsterPrefab.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922728507, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
+      propertyPath: MonsterPrefab.Array.data[5]
+      value: 
+      objectReference: {fileID: 956331631191889180, guid: efa339c240a5a034a80b44fe208859c4, type: 3}
+    - target: {fileID: 1922728507, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
+      propertyPath: MonsterPrefab.Array.data[6]
+      value: 
+      objectReference: {fileID: 956331631191889180, guid: efa339c240a5a034a80b44fe208859c4, type: 3}
+    - target: {fileID: 1922728507, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
+      propertyPath: Prefabs_Parents.Array.data[5]
+      value: 
+      objectReference: {fileID: 1519222285}
     - target: {fileID: 7355686836283065068, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -1354,6 +1370,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c77cdb7522d3d429351ef28fd0daa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1519222285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6930162607534354945, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
+  m_PrefabInstance: {fileID: 1519222283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1600092841
 GameObject:
   m_ObjectHideFlags: 0

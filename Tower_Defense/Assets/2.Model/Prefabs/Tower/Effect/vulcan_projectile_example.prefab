@@ -150,6 +150,7 @@ MonoBehaviour:
   despawnDelay: 0.1
   DelayDespawn: 1
   OneShot: 0
+  isHit: 0
   delayedParticles: []
   velocity: 555
   rayImpact: {fileID: 0}

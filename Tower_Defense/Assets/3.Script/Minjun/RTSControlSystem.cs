@@ -22,10 +22,15 @@ public class RTSControlSystem : MonoBehaviour
     {
         if (selectTowers.Count > 35)
         {
+
             return;
         }
         newunit.Selectunit();
         selectTowers.Add(newunit);
+    }
+    public void SetAttackRange(Tower newunit)
+    {
+        newunit.AttackRange.SetActive(true);
     }
     //유닛이 선택취소 됬을때 호출하는 메소드
     //이미지 false , 리스트 삭제
@@ -55,6 +60,10 @@ public class RTSControlSystem : MonoBehaviour
 
     public void ShiftClickSelectUnit(Tower newunit)
     {
+        if (selectTowers.Count == 1)
+        {
+            selectTowers[0].AttackRange.SetActive(false);
+        }
         if (selectTowers.Contains(newunit))
         {
             DeSelectUnit(newunit);
@@ -72,13 +81,15 @@ public class RTSControlSystem : MonoBehaviour
     {
         if (hittower == selectTowers[0]) //더블클릭했을때 기존클릭한 타워와 같다면.
         {
-            selectTowers.Clear();
+            DeSelectAll();
+            SelectUnit(hittower);
             for (int i = 0; i < BuildManager.Instance.AllTower.Count; i++)
             {
                 
                 //조건 : 같은팀(미구현) , 같은 종류의 타워 (이름비교)
-                if (hittower.name == BuildManager.Instance.AllTower[i].name )
+                if (hittower.name == BuildManager.Instance.AllTower[i].name && !selectTowers.Contains(BuildManager.Instance.AllTower[i]))
                 {
+
                     Renderer renderer = BuildManager.Instance.AllTower[i].transform.GetChild(0).GetComponent<Renderer>();
 
                     if (renderer != null)
@@ -89,6 +100,7 @@ public class RTSControlSystem : MonoBehaviour
                         // 보이는지 여부에 따라 처리
                         if (isVisible)
                         {
+                           
                             Debug.Log("보임");
                             // 여기에 보이는 경우의 로직 추가
                             if (selectTowers.Count > 35)
@@ -117,6 +129,8 @@ public class RTSControlSystem : MonoBehaviour
             }
         }
     }
+
+
 
     private bool IsObjectVisible(Renderer renderer)
     {

@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3048390772703114851}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
+  - {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,14 +108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dff8c596eabbd438c2edbaeae3e901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validMaterial: {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
-  invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
+  validMaterial: {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
+  invalidMaterial: {fileID: 2100000, guid: 3483355e136a5904abbc4e1d9f460ba7, type: 2}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 448
-  buildAreaLayer:
-    serializedVersion: 2
-    m_Bits: 0
   isCanBuild: 0
 --- !u!1 &4965672963812490143
 GameObject:
@@ -167,7 +164,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4965672963812490143}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -178,7 +175,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
+  - {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -225,14 +222,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dff8c596eabbd438c2edbaeae3e901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validMaterial: {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
-  invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
+  validMaterial: {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
+  invalidMaterial: {fileID: 2100000, guid: 3483355e136a5904abbc4e1d9f460ba7, type: 2}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 448
-  buildAreaLayer:
-    serializedVersion: 2
-    m_Bits: 0
   isCanBuild: 0
 --- !u!1 &5784998090613105546
 GameObject:
@@ -284,7 +278,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5784998090613105546}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -295,7 +289,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
+  - {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -342,14 +336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dff8c596eabbd438c2edbaeae3e901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validMaterial: {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
-  invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
+  validMaterial: {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
+  invalidMaterial: {fileID: 2100000, guid: 3483355e136a5904abbc4e1d9f460ba7, type: 2}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 448
-  buildAreaLayer:
-    serializedVersion: 2
-    m_Bits: 0
   isCanBuild: 0
 --- !u!1 &6068177234131376701
 GameObject:
@@ -401,7 +392,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6068177234131376701}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -412,7 +403,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
+  - {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -459,14 +450,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dff8c596eabbd438c2edbaeae3e901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validMaterial: {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
-  invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
+  validMaterial: {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
+  invalidMaterial: {fileID: 2100000, guid: 3483355e136a5904abbc4e1d9f460ba7, type: 2}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 448
-  buildAreaLayer:
-    serializedVersion: 2
-    m_Bits: 0
   isCanBuild: 0
 --- !u!1 &6553001376911094067
 GameObject:
@@ -518,7 +506,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6553001376911094067}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -529,7 +517,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
+  - {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -576,14 +564,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dff8c596eabbd438c2edbaeae3e901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validMaterial: {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
-  invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
+  validMaterial: {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
+  invalidMaterial: {fileID: 2100000, guid: 3483355e136a5904abbc4e1d9f460ba7, type: 2}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 448
-  buildAreaLayer:
-    serializedVersion: 2
-    m_Bits: 0
   isCanBuild: 0
 --- !u!1 &6966307722861084080
 GameObject:
@@ -635,7 +620,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6966307722861084080}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -646,7 +631,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
+  - {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -693,14 +678,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dff8c596eabbd438c2edbaeae3e901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validMaterial: {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
-  invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
+  validMaterial: {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
+  invalidMaterial: {fileID: 2100000, guid: 3483355e136a5904abbc4e1d9f460ba7, type: 2}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 448
-  buildAreaLayer:
-    serializedVersion: 2
-    m_Bits: 0
   isCanBuild: 0
 --- !u!1 &7222491412806626930
 GameObject:
@@ -752,7 +734,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7222491412806626930}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -763,7 +745,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
+  - {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -810,14 +792,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dff8c596eabbd438c2edbaeae3e901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validMaterial: {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
-  invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
+  validMaterial: {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
+  invalidMaterial: {fileID: 2100000, guid: 3483355e136a5904abbc4e1d9f460ba7, type: 2}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 448
-  buildAreaLayer:
-    serializedVersion: 2
-    m_Bits: 0
   isCanBuild: 0
 --- !u!1 &8029186214761899043
 GameObject:
@@ -924,7 +903,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8900155875379752184}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -935,7 +914,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
+  - {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -982,14 +961,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dff8c596eabbd438c2edbaeae3e901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validMaterial: {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
-  invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
+  validMaterial: {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
+  invalidMaterial: {fileID: 2100000, guid: 3483355e136a5904abbc4e1d9f460ba7, type: 2}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 448
-  buildAreaLayer:
-    serializedVersion: 2
-    m_Bits: 0
   isCanBuild: 0
 --- !u!1 &9025778574719741947
 GameObject:
@@ -1041,7 +1017,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9025778574719741947}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1052,7 +1028,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
+  - {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1099,12 +1075,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dff8c596eabbd438c2edbaeae3e901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validMaterial: {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
-  invalidMaterial: {fileID: 2100000, guid: a3df4a8ea9d1e9342aa3b39835c0be3a, type: 2}
+  validMaterial: {fileID: 2100000, guid: ad80a05ce5d4a834ea2e90ef9421bc7e, type: 2}
+  invalidMaterial: {fileID: 2100000, guid: 3483355e136a5904abbc4e1d9f460ba7, type: 2}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 448
-  buildAreaLayer:
-    serializedVersion: 2
-    m_Bits: 0
   isCanBuild: 0

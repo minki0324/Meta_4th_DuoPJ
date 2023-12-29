@@ -11,13 +11,20 @@ public class Head_Data : ScriptableObject
     {
         Vulcan,
         Sniper,
-        Laser
+        Laser,
+        Missile,
+        Seeker,
+        Air,
+        Flame,
+        PlasmaBeam,
+        LaserImpulse
     }
 
     [Header("기본 정보")]
     public Weapon_Type weapon_Type;
     public Atk_Area atk_Area;
     public Atk_Type atk_Type;
+    public string name_;
     public int BaseID;
     public int Level;
     public Vector3 Position;

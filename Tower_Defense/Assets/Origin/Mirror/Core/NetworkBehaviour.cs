@@ -323,7 +323,7 @@ namespace Mirror
             int parentIdsCount = parentsIds != null ? parentsIds.Length : 0;
             if (GetComponent<NetworkIdentity>() == null && parentIdsCount == 0)
             {
-                Debug.LogError($"{GetType()} on {name} requires a NetworkIdentity. Please add a NetworkIdentity component to {name} or it's parents.");
+                /*Debug.LogError($"{GetType()} on {name} requires a NetworkIdentity. Please add a NetworkIdentity component to {name} or it's parents.");*/
             }
 #endif
 #endif

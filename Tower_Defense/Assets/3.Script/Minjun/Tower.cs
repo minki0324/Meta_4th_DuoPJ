@@ -8,7 +8,9 @@ public class Tower : NetworkBehaviour
 {
     [SerializeField]
     public GameObject marker;
-
+    public GameObject AttackRange;
+    [SerializeField] private Material holoColor;
+    [SerializeField] private Tower_Attack head;
     public float maxHP;
     public float currentHP;
     public float damage;
@@ -17,6 +19,7 @@ public class Tower : NetworkBehaviour
     public string Speed;
     public int level;
     public Sprite unitSprite;
+    
     private void Awake()
     {
         maxHP = 50;
@@ -31,18 +34,48 @@ public class Tower : NetworkBehaviour
 
     private void Update()
     {
-     
-    Vector3 currentEulerAngles = marker.transform.eulerAngles;
-        currentEulerAngles.y += Time.deltaTime * 65; // È¸Àü ¼Óµµ¸¦ Á¶ÀıÇÒ ¼ö ÀÖ½À´Ï´Ù.
+
+        Spin_Marker();
+    }
+
+    private void Spin_Marker()
+    {
+
+        Vector3 currentEulerAngles = marker.transform.eulerAngles;
+        currentEulerAngles.y += Time.deltaTime * 65; // íšŒì „ ì†ë„ë¥¼ ì¡°ì ˆí•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
         marker.transform.eulerAngles = currentEulerAngles;
     }
     public void Selectunit()
     {
         marker.SetActive(true);
+
+    }
+    public void SetRange()
+    {
+        AttackRange.SetActive(true);
+        AttackRange.transform.localScale = new Vector3(head.H_ATK_Range * 2f, 0.01f, head.H_ATK_Range * 2f);
     }
 
     public void DeSelectunit()
     {
         marker.SetActive(false);
+        AttackRange.SetActive(false);
+    }
+    public void HologramTower(GameObject gameObject)
+    {
+        MeshRenderer renderer = AttackRange.GetComponent<MeshRenderer>();
+        Material temp = renderer.material;
+        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        if (meshRenderer )
+        {
+            meshRenderer.materials = new Material[0];
+            meshRenderer.material = holoColor;
+            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+        foreach (Transform child in gameObject.transform)
+        {
+            HologramTower(child.gameObject);
+        }
+        renderer.material = temp;
     }
 }
