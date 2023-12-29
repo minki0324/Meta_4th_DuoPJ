@@ -39,7 +39,7 @@ public class Tower_Attack : NetworkBehaviour
     {
         // Initialize singleton  
         instance = this;
-        mount = transform.root.GetChild(1);
+        mount = transform.parent;
         Init_Data(head_Data);
         pool = FindObjectOfType<Effect_Pooling>();
         //if (isServer)
