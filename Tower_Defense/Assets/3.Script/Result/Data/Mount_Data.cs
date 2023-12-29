@@ -6,6 +6,7 @@ using UnityEngine;
 public class Mount_Data : ScriptableObject
 {
     [Header("기본 정보")]
+    public string name_;
     public int BaseID;
     public int Level;
     public Vector3 Position;

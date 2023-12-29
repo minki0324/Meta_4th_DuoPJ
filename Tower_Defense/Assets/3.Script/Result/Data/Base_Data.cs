@@ -6,8 +6,10 @@ using UnityEngine;
 public class Base_Data : ScriptableObject
 {
     [Header("기본 정보")]
+    public string name_;
     public int BaseID;
     public int Level;
+    public string BuildArea;
 
     [Header("레벨 정보")]
     public int Cost;
