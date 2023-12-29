@@ -1182,7 +1182,7 @@ PrefabInstance:
     - target: {fileID: 3761308563669819836, guid: 68ada55d3f7bc17448e0e23e4e42eff6, type: 3}
       propertyPath: towers.Array.data[1]
       value: 
-      objectReference: {fileID: 5413785698696387914, guid: f8172a43e562ffc4b9898520f8495f98, type: 3}
+      objectReference: {fileID: 8077211683498879351, guid: ab902d2fd78cd474abcd3cc76d492bd1, type: 3}
     - target: {fileID: 3761308563669819836, guid: 68ada55d3f7bc17448e0e23e4e42eff6, type: 3}
       propertyPath: towers.Array.data[2]
       value: 
@@ -1300,7 +1300,15 @@ PrefabInstance:
     - target: {fileID: 1922728507, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
       propertyPath: MonsterPrefab.Array.data[5]
       value: 
-      objectReference: {fileID: 3974143642561148006, guid: cbd36af795bcb0240a3c97ba33d71bdb, type: 3}
+      objectReference: {fileID: 956331631191889180, guid: efa339c240a5a034a80b44fe208859c4, type: 3}
+    - target: {fileID: 1922728507, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
+      propertyPath: MonsterPrefab.Array.data[6]
+      value: 
+      objectReference: {fileID: 956331631191889180, guid: efa339c240a5a034a80b44fe208859c4, type: 3}
+    - target: {fileID: 1922728507, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
+      propertyPath: Prefabs_Parents.Array.data[5]
+      value: 
+      objectReference: {fileID: 1519222285}
     - target: {fileID: 7355686836283065068, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -1362,6 +1370,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c77cdb7522d3d429351ef28fd0daa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1519222285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6930162607534354945, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
+  m_PrefabInstance: {fileID: 1519222283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1600092841
 GameObject:
   m_ObjectHideFlags: 0

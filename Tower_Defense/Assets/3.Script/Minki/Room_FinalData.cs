@@ -8,7 +8,6 @@ public class Room_FinalData : MonoBehaviour
     [SerializeField] private Room_SelectPart head_script;
     [SerializeField] private Room_SelectPart mount_script;
     [SerializeField] private Room_SelectPart base_script;
-    [SerializeField] private Room_Prefabs prefabs_script;
 
     [SerializeField] private Text name_;
     [SerializeField] private Text data_1;

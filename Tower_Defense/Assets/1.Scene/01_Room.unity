@@ -196,6 +196,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2329279
 MonoBehaviour:
@@ -462,6 +463,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &7856028
 MonoBehaviour:
@@ -705,6 +707,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &13892583
 MonoBehaviour:
@@ -829,10 +832,10 @@ RectTransform:
   m_Father: {fileID: 1764849337}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -437.5}
-  m_SizeDelta: {x: 250, y: 285}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &15574333
 MonoBehaviour:
@@ -1019,6 +1022,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &16928211
 MonoBehaviour:
@@ -1530,6 +1534,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &25126749
 MonoBehaviour:
@@ -2144,6 +2149,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &41136513
 MonoBehaviour:
@@ -2409,6 +2415,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &45964196
 MonoBehaviour:
@@ -2565,6 +2572,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &46305675
 MonoBehaviour:
@@ -4027,6 +4035,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &95107564
 MonoBehaviour:
@@ -4375,6 +4384,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &107770280
 MonoBehaviour:
@@ -5394,6 +5404,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &130225506
 MonoBehaviour:
@@ -5981,6 +5992,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &139782790
 MonoBehaviour:
@@ -6868,6 +6880,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &155700273
 MonoBehaviour:
@@ -8217,6 +8230,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &205147315
 MonoBehaviour:
@@ -8578,6 +8592,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &213439894
 MonoBehaviour:
@@ -8737,6 +8752,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &216463749
 MonoBehaviour:
@@ -9006,6 +9022,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &225723059
 MonoBehaviour:
@@ -9108,7 +9125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &227519917
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9437,6 +9454,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &231757286
 MonoBehaviour:
@@ -9942,6 +9960,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &241261381
 MonoBehaviour:
@@ -10193,6 +10212,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &243929000
 MonoBehaviour:
@@ -10748,6 +10768,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &261231486
 MonoBehaviour:
@@ -11320,6 +11341,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &273937457
 MonoBehaviour:
@@ -11589,6 +11611,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &278755923
 MonoBehaviour:
@@ -12011,6 +12034,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &285466436
 MonoBehaviour:
@@ -14554,6 +14578,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &356377124
 MonoBehaviour:
@@ -15123,6 +15148,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &375935965
 MonoBehaviour:
@@ -15720,6 +15746,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &389224027
 MonoBehaviour:
@@ -16268,6 +16295,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &402630510
 MonoBehaviour:
@@ -16425,6 +16453,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &402699906
 MonoBehaviour:
@@ -16773,6 +16802,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &408309340
 MonoBehaviour:
@@ -17104,6 +17134,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &415137110
 MonoBehaviour:
@@ -18266,6 +18297,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &450036167
 MonoBehaviour:
@@ -18665,6 +18697,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &454442878
 MonoBehaviour:
@@ -19575,6 +19608,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &474565190
 MonoBehaviour:
@@ -20521,6 +20555,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &500811849
 MonoBehaviour:
@@ -21158,6 +21193,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &513084843
 MonoBehaviour:
@@ -22758,6 +22794,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &550703609
 MonoBehaviour:
@@ -23904,6 +23941,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &579077655
 MonoBehaviour:
@@ -25642,6 +25680,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &631583967
 MonoBehaviour:
@@ -26067,6 +26106,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &637831131
 MonoBehaviour:
@@ -27799,6 +27839,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &690721045
 MonoBehaviour:
@@ -29344,6 +29385,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &715631992
 MonoBehaviour:
@@ -29503,6 +29545,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &717552744
 MonoBehaviour:
@@ -29693,6 +29736,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &721440016
 MonoBehaviour:
@@ -30012,6 +30056,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &728535442
 MonoBehaviour:
@@ -30797,6 +30842,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &762772065
 MonoBehaviour:
@@ -31095,6 +31141,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &772879095
 MonoBehaviour:
@@ -32379,6 +32426,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &805778423
 MonoBehaviour:
@@ -32650,6 +32698,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &813496841
 MonoBehaviour:
@@ -33114,6 +33163,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &815593558
 MonoBehaviour:
@@ -34647,6 +34697,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &864869806
 MonoBehaviour:
@@ -35312,6 +35363,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &881734428
 MonoBehaviour:
@@ -35758,6 +35810,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &902062628
 MonoBehaviour:
@@ -36196,6 +36249,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &905559732
 MonoBehaviour:
@@ -37244,6 +37298,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &935090519
 MonoBehaviour:
@@ -37593,6 +37648,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &940887751
 MonoBehaviour:
@@ -38625,6 +38681,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &972332752
 MonoBehaviour:
@@ -39558,6 +39615,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &995841331
 MonoBehaviour:
@@ -39905,6 +39963,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1002303262
 MonoBehaviour:
@@ -40095,6 +40154,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1003470448
 MonoBehaviour:
@@ -40252,6 +40312,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1006771669
 MonoBehaviour:
@@ -40938,6 +40999,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1011635043
 MonoBehaviour:
@@ -41482,10 +41544,10 @@ RectTransform:
   m_Father: {fileID: 1764849337}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -142.5}
-  m_SizeDelta: {x: 250, y: 285}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1027776109
 MonoBehaviour:
@@ -41805,6 +41867,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1028934327
 MonoBehaviour:
@@ -42045,6 +42108,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1030833814
 MonoBehaviour:
@@ -42810,6 +42874,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1045557279
 MonoBehaviour:
@@ -43146,6 +43211,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1048202705
 MonoBehaviour:
@@ -43397,6 +43463,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1049338088
 MonoBehaviour:
@@ -43521,10 +43588,10 @@ RectTransform:
   m_Father: {fileID: 1764849337}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -732.5}
-  m_SizeDelta: {x: 250, y: 285}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1050978521
 MonoBehaviour:
@@ -44563,6 +44630,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1083368013
 MonoBehaviour:
@@ -44764,6 +44832,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1086901900
 MonoBehaviour:
@@ -45571,6 +45640,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1106398076
 MonoBehaviour:
@@ -46845,6 +46915,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1129867051
 MonoBehaviour:
@@ -47790,6 +47861,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1153887565
 MonoBehaviour:
@@ -47945,6 +48017,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1166454447
 MonoBehaviour:
@@ -48499,6 +48572,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1179634511
 MonoBehaviour:
@@ -49391,6 +49465,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1203257975
 MonoBehaviour:
@@ -49798,6 +49873,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1213089818
 MonoBehaviour:
@@ -49957,6 +50033,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1214204572
 MonoBehaviour:
@@ -50366,6 +50443,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1230886845
 MonoBehaviour:
@@ -50618,6 +50696,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1240312131
 MonoBehaviour:
@@ -50804,6 +50883,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1248827798
 MonoBehaviour:
@@ -51184,6 +51264,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1257718483
 MonoBehaviour:
@@ -52545,6 +52626,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1294109764
 MonoBehaviour:
@@ -53646,6 +53728,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1330792362
 MonoBehaviour:
@@ -53995,6 +54078,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1335895159
 MonoBehaviour:
@@ -54263,6 +54347,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1338691516
 MonoBehaviour:
@@ -54704,6 +54789,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1344307561
 MonoBehaviour:
@@ -55036,6 +55122,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1350812526
 MonoBehaviour:
@@ -55862,6 +55949,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1365510964
 MonoBehaviour:
@@ -56681,6 +56769,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1386049931
 MonoBehaviour:
@@ -57620,6 +57709,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1402755481
 MonoBehaviour:
@@ -57965,6 +58055,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1406003226
 MonoBehaviour:
@@ -58906,6 +58997,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1427817527
 MonoBehaviour:
@@ -59068,6 +59160,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1429263316
 MonoBehaviour:
@@ -59824,7 +59917,6 @@ MonoBehaviour:
   head_script: {fileID: 1027776111}
   mount_script: {fileID: 15574335}
   base_script: {fileID: 1050978523}
-  prefabs_script: {fileID: 0}
   name_: {fileID: 466968221}
   data_1: {fileID: 279683868}
   data_2: {fileID: 1498830295}
@@ -59930,6 +60022,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1443877535
 MonoBehaviour:
@@ -60582,6 +60675,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1466529743
 MonoBehaviour:
@@ -60683,7 +60777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1471364978
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60821,6 +60915,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1474486386
 MonoBehaviour:
@@ -60976,6 +61071,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1477151603
 MonoBehaviour:
@@ -61216,6 +61312,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1480244865
 MonoBehaviour:
@@ -62311,6 +62408,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1515313572
 MonoBehaviour:
@@ -62549,6 +62647,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1519200846
 MonoBehaviour:
@@ -62949,6 +63048,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1522790488
 MonoBehaviour:
@@ -63104,6 +63204,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1527062245
 MonoBehaviour:
@@ -63836,6 +63937,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1552603142
 MonoBehaviour:
@@ -64072,6 +64174,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1562572549
 MonoBehaviour:
@@ -64229,6 +64332,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1562919452
 MonoBehaviour:
@@ -65175,6 +65279,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 502245493}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Set_Tower_Index
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1578116615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66079,6 +66195,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1600282866
 MonoBehaviour:
@@ -66859,6 +66976,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1624375597
 MonoBehaviour:
@@ -67300,6 +67418,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1644769959
 MonoBehaviour:
@@ -67789,6 +67908,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1652575390
 MonoBehaviour:
@@ -68907,6 +69027,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1679170234
 MonoBehaviour:
@@ -69143,6 +69264,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1682340012
 MonoBehaviour:
@@ -70283,6 +70405,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1713777985
 MonoBehaviour:
@@ -71041,6 +71164,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1736948099
 MonoBehaviour:
@@ -72577,6 +72701,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1756946683
 MonoBehaviour:
@@ -72925,6 +73050,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1761497435
 MonoBehaviour:
@@ -73430,6 +73556,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1767573018
 MonoBehaviour:
@@ -73833,6 +73960,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1777166205
 MonoBehaviour:
@@ -74163,6 +74291,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1785120745
 MonoBehaviour:
@@ -74918,6 +75047,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1802851026
 MonoBehaviour:
@@ -75428,6 +75558,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1811681174
 MonoBehaviour:
@@ -76160,6 +76291,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1834736341
 MonoBehaviour:
@@ -76392,6 +76524,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1840171577
 MonoBehaviour:
@@ -77149,6 +77282,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1859007937
 MonoBehaviour:
@@ -78042,6 +78176,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1893051920
 MonoBehaviour:
@@ -78313,6 +78448,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1898453495
 MonoBehaviour:
@@ -78553,6 +78689,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1909591037
 MonoBehaviour:
@@ -78708,6 +78845,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1910261515
 MonoBehaviour:
@@ -79125,6 +79263,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1919329701
 MonoBehaviour:
@@ -79281,6 +79420,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1921267395
 MonoBehaviour:
@@ -80090,6 +80230,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1957695168
 MonoBehaviour:
@@ -80252,6 +80393,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1958499401
 MonoBehaviour:
@@ -81027,6 +81169,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1977705310
 MonoBehaviour:
@@ -81407,6 +81550,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1982267305
 MonoBehaviour:
@@ -81959,6 +82103,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &1993617574
 MonoBehaviour:
@@ -85115,6 +85260,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2062371742
 MonoBehaviour:
@@ -85339,6 +85485,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2065534890
 MonoBehaviour:
@@ -85540,6 +85687,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2066904351
 MonoBehaviour:
@@ -85808,6 +85956,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2072895897
 MonoBehaviour:
@@ -86241,6 +86390,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2081780702
 MonoBehaviour:
@@ -86400,6 +86550,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2096023925
 MonoBehaviour:
@@ -86586,6 +86737,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2097035694
 MonoBehaviour:
@@ -86885,6 +87037,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2108277795
 MonoBehaviour:
@@ -87122,6 +87275,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2112287687
 MonoBehaviour:
@@ -87278,6 +87432,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2117125611
 MonoBehaviour:
@@ -89088,6 +89243,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199066488770987
 Transform:
@@ -89204,6 +89360,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199066492485721
 Transform:
@@ -89453,6 +89610,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199066500249053
 Transform:
@@ -90138,6 +90296,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!23 &642199066574893744
 MeshRenderer:
@@ -90583,6 +90742,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199066584095741
 Transform:
@@ -90761,6 +90921,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199066586505823
 Transform:
@@ -90925,6 +91086,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199066587998391
 Transform:
@@ -91736,6 +91898,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199066671603444
 Transform:
@@ -91991,6 +92154,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199066697544857
 Transform:
@@ -92613,6 +92777,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   marker: {fileID: 1969118201197570981}
+  AttackRange: {fileID: 0}
+  holoColor: {fileID: 0}
+  head: {fileID: 0}
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -94043,6 +94210,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199066862972865
 Transform:
@@ -95346,6 +95514,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067004730495
 Transform:
@@ -95628,6 +95797,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067009875122
 Transform:
@@ -96159,6 +96329,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067035556756
 Transform:
@@ -96569,6 +96740,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067066549545
 Transform:
@@ -96970,6 +97142,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067077576263
 Transform:
@@ -97121,6 +97294,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067080639917
 Transform:
@@ -97502,6 +97676,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067101224290
 Transform:
@@ -97993,6 +98168,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067149962382
 Transform:
@@ -98403,6 +98579,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067191758662
 Transform:
@@ -99229,6 +99406,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067241739619
 Transform:
@@ -99963,6 +100141,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067294133483
 Transform:
@@ -100381,6 +100560,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067304630919
 Transform:
@@ -100620,6 +100800,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067323488418
 Transform:
@@ -101048,6 +101229,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067353864521
 Transform:
@@ -101616,6 +101798,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067389965012
 Transform:
@@ -102310,6 +102493,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!33 &642199067438067586
 MeshFilter:
@@ -102433,6 +102617,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067438067598
 Transform:
@@ -102665,6 +102850,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067449461339
 Transform:
@@ -102944,6 +103130,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067456700469
 Transform:
@@ -103348,6 +103535,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067507005623
 Transform:
@@ -104704,6 +104892,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067676020843
 Transform:
@@ -105221,6 +105410,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067688614595
 Transform:
@@ -105305,6 +105495,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067693966633
 Transform:
@@ -105687,6 +105878,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067731245209
 Transform:
@@ -106663,6 +106855,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067800518753
 Transform:
@@ -107033,6 +107226,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067808926951
 Transform:
@@ -107748,6 +107942,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067853851870
 Transform:
@@ -108053,6 +108248,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067871635312
 Transform:
@@ -108368,6 +108564,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067888984383
 Transform:
@@ -108538,6 +108735,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067896183038
 Transform:
@@ -109111,6 +109309,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067937796267
 Transform:
@@ -109473,6 +109672,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199067974052545
 Transform:
@@ -110013,6 +110213,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068011492139
 Transform:
@@ -110244,6 +110445,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068029786466
 Transform:
@@ -110493,6 +110695,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068051815035
 Transform:
@@ -110832,6 +111035,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068064935572
 Transform:
@@ -110989,6 +111193,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068072681947
 Transform:
@@ -111980,6 +112185,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068155355297
 Transform:
@@ -113589,6 +113795,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068270678780
 Transform:
@@ -114246,6 +114453,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068315784454
 Transform:
@@ -114373,6 +114581,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068317125417
 Transform:
@@ -114809,6 +115018,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068339789868
 Transform:
@@ -115048,6 +115258,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068345472869
 Transform:
@@ -115204,6 +115415,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068345876092
 Transform:
@@ -115442,6 +115654,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068351382996
 Transform:
@@ -115977,6 +116190,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068415723411
 Transform:
@@ -116176,6 +116390,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!33 &642199068422566923
 MeshFilter:
@@ -116316,6 +116531,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068422566935
 Transform:
@@ -116827,6 +117043,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068456421257
 Transform:
@@ -118043,6 +118260,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068578869418
 Transform:
@@ -118541,6 +118759,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068601765167
 Transform:
@@ -118920,6 +119139,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068608224062
 Transform:
@@ -119129,6 +119349,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!4 &642199068611504983
 Transform:
@@ -125492,6 +125713,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   marker: {fileID: 3278894452807290980}
+  AttackRange: {fileID: 0}
+  holoColor: {fileID: 0}
+  head: {fileID: 0}
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -126098,6 +126322,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!1 &4720105773567231141
 GameObject:
@@ -126420,6 +126645,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!1 &4830992264315404572
 GameObject:
@@ -128215,6 +128441,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!1 &6133306646850458255
 GameObject:
@@ -129397,6 +129624,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   marker: {fileID: 5501760631772605658}
+  AttackRange: {fileID: 0}
+  holoColor: {fileID: 0}
+  head: {fileID: 0}
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -129634,6 +129864,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &6981264285797269033
 MonoBehaviour:
@@ -129672,6 +129903,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!23 &6988970388028296001
 MeshRenderer:
@@ -130116,6 +130348,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!1 &7244213365524494268
 GameObject:
@@ -130307,6 +130540,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!1 &7330978877993457255
 GameObject:
@@ -131658,6 +131892,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!1 &8158698587706028649
 GameObject:
@@ -132067,6 +132302,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!1 &8377603775585660785
 GameObject:
