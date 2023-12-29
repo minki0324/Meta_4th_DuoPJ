@@ -69,6 +69,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   marker: {fileID: 7175680667721773972}
+  holoColor: {fileID: 2100000, guid: 3481195c8425b654c9a8a738b8f03e25, type: 2}
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -361,6 +362,9 @@ MonoBehaviour:
   - {fileID: 8414341885173922717}
   vulcanOffset: 0
   sniperOffset: 0
+  seekerOffset: 0
+  soloGunOffset: 0
+  laserImpulseOffset: 0
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
@@ -374,6 +378,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &2172493191956079119
 MonoBehaviour:

@@ -41,7 +41,6 @@ public class MouseControl : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (IsPointerOverUI()) return;
-            Debug.Log("리턴안당함");
             GetTargetInfo();
           
         }
@@ -88,6 +87,7 @@ public class MouseControl : MonoBehaviour
             else
             {
                 rts.ClickSelectUnit(hitTower);
+                rts.SetAttackRange(hitTower);
                 //단일선택시  0.2초 동안 더블클릭할수있는 isCanDouble true 할당
                 StartCoroutine(DoubleClickCool());
             }

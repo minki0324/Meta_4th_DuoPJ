@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2849903346544409512}
   - component: {fileID: 2989008269601432933}
   - component: {fileID: 909705139964768897}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head9_barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 9136030991025202433}
   - component: {fileID: 2197822028682272065}
   - component: {fileID: 2361622462834962026}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head9_shaft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 4535967754421624940}
   - component: {fileID: 3119228449310749990}
   - component: {fileID: 4860751234583024709}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_mount9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 1670494656202250925}
   - component: {fileID: 4474732685817630386}
   - component: {fileID: 4934634976915180892}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,6 +405,7 @@ MonoBehaviour:
   sniperOffset: 0
   seekerOffset: 0
   soloGunOffset: 0
+  laserImpulseOffset: 0
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
@@ -418,6 +419,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &4934634976915180892
 MonoBehaviour:
@@ -464,7 +466,7 @@ GameObject:
   - component: {fileID: 603525637709802684}
   - component: {fileID: -157363048356055852}
   - component: {fileID: 5958537624598035514}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_9_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -522,6 +524,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   marker: {fileID: 8144535484452445102}
+  holoColor: {fileID: 0}
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -543,7 +546,7 @@ GameObject:
   - component: {fileID: 306811575088183874}
   - component: {fileID: 8980208462931449893}
   - component: {fileID: 2508895771835568182}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_base9
   m_TagString: Untagged
   m_Icon: {fileID: 0}

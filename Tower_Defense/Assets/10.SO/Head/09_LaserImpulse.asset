@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d490a468d84014fb47f07e7a7cc373, type: 3}
   m_Name: 09_LaserImpulse
   m_EditorClassIdentifier: 
-  weapon_Type: 1
+  weapon_Type: 0
   atk_Area: 2
   atk_Type: 8
   name_: Laser Impulse
   BaseID: 9
   Level: 0
   Position: {x: 0, y: 0, z: 0}
-  DelayTime: 0
+  DelayTime: 0.12
   Cost: 30
   Rot_Speed: 70
   Damage: 40

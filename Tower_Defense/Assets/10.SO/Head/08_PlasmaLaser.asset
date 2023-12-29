@@ -19,7 +19,7 @@ MonoBehaviour:
   BaseID: 8
   Level: 0
   Position: {x: 0, y: 0, z: 0}
-  DelayTime: 0
+  DelayTime: 0.12
   Cost: 20
   Rot_Speed: 50
   Damage: 20

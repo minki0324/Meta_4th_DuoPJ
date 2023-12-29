@@ -1293,6 +1293,14 @@ PrefabInstance:
       propertyPath: PoolSize
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 1922728507, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
+      propertyPath: MonsterPrefab.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922728507, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
+      propertyPath: MonsterPrefab.Array.data[5]
+      value: 
+      objectReference: {fileID: 3974143642561148006, guid: cbd36af795bcb0240a3c97ba33d71bdb, type: 3}
     - target: {fileID: 7355686836283065068, guid: 0cce1d6d9dfe63c49a8353e2ac7adcbb, type: 3}
       propertyPath: m_RootOrder
       value: 16

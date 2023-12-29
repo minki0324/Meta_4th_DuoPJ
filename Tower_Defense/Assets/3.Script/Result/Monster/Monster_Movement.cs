@@ -6,18 +6,22 @@ using Mirror;
 
 public class Monster_Movement : NetworkBehaviour
 {
- 
+
     //플라이 전용 무브먼트입니다
+    private Monster_Control mon;
 
     //public monType type;
     private void Start()
     {
-        
+        TryGetComponent(out mon);
     }
     private void Update()
     {
-        //if(type == monType.Fly)
-        transform.position += -Vector3.forward * 5 * Time.deltaTime;
+        if (!mon.isDie)
+        {
+
+            transform.position += -Vector3.forward * 5 * Time.deltaTime;
+        }
 
     }
     [Client]

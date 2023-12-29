@@ -69,6 +69,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   marker: {fileID: 5548205460900510823}
+  holoColor: {fileID: 2100000, guid: 3481195c8425b654c9a8a738b8f03e25, type: 2}
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -84,6 +85,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3292126263206663107}
     m_Modifications:
+    - target: {fileID: 649688101912482378, guid: 708fc95a40761ae438eee8d0c64b3035, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 649688101912482378, guid: 708fc95a40761ae438eee8d0c64b3035, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8655cc3469fe86d4f849325a93febbbf, type: 2}
     - target: {fileID: 689987857240183434, guid: 708fc95a40761ae438eee8d0c64b3035, type: 3}
       propertyPath: m_RootOrder
       value: 0

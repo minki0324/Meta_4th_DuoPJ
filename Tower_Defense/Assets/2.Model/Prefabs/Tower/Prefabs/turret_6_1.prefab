@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8329536648738598056}
   - component: {fileID: -6876191827422674689}
-  m_Layer: 0
+  - component: {fileID: 7877191822788255236}
+  - component: {fileID: 3794086506262565561}
+  m_Layer: 7
   m_Name: turret_6_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1111178631488355640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_Children:
   - {fileID: 3113863079888309275}
   - {fileID: 6329943060701491199}
@@ -51,6 +53,32 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
+--- !u!114 &7877191822788255236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111178631488355640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a69fff73417b34fa22a6cdc61d8c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mount: {fileID: 0}
+--- !u!135 &3794086506262565561
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111178631488355640}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 28
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1227438590648480769
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +90,7 @@ GameObject:
   - component: {fileID: 3113863079888309275}
   - component: {fileID: 8595457528151463040}
   - component: {fileID: 6452485043773823307}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_base6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +171,7 @@ GameObject:
   - component: {fileID: 8072102178544235491}
   - component: {fileID: 3770101870790284746}
   - component: {fileID: 7626830141965369704}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +252,7 @@ GameObject:
   - component: {fileID: 6329943060701491199}
   - component: {fileID: 3392139574640010965}
   - component: {fileID: 1330658347143649105}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_mount6
   m_TagString: Untagged
   m_Icon: {fileID: 0}

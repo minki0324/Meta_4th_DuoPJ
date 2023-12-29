@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3911423043102030937}
   - component: {fileID: 2370285859410238151}
   - component: {fileID: 8366127953847888536}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,6 +107,7 @@ MonoBehaviour:
   sniperOffset: 0
   seekerOffset: 0
   soloGunOffset: 0
+  laserImpulseOffset: 0
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
@@ -120,6 +121,7 @@ MonoBehaviour:
   H_ATK_Range: 0
   H_Reload: 0
   target: {fileID: 0}
+  testTarget: {fileID: 0}
   current_ATK_Speed: 0
 --- !u!114 &8366127953847888536
 MonoBehaviour:
@@ -166,7 +168,7 @@ GameObject:
   - component: {fileID: 3426151424369795134}
   - component: {fileID: 4226847934333650472}
   - component: {fileID: 7159370604798881447}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head7_extraplate_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7766087683763103384}
   - component: {fileID: 7453786490053815659}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_7_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +302,7 @@ GameObject:
   - component: {fileID: 1603303027567600406}
   - component: {fileID: 8222236791204725666}
   - component: {fileID: 7862806317201645408}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_base7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +412,7 @@ GameObject:
   - component: {fileID: 2983925554338841723}
   - component: {fileID: 2916547305544661177}
   - component: {fileID: 348833953644798556}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_head7_extraplate_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +495,7 @@ GameObject:
   - component: {fileID: 7002566571788812830}
   - component: {fileID: 247029217898749853}
   - component: {fileID: 6822093354131387733}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: turret_mount7
   m_TagString: Untagged
   m_Icon: {fileID: 0}

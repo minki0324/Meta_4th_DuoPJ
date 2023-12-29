@@ -26,14 +26,13 @@ public class IvisibleControl : MonoBehaviour
     {
         _renderer.materials = new Material[0];
         _renderer.materials = invi_materials;
-        Monster.isInvi = false;
-
+        Monster.isInvi = true;
     }
     public void DisInvisible()
     {
         _renderer.materials = new Material[0];
         _renderer.materials = Disinvi_materials;
-        Monster.isInvi = true;
+        Monster.isInvi = false;
 
     }
 

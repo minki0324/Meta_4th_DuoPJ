@@ -323,7 +323,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  state: {fileID: 11400000, guid: 8232b39aa03fcb64bbf055ad3c385dee, type: 2}
+  state: {fileID: 11400000, guid: 666c1957fa65faf4c9de5b690513c36f, type: 2}
   Astar: {fileID: 956331631191889187}
   aiPath: {fileID: 956331631191889186}
   M_maxHp: 0
@@ -398,8 +398,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a0246c298bc61384b8073cf0287e7b46, type: 2}
   - {fileID: 2100000, guid: 9558931a66ff2f04dada36e9d44490bd, type: 2}
   invi_materials:
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
+  - {fileID: 2100000, guid: 72ecc91cc49d03b4da6018312f764919, type: 2}
+  - {fileID: 2100000, guid: 72ecc91cc49d03b4da6018312f764919, type: 2}
 --- !u!1 &1045393392202708551
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5358739217211436850
 Transform:
   m_ObjectHideFlags: 0
@@ -1721,7 +1721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6642416081053759365
 Transform:
   m_ObjectHideFlags: 0
@@ -1755,8 +1755,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
-  - {fileID: 2100000, guid: 93edcd2b3514eb3428852bdaabf2fc83, type: 2}
+  - {fileID: 2100000, guid: 72ecc91cc49d03b4da6018312f764919, type: 2}
+  - {fileID: 2100000, guid: 72ecc91cc49d03b4da6018312f764919, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
