@@ -15,6 +15,7 @@ MonoBehaviour:
   weapon_Type: 0
   atk_Area: 0
   atk_Type: 7
+  name_: Plasma Laser
   BaseID: 8
   Level: 0
   Position: {x: 0, y: 0, z: 0}

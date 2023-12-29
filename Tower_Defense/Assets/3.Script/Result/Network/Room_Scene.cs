@@ -19,6 +19,9 @@ public class Room_Scene : MonoBehaviour
     [SerializeField] private Room_Player P2_Component;
     [SerializeField] private Room_Manager manager;
 
+    [SerializeField] private GameObject Prefabs_Panel;
+    [SerializeField] private GameObject info_Panel;
+
     #region Unity Callback
     private void Start()
     {
@@ -27,10 +30,17 @@ public class Room_Scene : MonoBehaviour
 
     private void Update()
     {
-        Find_Player();
+        /*Find_Player();*/
         Ready_Check();
     }
     #endregion
+
+    public void Switch_Panel()
+    {
+        bool switch_ = Prefabs_Panel.activeSelf;
+        Prefabs_Panel.SetActive(!switch_);
+        info_Panel.SetActive(switch_);
+    }
 
     private void Find_Player()
     {
@@ -57,6 +67,7 @@ public class Room_Scene : MonoBehaviour
     {
         if (manager.roomSlots.Count == 1)
         {
+            P1_Component = manager.roomSlots[0].GetComponent<Room_Player>();
             if (P1_Component.readyToBegin)
             {
                 P1_Wait.SetActive(false);
@@ -70,6 +81,7 @@ public class Room_Scene : MonoBehaviour
         }
         else if (manager.roomSlots.Count == 2)
         {
+            P1_Component = manager.roomSlots[0].GetComponent<Room_Player>();
             if (P1_Component.readyToBegin)
             {
                 P1_Wait.SetActive(false);
@@ -80,7 +92,7 @@ public class Room_Scene : MonoBehaviour
                 P1_Ready.SetActive(false);
                 P1_Wait.SetActive(true);
             }
-
+            P2_Component = manager.roomSlots[1].GetComponent<Room_Player>();
             if (P2_Component.readyToBegin)
             {
                 P2_Wait.SetActive(false);
@@ -92,11 +104,6 @@ public class Room_Scene : MonoBehaviour
                 P2_Wait.SetActive(true);
             }
         }
-    }
-
-    private void Set_Name()
-    {
-
     }
 
     public void OnReadyBtn_Click()

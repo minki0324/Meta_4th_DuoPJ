@@ -35,8 +35,14 @@ public class Tower : NetworkBehaviour
     private void Update()
     {
 
+        Spin_Marker();
+    }
+
+    private void Spin_Marker()
+    {
+
         Vector3 currentEulerAngles = marker.transform.eulerAngles;
-        currentEulerAngles.y += Time.deltaTime * 65; // È¸Àü ¼Óµµ¸¦ Á¶ÀıÇÒ ¼ö ÀÖ½À´Ï´Ù.
+        currentEulerAngles.y += Time.deltaTime * 65; // íšŒì „ ì†ë„ë¥¼ ì¡°ì ˆí•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
         marker.transform.eulerAngles = currentEulerAngles;
     }
     public void Selectunit()

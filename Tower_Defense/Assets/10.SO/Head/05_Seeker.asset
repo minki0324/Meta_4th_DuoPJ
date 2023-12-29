@@ -15,6 +15,7 @@ MonoBehaviour:
   weapon_Type: 1
   atk_Area: 0
   atk_Type: 4
+  name_: Seeker
   BaseID: 0
   Level: 0
   Position: {x: 0, y: 0, z: 0}

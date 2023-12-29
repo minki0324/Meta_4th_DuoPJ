@@ -15,6 +15,7 @@ MonoBehaviour:
   weapon_Type: 0
   atk_Area: 2
   atk_Type: 8
+  name_: Laser Impulse
   BaseID: 9
   Level: 0
   Position: {x: 0, y: 0, z: 0}

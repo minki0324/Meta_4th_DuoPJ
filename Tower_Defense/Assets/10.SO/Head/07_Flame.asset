@@ -15,6 +15,7 @@ MonoBehaviour:
   weapon_Type: 1
   atk_Area: 0
   atk_Type: 6
+  name_: Flame Thrower
   BaseID: 7
   Level: 0
   Position: {x: 0, y: 0, z: 0}

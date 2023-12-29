@@ -15,6 +15,7 @@ MonoBehaviour:
   weapon_Type: 1
   atk_Area: 0
   atk_Type: 3
+  name_: Missile
   BaseID: 4
   Level: 0
   Position: {x: 0, y: 0, z: 0}

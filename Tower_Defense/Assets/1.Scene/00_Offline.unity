@@ -667,6 +667,27 @@ MonoBehaviour:
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
+  Player_images:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Player_name:
+  - 
+  - 
+  - 
+  - 
+  Print_images:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Print_names:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  image_indexs: 
 --- !u!114 &893505135
 MonoBehaviour:
   m_ObjectHideFlags: 0
