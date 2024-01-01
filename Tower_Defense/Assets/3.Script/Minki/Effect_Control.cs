@@ -122,7 +122,7 @@ public class Effect_Control : NetworkBehaviour
             }
 
             // 레이저 빔을 위한 레이캐스트
-            if (!OneShot)
+            if (!OneShot && target_ != null)
                 isBeam(target_);
         }
         else if(type ==  Effect_type.Flame)
@@ -164,6 +164,7 @@ public class Effect_Control : NetworkBehaviour
                 {
                     FrameTimerID = -1;
                 }
+                target_ = null;
             }
         }
         CancelInvoke("active");
@@ -232,7 +233,7 @@ public class Effect_Control : NetworkBehaviour
     private void OnSpawned_Beam()
     {
         // OneShot 플래그가 true일 경우 한 번만 레이캐스트 수행
-        if (OneShot)
+        if (OneShot && target_ != null)
             isBeam(target_);
 
         // BeamFrames 배열이 2개 이상일 경우 애니메이션 시작
@@ -344,11 +345,13 @@ public class Effect_Control : NetworkBehaviour
     {
         // 구조체 초기화 및 레이 생성
         hitPoint = new RaycastHit();
+        
         Vector3 directionToTarget = (target_.position - transform.position).normalized;
+
         Ray ray = new Ray(transform.position, directionToTarget);
+        Debug.DrawRay(ray.origin, ray.direction * MaxBeamLength, Color.red, 1f);
         // 기본 스케일 및 최대 길이를 기반으로한 기본 빔 비율 계수 계산
         float propMult = MaxBeamLength * (beamScale / 10f);
-
         // 레이캐스트
         if (Physics.Raycast(ray, out hitPoint, MaxBeamLength, layerMask))
         {
@@ -358,6 +361,7 @@ public class Effect_Control : NetworkBehaviour
 
             // 현재 길이를 기반으로한 기본 빔 비율 계수 계산
             propMult = beamLength * (beamScale / 10f);
+
             // 프리팹 스폰
             switch (head_Data.atk_Type)
             {
@@ -380,6 +384,7 @@ public class Effect_Control : NetworkBehaviour
                 // 현재 빔 길이 가져오고 라인 렌더러 업데이트
                 beamLength = Vector3.Distance(transform.position, ray2D.point);
                 lineRenderer.SetPosition(1, new Vector3(0f, 0f, beamLength));
+                Debug.Log(hitPoint.transform.position);
 
                 // 현재 길이를 기반으로한 기본 빔 비율 계수 계산
                 propMult = beamLength * (beamScale / 10f);

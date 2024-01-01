@@ -356,14 +356,16 @@ public class Tower_Attack : NetworkBehaviour
                 {
                     GameObject laser = pool.GetEffect(Muzzle_index);
                     var laser_Beam = laser.GetComponent<Effect_Control>();
-                    laser_Beam.target_ = target;
+                    if(target != null)
+                    {
+                        laser_Beam.target_ = target;
+                    }
                     Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);
                 }
                 break;
             case Head_Data.Atk_Type.Flame:
                 GameObject flame = pool.GetEffect(Muzzle_index);
                 var flame_ = GetComponent<Effect_Control>();
-                flame_.target_ = target;
                 Set_Pos_Rot(flame, turretSocket[0].position, turretSocket[0].rotation);
                 break;
             case Head_Data.Atk_Type.PlasmaBeam:
@@ -393,7 +395,25 @@ public class Tower_Attack : NetworkBehaviour
     public void Set_Pos_Rot(GameObject obj, Vector3 pos, Quaternion rot)
     {
         obj.transform.position = pos;
-        obj.transform.rotation = rot;
+        if (target != null)
+        {
+            // 머즐에서 타겟을 향하는 벡터
+            Vector3 directionToTarget = target.position - pos;
+            // 현재 방향
+            Vector3 currentDirection = rot * Vector3.forward;
+
+            // 두 벡터 간의 회전값 계산
+            Quaternion rotationToTarget = Quaternion.FromToRotation(currentDirection, directionToTarget);
+
+            // 현재 로테이션에 두 벡터 간의 회전값을 더하여 새로운 로테이션 계산
+            Quaternion finalRotation = rot * rotationToTarget;
+
+            obj.transform.rotation = finalRotation;
+        }
+        else
+        {
+            obj.transform.rotation = rot;
+        }
         GameManager.instance.RPC_TransformSet(obj, pos, rot);
     }
 }

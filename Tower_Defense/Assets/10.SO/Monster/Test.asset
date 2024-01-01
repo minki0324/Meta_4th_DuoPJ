@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterID: 8
   level: 0
-  type: 3
+  type: 2
   maxHp: 30000
   currentHP: 30000
   speed: 0
