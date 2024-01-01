@@ -25,35 +25,22 @@ public class MouseDrag : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            start = Input.mousePosition;
-            dragRect = new Rect();
-        }
-        if (Input.GetMouseButton(0))
-        {
-            end = Input.mousePosition;
-
-            DrawDragRectangle();
-        }
-
-        if (Input.GetMouseButtonUp(0)){
-            CalculateDragRact();
-            SelectUnits();
-            mouseCon.infoUI.SetInfoPanel();
-
-            start = end = Vector2.zero;
-            DrawDragRectangle();
-        }
+        DragStart();
+       
 
     }
 
     private void SelectUnits()
     {
+        //모든 빌더를 담은 배열을 이용해 아래 포이치문 돌려서 빌더부터 검사후 아무도 없다면 그때 타워부터
+
         foreach (Tower tower in BuildManager.Instance.AllTower)
         {
             if (rts.selectTowers.Count > 35) { return; }
-
+            if(!GameManager.instance.CompareEnumWithTag(tower.gameObject.tag)) continue;
+            //타워 헤드이름으로 비교해서 다르면 리턴해야함
+            //생각해보니 타워 달라도 드래그 선택가능함
+           
             if (dragRect.Contains(maincamera.WorldToScreenPoint(tower.transform.position)))
             {
                 rts.DragSelectUnit(tower);
@@ -92,5 +79,31 @@ public class MouseDrag : MonoBehaviour
         // Abs = 절댓값.
         // Image 크기 설정 
         dragRectangle.sizeDelta = new Vector2(Mathf.Abs(start.x - end.x), Mathf.Abs(start.y - end.y));
+    }
+    private void DragStart()
+    {
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            start = Input.mousePosition;
+            dragRect = new Rect();
+        }
+        if (Input.GetMouseButton(0))
+        {
+            end = Input.mousePosition;
+
+            DrawDragRectangle();
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            CalculateDragRact();
+            SelectUnits();
+            mouseCon.infoUI.SetInfoPanel();
+
+            start = end = Vector2.zero;
+            DrawDragRectangle();
+        }
     }
 }

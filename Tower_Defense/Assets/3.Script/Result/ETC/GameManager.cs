@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Mirror;
 
@@ -135,5 +136,28 @@ public class GameManager : NetworkBehaviour
     {
         int[] player_index = new int[] { (int)Player_Num, this.img_index };
         return player_index;
+    }
+
+    //나의 팀인덱스와 , 오브젝트의 태그를 비교해서 나의소유인지 확인하는 메소드
+    public bool CompareEnumWithTag(string tag)
+    {
+        // Enum 값을 문자열로 변환합니다.
+        string enumString = Player_Num.ToString();
+
+        // Enum 문자열에서 앞의 숫자를 추출합니다.
+        string enumNumber = new string(enumString.Where(char.IsDigit).ToArray());
+        string newenumString = enumNumber + 'P';
+        Debug.Log(newenumString);
+
+        if (newenumString == tag)
+        {
+            Debug.Log(true);
+            return true;
+        }
+        else
+        {
+            Debug.Log(tag);
+            return false;
+        }
     }
 }

@@ -78,19 +78,15 @@ public class BuildManager : NetworkBehaviour
 
     private void BuildDecision()
     {
-        Debug.Log("현재타워 : "+ currentTower);
-        Debug.Log("현재Area : "+currentArea);
         currentTower.transform.position = currentArea.transform.position;
-
         if (Input.GetMouseButtonDown(0) && isCanBuild)
         {
             Vector3 targetPos = currentTower.transform.position;
-            ClientBuildOrder(targetPos , SelectTowerIndexArray);
+            //본인의 팀인덱스 줘야함
+            int TeamIndex = ((int)GameManager.instance.Player_Num);
+            ClientBuildOrder(targetPos , SelectTowerIndexArray , TeamIndex);
 
-            //어떤클라이언트의 몇번 타워 인덱스인지 보내줘야함.
-            //지어 위치 타워 보내줘야함
             Destroy(currentTower);
-            //currentTower.GetComponent<BoxCollider>().enabled = true;
             currentArea.SetActive(false);
             isBuilding = false;
         }
@@ -159,7 +155,12 @@ public class BuildManager : NetworkBehaviour
         TowerBaseFrame.GetChild(SelectTowerIndex[2]).gameObject.SetActive(true);  //베이스프레임에서 TowerNumber 타워의 베이스 활성화
         TowerMountFrame.GetChild(SelectTowerIndex[1]).gameObject.SetActive(true); //마운트프레임에서 TowerNumber 타워의 마운트 활성화
         TowerHeadFrame.GetChild(SelectTowerIndex[0]).gameObject.SetActive(true); //해드프레임에서 TowerNumber 타워의 해드 활성화
-       
+        tower.GetComponent<Tower>().head = TowerHeadFrame.GetChild(SelectTowerIndex[0]).GetComponent<Tower_Attack>();
+        tower.GetComponent<Tower>().towerbase = TowerBaseFrame.GetChild(SelectTowerIndex[2]).gameObject;
+
+
+
+
     }
 
     private void HologramTower(GameObject gameobject)
@@ -188,20 +189,22 @@ public class BuildManager : NetworkBehaviour
 
     #region Client
     [Client]
-    private void ClientBuildOrder(Vector3 targetPos, int[] towerindex)
+    private void ClientBuildOrder(Vector3 targetPos, int[] towerindex , int teamIndex)
     {
-        CMDBuildOrder(targetPos, towerindex);
+        CMDBuildOrder(targetPos, towerindex , teamIndex);
 
     }
     #endregion
     #region Command
     [Command(requiresAuthority = false)]
-    private void CMDBuildOrder(Vector3 targetPos, int[] towerindex)
+    private void CMDBuildOrder(Vector3 targetPos, int[] towerindex , int teamIndex)
     {
         GameObject newTower = Instantiate(towerFrame, targetPos, Quaternion.identity);
         TowerAssembly(newTower, towerindex);
         NetworkServer.Spawn(newTower/* , senderConnection*/);
+        newTower.tag =$"{teamIndex}P";
         RPC_TowerAssembly(newTower, towerindex);
+        Rpc_SpawnMonster(newTower, teamIndex);
         AllTower.Add(newTower.GetComponent<Tower>());
         AstarPath.active.Scan();
 
@@ -215,6 +218,15 @@ public class BuildManager : NetworkBehaviour
     private void RPC_TowerAssembly(GameObject tower, int[] SelectTowerIndex)
     {
         TowerAssembly(tower, SelectTowerIndex);
+    }
+    [ClientRpc]
+    private void Rpc_SpawnMonster(GameObject tower, int TeamIndex)
+    {
+        if (!isServer)
+        {
+            // 태그 할당
+            tower.tag = $"{TeamIndex}P";
+        }
     }
     #endregion
 }
