@@ -47,7 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 160
+    m_Bits: 2208
+  BuilderLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   bm: {fileID: 0}
   infoUI: {fileID: 0}
 --- !u!114 &3444717428283140339

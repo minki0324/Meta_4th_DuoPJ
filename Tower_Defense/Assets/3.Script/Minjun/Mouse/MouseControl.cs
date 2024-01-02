@@ -1,23 +1,29 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using Mirror;
 public class MouseControl : MonoBehaviour
 {
     [SerializeField] private LayerMask targetLayer;
+    [SerializeField] private LayerMask BuilderLayer;
     [SerializeField] private BuildManager bm;
     [SerializeField]public InfoConecttoUI infoUI;
+    private BuilderController builder;
+    private NetworkIdentity myIdentity;
     private Camera maincamera;
     private RTSControlSystem rts;
     private bool isCanDouble;
+    private bool isBuilder;
 
 
     private void Awake()
     {
         maincamera = Camera.main;
         rts = GetComponent<RTSControlSystem>();
+        myIdentity = GetComponent<NetworkIdentity>();
     }
     private void Start()
     {
@@ -41,10 +47,11 @@ public class MouseControl : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (IsPointerOverUI()) return;
-            GetTargetInfo();
-          
+            GetTowerInfo();
+            GetBuilderInfo();
         }
        
+
     }
 
     private IEnumerator DoubleClickCool()
@@ -57,7 +64,7 @@ public class MouseControl : MonoBehaviour
         isCanDouble = false;
     }
 
-    private void GetTargetInfo()
+    private void GetTowerInfo()
     {
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -67,9 +74,13 @@ public class MouseControl : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, targetLayer))
         {
             Debug.Log(hit);
-            if (hit.transform.parent.GetComponent<Tower>() == null) return;
+            //비교목록
+            // 나의팀번호 == 오브젝트의 태그 ( ex. 1P) 
+            // Tower가 아니면 리턴 (빌더꺼는 따로있음)
+            if (!GameManager.instance.CompareEnumWithTag(hit.collider.gameObject.transform.root.tag)) return;
+            if (hit.transform.root.GetComponent<Tower>() == null) return;
           
-            Tower hitTower = hit.transform.parent.GetComponent<Tower>();
+            Tower hitTower = hit.transform.root.GetComponent<Tower>();
 
          //더블클릭시 같은팀의 같은타워를 모두 선택하는메소드
             if (isCanDouble)
@@ -84,7 +95,7 @@ public class MouseControl : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift)){
                 rts.ShiftClickSelectUnit(hitTower);
             }
-            else
+            else // 단일선택시 나오는 메소드
             {
                 rts.ClickSelectUnit(hitTower);
                 rts.SetAttackRange(hitTower);
@@ -107,7 +118,31 @@ public class MouseControl : MonoBehaviour
         infoUI.SetInfoPanel();
 
     }
-    
+    private void GetBuilderInfo()
+    {
+
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, BuilderLayer))
+        {
+            if (!GameManager.instance.CompareEnumWithTag(hit.collider.gameObject.tag)) return;
+            //todo 나중에 적팀꺼 클릭했을때 단일UI 라도 보이게 하기
+                builder = hit.transform.root.GetComponent<BuilderController>();
+            
+            if (builder == null) return;
+           //마커 띄우기
+            builder.isSelectBuilder = true;
+
+        }
+        else
+        {
+            if (builder != null)
+            {
+                builder.isSelectBuilder = false;
+            }
+        }
+    }
+
     private IEnumerator test()
     {
 
@@ -119,7 +154,6 @@ public class MouseControl : MonoBehaviour
         // UI에 마우스 포인터가 위치하는지 여부를 확인
         return EventSystem.current.IsPointerOverGameObject();
     }
-
 
 }
 
