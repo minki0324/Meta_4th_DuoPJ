@@ -8,8 +8,9 @@ public class Room_Prefabs : MonoBehaviour
     [SerializeField] private GameObject[] Mounts;
     [SerializeField] private GameObject[] Bases;
 
-    public void Print_Tower(int head_index, int mount_index, int base_index)
+    public IEnumerator Print_Tower(int head_index, int mount_index, int base_index)
     {
+        yield return null;
         for(int i = 0; i < Bases.Length; i++)
         {
             Bases[i].SetActive(false);
