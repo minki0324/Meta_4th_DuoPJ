@@ -247,7 +247,6 @@ public class Tower_Attack : NetworkBehaviour
             if (monster.isDie || monster.isInvi) continue;
 
             monster.M_currentHP -= H_Damage;
-            Debug.Log(monster.M_currentHP);
             if (monster.M_currentHP <= 0)
             {
                 StartCoroutine(monster.onDie());
@@ -289,6 +288,7 @@ public class Tower_Attack : NetworkBehaviour
                 Set_Pos_Rot(Projectile_vul, turretSocket[curSocket].position + turretSocket[curSocket].forward, offset * turretSocket[curSocket].rotation);
 
                 var proj_vul = Projectile_vul.gameObject.GetComponent<Effect_Control>();
+                proj_vul.target_ = target;
                 if (proj_vul) { proj_vul.SetOffset(vulcanOffset); }
                 break;
             case Head_Data.Atk_Type.Missile:
@@ -302,6 +302,7 @@ public class Tower_Attack : NetworkBehaviour
                 Set_Pos_Rot(Projectile_seeker, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
 
                 var proj_seeker = Projectile_seeker.gameObject.GetComponent<Effect_Control>();
+                proj_seeker.target_ = target;
                 if (proj_seeker) { proj_seeker.SetOffset(seekerOffset); }
                 break;
             case Head_Data.Atk_Type.Air:
@@ -312,6 +313,7 @@ public class Tower_Attack : NetworkBehaviour
                 Set_Pos_Rot(Projectile_Air, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
 
                 var proj_Air = Projectile_Air.gameObject.GetComponent<Effect_Control>();
+                proj_Air.target_ = target;
                 if (proj_Air) { proj_Air.SetOffset(soloGunOffset); }
                 break;
             case Head_Data.Atk_Type.LaserImpulse:
@@ -322,6 +324,7 @@ public class Tower_Attack : NetworkBehaviour
                 Set_Pos_Rot(Projectile_LaserImpulse, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
 
                 var proj_LaserImpulse = Projectile_LaserImpulse.gameObject.GetComponent<Effect_Control>();
+                proj_LaserImpulse.target_ = target;
                 if (proj_LaserImpulse) { proj_LaserImpulse.SetOffset(soloGunOffset); }
                 break;
         }
@@ -345,23 +348,32 @@ public class Tower_Attack : NetworkBehaviour
                 Set_Pos_Rot(Projectile_sni, turretSocket[curSocket].position, offset * turretSocket[curSocket].rotation);
 
                 var beam = Projectile_sni.GetComponent<Effect_Control>();
+                beam.target_ = target;
                 if (beam) { beam.SetOffset(sniperOffset); }
                 break;
             case Head_Data.Atk_Type.Laser:
                 for(int i = 0; i < turretSocket.Length; i++)
                 {
                     GameObject laser = pool.GetEffect(Muzzle_index);
+                    var laser_Beam = laser.GetComponent<Effect_Control>();
+                    if(target != null)
+                    {
+                        laser_Beam.target_ = target;
+                    }
                     Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);
                 }
                 break;
             case Head_Data.Atk_Type.Flame:
                 GameObject flame = pool.GetEffect(Muzzle_index);
+                var flame_ = GetComponent<Effect_Control>();
                 Set_Pos_Rot(flame, turretSocket[0].position, turretSocket[0].rotation);
                 break;
             case Head_Data.Atk_Type.PlasmaBeam:
                 for (int i = 0; i < turretSocket.Length; i++)
                 {
                     GameObject laser = pool.GetEffect(Muzzle_index);
+                    var plasma = laser.GetComponent<Effect_Control>();
+                    plasma.target_ = target;
                     Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);
                 }
                 break;
@@ -383,7 +395,25 @@ public class Tower_Attack : NetworkBehaviour
     public void Set_Pos_Rot(GameObject obj, Vector3 pos, Quaternion rot)
     {
         obj.transform.position = pos;
-        obj.transform.rotation = rot;
+        if (target != null)
+        {
+            // 머즐에서 타겟을 향하는 벡터
+            Vector3 directionToTarget = target.position - pos;
+            // 현재 방향
+            Vector3 currentDirection = rot * Vector3.forward;
+
+            // 두 벡터 간의 회전값 계산
+            Quaternion rotationToTarget = Quaternion.FromToRotation(currentDirection, directionToTarget);
+
+            // 현재 로테이션에 두 벡터 간의 회전값을 더하여 새로운 로테이션 계산
+            Quaternion finalRotation = rot * rotationToTarget;
+
+            obj.transform.rotation = finalRotation;
+        }
+        else
+        {
+            obj.transform.rotation = rot;
+        }
         GameManager.instance.RPC_TransformSet(obj, pos, rot);
     }
 }

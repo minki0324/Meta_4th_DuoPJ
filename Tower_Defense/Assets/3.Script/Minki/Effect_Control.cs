@@ -30,6 +30,7 @@ public class Effect_Control : NetworkBehaviour
     public bool isHit = false;                 // 히트 됐는지 안됐는지
     private bool isFXSpawned = false;           // 임팩트가 터졌는지 안터졌는지
     private bool despawn;                       // 소멸 상태 플래그
+    private bool dontRot = false;
 
     [Header("파티클")]
     public ParticleSystem[] delayedParticles;   
@@ -69,6 +70,10 @@ public class Effect_Control : NetworkBehaviour
     public ParticleSystem heat;                 // heat 파티클
     private int lightState;                     // 포인트 라이트 상태 플래그 (fade in, out)
 
+    public Transform target_;
+    public Quaternion current_Rot;
+    [SerializeField] private float homingSpeed = 5f;
+
     #region Unity Callback
     private void Awake()
     {
@@ -99,9 +104,9 @@ public class Effect_Control : NetworkBehaviour
 
     private void Update()
     {
-        if(type == Effect_type.projectile)
+        if (type == Effect_type.projectile && !dontRot)
         {
-            isProjectile();
+            isProjectile(target_);
         }
         else if(type == Effect_type.Beam)
         {
@@ -117,8 +122,8 @@ public class Effect_Control : NetworkBehaviour
             }
 
             // 레이저 빔을 위한 레이캐스트
-            if (!OneShot)
-                isBeam();
+            if (!OneShot && target_ != null)
+                isBeam(target_);
         }
         else if(type ==  Effect_type.Flame)
         {
@@ -159,6 +164,7 @@ public class Effect_Control : NetworkBehaviour
                 {
                     FrameTimerID = -1;
                 }
+                target_ = null;
             }
         }
         CancelInvoke("active");
@@ -177,24 +183,29 @@ public class Effect_Control : NetworkBehaviour
         {
             case Head_Data.Atk_Type.Vulcan:
                 GameObject vul_impact = pool.GetEffect(index);
+                Transform_Set(vul_impact, pos, Quaternion.identity);
                 GameManager.instance.RPC_TransformSet(vul_impact, pos, Quaternion.identity);
                 break;
             case Head_Data.Atk_Type.Sniper:
                 GameObject sni_impact = pool.GetEffect(index);
+                Transform_Set(sni_impact, pos, Quaternion.identity);
                 GameManager.instance.RPC_TransformSet(sni_impact, pos, Quaternion.identity);
                 break;
             case Head_Data.Atk_Type.Missile:
                 break;
             case Head_Data.Atk_Type.Seeker:
                 GameObject Seeker_impact = pool.GetEffect(index);
+                Transform_Set(Seeker_impact, pos, Quaternion.identity);
                 GameManager.instance.RPC_TransformSet(Seeker_impact, pos, Quaternion.identity);
                 break;
             case Head_Data.Atk_Type.Air:
                 GameObject Air_impact = pool.GetEffect(index);
+                Transform_Set(Air_impact, pos, Quaternion.identity);
                 GameManager.instance.RPC_TransformSet(Air_impact, pos, Quaternion.identity);
                 break;
             case Head_Data.Atk_Type.LaserImpulse:
                 GameObject LaserImpulse_impact = pool.GetEffect(index);
+                Transform_Set(LaserImpulse_impact, pos, Quaternion.identity);
                 GameManager.instance.RPC_TransformSet(LaserImpulse_impact, pos, Quaternion.identity);
                 break;
         }
@@ -213,6 +224,7 @@ public class Effect_Control : NetworkBehaviour
     {
         // 플래그 및 레이캐스트 구조체 재설정
         isHit = false;
+        dontRot = false;
         isFXSpawned = false;
         timer = 0f;
         hitPoint = new RaycastHit();
@@ -221,8 +233,8 @@ public class Effect_Control : NetworkBehaviour
     private void OnSpawned_Beam()
     {
         // OneShot 플래그가 true일 경우 한 번만 레이캐스트 수행
-        if (OneShot)
-            isBeam();
+        if (OneShot && target_ != null)
+            isBeam(target_);
 
         // BeamFrames 배열이 2개 이상일 경우 애니메이션 시작
         if (BeamFrames.Length > 1)
@@ -237,7 +249,7 @@ public class Effect_Control : NetworkBehaviour
         pLight.intensity = 0f;
     }
 
-    private void isProjectile()
+    private void isProjectile(Transform target)
     {
         // 무언가 충돌한 경우
         if(isHit)
@@ -265,24 +277,32 @@ public class Effect_Control : NetworkBehaviour
                 }
 
                 isFXSpawned = true;
+                dontRot = true;
             }
 
             // 현재 발사체 소멸
             if (DelayDespawn && (timer >= despawnDelay))
+            {
                 active();
+            }
+            else if(!DelayDespawn)
+            {
+                active();
+            }
         }
 
         // 아직 충돌이 발생하지 않았을 때
         else
         {
-            // 발사체 이동 방향 및 속도
-            Vector3 step = transform.forward * Time.deltaTime * velocity;
+            current_Rot = transform.rotation;
+            // 발사체 이동 방향
+            Vector3 targetDirection = (target_.position - transform.position).normalized;
 
             // 레이캐스트 길이 기반의 대상
-            if (Physics.Raycast(transform.position, transform.forward, out hitPoint, step.magnitude * RaycastAdvance, layerMask))
+            /*if(Vector3.Distance(transform.position, target.position)<0.5f)*/
+            if (Physics.Raycast(transform.position, transform.forward, out hitPoint, targetDirection.magnitude * RaycastAdvance, layerMask))
             {
                 isHit = true;
-
                 // 필요한 경우 지연 루틴
                 if (DelayDespawn)
                 {
@@ -290,6 +310,8 @@ public class Effect_Control : NetworkBehaviour
                     timer = 0f;
                     Delay();
                 }
+
+                return;
             }
 
             // 아무것도 충돌하지 않음
@@ -301,20 +323,35 @@ public class Effect_Control : NetworkBehaviour
             }
 
             // 발사체 전진
-            transform.position += step;
+            float step = homingSpeed * Time.deltaTime;
+
+            // 타겟과의 거리에 따른 로테이션 적용
+            if (Vector3.Distance(transform.position, target_.position) > 0.5f)
+            {
+                transform.position += targetDirection * step;
+
+                // 히트된 지점에서의 방향 벡터를 사용하여 로테이션 설정
+                Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+                // 현재 로테이션에서 새로 계산한 로테이션으로 부드럽게 전환
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
+            }
         }
         // 발사체 타이머 업데이트
         timer += Time.deltaTime;
     }
 
-    private void isBeam()
+    private void isBeam(Transform target)
     {
         // 구조체 초기화 및 레이 생성
         hitPoint = new RaycastHit();
-        Ray ray = new Ray(transform.position, transform.forward);
+        
+        Vector3 directionToTarget = (target_.position - transform.position).normalized;
+
+        Ray ray = new Ray(transform.position, directionToTarget);
+        Debug.DrawRay(ray.origin, ray.direction * MaxBeamLength, Color.red, 1f);
         // 기본 스케일 및 최대 길이를 기반으로한 기본 빔 비율 계수 계산
         float propMult = MaxBeamLength * (beamScale / 10f);
-
         // 레이캐스트
         if (Physics.Raycast(ray, out hitPoint, MaxBeamLength, layerMask))
         {
@@ -324,6 +361,7 @@ public class Effect_Control : NetworkBehaviour
 
             // 현재 길이를 기반으로한 기본 빔 비율 계수 계산
             propMult = beamLength * (beamScale / 10f);
+
             // 프리팹 스폰
             switch (head_Data.atk_Type)
             {
@@ -346,6 +384,7 @@ public class Effect_Control : NetworkBehaviour
                 // 현재 빔 길이 가져오고 라인 렌더러 업데이트
                 beamLength = Vector3.Distance(transform.position, ray2D.point);
                 lineRenderer.SetPosition(1, new Vector3(0f, 0f, beamLength));
+                Debug.Log(hitPoint.transform.position);
 
                 // 현재 길이를 기반으로한 기본 빔 비율 계수 계산
                 propMult = beamLength * (beamScale / 10f);
@@ -489,5 +528,11 @@ public class Effect_Control : NetworkBehaviour
             // 코루틴으로 애니메이션 구현
             StartCoroutine(AnimateFrames());
         }
+    }
+
+    private void Transform_Set(GameObject gameObject, Vector3 pos, Quaternion rot)
+    {
+        gameObject.transform.position = pos;
+        gameObject.transform.rotation = rot;
     }
 }
