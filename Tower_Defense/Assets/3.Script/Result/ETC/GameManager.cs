@@ -147,16 +147,16 @@ public class GameManager : NetworkBehaviour
         // Enum 문자열에서 앞의 숫자를 추출합니다.
         string enumNumber = new string(enumString.Where(char.IsDigit).ToArray());
         string newenumString = enumNumber + 'P';
-        Debug.Log(newenumString);
+        /*Debug.Log(newenumString);*/
 
         if (newenumString == tag)
         {
-            Debug.Log(true);
+            /*Debug.Log(true);*/
             return true;
         }
         else
         {
-            Debug.Log(tag);
+            /*Debug.Log(tag);*/
             return false;
         }
     }
