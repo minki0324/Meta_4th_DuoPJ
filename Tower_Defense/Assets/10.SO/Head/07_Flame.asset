@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 07_Flame
   m_EditorClassIdentifier: 
   weapon_Type: 1
-  atk_Area: 0
+  atk_Area: 2
   atk_Type: 6
   name_: Flame Thrower
   BaseID: 7

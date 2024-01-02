@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 05_Seeker
   m_EditorClassIdentifier: 
   weapon_Type: 1
-  atk_Area: 0
+  atk_Area: 2
   atk_Type: 4
   name_: Seeker
   BaseID: 0

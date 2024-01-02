@@ -30,7 +30,6 @@ public class Room_Scene : MonoBehaviour
 
     private void Update()
     {
-        /*Find_Player();*/
         Ready_Check();
     }
     #endregion
