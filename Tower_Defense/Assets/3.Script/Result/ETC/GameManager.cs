@@ -19,11 +19,14 @@ public class GameManager : NetworkBehaviour
     public int img_index;
     public string Nickname;
 
-    public int[] Tower_1_index;
-    public int[] Tower_2_index;
-    public int[] Tower_3_index;
+    public List<int[]> towerIndex;
+    public int towerIndexCount = 0;
+    public int[] Tower_1_index = new int[3];
+    public int[] Tower_2_index = new int[3];
+    public int[] Tower_3_index = new int[3];
 
     public Room_Manager manager;
+
 
     #region Unity Callback
     private void Awake()
@@ -39,6 +42,16 @@ public class GameManager : NetworkBehaviour
             return;
         }
         manager = FindObjectOfType<Room_Manager>();
+       
+   
+    }
+    public void ListSet()
+    {
+        towerIndex = new List<int[]>();
+        towerIndex.Add(Tower_1_index);
+        towerIndex.Add(Tower_2_index);
+        towerIndex.Add(Tower_3_index);
+        Debug.Log(towerIndex.Count);
     }
     #endregion
     #region SyncVar
