@@ -195,10 +195,8 @@ MonoBehaviour:
   type: 2
   delay: 0.05
   despawnDelay: 0
-  timer: 0
   DelayDespawn: 0
-  OneShot: 0
-  isHit: 0
+  OneShot: 1
   delayedParticles: []
   velocity: 300
   rayImpact: {fileID: 0}
@@ -221,11 +219,6 @@ MonoBehaviour:
   UVTime: 0
   beamScale: 1
   MaxBeamLength: 500
-  pLight: {fileID: 0}
-  heat: {fileID: 0}
-  target_: {fileID: 0}
-  current_Rot: {x: 0, y: 0, z: 0, w: 0}
-  homingSpeed: 5
 --- !u!114 &970680312146672930
 MonoBehaviour:
   m_ObjectHideFlags: 0

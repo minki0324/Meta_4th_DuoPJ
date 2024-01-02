@@ -7,9 +7,9 @@ public class Tower_Index : MonoBehaviour
     [SerializeField] private Room_SelectPart[] Indexs;
     [SerializeField] private Room_Prefabs[] Final_Print;
 
-    public int head_index = 0;
-    public int mount_index = 0;
-    public int base_index = 0;
+    private int head_index = 0;
+    private int mount_index = 0;
+    private int base_index = 0;
 
     public int tower_index = 0;
 
@@ -37,13 +37,13 @@ public class Tower_Index : MonoBehaviour
         switch(tower_index)
         {
             case 0:
-                StartCoroutine(Final_Print[0].Print_Tower(head_index, mount_index, base_index));
+                Final_Print[0].Print_Tower(head_index, mount_index, base_index);
                 break;
             case 1:
-                StartCoroutine(Final_Print[1].Print_Tower(head_index, mount_index, base_index));
+                Final_Print[1].Print_Tower(head_index, mount_index, base_index);
                 break;
             case 2:
-                StartCoroutine(Final_Print[2].Print_Tower(head_index, mount_index, base_index));
+                Final_Print[2].Print_Tower(head_index, mount_index, base_index);
                 break;
         }
     }

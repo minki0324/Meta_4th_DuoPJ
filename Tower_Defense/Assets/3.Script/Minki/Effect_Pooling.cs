@@ -93,15 +93,16 @@ public class Effect_Pooling : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RPC_ActiveSet(bool isActive, GameObject effect)
+    public void RPC_ActiveSet(bool isActive, GameObject monster)
     {
         if (isActive)
         {
-            effect.SetActive(isActive);
+            Debug.Log(monster.name);
+            monster.SetActive(isActive);
         }
         else
         {
-            effect.SetActive(!isActive);
+            monster.SetActive(!isActive);
         }
     }
     #endregion

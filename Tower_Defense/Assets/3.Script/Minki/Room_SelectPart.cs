@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Video;
 using UnityEngine.UI;
 
 public class Room_SelectPart : MonoBehaviour
@@ -20,9 +19,6 @@ public class Room_SelectPart : MonoBehaviour
     [SerializeField] public Base_Data[] base_;
     [SerializeField] private RenderTexture[] images;
     [SerializeField] private RawImage image;
-
-    [SerializeField] private VideoClip[] preview_Clip;
-    [SerializeField] private VideoPlayer Player;
 
     [SerializeField] private Text name_;
     [SerializeField] private Text info_1;
@@ -49,7 +45,6 @@ public class Room_SelectPart : MonoBehaviour
         Set_data();
         final.Set_Data();
         final.Print_Data();
-
     }
 
     public void onClick_Back()
@@ -107,10 +102,6 @@ public class Room_SelectPart : MonoBehaviour
 
     public void Print_Parts(int index)
     {
-        image.texture = images[index];
-        if(type == Type.Head)
-        {
-            Player.clip = preview_Clip[index];
-        }
+        image.texture = images[current_index];
     }
 }

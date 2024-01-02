@@ -5198,7 +5198,6 @@ MonoBehaviour:
   type: 1
   delay: 5
   despawnDelay: 1
-  timer: 0
   DelayDespawn: 1
   OneShot: 0
   isHit: 0
@@ -5217,11 +5216,6 @@ MonoBehaviour:
   UVTime: 0
   beamScale: 0
   MaxBeamLength: 0
-  pLight: {fileID: 0}
-  heat: {fileID: 0}
-  target_: {fileID: 0}
-  current_Rot: {x: 0, y: 0, z: 0, w: 0}
-  homingSpeed: 100
 --- !u!1 &100004
 GameObject:
   m_ObjectHideFlags: 0

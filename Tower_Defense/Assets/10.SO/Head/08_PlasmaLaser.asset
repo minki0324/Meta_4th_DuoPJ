@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 08_PlasmaLaser
   m_EditorClassIdentifier: 
   weapon_Type: 0
-  atk_Area: 2
+  atk_Area: 0
   atk_Type: 7
   name_: Plasma Laser
   BaseID: 8
