@@ -83,12 +83,14 @@ public class RTSControlSystem : MonoBehaviour
         {
             DeSelectAll();
             SelectUnit(hittower);
-            foreach (Tower currenttower in BuildManager.Instance.AllTower)
+            for (int i = 0; i < BuildManager.Instance.AllTower.Count; i++)
             {
-                if (hittower.head.name == currenttower.head.name && !selectTowers.Contains(currenttower)
-                  && GameManager.instance.CompareEnumWithTag(currenttower.gameObject.tag))
+                
+                //조건 : 같은팀(미구현) , 같은 종류의 타워 (이름비교)
+                if (hittower.name == BuildManager.Instance.AllTower[i].name && !selectTowers.Contains(BuildManager.Instance.AllTower[i]))
                 {
-                    Renderer renderer = currenttower.towerbase.GetComponent<Renderer>();
+
+                    Renderer renderer = BuildManager.Instance.AllTower[i].transform.GetChild(0).GetComponent<Renderer>();
 
                     if (renderer != null)
                     {
@@ -98,14 +100,14 @@ public class RTSControlSystem : MonoBehaviour
                         // 보이는지 여부에 따라 처리
                         if (isVisible)
                         {
-
+                           
                             Debug.Log("보임");
                             // 여기에 보이는 경우의 로직 추가
                             if (selectTowers.Count > 35)
                             {
                                 return;
                             }
-                            SelectUnit(currenttower);
+                            SelectUnit(BuildManager.Instance.AllTower[i]);
                         }
                         else
                         {
@@ -119,6 +121,7 @@ public class RTSControlSystem : MonoBehaviour
                         Debug.Log("없음");
 
                     }
+
 
 
 

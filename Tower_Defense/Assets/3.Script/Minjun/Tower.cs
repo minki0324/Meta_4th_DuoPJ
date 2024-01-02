@@ -10,8 +10,7 @@ public class Tower : NetworkBehaviour
     public GameObject marker;
     public GameObject AttackRange;
     [SerializeField] private Material holoColor;
-    [SerializeField] public Tower_Attack head;
-    [SerializeField] public GameObject towerbase;
+    [SerializeField] private Tower_Attack head;
     public float maxHP;
     public float currentHP;
     public float damage;

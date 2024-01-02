@@ -319,7 +319,7 @@ namespace Mirror
             }
             else if (NetworkBehaviours.Length > MaxNetworkBehaviours)
             {
-                //Debug.LogError($"NetworkIdentity {name} has too many NetworkBehaviour components: only {MaxNetworkBehaviours} NetworkBehaviour components are allowed in order to save bandwidth.", this);
+                Debug.LogError($"NetworkIdentity {name} has too many NetworkBehaviour components: only {MaxNetworkBehaviours} NetworkBehaviour components are allowed in order to save bandwidth.", this);
             }
         }
 
