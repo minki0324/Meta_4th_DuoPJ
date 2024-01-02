@@ -130,7 +130,8 @@ public class MouseControl : MonoBehaviour
                 builder = hit.transform.root.GetComponent<BuilderController>();
             
             if (builder == null) return;
-           //마커 띄우기
+            //마커 띄우기 --완료
+            rts.DeSelectAll();
             builder.isSelectBuilder = true;
 
         }

@@ -16,5 +16,6 @@ MonoBehaviour:
   BaseID: 4
   Level: 0
   BuildArea: 3 X 3
+  BuildAreaIndex: 2
   Cost: 30
   Health: 450

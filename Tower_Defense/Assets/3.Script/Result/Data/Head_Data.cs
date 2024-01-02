@@ -29,6 +29,7 @@ public class Head_Data : ScriptableObject
     public int Level;
     public Vector3 Position;
     public float DelayTime;
+    public Sprite towerImage;
 
     [Header("레벨 정보")]
     public int Cost;

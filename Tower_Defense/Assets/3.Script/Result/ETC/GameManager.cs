@@ -20,14 +20,18 @@ public class GameManager : NetworkBehaviour
     public int img_index;
     public string Nickname;
 
-    public List<int[]> towerIndex;
+    public List<int[]> towerArrayIndex;
     public int towerIndexCount = 0;
     public int[] Tower_1_index = new int[3];
     public int[] Tower_2_index = new int[3];
     public int[] Tower_3_index = new int[3];
+    public int[] Cost;
 
     public Room_Manager manager;
-
+    /// <summary>
+    /// 룸씬에서 게임씬으로 전달해주는타워데이터
+    /// </summary>
+    
 
     #region Unity Callback
     private void Awake()
@@ -48,11 +52,15 @@ public class GameManager : NetworkBehaviour
     }
     public void ListSet()
     {
-        towerIndex = new List<int[]>();
-        towerIndex.Add(Tower_1_index);
-        towerIndex.Add(Tower_2_index);
-        towerIndex.Add(Tower_3_index);
-        Debug.Log(towerIndex.Count);
+        towerArrayIndex = new List<int[]>();
+        towerArrayIndex.Add(Tower_1_index);
+        towerArrayIndex.Add(Tower_2_index);
+        towerArrayIndex.Add(Tower_3_index);
+        Debug.Log(towerArrayIndex.Count);
+    }
+    public int[] GetCost()
+    {
+        return Cost;
     }
     #endregion
     #region SyncVar

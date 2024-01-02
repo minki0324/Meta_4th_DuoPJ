@@ -8,16 +8,16 @@ using Pathfinding;
 public class BuildManager : NetworkBehaviour
 {
     public static BuildManager Instance;
-
+    public BuilderController builder;
     public GameObject pointPrefab; // 가상의 점을 나타낼 프리팹
     public bool isCanBuild ;  // BuildArea에서 한개라도 적색으로 변할 시 false 반환함.
     public bool isBuilding;
     public bool isNoCompo;
     private int[] SelectTowerIndexArray;
-    public GameObject towerFrame;
     private Transform TowerBaseFrame;
     private Transform TowerMountFrame;
     private Transform TowerHeadFrame;
+    public GameObject towerFrame;
     private GameObject currentTower;
     private GameObject currentArea;
     [SerializeField] private BuildAreaPrents[] area; //타워마다 22 32 33 등 크기가 다른 Area 할당해줘야함
@@ -47,7 +47,6 @@ public class BuildManager : NetworkBehaviour
     }
     private void Start()
     {
-        
     }
 
 
@@ -84,7 +83,9 @@ public class BuildManager : NetworkBehaviour
             Vector3 targetPos = currentTower.transform.position;
             //본인의 팀인덱스 줘야함
             int TeamIndex = ((int)GameManager.instance.Player_Num);
-            ClientBuildOrder(targetPos , SelectTowerIndexArray , TeamIndex);
+            builder.isGoBuild = true;
+            builder.BuildOrder(targetPos, SelectTowerIndexArray, TeamIndex);
+            //ClientBuildOrder(targetPos , SelectTowerIndexArray , TeamIndex);
 
             Destroy(currentTower);
             currentArea.SetActive(false);
@@ -121,19 +122,16 @@ public class BuildManager : NetworkBehaviour
         }
     }
 
-    private void BuildSetting(int index)
+    public void BuildSetting(int index)
     {
         //내가 선택한 타워인덱스 배열 가져오기
-        SelectTowerIndexArray = GameManager.instance.towerIndex[index];
-        AreaActiveTrue(index);
+        SelectTowerIndexArray = GameManager.instance.towerArrayIndex[index];
         GameObject tower = Instantiate(towerFrame, area[index].transform.position, Quaternion.identity);
         //몇번킬지 설정해야함
-        isNoCompo = true;
-        TowerAssembly(tower , SelectTowerIndexArray);
-        isNoCompo = false; ;
+        TowerAssembly(tower , SelectTowerIndexArray);             //타워조립
+        AreaActiveTrue(currentArea);
         HologramTower(tower);
         currentTower = tower;
-        currentArea = area[index].gameObject;
         //베이스 콜라이더 끄기
         TowerBaseFrame.GetChild(SelectTowerIndexArray[2]).GetComponent<BoxCollider>().enabled = false;
         isBuilding = true;
@@ -145,7 +143,7 @@ public class BuildManager : NetworkBehaviour
 
     }
 
-    private void TowerAssembly(GameObject tower , int[] SelectTowerIndex)
+    private void TowerAssembly(GameObject tower, int[] SelectTowerIndex)
     {
         TowerBaseFrame = tower.transform.GetChild(0);     //베이스 프레임할당
         TowerMountFrame = tower.transform.GetChild(1);    //마운트 프레임할당
@@ -157,6 +155,9 @@ public class BuildManager : NetworkBehaviour
         TowerHeadFrame.GetChild(SelectTowerIndex[0]).gameObject.SetActive(true); //해드프레임에서 TowerNumber 타워의 해드 활성화
         tower.GetComponent<Tower>().head = TowerHeadFrame.GetChild(SelectTowerIndex[0]).GetComponent<Tower_Attack>();
         tower.GetComponent<Tower>().towerbase = TowerBaseFrame.GetChild(SelectTowerIndex[2]).gameObject;
+        int towerAreaIndex = tower.GetComponent<Tower>().towerbase.GetComponent<BaseData>().baseData.BuildAreaIndex;
+        currentArea = area[towerAreaIndex].gameObject;
+
 
 
 
@@ -171,7 +172,7 @@ public class BuildManager : NetworkBehaviour
 
 
     }
-    private void AreaActiveTrue(int index)
+    private void AreaActiveTrue(GameObject currentArea)
     {
         //기존에 다른 Area가 켜져있다면 꺼준다.
 
@@ -183,13 +184,13 @@ public class BuildManager : NetworkBehaviour
             }
         }
 
-        area[index].gameObject.SetActive(true);
+        currentArea.SetActive(true);
     }
 
 
     #region Client
     [Client]
-    private void ClientBuildOrder(Vector3 targetPos, int[] towerindex , int teamIndex)
+    public void ClientBuildOrder(Vector3 targetPos, int[] towerindex , int teamIndex)
     {
         CMDBuildOrder(targetPos, towerindex , teamIndex);
 
