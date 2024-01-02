@@ -47,14 +47,15 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  pointPrefab: {fileID: 0}
+  pointPrefab: {fileID: 3515180811927755219, guid: e1825a7032a738a418d7e98850842478, type: 3}
   isCanBuild: 0
   isBuilding: 0
+  isNoCompo: 0
   towerFrame: {fileID: 642199066967557856, guid: 3f16a79998519fe4eaad8fcf78a4971d, type: 3}
   area:
-  - {fileID: 806714018504115356, guid: 903811aa7efdc8b4790a13b375deea50, type: 3}
-  - {fileID: 6149473347820947232, guid: c63574364539268478e2c3083c47d57b, type: 3}
-  - {fileID: 2516378616863389111, guid: fd138da38fbdd34448a90eeca8f33438, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &3776994063434287830
 MonoBehaviour:
   m_ObjectHideFlags: 0
