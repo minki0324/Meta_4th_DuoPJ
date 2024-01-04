@@ -28,7 +28,11 @@ public class Tower : NetworkBehaviour
     public string Speed;
     [SyncVar]
     public int level;
+    [SyncVar]
+    public bool isActive;
+    
     public Sprite unitSprite;
+    private bool isDestroy;
 
     private void Awake()
     {
@@ -43,9 +47,15 @@ public class Tower : NetworkBehaviour
             SetSprite();
         }
     }
+    private void Update()
+    {
+        if (isActive &&isServer)
+        {
+            DestroyCheck();
+        }
+    }
 
 
- 
 
     private void TowerIninit()
     {
@@ -92,6 +102,35 @@ public class Tower : NetworkBehaviour
         }
         renderer.material = temp;
     }
+    private void DestroyCheck()
+    {
+        Debug.Log(currentHP);
+        if (currentHP <= 0)
+        {
+            if (!isDestroy)
+            {
+                isDestroy = true;
+                BuildManager.Instance.CMD_DestroyTower(gameObject);
+            }
+        }
+    }
+    //[Server]
+    //private void DestroyTower()
+    //{
+    //    RPC_DestroyTower(gameObject);
+    //    RTSControlSystem.Instance.Destroytower(this);
+    //    Destroy(gameObject);
+    //}
+    //[ClientRpc]
+    //private void RPC_DestroyTower(GameObject tower)
+    //{
+    //    if (RTSControlSystem.Instance.selectTowers.Contains(tower.GetComponent<Tower>()))
+    //    {
+    //        RTSControlSystem.Instance.selectTowers.Remove(tower.GetComponent<Tower>());
+    //        //UI 세팅 다시해줘야함
+    //    }
+    //    Destroy(tower);
+    //}
     [ClientRpc]
     private void SetSprite()
     {

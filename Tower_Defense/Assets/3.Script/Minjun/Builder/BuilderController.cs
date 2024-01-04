@@ -25,6 +25,7 @@ public class BuilderController : NetworkBehaviour
     public bool isMoving;
     [SyncVar]
     public bool isGoBuild;
+    private Coroutine currentCoroutine;
     private void Awake()
     {
         SpawnPoints = new Transform[SpawnPoint.childCount];
@@ -32,19 +33,14 @@ public class BuilderController : NetworkBehaviour
         {
             SpawnPoints[i] = SpawnPoint.GetChild(i);
         }
-
+       
     }
+
+ 
+
     void Start()
     {
-        if (isLocalPlayer && !isServer)
-        {
-            int TeamIndex = ((int)GameManager.instance.Player_Num);
-            BuildManager.Instance.builder = this;
-            tag = $"{TeamIndex}P";
-            FindPoint();
-            CliTag(gameObject, tag);
-            transform.position = mySpawnPoint.position;
-        }
+        Initialsettings();
     }
 
     // Update is called once per frame
@@ -60,6 +56,18 @@ public class BuilderController : NetworkBehaviour
             BuilderMove();
         }
         onMarker();
+    }
+    private void Initialsettings()
+    {
+        if (isLocalPlayer && !isServer)
+        {
+            int TeamIndex = ((int)GameManager.instance.Player_Num);
+            BuildManager.Instance.builder = this;
+            tag = $"{TeamIndex}P";
+            FindPoint();
+            CliTag(gameObject, tag);
+            transform.position = mySpawnPoint.position;
+        }
     }
     private void FindPoint()
     {
@@ -88,7 +96,9 @@ public class BuilderController : NetworkBehaviour
     [Client]
     public void BuildOrder(Vector3 targetPos, int[] towerindex, int teamIndex)
     {
+        isGoBuild = true;
         isMoving = false;
+        StopAllCoroutines();
         StartCoroutine(BuildOrder_co(targetPos, towerindex, teamIndex));
      
 
@@ -96,7 +106,7 @@ public class BuilderController : NetworkBehaviour
     private IEnumerator BuildOrder_co(Vector3 targetPos, int[] towerindex, int teamIndex)
     {
         transform.LookAt(targetPos);// 타워짓는곳을 바라보는 코드
-        while (true)
+        while (isGoBuild)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
             if (Vector3.Distance(transform.position, targetPos) <= 1)

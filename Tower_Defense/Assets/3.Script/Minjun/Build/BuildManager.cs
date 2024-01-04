@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using System;
 using Pathfinding;
+using Pathfinding.Util;
 
 public class BuildManager : NetworkBehaviour
 {
@@ -12,7 +13,6 @@ public class BuildManager : NetworkBehaviour
     public GameObject pointPrefab; // 가상의 점을 나타낼 프리팹
     public bool isCanBuild ;  // BuildArea에서 한개라도 적색으로 변할 시 false 반환함.
     public bool isBuilding;
-    public bool isNoCompo;
     private int[] SelectTowerIndexArray;
     private Transform TowerBaseFrame;
     private Transform TowerMountFrame;
@@ -21,6 +21,11 @@ public class BuildManager : NetworkBehaviour
     private GameObject currentTower;
     private GameObject currentArea;
     [SerializeField] private BuildAreaPrents[] area; //타워마다 22 32 33 등 크기가 다른 Area 할당해줘야함
+
+    [SerializeField] private Transform SeekerStart;
+    [SerializeField] private Transform SeekerEnd;
+    private Transform ServerSeekerStart;
+    private Transform ServerSeekerEnd;
 
     #region SyncVar
     public SyncList<Tower> AllTower = new SyncList<Tower>();
@@ -47,8 +52,16 @@ public class BuildManager : NetworkBehaviour
     }
     private void Start()
     {
+        Client_SeekerSet();
     }
-
+    [Client]
+    private void Client_SeekerSet()
+    {
+        Debug.Log("서버아닌애 설정함");
+        SeekerStart = SeekerSet(SeekerStart);
+        SeekerEnd = SeekerSet(SeekerEnd);
+    }
+   
 
     private void Update()
     {
@@ -74,7 +87,32 @@ public class BuildManager : NetworkBehaviour
         }
 
     }
+    private Transform SeekerSet(Transform seeker)
+    {
+       
+        for (int i = 0; i < seeker.childCount; i++)
+        {
+            if (GameManager.instance.CompareEnumWithTag(seeker.GetChild(i).tag))
+            {
+                return seeker.GetChild(i);
+            }
 
+        }
+        return null;
+    }
+    private Transform SeekerSet(Transform seeker ,string clitag)
+    {
+
+        for (int i = 0; i < seeker.childCount; i++)
+        {
+            if (seeker.GetChild(i).tag == clitag)
+            {
+                return seeker.GetChild(i);
+            }
+
+        }
+        return null;
+    }
     private void BuildDecision()
     {
         currentTower.transform.position = currentArea.transform.position;
@@ -186,30 +224,69 @@ public class BuildManager : NetworkBehaviour
 
         currentArea.SetActive(true);
     }
+    private bool CheckIfPathClear(Transform Start , Transform End)
+    {
 
+        // 시작 위치와 끝 위치를 노드로 변환
+        GraphNode startNode = AstarPath.active.GetNearest(Start.position).node;
+        GraphNode endNode = AstarPath.active.GetNearest(End.position).node;
+
+        // AstarPathUtilities를 사용하여 길이 존재하는지 확인
+        bool pathExists = PathUtilities.IsPathPossible(startNode, endNode);
+
+        return pathExists;
+    }
 
     #region Client
     [Client]
     public void ClientBuildOrder(Vector3 targetPos, int[] towerindex , int teamIndex)
     {
-        CMDBuildOrder(targetPos, towerindex , teamIndex);
+        CMDBuildOrder(targetPos, towerindex , teamIndex ,SeekerStart.tag , SeekerEnd.tag);
 
+    }
+    [Client]
+    public void Client_Destroy(GameObject newTower)
+    {
+        Debug.Log("클라디스트로이 : " +newTower);
+        CMD_DestroyTower(newTower);
     }
     #endregion
     #region Command
     [Command(requiresAuthority = false)]
-    private void CMDBuildOrder(Vector3 targetPos, int[] towerindex , int teamIndex)
+    private void CMDBuildOrder( Vector3 targetPos, int[] towerindex, int teamIndex, String Start, String End)
     {
+        ServerSeekerStart = SeekerSet(SeekerStart , Start);
+        ServerSeekerEnd = SeekerSet(SeekerEnd, End);
+
         GameObject newTower = Instantiate(towerFrame, targetPos, Quaternion.identity);
         TowerAssembly(newTower, towerindex);
+        //여기서 길찾기검사후 길막으면 파괴하기
         NetworkServer.Spawn(newTower/* , senderConnection*/);
-        newTower.tag =$"{teamIndex}P";
+
+        Tower towerScript = newTower.GetComponent<Tower>();
+        newTower.tag = $"{teamIndex}P";
         RPC_TowerAssembly(newTower, towerindex);
         Rpc_SpawnMonster(newTower, teamIndex);
-        AllTower.Add(newTower.GetComponent<Tower>());
+        AllTower.Add(towerScript);
+        towerScript.isActive = true;
         AstarPath.active.Scan();
+        Debug.Log(CheckIfPathClear(ServerSeekerStart, ServerSeekerEnd));
+        if (!CheckIfPathClear(ServerSeekerStart, ServerSeekerEnd))
+        {
+            RPC_DestroyTower(newTower);
+            RTSControlSystem.Instance.Destroytower(newTower.GetComponent<Tower>());
+            Destroy(newTower);
+            Debug.Log("길이막혀서 타워가 파괴되었습니다!");
+            return;
+        }
+    }
 
-
+   [Server]
+    public void CMD_DestroyTower(GameObject newTower)
+    {
+        RPC_DestroyTower(newTower);
+        RTSControlSystem.Instance.Destroytower(newTower.GetComponent<Tower>());
+        Destroy(newTower);
 
     }
 
@@ -228,6 +305,16 @@ public class BuildManager : NetworkBehaviour
             // 태그 할당
             tower.tag = $"{TeamIndex}P";
         }
+    }
+    [ClientRpc]
+    private void RPC_DestroyTower(GameObject newTower)
+    {
+        if (RTSControlSystem.Instance.selectTowers.Contains(newTower.GetComponent<Tower>()))
+        {
+            RTSControlSystem.Instance.selectTowers.Remove(newTower.GetComponent<Tower>());
+            //UI 세팅 다시해줘야함
+        }
+        Destroy(newTower);
     }
     #endregion
 }

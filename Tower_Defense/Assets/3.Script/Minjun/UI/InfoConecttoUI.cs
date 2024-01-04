@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 
 public class InfoConecttoUI : MonoBehaviour
 {
+    public static InfoConecttoUI Instance;
+
     [SerializeField] public RTSControlSystem rts;
     [SerializeField] private GameObject panel; // 단일유닛 info 패널 /해당 유닛의 정보들 모두 입력
     [SerializeField] private GameObject gridPanel; //다중 유닛 sprite 패널 / 해당유닛의 sprite ,HP 가져와서 HP 비례로 녹색 -> 빨간색 으로 변하게함 
@@ -14,15 +17,58 @@ public class InfoConecttoUI : MonoBehaviour
     [SerializeField] private Image unitImage;
     [SerializeField] private GameObject[] unitInfoButton; // 인덱스에 맞는 유닛의 단일유닛info패널로 바꿈.
 
+    private bool isSingle;
+    private bool isMultiple;
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     private void Update()
     {
 
-      
+        //원래같으면 Hook 사용으로 갱신될때마다 부르는게 맞으나 이게편함 ㅇㅇ
+        UpdateUI();
+
+
     }
+
+    public void UpdateUI()
+    {
+
+        if (rts.selectTowers.Count == 0)
+        {
+            if(isSingle || isMultiple)
+            {
+                isSingle = false;
+                isMultiple = false;
+                panel.SetActive(false);
+                ButtonActiveReset();
+            }
+        }
+        else if (isSingle)
+        {
+            SingleInfoSetting();//단일정보창 띄우기
+        }
+        else if (isMultiple)
+        {
+            MultiInfoSetting(); //다중유닛 정보창 띄우기
+        }
+    }
+
     public void SetInfoPanel()
     {
         if (rts.selectTowers.Count == 0)
         {
+            isSingle = false;
+            isMultiple = false;
             panel.SetActive(false);
             ButtonActiveReset();
         }
@@ -31,20 +77,16 @@ public class InfoConecttoUI : MonoBehaviour
         {
             //단일 선택했을시 그 오브젝트의 정보를 가져옵니다.
             //체력, 공격력 
-            SingleInfoSetting(); //단일정보창 띄우기
+            isSingle = true;
+            isMultiple = false;
+
         }
         else if (rts.selectTowers.Count > 1)
         {
-            
-            
-            MultiInfoSetting(); //다중유닛 정보창 띄우기
-        }
 
-        //왜있는지 모르겠음 일단 보류
-        //else
-        //{
-        //    panel.SetActive(false);
-        //}
+            isSingle = false;
+            isMultiple = true;
+        }
     }
     private void ButtonActiveReset()
     {
@@ -56,6 +98,7 @@ public class InfoConecttoUI : MonoBehaviour
     }
     public void SingleInfoSetting()
     {
+        
         ButtonActiveReset();
         panel.SetActive(true);
         unitImage.gameObject.GetComponent<unitSpriteController>().myObject = rts.selectTowers[0];
@@ -88,5 +131,5 @@ public class InfoConecttoUI : MonoBehaviour
         SingleInfoSetting();
 
     }
-
+ 
 }

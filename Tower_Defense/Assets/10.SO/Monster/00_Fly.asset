@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b168969b0c5b0488ffb5a9d2954b74, type: 3}
   m_Name: 00_Fly
   m_EditorClassIdentifier: 
+  MonsterID: 0
   level: 1
   type: 3
   maxHp: 20
@@ -19,3 +20,5 @@ MonoBehaviour:
   speed: 5
   damage: 0
   cost: 70
+  attackSpeed: 10
+  isDie: 0

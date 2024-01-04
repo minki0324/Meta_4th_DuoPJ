@@ -6,11 +6,23 @@ using UnityEngine;
 public class RTSControlSystem : MonoBehaviour
 {
     public List<Tower> selectTowers = new List<Tower>();
-
+    public static RTSControlSystem Instance ;
 
     //유닛이 선택됬을때 호출하는 메소드
     //이미지 true , 리스트 추가
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void DragSelectUnit(Tower newunit)
     {
         if (!selectTowers.Contains(newunit))
@@ -127,7 +139,19 @@ public class RTSControlSystem : MonoBehaviour
         }
     }
 
-
+    public void Destroytower(Tower tower)
+    {
+        if (BuildManager.Instance.AllTower.Contains(tower))
+        {
+            BuildManager.Instance.AllTower.Remove(tower);
+        }
+        if (selectTowers.Contains(tower))
+        {
+            selectTowers.Remove(tower);
+            //UI 세팅 다시해줘야함
+           
+        }
+    }
 
     private bool IsObjectVisible(Renderer renderer)
     {
@@ -137,4 +161,6 @@ public class RTSControlSystem : MonoBehaviour
 
         return GeometryUtility.TestPlanesAABB(planes, bounds);
     }
+
+    
 }

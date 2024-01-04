@@ -20,3 +20,5 @@ MonoBehaviour:
   speed: 5
   damage: 5000
   cost: 10
+  attackSpeed: 10
+  isDie: 0

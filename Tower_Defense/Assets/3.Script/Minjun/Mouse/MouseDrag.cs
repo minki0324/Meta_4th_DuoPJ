@@ -14,7 +14,7 @@ public class MouseDrag : MonoBehaviour
     private Camera maincamera;
     private RTSControlSystem rts;
     private MouseControl mouseCon;
-
+    private bool isClick;
     private void Awake()
     {
         maincamera = Camera.main;
@@ -25,6 +25,8 @@ public class MouseDrag : MonoBehaviour
 
     private void Update()
     {
+
+           
         DragStart();
        
 
@@ -87,21 +89,23 @@ public class MouseDrag : MonoBehaviour
     }
     private void DragStart()
     {
-
+    
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (mouseCon.IsPointerOverUI()) return;
             start = Input.mousePosition;
             dragRect = new Rect();
+            isClick = true;
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && isClick)
         {
             end = Input.mousePosition;
 
             DrawDragRectangle();
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && isClick)
         {
             CalculateDragRact();
             SelectUnits();
@@ -109,6 +113,7 @@ public class MouseDrag : MonoBehaviour
 
             start = end = Vector2.zero;
             DrawDragRectangle();
+            isClick = false;
         }
     }
 }

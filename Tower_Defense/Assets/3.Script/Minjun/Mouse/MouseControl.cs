@@ -64,7 +64,7 @@ public class MouseControl : MonoBehaviour
         isCanDouble = false;
     }
 
-    private void GetTowerInfo()
+    public void GetTowerInfo()
     {
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -118,7 +118,7 @@ public class MouseControl : MonoBehaviour
         infoUI.SetInfoPanel();
 
     }
-    private void GetBuilderInfo()
+    public void GetBuilderInfo()
     {
 
 
@@ -150,7 +150,7 @@ public class MouseControl : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         rts.DeSelectAll();
     }
-    private bool IsPointerOverUI()
+    public bool IsPointerOverUI()
     {
         // UI에 마우스 포인터가 위치하는지 여부를 확인
         return EventSystem.current.IsPointerOverGameObject();
