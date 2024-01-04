@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b168969b0c5b0488ffb5a9d2954b74, type: 3}
   m_Name: 02_Attack
   m_EditorClassIdentifier: 
+  mon_img: {fileID: 21300000, guid: 8b13a49499afc9140bc6d4947b67d4ff, type: 3}
   MonsterID: 2
   level: 1
   type: 4

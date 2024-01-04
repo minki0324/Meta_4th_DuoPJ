@@ -251,6 +251,7 @@ public class Effect_Control : NetworkBehaviour
 
     private void isProjectile(Transform target)
     {
+        if (isClient) return;
         // 무언가 충돌한 경우
         if(isHit)
         {

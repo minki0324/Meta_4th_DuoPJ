@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b168969b0c5b0488ffb5a9d2954b74, type: 3}
   m_Name: 03_Strong
   m_EditorClassIdentifier: 
+  mon_img: {fileID: 21300000, guid: 015f56d904df2f345ae7e77f25561c09, type: 3}
   MonsterID: 3
   level: 1
   type: 0

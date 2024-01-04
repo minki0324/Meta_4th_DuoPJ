@@ -258,6 +258,7 @@ public class Tower_Attack : NetworkBehaviour
 
     private void SeekerAttack()
     {
+        if (target == null) return;
         Collider[] col = Physics.OverlapSphere(target.position , 3, target_Layer);
 
         UnitsInRange_Damage(col);

@@ -14,6 +14,8 @@ public class MonsterState : ScriptableObject
         Attack,
         Invisible
     }
+    public Sprite mon_img;
+
     public int MonsterID;
     public int level;
     public monType type;
