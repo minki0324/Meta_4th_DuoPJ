@@ -34,15 +34,15 @@ public class MouseControl : MonoBehaviour
 
     private void Update()
     {
-        
-        //°Ç¼³ÁßÀÏ¶© ¼±ÅÃ ¾ÈµÅ ¸®ÅÏ
+        // 
+        /*//°Ç¼³ÁßÀÏ¶© ¼±ÅÃ ¾ÈµÅ ¸®ÅÏ
         if (BuildManager.Instance.gameObject == null)
         {
             Debug.Log("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
             bm.gameObject.SetActive(true);
             return;
         }
-        if (BuildManager.Instance.isBuilding) return;
+        if (BuildManager.Instance.isBuilding) return;*/
 
         if (Input.GetMouseButtonDown(0))
         {
