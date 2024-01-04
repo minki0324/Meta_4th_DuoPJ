@@ -10,9 +10,10 @@ public class Base_Data : ScriptableObject
     public int BaseID;
     public int Level;
     public string BuildArea;
+    public int BuildAreaIndex;
 
     [Header("레벨 정보")]
     public int Cost;
-    public int Health;
+    public float Health;
 
 }

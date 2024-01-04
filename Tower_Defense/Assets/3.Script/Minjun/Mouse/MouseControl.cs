@@ -64,7 +64,7 @@ public class MouseControl : MonoBehaviour
         isCanDouble = false;
     }
 
-    private void GetTowerInfo()
+    public void GetTowerInfo()
     {
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -118,7 +118,7 @@ public class MouseControl : MonoBehaviour
         infoUI.SetInfoPanel();
 
     }
-    private void GetBuilderInfo()
+    public void GetBuilderInfo()
     {
 
 
@@ -130,7 +130,8 @@ public class MouseControl : MonoBehaviour
                 builder = hit.transform.root.GetComponent<BuilderController>();
             
             if (builder == null) return;
-           //마커 띄우기
+            //마커 띄우기 --완료
+            rts.DeSelectAll();
             builder.isSelectBuilder = true;
 
         }
@@ -149,7 +150,7 @@ public class MouseControl : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         rts.DeSelectAll();
     }
-    private bool IsPointerOverUI()
+    public bool IsPointerOverUI()
     {
         // UI에 마우스 포인터가 위치하는지 여부를 확인
         return EventSystem.current.IsPointerOverGameObject();

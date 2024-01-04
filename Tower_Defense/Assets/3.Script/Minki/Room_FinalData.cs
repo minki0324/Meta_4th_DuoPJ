@@ -27,7 +27,7 @@ public class Room_FinalData : MonoBehaviour
     public float ATK_Speed;
     public float ATK_Range;
     public int Reload;
-    public int Health;
+    public float Health;
     public string BuildArea;
 
     public int[] Prefab_1_index;
@@ -59,7 +59,8 @@ public class Room_FinalData : MonoBehaviour
         Health = base_script.base_[base_script.current_index].Health;
         BuildArea = base_script.base_[base_script.current_index].BuildArea;
     }
-
+    //각타워의 코스트 정리해서
+    //게임매니저 cost 배열로 순서대로 0 1 2 넣어주셈
     public void Print_Data()
     {
         data_1.text = $"{Cost}\n{Damage}\n{ATK_Range}\n{ATK_Speed}\n{Health}";
@@ -74,6 +75,7 @@ public class Room_FinalData : MonoBehaviour
             Slot_1 = true;
             Empty_Btn[0].SetActive(false);
             Ready_Btn[0].SetActive(true);
+            GameManager.instance.Cost[0] = Cost;
         }
         else if(index.tower_index == 1)
         {
@@ -81,6 +83,7 @@ public class Room_FinalData : MonoBehaviour
             Slot_2 = true;
             Empty_Btn[1].SetActive(false);
             Ready_Btn[1].SetActive(true);
+            GameManager.instance.Cost[1] = Cost;
         }
         else
         {
@@ -88,6 +91,7 @@ public class Room_FinalData : MonoBehaviour
             Slot_3 = true;
             Empty_Btn[2].SetActive(false);
             Ready_Btn[2].SetActive(true);
+            GameManager.instance.Cost[2] = Cost;
         }
     }
 

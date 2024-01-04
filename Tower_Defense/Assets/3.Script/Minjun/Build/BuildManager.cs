@@ -4,23 +4,28 @@ using UnityEngine;
 using Mirror;
 using System;
 using Pathfinding;
+using Pathfinding.Util;
 
 public class BuildManager : NetworkBehaviour
 {
     public static BuildManager Instance;
-
+    public BuilderController builder;
     public GameObject pointPrefab; // 가상의 점을 나타낼 프리팹
     public bool isCanBuild ;  // BuildArea에서 한개라도 적색으로 변할 시 false 반환함.
     public bool isBuilding;
-    public bool isNoCompo;
     private int[] SelectTowerIndexArray;
-    public GameObject towerFrame;
     private Transform TowerBaseFrame;
     private Transform TowerMountFrame;
     private Transform TowerHeadFrame;
+    public GameObject towerFrame;
     private GameObject currentTower;
     private GameObject currentArea;
     [SerializeField] private BuildAreaPrents[] area; //타워마다 22 32 33 등 크기가 다른 Area 할당해줘야함
+
+    [SerializeField] private Transform SeekerStart;
+    [SerializeField] private Transform SeekerEnd;
+    private Transform ServerSeekerStart;
+    private Transform ServerSeekerEnd;
 
     #region SyncVar
     public SyncList<Tower> AllTower = new SyncList<Tower>();
@@ -47,9 +52,16 @@ public class BuildManager : NetworkBehaviour
     }
     private void Start()
     {
-        
+        Client_SeekerSet();
     }
-
+    [Client]
+    private void Client_SeekerSet()
+    {
+        Debug.Log("서버아닌애 설정함");
+        SeekerStart = SeekerSet(SeekerStart);
+        SeekerEnd = SeekerSet(SeekerEnd);
+    }
+   
 
     private void Update()
     {
@@ -75,7 +87,32 @@ public class BuildManager : NetworkBehaviour
         }
 
     }
+    private Transform SeekerSet(Transform seeker)
+    {
+       
+        for (int i = 0; i < seeker.childCount; i++)
+        {
+            if (GameManager.instance.CompareEnumWithTag(seeker.GetChild(i).tag))
+            {
+                return seeker.GetChild(i);
+            }
 
+        }
+        return null;
+    }
+    private Transform SeekerSet(Transform seeker ,string clitag)
+    {
+
+        for (int i = 0; i < seeker.childCount; i++)
+        {
+            if (seeker.GetChild(i).tag == clitag)
+            {
+                return seeker.GetChild(i);
+            }
+
+        }
+        return null;
+    }
     private void BuildDecision()
     {
         currentTower.transform.position = currentArea.transform.position;
@@ -84,7 +121,9 @@ public class BuildManager : NetworkBehaviour
             Vector3 targetPos = currentTower.transform.position;
             //본인의 팀인덱스 줘야함
             int TeamIndex = ((int)GameManager.instance.Player_Num);
-            ClientBuildOrder(targetPos , SelectTowerIndexArray , TeamIndex);
+            builder.isGoBuild = true;
+            builder.BuildOrder(targetPos, SelectTowerIndexArray, TeamIndex);
+            //ClientBuildOrder(targetPos , SelectTowerIndexArray , TeamIndex);
 
             Destroy(currentTower);
             currentArea.SetActive(false);
@@ -121,19 +160,16 @@ public class BuildManager : NetworkBehaviour
         }
     }
 
-    private void BuildSetting(int index)
+    public void BuildSetting(int index)
     {
         //내가 선택한 타워인덱스 배열 가져오기
-        SelectTowerIndexArray = GameManager.instance.towerIndex[index];
-        AreaActiveTrue(index);
+        SelectTowerIndexArray = GameManager.instance.towerArrayIndex[index];
         GameObject tower = Instantiate(towerFrame, area[index].transform.position, Quaternion.identity);
         //몇번킬지 설정해야함
-        isNoCompo = true;
-        TowerAssembly(tower , SelectTowerIndexArray);
-        isNoCompo = false; ;
+        TowerAssembly(tower , SelectTowerIndexArray);             //타워조립
+        AreaActiveTrue(currentArea);
         HologramTower(tower);
         currentTower = tower;
-        currentArea = area[index].gameObject;
         //베이스 콜라이더 끄기
         TowerBaseFrame.GetChild(SelectTowerIndexArray[2]).GetComponent<BoxCollider>().enabled = false;
         isBuilding = true;
@@ -145,7 +181,7 @@ public class BuildManager : NetworkBehaviour
 
     }
 
-    private void TowerAssembly(GameObject tower , int[] SelectTowerIndex)
+    private void TowerAssembly(GameObject tower, int[] SelectTowerIndex)
     {
         TowerBaseFrame = tower.transform.GetChild(0);     //베이스 프레임할당
         TowerMountFrame = tower.transform.GetChild(1);    //마운트 프레임할당
@@ -157,6 +193,9 @@ public class BuildManager : NetworkBehaviour
         TowerHeadFrame.GetChild(SelectTowerIndex[0]).gameObject.SetActive(true); //해드프레임에서 TowerNumber 타워의 해드 활성화
         tower.GetComponent<Tower>().head = TowerHeadFrame.GetChild(SelectTowerIndex[0]).GetComponent<Tower_Attack>();
         tower.GetComponent<Tower>().towerbase = TowerBaseFrame.GetChild(SelectTowerIndex[2]).gameObject;
+        int towerAreaIndex = tower.GetComponent<Tower>().towerbase.GetComponent<BaseData>().baseData.BuildAreaIndex;
+        currentArea = area[towerAreaIndex].gameObject;
+
 
 
 
@@ -171,7 +210,7 @@ public class BuildManager : NetworkBehaviour
 
 
     }
-    private void AreaActiveTrue(int index)
+    private void AreaActiveTrue(GameObject currentArea)
     {
         //기존에 다른 Area가 켜져있다면 꺼준다.
 
@@ -183,32 +222,71 @@ public class BuildManager : NetworkBehaviour
             }
         }
 
-        area[index].gameObject.SetActive(true);
+        currentArea.SetActive(true);
     }
+    private bool CheckIfPathClear(Transform Start , Transform End)
+    {
 
+        // 시작 위치와 끝 위치를 노드로 변환
+        GraphNode startNode = AstarPath.active.GetNearest(Start.position).node;
+        GraphNode endNode = AstarPath.active.GetNearest(End.position).node;
+
+        // AstarPathUtilities를 사용하여 길이 존재하는지 확인
+        bool pathExists = PathUtilities.IsPathPossible(startNode, endNode);
+
+        return pathExists;
+    }
 
     #region Client
     [Client]
-    private void ClientBuildOrder(Vector3 targetPos, int[] towerindex , int teamIndex)
+    public void ClientBuildOrder(Vector3 targetPos, int[] towerindex , int teamIndex)
     {
-        CMDBuildOrder(targetPos, towerindex , teamIndex);
+        CMDBuildOrder(targetPos, towerindex , teamIndex ,SeekerStart.tag , SeekerEnd.tag);
 
+    }
+    [Client]
+    public void Client_Destroy(GameObject newTower)
+    {
+        Debug.Log("클라디스트로이 : " +newTower);
+        CMD_DestroyTower(newTower);
     }
     #endregion
     #region Command
     [Command(requiresAuthority = false)]
-    private void CMDBuildOrder(Vector3 targetPos, int[] towerindex , int teamIndex)
+    private void CMDBuildOrder( Vector3 targetPos, int[] towerindex, int teamIndex, String Start, String End)
     {
+        ServerSeekerStart = SeekerSet(SeekerStart , Start);
+        ServerSeekerEnd = SeekerSet(SeekerEnd, End);
+
         GameObject newTower = Instantiate(towerFrame, targetPos, Quaternion.identity);
         TowerAssembly(newTower, towerindex);
+        //여기서 길찾기검사후 길막으면 파괴하기
         NetworkServer.Spawn(newTower/* , senderConnection*/);
-        newTower.tag =$"{teamIndex}P";
+
+        Tower towerScript = newTower.GetComponent<Tower>();
+        newTower.tag = $"{teamIndex}P";
         RPC_TowerAssembly(newTower, towerindex);
         Rpc_SpawnMonster(newTower, teamIndex);
-        AllTower.Add(newTower.GetComponent<Tower>());
+        AllTower.Add(towerScript);
+        towerScript.isActive = true;
         AstarPath.active.Scan();
+        Debug.Log(CheckIfPathClear(ServerSeekerStart, ServerSeekerEnd));
+        if (!CheckIfPathClear(ServerSeekerStart, ServerSeekerEnd))
+        {
+            RPC_DestroyTower(newTower);
+            RTSControlSystem.Instance.Destroytower(newTower.GetComponent<Tower>());
+            Destroy(newTower);
+            Debug.Log("길이막혀서 타워가 파괴되었습니다!");
+            return;
+        }
+    }
 
-
+   [Server]
+    public void CMD_DestroyTower(GameObject newTower)
+    {
+        RPC_DestroyTower(newTower);
+        RTSControlSystem.Instance.Destroytower(newTower.GetComponent<Tower>());
+        Destroy(newTower);
 
     }
 
@@ -227,6 +305,16 @@ public class BuildManager : NetworkBehaviour
             // 태그 할당
             tower.tag = $"{TeamIndex}P";
         }
+    }
+    [ClientRpc]
+    private void RPC_DestroyTower(GameObject newTower)
+    {
+        if (RTSControlSystem.Instance.selectTowers.Contains(newTower.GetComponent<Tower>()))
+        {
+            RTSControlSystem.Instance.selectTowers.Remove(newTower.GetComponent<Tower>());
+            //UI 세팅 다시해줘야함
+        }
+        Destroy(newTower);
     }
     #endregion
 }
