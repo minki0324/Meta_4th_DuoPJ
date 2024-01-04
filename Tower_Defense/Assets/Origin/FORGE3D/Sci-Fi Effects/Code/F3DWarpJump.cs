@@ -18,11 +18,11 @@ namespace FORGE3D
         // Use this for initialization
         private void Start()
         {
-            if (SendOnSpawned)
+            /*if (SendOnSpawned)
                 BroadcastMessage("OnSpawned", SendMessageOptions.DontRequireReceiver);
 
             if (DebugLoop)
-                F3DTime.time.AddTimer(4, Reset);
+                F3DTime.time.AddTimer(4, Reset);*/
         }
 
         private void Reset()
@@ -34,6 +34,15 @@ namespace FORGE3D
             {
                 p.Stop(true);
                 p.Play(true);
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("MainCamera"))  // "MainCamera"는 카메라 태그로 가정
+            {
+                // 여기서 왜곡 점프를 시작하는 코드 추가
+                OnSpawned();
             }
         }
 
