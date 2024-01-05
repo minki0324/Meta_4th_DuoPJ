@@ -15,8 +15,8 @@ public class Intro_CameraMove : MonoBehaviour
     void Start()
     {
         // 초기 위치 및 회전 설정
-        initialPosition = new Vector3(960f, 600f, -900f);
-        initialRotation = Quaternion.Euler(Vector3.zero);
+        initialPosition = new Vector3(170f, 1180f, -4510f);
+        initialRotation = Quaternion.Euler(new Vector3(-30f, 130f, 0f));
 
         transform.position = initialPosition;
         transform.rotation = initialRotation;
@@ -24,12 +24,12 @@ public class Intro_CameraMove : MonoBehaviour
 
     public void Option_Panel()
     {
-        StartCoroutine(MoveAndRotateCamera(new Vector3(1800f, 550f, -1300f), new Vector3(0f, 90f, 0f), 1f, true));
+        StartCoroutine(MoveAndRotateCamera(new Vector3(-650f, 1180f, -5500f), new Vector3(0f, 220f, -30f), 1f, true));
     }
 
     public void Return_Menu()
     {
-        StartCoroutine(MoveAndRotateCamera(initialPosition, Vector3.zero, 1f, false));
+        StartCoroutine(MoveAndRotateCamera(initialPosition, new Vector3(-30f, 130f, 0f), 1f, false));
     }
 
     private IEnumerator MoveAndRotateCamera(Vector3 targetPosition, Vector3 targetRotation, float duration, bool active)
