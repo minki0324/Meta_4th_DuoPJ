@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MouseCameraCon : MonoBehaviour
 {
@@ -10,9 +11,16 @@ public class MouseCameraCon : MonoBehaviour
     [SerializeField] private BoxCollider CameraZoneCol;
     private Bounds CameraZone;
     private bool isScreenLock;
+    private Vector3 previousCameraPosition; // 이전 프레임의 카메라 위치
+    public Image Render_img;
+    public RectTransform miniMapRect; // 미니맵의 RectTransform
+
     private void Start()
     {
+        // 초기 카메라 위치 저장
+        previousCameraPosition = Camera.main.transform.position;
         CameraZone = CameraZoneCol.bounds;
+        UpdateRenderImagePosition(Camera.main.transform.position);
     }
 
     private void Update()
@@ -26,6 +34,15 @@ public class MouseCameraCon : MonoBehaviour
         {
             KeybordMove();
             MoveCameraWithMouse();
+        }
+
+        // 카메라가 움직였는지 확인
+        if (Camera.main.transform.position != previousCameraPosition)
+        {
+            // Render_img 위치 업데이트
+            UpdateRenderImagePosition(Camera.main.transform.position);
+            // 현재 카메라 위치 저장
+            previousCameraPosition = Camera.main.transform.position;
         }
     }
 
@@ -87,5 +104,16 @@ public class MouseCameraCon : MonoBehaviour
 
         // 카메라 위치를 설정
         Camera.main.transform.position = new Vector3(clampedX, 30, clampedZ);
+    }
+
+    private void UpdateRenderImagePosition(Vector3 worldPosition)
+    {
+        // 미니맵 상의 새로운 위치 계산
+        Vector2 newPosition = new Vector2((worldPosition.x - 90) / 300 * miniMapRect.sizeDelta.x,
+            (worldPosition.z - 35) / 300 * miniMapRect.sizeDelta.y);
+
+        // Render_img의 RectTransform을 업데이트
+        Render_img.rectTransform.anchoredPosition = newPosition;
+        // 이미지의 위치 업데이트
     }
 }

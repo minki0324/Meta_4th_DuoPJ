@@ -8,6 +8,7 @@ public class Minimap_Click : MonoBehaviour, IPointerClickHandler
 {
     public RectTransform miniMapRect; // 미니맵의 RectTransform
     public Camera miniMapCamera; // 미니맵 카메라
+    public Image Render_img;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -47,5 +48,20 @@ public class Minimap_Click : MonoBehaviour, IPointerClickHandler
         float clampedZ = Mathf.Clamp(worldPosition.z, minZ, maxZ);
 
         Camera.main.transform.position = new Vector3(clampedX, Camera.main.transform.position.y, clampedZ);
+
+        // Render_img 위치 업데이트
+        UpdateRenderImagePosition(new Vector2(clampedX, clampedZ));
+    }
+
+    private void UpdateRenderImagePosition(Vector2 worldPosition)
+    {
+        // 미니맵 상의 새로운 위치 계산
+        Vector2 newPosition = new Vector2(
+            (worldPosition.x - 90) / 300 * miniMapRect.sizeDelta.x,
+            (worldPosition.y - 35) / 300 * miniMapRect.sizeDelta.y
+        );
+
+        // Render_img의 RectTransform을 업데이트
+        Render_img.rectTransform.anchoredPosition = newPosition;
     }
 }
