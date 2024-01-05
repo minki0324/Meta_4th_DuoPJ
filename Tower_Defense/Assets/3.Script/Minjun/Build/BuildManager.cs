@@ -70,22 +70,23 @@ public class BuildManager : NetworkBehaviour
         // 마우스 UI 없애기
         //마우스 왼쪽키 눌렀을때 건설 메소드 호출(위치,타워종류)
         //마우스 오른쪽키 눌렀을때 Area 비활성화
-       
-
-        if (!isBuilding)
+        if (isClient)
         {
-            //빌드키 눌렀을때 (추후 버튼클릭으로대체)
-            //키에맞는 Area ,Tower 세팅하고 Preview 보여주는작업
-            BuildReady();
-        }
-        else
-        {
-            
-            //Preview 상태에서 왼쪽 마우스 누르면 건설 ( 콜라이더 켜주기,그위치에 건설)
-            //오른쪽키 눌렀을때 Destroy하면서 취소.
-            BuildDecision();
-        }
 
+            if (!isBuilding)
+            {
+                //빌드키 눌렀을때 (추후 버튼클릭으로대체)
+                //키에맞는 Area ,Tower 세팅하고 Preview 보여주는작업
+                BuildReady();
+            }
+            else
+            {
+
+                //Preview 상태에서 왼쪽 마우스 누르면 건설 ( 콜라이더 켜주기,그위치에 건설)
+                //오른쪽키 눌렀을때 Destroy하면서 취소.
+                BuildDecision();
+            }
+        }
     }
     private Transform SeekerSet(Transform seeker)
     {
@@ -143,7 +144,7 @@ public class BuildManager : NetworkBehaviour
 
     private void BuildReady()
     {
-
+        if (!builder.isSelectBuilder) return;
 
         if (Input.GetKeyDown(KeyCode.Q))
         {

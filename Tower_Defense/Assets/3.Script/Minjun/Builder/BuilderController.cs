@@ -49,6 +49,10 @@ public class BuilderController : NetworkBehaviour
         if (isSelectBuilder)
         {
             TargerSet();
+            if (InfoConecttoUI.Instance.type != InfoConecttoUI.Type.Builder)
+            {
+                InfoConecttoUI.Instance.type = InfoConecttoUI.Type.Builder;
+            }
         }
 
         if (isMoving)

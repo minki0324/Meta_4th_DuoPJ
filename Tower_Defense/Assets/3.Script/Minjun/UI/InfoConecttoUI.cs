@@ -4,10 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class InfoConecttoUI : MonoBehaviour
 {
     public static InfoConecttoUI Instance;
 
+
+    public enum Type
+    {
+        Empty = 0,
+        Builder, //BuilderController에서 isSelectBuilder 일때 바꿔준다? || 1번눌렀을때 바꿔준다.
+        Spawner, // 2번 눌렀을때 Spawner로 바꿔준다 //기존선택되있던거 초기화.
+        Upgrade   // 3번 눌렀을때 Upgrade바꿔준다
+    }
     [SerializeField] public RTSControlSystem rts;
     [SerializeField] private GameObject panel; // 단일유닛 info 패널 /해당 유닛의 정보들 모두 입력
     [SerializeField] private GameObject gridPanel; //다중 유닛 sprite 패널 / 해당유닛의 sprite ,HP 가져와서 HP 비례로 녹색 -> 빨간색 으로 변하게함 
@@ -16,12 +25,15 @@ public class InfoConecttoUI : MonoBehaviour
     [SerializeField] private Text Atk_Range_AS;
     [SerializeField] private Image unitImage;
     [SerializeField] private GameObject[] unitInfoButton; // 인덱스에 맞는 유닛의 단일유닛info패널로 바꿈.
-
+    [SerializeField] private GameObject[] orderUI;
+    public Type type;
     private bool isSingle;
     private bool isMultiple;
+
+
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(this);
@@ -30,13 +42,25 @@ public class InfoConecttoUI : MonoBehaviour
         {
             Destroy(this);
         }
+        type = Type.Empty;
     }
     private void Update()
     {
 
         //원래같으면 Hook 사용으로 갱신될때마다 부르는게 맞으나 이게편함 ㅇㅇ
         UpdateUI();
-
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            type = Type.Builder;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            type = Type.Spawner;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            type = Type.Upgrade;
+        }
 
     }
 
@@ -45,7 +69,7 @@ public class InfoConecttoUI : MonoBehaviour
 
         if (rts.selectTowers.Count == 0)
         {
-            if(isSingle || isMultiple)
+            if (isSingle || isMultiple)
             {
                 isSingle = false;
                 isMultiple = false;
@@ -60,6 +84,37 @@ public class InfoConecttoUI : MonoBehaviour
         else if (isMultiple)
         {
             MultiInfoSetting(); //다중유닛 정보창 띄우기
+        }
+
+        switch (type)
+        {
+            case Type.Empty:
+                SettingOrderUI(0);
+                break;
+            case Type.Builder:
+                SettingOrderUI(1);
+                break;
+            case Type.Spawner:
+                SettingOrderUI(2);
+                break;
+            case Type.Upgrade:
+                SettingOrderUI(3);
+                break;
+        }
+    }
+
+    private void SettingOrderUI(int index)
+    {
+        for (int i = 0; i < orderUI.Length; i++)
+        {
+            if (i == index)
+            {
+                orderUI[i].SetActive(true);
+            }
+            else
+            {
+                orderUI[i].SetActive(false);
+            }
         }
     }
 
@@ -98,7 +153,7 @@ public class InfoConecttoUI : MonoBehaviour
     }
     public void SingleInfoSetting()
     {
-        
+
         ButtonActiveReset();
         panel.SetActive(true);
         unitImage.gameObject.GetComponent<unitSpriteController>().myObject = rts.selectTowers[0];
@@ -131,5 +186,5 @@ public class InfoConecttoUI : MonoBehaviour
         SingleInfoSetting();
 
     }
- 
+
 }
