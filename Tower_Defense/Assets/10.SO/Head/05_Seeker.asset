@@ -20,6 +20,7 @@ MonoBehaviour:
   Level: 0
   Position: {x: 0, y: 0, z: 0}
   DelayTime: 0.12
+  towerImage: {fileID: 21300000, guid: cc7e2a99e2da34947af6b8ca9a30b9ed, type: 3}
   Cost: 20
   Rot_Speed: 60
   Damage: 30

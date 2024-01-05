@@ -34,7 +34,6 @@ public class MouseControl : MonoBehaviour
 
     private void Update()
     {
-        
         //건설중일땐 선택 안돼 리턴
         if (BuildManager.Instance.gameObject == null)
         {
@@ -64,12 +63,17 @@ public class MouseControl : MonoBehaviour
         isCanDouble = false;
     }
 
-    private void GetTowerInfo()
+    public void GetTowerInfo()
     {
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
         //여기조건에 현재 마우스위치가UI 라면? 을 넣을수 있을까
+        if(builder != null)
+        {
+            if (builder.isSelectBuilder)
+            {
+                builder.isSelectBuilder = false;
+            }
+        }
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, targetLayer))
         {
@@ -79,10 +83,10 @@ public class MouseControl : MonoBehaviour
             // Tower가 아니면 리턴 (빌더꺼는 따로있음)
             if (!GameManager.instance.CompareEnumWithTag(hit.collider.gameObject.transform.root.tag)) return;
             if (hit.transform.root.GetComponent<Tower>() == null) return;
-          
+
             Tower hitTower = hit.transform.root.GetComponent<Tower>();
 
-         //더블클릭시 같은팀의 같은타워를 모두 선택하는메소드
+            //더블클릭시 같은팀의 같은타워를 모두 선택하는메소드
             if (isCanDouble)
             {
 
@@ -92,7 +96,8 @@ public class MouseControl : MonoBehaviour
             }
 
             //Shift = 다중선택기능 안누르면 선택됬던애들 모두초기화하고 새로운애 선택
-            if (Input.GetKey(KeyCode.LeftShift)){
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
                 rts.ShiftClickSelectUnit(hitTower);
             }
             else // 단일선택시 나오는 메소드
@@ -106,19 +111,20 @@ public class MouseControl : MonoBehaviour
         else
         {
             //땅클릭시 Shift 안누르면 초기화
-            if (!Input.GetKey(KeyCode.LeftShift))   
+            if (!Input.GetKey(KeyCode.LeftShift))
             {
                 //todo 임시야..
                 //StartCoroutine(test()); 
                 rts.DeSelectAll();
+
             }
         }
 
-
+        InfoConecttoUI.Instance.type = InfoConecttoUI.Type.Empty;
         infoUI.SetInfoPanel();
 
     }
-    private void GetBuilderInfo()
+    public void GetBuilderInfo()
     {
 
 
@@ -127,10 +133,11 @@ public class MouseControl : MonoBehaviour
         {
             if (!GameManager.instance.CompareEnumWithTag(hit.collider.gameObject.tag)) return;
             //todo 나중에 적팀꺼 클릭했을때 단일UI 라도 보이게 하기
-                builder = hit.transform.root.GetComponent<BuilderController>();
+                //builder = hit.transform.root.GetComponent<BuilderController>();
             
             if (builder == null) return;
-           //마커 띄우기
+            //마커 띄우기 --완료
+            rts.DeSelectAll();
             builder.isSelectBuilder = true;
 
         }
@@ -149,7 +156,7 @@ public class MouseControl : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         rts.DeSelectAll();
     }
-    private bool IsPointerOverUI()
+    public bool IsPointerOverUI()
     {
         // UI에 마우스 포인터가 위치하는지 여부를 확인
         return EventSystem.current.IsPointerOverGameObject();

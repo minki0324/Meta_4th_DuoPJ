@@ -109,8 +109,10 @@ public class Monster_Control : NetworkBehaviour
         if (isServer)
         {
             isDie = true;
+            if(state.type !=MonsterState.monType.Attack && state.type != MonsterState.monType.Fly) { 
             Astar.target = null;
             aiPath.isStopped = true;
+            }
             netAni.SetTrigger("Die");
         }
 

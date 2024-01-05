@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12948766, g: 0.087180324, b: 0.057536997, a: 1}
+  m_IndirectSpecularColor: {r: 0.12947175, g: 0.08724087, b: 0.057682842, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1489,6 +1489,7 @@ Transform:
   m_Children:
   - {fileID: 6908543891734074928}
   - {fileID: 962247204}
+  - {fileID: 4484110877411912334}
   m_Father: {fileID: 1684912404}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 10, y: 180, z: 0}
@@ -21665,7 +21666,6 @@ Transform:
   m_LocalPosition: {x: -20, y: 8, z: 32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4484110877411912334}
   - {fileID: 883786297}
   m_Father: {fileID: 1684912404}
   m_RootOrder: 2
@@ -30633,7 +30633,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 618235592}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 5.9, y: 0, z: 0}
 --- !u!108 &883786298
 Light:
@@ -81096,7 +81096,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642199066757484872}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26adcda8d8aabe440ae071947b800236, type: 3}
   m_Name: 
@@ -81108,6 +81108,7 @@ MonoBehaviour:
   AttackRange: {fileID: 0}
   holoColor: {fileID: 0}
   head: {fileID: 0}
+  towerbase: {fileID: 0}
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -109257,14 +109258,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4484110877411912329}
   m_LocalRotation: {x: -0, y: -0.9961947, z: 0.08715578, w: 0}
-  m_LocalPosition: {x: 0, y: -2.3217177, z: 32.903038}
+  m_LocalPosition: {x: 10, y: -2.3217177, z: 32.903038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4484110876825427510}
   - {fileID: 4484110877666333056}
   - {fileID: 1839351884512485332}
-  m_Father: {fileID: 618235592}
-  m_RootOrder: 0
+  m_Father: {fileID: 28181750}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4484110877411912335
 MonoBehaviour:
@@ -109273,7 +109274,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4484110877411912329}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26adcda8d8aabe440ae071947b800236, type: 3}
   m_Name: 
@@ -109285,6 +109286,7 @@ MonoBehaviour:
   AttackRange: {fileID: 0}
   holoColor: {fileID: 0}
   head: {fileID: 0}
+  towerbase: {fileID: 0}
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -112775,7 +112777,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6908543891734074935}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26adcda8d8aabe440ae071947b800236, type: 3}
   m_Name: 
@@ -112787,6 +112789,7 @@ MonoBehaviour:
   AttackRange: {fileID: 0}
   holoColor: {fileID: 0}
   head: {fileID: 0}
+  towerbase: {fileID: 0}
   maxHP: 0
   currentHP: 0
   damage: 0

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ScanTower : MonoBehaviour
 {
-
     [SerializeField] private Transform mount;
 
     private void Start()

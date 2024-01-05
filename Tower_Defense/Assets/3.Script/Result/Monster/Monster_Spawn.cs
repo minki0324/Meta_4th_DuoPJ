@@ -51,7 +51,9 @@ public class Monster_Spawn : NetworkBehaviour
         AllMonster.Add(monster_con);
         Transform finpoint = Get_FinPoint(player_num);
         //플라이는 에이스타안씀
-        if (monster_con.state.type != MonsterState.monType.Fly)
+        if (monster_con.state.type != MonsterState.monType.Fly &&
+            monster_con.state.type != MonsterState.monType.Attack
+            )
         {
             if (monster_con.aiPath == null)
             {
