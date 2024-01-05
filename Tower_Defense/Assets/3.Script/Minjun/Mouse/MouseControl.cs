@@ -70,6 +70,10 @@ public class MouseControl : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         //여기조건에 현재 마우스위치가UI 라면? 을 넣을수 있을까
+        if (builder.isSelectBuilder)
+        {
+            builder.isSelectBuilder = false;
+        }
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, targetLayer))
         {
@@ -79,10 +83,10 @@ public class MouseControl : MonoBehaviour
             // Tower가 아니면 리턴 (빌더꺼는 따로있음)
             if (!GameManager.instance.CompareEnumWithTag(hit.collider.gameObject.transform.root.tag)) return;
             if (hit.transform.root.GetComponent<Tower>() == null) return;
-          
+
             Tower hitTower = hit.transform.root.GetComponent<Tower>();
 
-         //더블클릭시 같은팀의 같은타워를 모두 선택하는메소드
+            //더블클릭시 같은팀의 같은타워를 모두 선택하는메소드
             if (isCanDouble)
             {
 
@@ -92,7 +96,8 @@ public class MouseControl : MonoBehaviour
             }
 
             //Shift = 다중선택기능 안누르면 선택됬던애들 모두초기화하고 새로운애 선택
-            if (Input.GetKey(KeyCode.LeftShift)){
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
                 rts.ShiftClickSelectUnit(hitTower);
             }
             else // 단일선택시 나오는 메소드
@@ -106,15 +111,16 @@ public class MouseControl : MonoBehaviour
         else
         {
             //땅클릭시 Shift 안누르면 초기화
-            if (!Input.GetKey(KeyCode.LeftShift))   
+            if (!Input.GetKey(KeyCode.LeftShift))
             {
                 //todo 임시야..
                 //StartCoroutine(test()); 
                 rts.DeSelectAll();
+
             }
         }
 
-
+        InfoConecttoUI.Instance.type = InfoConecttoUI.Type.Empty;
         infoUI.SetInfoPanel();
 
     }
