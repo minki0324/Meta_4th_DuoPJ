@@ -26,9 +26,17 @@ public class InfoConecttoUI : MonoBehaviour
     [SerializeField] private Image unitImage;
     [SerializeField] private GameObject[] unitInfoButton; // 인덱스에 맞는 유닛의 단일유닛info패널로 바꿈.
     [SerializeField] private GameObject[] orderUI;
+    [SerializeField] private Monster_Spawn spawner;
     public Type type;
     private bool isSingle;
     private bool isMultiple;
+    Dictionary<KeyCode, int> keyMappings = new Dictionary<KeyCode, int>
+{
+    { KeyCode.Q, 0 },
+    { KeyCode.W, 1 },
+    { KeyCode.E, 2 },
+};
+
 
 
     private void Awake()
@@ -43,24 +51,27 @@ public class InfoConecttoUI : MonoBehaviour
             Destroy(this);
         }
         type = Type.Empty;
+        TryGetComponent(out spawner);
     }
     private void Update()
     {
 
         //원래같으면 Hook 사용으로 갱신될때마다 부르는게 맞으나 이게편함 ㅇㅇ
-        UpdateUI();
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            type = Type.Builder;
+            BuildManager.Instance.builder.isSelectBuilder = true;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            BuildManager.Instance.builder.isSelectBuilder = false;
             type = Type.Spawner;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            BuildManager.Instance.builder.isSelectBuilder = false;
             type = Type.Upgrade;
         }
+        UpdateUI();
 
     }
 
@@ -96,6 +107,30 @@ public class InfoConecttoUI : MonoBehaviour
                 break;
             case Type.Spawner:
                 SettingOrderUI(2);
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    spawner.Onclick(0);
+                }
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    spawner.Onclick(1);
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    spawner.Onclick(2);
+                }
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    spawner.Onclick(3);
+                }
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    spawner.Onclick(4);
+                }
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    spawner.Onclick(5);
+                }
                 break;
             case Type.Upgrade:
                 SettingOrderUI(3);

@@ -77143,6 +77143,18 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 1443289489}
+    - target: {fileID: 256186286393109692, guid: 9e823d2053fff8a44ba4c43d6a2d21c2, type: 3}
+      propertyPath: Tower_4_index.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 256186286393109692, guid: 9e823d2053fff8a44ba4c43d6a2d21c2, type: 3}
+      propertyPath: Tower_4_index.Array.data[1]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 256186286393109692, guid: 9e823d2053fff8a44ba4c43d6a2d21c2, type: 3}
+      propertyPath: Tower_4_index.Array.data[2]
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 256186286393109693, guid: 9e823d2053fff8a44ba4c43d6a2d21c2, type: 3}
       propertyPath: m_Name
       value: Game_Manager

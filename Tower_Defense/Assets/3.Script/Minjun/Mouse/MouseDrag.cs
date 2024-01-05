@@ -37,6 +37,7 @@ public class MouseDrag : MonoBehaviour
         //모든 빌더를 담은 배열을 이용해 아래 포이치문 돌려서 빌더부터 검사후 아무도 없다면 그때 타워부터
         if (dragRect.Contains(maincamera.WorldToScreenPoint(BuildManager.Instance.builder.transform.position))){
             BuildManager.Instance.builder.isSelectBuilder = true;
+            Debug.Log("여기서 트루바꿈");
             rts.DeSelectAll();
             return;
         }

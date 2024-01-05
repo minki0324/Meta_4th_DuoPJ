@@ -2857,8 +2857,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   state: {fileID: 11400000, guid: 421538f2fa30727408fc4f2062cb7497, type: 2}
-  Astar: {fileID: 0}
-  aiPath: {fileID: 0}
+  Astar: {fileID: 1994667405962139253}
+  aiPath: {fileID: -2359009828770443293}
   M_maxHp: 0
   M_currentHP: 0
   M_speed: 0

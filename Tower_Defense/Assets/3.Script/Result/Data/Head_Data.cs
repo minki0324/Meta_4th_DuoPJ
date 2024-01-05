@@ -17,7 +17,8 @@ public class Head_Data : ScriptableObject
         Air,
         Flame,
         PlasmaBeam,
-        LaserImpulse
+        LaserImpulse,
+        Scan
     }
 
     [Header("기본 정보")]

@@ -10,7 +10,7 @@ public class MouseControl : MonoBehaviour
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private LayerMask BuilderLayer;
     [SerializeField] private BuildManager bm;
-    [SerializeField]public InfoConecttoUI infoUI;
+    [SerializeField] public InfoConecttoUI infoUI;
     private BuilderController builder;
     private NetworkIdentity myIdentity;
     private Camera maincamera;
@@ -49,7 +49,7 @@ public class MouseControl : MonoBehaviour
             GetTowerInfo();
             GetBuilderInfo();
         }
-       
+
 
     }
 
@@ -57,7 +57,7 @@ public class MouseControl : MonoBehaviour
     {
 
         isCanDouble = true;
-       
+
         yield return new WaitForSeconds(0.2f);
 
         isCanDouble = false;
@@ -67,13 +67,6 @@ public class MouseControl : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         //여기조건에 현재 마우스위치가UI 라면? 을 넣을수 있을까
-        if(builder != null)
-        {
-            if (builder.isSelectBuilder)
-            {
-                builder.isSelectBuilder = false;
-            }
-        }
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, targetLayer))
         {
@@ -83,6 +76,7 @@ public class MouseControl : MonoBehaviour
             // Tower가 아니면 리턴 (빌더꺼는 따로있음)
             if (!GameManager.instance.CompareEnumWithTag(hit.collider.gameObject.transform.root.tag)) return;
             if (hit.transform.root.GetComponent<Tower>() == null) return;
+            BuildManager.Instance.builder.isSelectBuilder = false;
 
             Tower hitTower = hit.transform.root.GetComponent<Tower>();
 
@@ -110,6 +104,7 @@ public class MouseControl : MonoBehaviour
         }
         else
         {
+           
             //땅클릭시 Shift 안누르면 초기화
             if (!Input.GetKey(KeyCode.LeftShift))
             {
@@ -133,20 +128,17 @@ public class MouseControl : MonoBehaviour
         {
             if (!GameManager.instance.CompareEnumWithTag(hit.collider.gameObject.tag)) return;
             //todo 나중에 적팀꺼 클릭했을때 단일UI 라도 보이게 하기
-                //builder = hit.transform.root.GetComponent<BuilderController>();
-            
+            //builder = hit.transform.root.GetComponent<BuilderController>();
+
             if (builder == null) return;
             //마커 띄우기 --완료
             rts.DeSelectAll();
-            builder.isSelectBuilder = true;
+            BuildManager.Instance.builder.isSelectBuilder = true;
 
         }
         else
         {
-            if (builder != null)
-            {
-                builder.isSelectBuilder = false;
-            }
+              BuildManager.Instance.builder.isSelectBuilder = false;
         }
     }
 
@@ -161,6 +153,7 @@ public class MouseControl : MonoBehaviour
         // UI에 마우스 포인터가 위치하는지 여부를 확인
         return EventSystem.current.IsPointerOverGameObject();
     }
+
 
 }
 

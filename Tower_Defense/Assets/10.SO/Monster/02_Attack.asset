@@ -19,7 +19,7 @@ MonoBehaviour:
   maxHp: 100
   currentHP: 100
   speed: 5
-  damage: 500
+  damage: 5
   cost: 100
   attackSpeed: 2
   isDie: 0
