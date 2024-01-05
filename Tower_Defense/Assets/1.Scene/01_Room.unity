@@ -81116,6 +81116,7 @@ MonoBehaviour:
   atkSpeed: 0
   Speed: 
   level: 0
+  isActive: 0
   unitSprite: {fileID: 0}
 --- !u!4 &642199066757484879
 Transform:
@@ -109294,6 +109295,7 @@ MonoBehaviour:
   atkSpeed: 0
   Speed: 
   level: 0
+  isActive: 0
   unitSprite: {fileID: 0}
 --- !u!4 &4484110877666333056
 Transform:
@@ -112797,6 +112799,7 @@ MonoBehaviour:
   atkSpeed: 0
   Speed: 
   level: 0
+  isActive: 0
   unitSprite: {fileID: 0}
 --- !u!1 &6908543891734074935
 GameObject:
