@@ -34,15 +34,14 @@ public class MouseControl : MonoBehaviour
 
     private void Update()
     {
-        // 
-        /*//건설중일땐 선택 안돼 리턴
+        //건설중일땐 선택 안돼 리턴
         if (BuildManager.Instance.gameObject == null)
         {
             Debug.Log("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
             bm.gameObject.SetActive(true);
             return;
         }
-        if (BuildManager.Instance.isBuilding) return;*/
+        if (BuildManager.Instance.isBuilding) return;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -66,13 +65,14 @@ public class MouseControl : MonoBehaviour
 
     public void GetTowerInfo()
     {
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
         //여기조건에 현재 마우스위치가UI 라면? 을 넣을수 있을까
-        if (builder.isSelectBuilder)
+        if(builder != null)
         {
-            builder.isSelectBuilder = false;
+            if (builder.isSelectBuilder)
+            {
+                builder.isSelectBuilder = false;
+            }
         }
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, targetLayer))
@@ -133,7 +133,7 @@ public class MouseControl : MonoBehaviour
         {
             if (!GameManager.instance.CompareEnumWithTag(hit.collider.gameObject.tag)) return;
             //todo 나중에 적팀꺼 클릭했을때 단일UI 라도 보이게 하기
-                builder = hit.transform.root.GetComponent<BuilderController>();
+                //builder = hit.transform.root.GetComponent<BuilderController>();
             
             if (builder == null) return;
             //마커 띄우기 --완료
