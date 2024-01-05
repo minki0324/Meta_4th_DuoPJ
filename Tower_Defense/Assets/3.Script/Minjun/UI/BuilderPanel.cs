@@ -22,8 +22,10 @@ public class BuilderPanel : MonoBehaviour
         orderButtons[1].GetComponent<Image>().sprite = heads.transform.GetChild(headindex).GetComponent<Tower_Attack>().head_Data.towerImage;
         headindex = GameManager.instance.Tower_3_index[0];
         orderButtons[2].GetComponent<Image>().sprite = heads.transform.GetChild(headindex).GetComponent<Tower_Attack>().head_Data.towerImage;
+        headindex = GameManager.instance.Tower_4_index[0];
+        orderButtons[3].GetComponent<Image>().sprite = heads.transform.GetChild(headindex).GetComponent<Tower_Attack>().head_Data.towerImage;
 
-        for (int i = 3; i < orderButtons.Length; i++)
+        for (int i = 4; i < orderButtons.Length; i++)
         {
             orderButtons[i].GetComponent<Image>().sprite = NoneImage;
         }

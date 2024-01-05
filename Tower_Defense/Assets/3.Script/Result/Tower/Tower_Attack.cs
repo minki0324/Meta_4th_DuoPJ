@@ -50,6 +50,7 @@ public class Tower_Attack : NetworkBehaviour
 
     private void Update()
     {
+        if (head_Data.atk_Type == Head_Data.Atk_Type.Scan) return;
         if (isServer)
         {
             Search_Enemy();
@@ -172,6 +173,7 @@ public class Tower_Attack : NetworkBehaviour
             foreach (Collider coltarget in cols)
             {
                 if (coltarget.gameObject.GetComponent<Monster_Control>().isInvi) continue;
+                if (coltarget.gameObject.GetComponent<Monster_Control>().isDie) continue;
                 float dis = Vector3.SqrMagnitude(transform.position - coltarget.transform.position);
                 if (Near_Dis > dis) 
                 {
@@ -244,7 +246,7 @@ public class Tower_Attack : NetworkBehaviour
         {
             //item.collider.gameObject
             Monster_Control monster = item.gameObject.GetComponent<Monster_Control>();
-            if (monster.isDie || monster.isInvi) continue;
+            if (monster.isDie || monster.isInvi ) continue;
 
             monster.M_currentHP -= H_Damage;
             if (monster.M_currentHP <= 0)

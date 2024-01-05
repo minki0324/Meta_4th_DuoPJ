@@ -25,6 +25,7 @@ public class GameManager : NetworkBehaviour
     public int[] Tower_1_index = new int[3];
     public int[] Tower_2_index = new int[3];
     public int[] Tower_3_index = new int[3];
+    public int[] Tower_4_index = { 8, 4, 5 };
     public int[] Cost;
 
     public Room_Manager manager;
@@ -47,8 +48,8 @@ public class GameManager : NetworkBehaviour
             return;
         }
         manager = FindObjectOfType<Room_Manager>();
-       
-   
+
+
     }
     public void ListSet()
     {
@@ -56,7 +57,13 @@ public class GameManager : NetworkBehaviour
         towerArrayIndex.Add(Tower_1_index);
         towerArrayIndex.Add(Tower_2_index);
         towerArrayIndex.Add(Tower_3_index);
+        towerArrayIndex.Add(Tower_4_index);
         Debug.Log(towerArrayIndex.Count);
+        for (int i = 0; i < Tower_4_index.Length; i++)
+        {
+            Debug.Log(Tower_4_index[i]);
+
+        }
     }
     public int[] GetCost()
     {

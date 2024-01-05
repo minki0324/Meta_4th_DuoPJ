@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &22778377
 RectTransform:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderButtons: []
-  heads: {fileID: 2573727619908923974, guid: 25b94a5852093a3448776f21874fed6d, type: 3}
+  heads: {fileID: 6597720459486051016, guid: 25b94a5852093a3448776f21874fed6d, type: 3}
   ScanTower: {fileID: 0}
   NoneImage: {fileID: 21300000, guid: 424b1d031235b3644b04426b940f57b5, type: 3}
 --- !u!1 &88961847
@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 88961848}
   - component: {fileID: 88961850}
   - component: {fileID: 88961849}
+  - component: {fileID: 370810441}
   m_Layer: 5
   m_Name: Minimap_Panel
   m_TagString: Untagged
@@ -160,6 +161,7 @@ RectTransform:
   m_Children:
   - {fileID: 1758024839}
   - {fileID: 4677256644827629406}
+  - {fileID: 110358210}
   m_Father: {fileID: 241145653395367587}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -206,6 +208,93 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &370810441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88961847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9fe809e3965dd4b80a23de6a29370b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniMapRect: {fileID: 110358210}
+  miniMapCamera: {fileID: 0}
+  Render_img: {fileID: 0}
+--- !u!1 &110358209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 110358210}
+  - component: {fileID: 110358212}
+  - component: {fileID: 110358211}
+  m_Layer: 5
+  m_Name: RawImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &110358210
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110358209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 88961848}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 300, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &110358212
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110358209}
+  m_CullTransparentMesh: 1
+--- !u!114 &110358211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110358209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 8400000, guid: 405f70c927d2238428f02daeacab8179, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &157907661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2395,7 +2484,7 @@ GameObject:
   - component: {fileID: 1758024841}
   - component: {fileID: 1758024840}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6548,7 +6637,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 015f56d904df2f345ae7e77f25561c09, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b13a49499afc9140bc6d4947b67d4ff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6601,7 +6690,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4338246062361103792}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1000025567131473778}
+        m_TargetAssemblyTypeName: Monster_Spawn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1060962508633064911
 GameObject:
   m_ObjectHideFlags: 0
@@ -9723,7 +9824,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8468676340622897415}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1000025567131473778}
+        m_TargetAssemblyTypeName: Monster_Spawn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1852817611988194893
 GameObject:
   m_ObjectHideFlags: 0
@@ -12373,7 +12486,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8b13a49499afc9140bc6d4947b67d4ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 015f56d904df2f345ae7e77f25561c09, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12426,7 +12539,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2526573343810785811}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1000025567131473778}
+        m_TargetAssemblyTypeName: Monster_Spawn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2794983601347261015
 GameObject:
   m_ObjectHideFlags: 0
@@ -14746,7 +14871,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3064945773403617257}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1000025567131473778}
+        m_TargetAssemblyTypeName: Monster_Spawn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3233418913636631346
 GameObject:
   m_ObjectHideFlags: 0
@@ -20144,7 +20281,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3761308563669819836, guid: 68ada55d3f7bc17448e0e23e4e42eff6, type: 3}
         m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
         m_MethodName: BuildSetting
         m_Mode: 3
@@ -22184,7 +22321,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8523398146024007729}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1000025567131473778}
+        m_TargetAssemblyTypeName: Monster_Spawn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5281826714829596127
 GameObject:
   m_ObjectHideFlags: 0
@@ -22500,7 +22649,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3761308563669819836, guid: 68ada55d3f7bc17448e0e23e4e42eff6, type: 3}
         m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
         m_MethodName: BuildSetting
         m_Mode: 3
@@ -26584,11 +26733,11 @@ MonoBehaviour:
   - {fileID: 0}
   pools: {fileID: 0}
   Mon_Prefabs:
-  - {fileID: 5616818532696494380, guid: 9643ef1a132d1e848a19b8dde55e351e, type: 3}
-  - {fileID: 2156367174078436003, guid: 2f2517bbfbd46e94bbf0daab533d0d33, type: 3}
-  - {fileID: 9214614053171815319, guid: 974204383f7364a498cd076b21d7bb23, type: 3}
-  - {fileID: 8588166508417776201, guid: 55351d3645f34494f8746ce0a5529b2d, type: 3}
   - {fileID: 3974143642561148006, guid: cbd36af795bcb0240a3c97ba33d71bdb, type: 3}
+  - {fileID: 8588166508417776201, guid: 55351d3645f34494f8746ce0a5529b2d, type: 3}
+  - {fileID: 2156367174078436003, guid: 2f2517bbfbd46e94bbf0daab533d0d33, type: 3}
+  - {fileID: 5616818532696494380, guid: 9643ef1a132d1e848a19b8dde55e351e, type: 3}
+  - {fileID: 9214614053171815319, guid: 974204383f7364a498cd076b21d7bb23, type: 3}
   - {fileID: 956331631191889180, guid: efa339c240a5a034a80b44fe208859c4, type: 3}
 --- !u!114 &468102003457515453
 MonoBehaviour:
@@ -26651,6 +26800,7 @@ MonoBehaviour:
   - {fileID: 22778376}
   - {fileID: 6852915302675652727}
   - {fileID: 3160165937903099227}
+  spawner: {fileID: 0}
   type: 0
 --- !u!1 &6515335575094663793
 GameObject:
@@ -27510,6 +27660,7 @@ GameObject:
   - component: {fileID: 9181974579000617785}
   - component: {fileID: 5693279029324549402}
   - component: {fileID: 9083516177483430733}
+  - component: {fileID: 4843984366324248055}
   m_Layer: 5
   m_Name: SpawnPanel
   m_TagString: Untagged
@@ -27610,6 +27761,32 @@ MonoBehaviour:
   m_Spacing: {x: 15, y: 15}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &4843984366324248055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6852915302675652727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1724468e0f920f498abd8e71ce40a2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orderButtons:
+  - {fileID: 1477753155667110628}
+  - {fileID: 41328604523826253}
+  - {fileID: 6872379231684945641}
+  - {fileID: 9041142172277625625}
+  - {fileID: 1804662625886318127}
+  - {fileID: 36676191945655876}
+  - {fileID: 736607590519468538}
+  - {fileID: 5728875001641257379}
+  - {fileID: 4611138123957985293}
+  - {fileID: 7900964908712394947}
+  - {fileID: 4506671821435103710}
+  - {fileID: 6378220784448794024}
+  NoneImage: {fileID: 21300000, guid: 424b1d031235b3644b04426b940f57b5, type: 3}
 --- !u!1 &6872379231684945641
 GameObject:
   m_ObjectHideFlags: 0
@@ -27890,7 +28067,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7200830406235067751}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3761308563669819836, guid: 68ada55d3f7bc17448e0e23e4e42eff6, type: 3}
+        m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
+        m_MethodName: BuildSetting
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
 --- !u!1 &6909229062091949535
 GameObject:
   m_ObjectHideFlags: 0
@@ -30438,7 +30627,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6344565280059515139}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1000025567131473778}
+        m_TargetAssemblyTypeName: Monster_Spawn, Assembly-CSharp
+        m_MethodName: Onclick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7595077688437281652
 GameObject:
   m_ObjectHideFlags: 0
@@ -34229,7 +34430,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3761308563669819836, guid: 68ada55d3f7bc17448e0e23e4e42eff6, type: 3}
         m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
         m_MethodName: BuildSetting
         m_Mode: 3

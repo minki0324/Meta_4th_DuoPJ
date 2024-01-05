@@ -14,11 +14,12 @@ public class ScanTower : MonoBehaviour
     {
         mount.Rotate(new Vector3(0, 45, 0) * Time.deltaTime);
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
             Monster_Control mon = other.GetComponent<Monster_Control>();
+            if (mon.isDie) return;
             if (mon.state.type == MonsterState.monType.Invisible)
             {
 

@@ -18,6 +18,7 @@ public class BuildManager : NetworkBehaviour
     private Transform TowerMountFrame;
     private Transform TowerHeadFrame;
     public GameObject towerFrame;
+    public GameObject ScanTower;
     private GameObject currentTower;
     private GameObject currentArea;
     [SerializeField] private BuildAreaPrents[] area; //타워마다 22 32 33 등 크기가 다른 Area 할당해줘야함
@@ -57,7 +58,6 @@ public class BuildManager : NetworkBehaviour
     [Client]
     private void Client_SeekerSet()
     {
-        Debug.Log("서버아닌애 설정함");
         SeekerStart = SeekerSet(SeekerStart);
         SeekerEnd = SeekerSet(SeekerEnd);
     }
@@ -144,8 +144,10 @@ public class BuildManager : NetworkBehaviour
 
     private void BuildReady()
     {
-        if (!builder.isSelectBuilder) return;
-
+        if (builder != null)
+        {
+            if (!builder.isSelectBuilder) return;
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             BuildSetting(0);
@@ -159,13 +161,16 @@ public class BuildManager : NetworkBehaviour
         {
             BuildSetting(2);
         }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            BuildSetting(3);
+        }
     }
-
     public void BuildSetting(int index)
     {
         //내가 선택한 타워인덱스 배열 가져오기
         SelectTowerIndexArray = GameManager.instance.towerArrayIndex[index];
-        GameObject tower = Instantiate(towerFrame, area[index].transform.position, Quaternion.identity);
+        GameObject tower = Instantiate(towerFrame, area[0].transform.position, Quaternion.identity);
         //몇번킬지 설정해야함
         TowerAssembly(tower , SelectTowerIndexArray);             //타워조립
         AreaActiveTrue(currentArea);
@@ -173,6 +178,9 @@ public class BuildManager : NetworkBehaviour
         currentTower = tower;
         //베이스 콜라이더 끄기
         TowerBaseFrame.GetChild(SelectTowerIndexArray[2]).GetComponent<BoxCollider>().enabled = false;
+        Debug.Log(tower);
+        float range =  tower.GetComponent<Tower>().head.head_Data.ATK_Range;
+        tower.GetComponentInChildren<AttackRangeManager>().RangeSet(range);
         isBuilding = true;
 
 
@@ -192,9 +200,11 @@ public class BuildManager : NetworkBehaviour
         TowerBaseFrame.GetChild(SelectTowerIndex[2]).gameObject.SetActive(true);  //베이스프레임에서 TowerNumber 타워의 베이스 활성화
         TowerMountFrame.GetChild(SelectTowerIndex[1]).gameObject.SetActive(true); //마운트프레임에서 TowerNumber 타워의 마운트 활성화
         TowerHeadFrame.GetChild(SelectTowerIndex[0]).gameObject.SetActive(true); //해드프레임에서 TowerNumber 타워의 해드 활성화
-        tower.GetComponent<Tower>().head = TowerHeadFrame.GetChild(SelectTowerIndex[0]).GetComponent<Tower_Attack>();
-        tower.GetComponent<Tower>().towerbase = TowerBaseFrame.GetChild(SelectTowerIndex[2]).gameObject;
-        int towerAreaIndex = tower.GetComponent<Tower>().towerbase.GetComponent<BaseData>().baseData.BuildAreaIndex;
+        Tower newtower = tower.GetComponent<Tower>();
+        newtower.head = TowerHeadFrame.GetChild(SelectTowerIndex[0]).GetComponent<Tower_Attack>();
+        newtower.towerbase = TowerBaseFrame.GetChild(SelectTowerIndex[2]).gameObject;
+        int towerAreaIndex = newtower.towerbase.GetComponent<BaseData>().baseData.BuildAreaIndex;
+        //newtower.AttackRange.GetComponent<AttackRangeManager>().RangeSet();
         currentArea = area[towerAreaIndex].gameObject;
 
 
@@ -222,7 +232,6 @@ public class BuildManager : NetworkBehaviour
                 area[i].gameObject.SetActive(false);
             }
         }
-
         currentArea.SetActive(true);
     }
     private bool CheckIfPathClear(Transform Start , Transform End)

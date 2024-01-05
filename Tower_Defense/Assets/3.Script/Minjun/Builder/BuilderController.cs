@@ -54,6 +54,7 @@ public class BuilderController : NetworkBehaviour
                 InfoConecttoUI.Instance.type = InfoConecttoUI.Type.Builder;
             }
         }
+        
 
         if (isMoving)
         {

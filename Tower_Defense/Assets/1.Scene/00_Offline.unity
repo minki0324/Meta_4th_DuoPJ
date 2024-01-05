@@ -3836,6 +3836,7 @@ MonoBehaviour:
   - {fileID: 5570101636851869295, guid: f26d17866e0cf7544b10cdac144d7f15, type: 3}
   - {fileID: 642199066967557856, guid: 3f16a79998519fe4eaad8fcf78a4971d, type: 3}
   - {fileID: 180358175359967910, guid: a737bcd1d6e897648b6890be06114a43, type: 3}
+  - {fileID: 5455908541158610472, guid: 425aa863a466a684b930ebef5bb6eafe, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -3855,7 +3856,7 @@ MonoBehaviour:
   minPlayers: 2
   roomPlayerPrefab: {fileID: 3945291912152814873, guid: 952f3b5d21ceb5b4aa5bc8b1be050269, type: 3}
   RoomScene: Assets/1.Scene/01_Room.unity
-  GameplayScene: Assets/1.Scene/02_MainGame.unity
+  GameplayScene: Assets/1.Scene/MinJun.unity
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
