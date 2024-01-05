@@ -28,9 +28,9 @@ public class GameManager : NetworkBehaviour
     public int[] Cost;
 
     public Room_Manager manager;
-    /// <summary>
-    /// 룸씬에서 게임씬으로 전달해주는타워데이터
-    /// </summary>
+    public Life_Manager life;
+
+    public bool isDead = false;
     
 
     #region Unity Callback
@@ -72,6 +72,20 @@ public class GameManager : NetworkBehaviour
         CMD_ActiveSet(isActive, monster);
     }
 
+    // 내 닉네임과 스프라이트 인덱스 보내주기
+    // 카메라 초기화 시점에 보내줘야함
+    [Client]
+    public void Send_name_sprite()
+    {
+        if (life == null)
+        {
+            life = FindObjectOfType<Life_Manager>();
+        }
+        if(isClient)
+        {
+            life.CMD_Setting_Name_Sprite((int)Player_Num-1, img_index, Nickname);
+        }
+    }
     #endregion
     #region Command
     [Command(requiresAuthority = true)]
@@ -168,4 +182,6 @@ public class GameManager : NetworkBehaviour
             return false;
         }
     }
+
+   
 }

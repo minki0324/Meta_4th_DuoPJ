@@ -1919,6 +1919,7 @@ Transform:
   - {fileID: 1475727715842856009}
   - {fileID: 9161252345370078577}
   - {fileID: 1727003879703828350}
+  - {fileID: 1457355456638879808}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1997,6 +1998,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   isSelectBuilder: 0
+  tempisSelectBuilder: 0
   isMoving: 0
   isGoBuild: 0
 --- !u!136 &6189400449736649104
@@ -2370,6 +2372,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d16cd869880d98a41ac3c0ee3ebc9b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5983942664565889398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1457355456638879808}
+  - component: {fileID: 2528909976483360812}
+  m_Layer: 11
+  m_Name: Life_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1457355456638879808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983942664565889398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1475727715842856013}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2528909976483360812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983942664565889398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be31c49c4994fa4ab5f3f9311246aca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  Life_Txt: []
+  image_array:
+  - {fileID: 21300000, guid: 382512111ab16014f85b1b95ffb32a29, type: 3}
+  - {fileID: 21300000, guid: 5d070a8b7d24d744bae91f4fed456826, type: 3}
+  - {fileID: 21300000, guid: 7257a4d84c6b1b14d9a56db4f850dc5a, type: 3}
+  - {fileID: 21300000, guid: bf0ab24973fc8f249a270202bff8d42c, type: 3}
+  - {fileID: 21300000, guid: 5c7687179dd18df468b13bbdec32c5e0, type: 3}
+  - {fileID: 21300000, guid: 8953dca968f84894db924fcb54a5b13b, type: 3}
+  - {fileID: 21300000, guid: 2cea1a2d1dc51094f9c912c4034daf02, type: 3}
+  - {fileID: 21300000, guid: c1547ba548c147e43b07b16d93eae578, type: 3}
+  - {fileID: 21300000, guid: 7fca18ae245926b46bb4ca27759511ea, type: 3}
+  - {fileID: 21300000, guid: b749eb6ca3eabd04fadf94c93c0cd8c2, type: 3}
+  player_image: []
+  player_name:
+  - 
+  - 
+  - 
+  - 
+  P1_Life: 30
+  P2_Life: 30
+  P3_Life: 30
+  P4_Life: 30
+  P1_isDead: 0
+  P2_isDead: 0
+  P3_isDead: 0
+  P4_isDead: 0
 --- !u!1 &9161252345369653585
 GameObject:
   m_ObjectHideFlags: 0
