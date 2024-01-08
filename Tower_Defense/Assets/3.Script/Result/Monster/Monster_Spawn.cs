@@ -47,7 +47,7 @@ public class Monster_Spawn : NetworkBehaviour
         //NetworkServer.Spawn(monster);
         // 태그 할당
         monster.tag = $"{player_num}P";
-        Plus_Income(index, (int)GameManager.instance.Player_Num);
+        Plus_Income(index, player_num);
 
         Monster_Control monster_con = monster.GetComponent<Monster_Control>();
         AllMonster.Add(monster_con);
@@ -153,6 +153,7 @@ public class Monster_Spawn : NetworkBehaviour
                 break;
         }
 
+        Debug.Log("플레이어 넘버 : " + player_num);
         switch (player_num)
         {
             case 1:

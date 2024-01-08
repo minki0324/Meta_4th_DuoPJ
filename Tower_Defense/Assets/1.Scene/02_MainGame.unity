@@ -21794,7 +21794,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 370810441, guid: 146ea88087fb3bd49acbe24e5f72bb1f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 146ea88087fb3bd49acbe24e5f72bb1f, type: 3}
 --- !u!114 &1863573608 stripped
 MonoBehaviour:
@@ -21838,6 +21839,7 @@ MonoBehaviour:
   miniMapRect: {fileID: 1366107416}
   miniMapCamera: {fileID: 1645511613}
   Render_img: {fileID: 1266958661}
+  timer: {fileID: 1863573620}
 --- !u!114 &1863573612 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1422703489960689994, guid: 146ea88087fb3bd49acbe24e5f72bb1f, type: 3}
@@ -21920,14 +21922,26 @@ MonoBehaviour:
   syncInterval: 0
   income_timer: {fileID: 1863573617}
   income_panel: {fileID: 1863573616}
-  P1_income: 5
-  P2_income: 5
-  P3_income: 5
-  P4_income: 5
+  resourse: {fileID: 0}
   P1_txt: {fileID: 1863573615}
   P2_txt: {fileID: 1863573614}
   P3_txt: {fileID: 1863573613}
   P4_txt: {fileID: 1863573612}
+  P1_income: 5
+  P2_income: 5
+  P3_income: 5
+  P4_income: 5
+--- !u!114 &1863573620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2037444254122593601, guid: 146ea88087fb3bd49acbe24e5f72bb1f, type: 3}
+  m_PrefabInstance: {fileID: 1863573607}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1866252534
 GameObject:
   m_ObjectHideFlags: 0

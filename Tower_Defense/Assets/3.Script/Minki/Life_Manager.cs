@@ -91,7 +91,7 @@ public class Life_Manager : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CMD_Setting_Name_Sprite(int player_num, int sprite_index, string name)
     {
-        delay_LifeSet(player_num, sprite_index, name);
+        StartCoroutine(delay_LifeSet(player_num, sprite_index, name));
     }
     #endregion
     #region ClientRPC
@@ -173,6 +173,7 @@ public class Life_Manager : NetworkBehaviour
                 P4_Life++;
                 break;*/
         }
+        Kill_Log.instance.Adding_Message($"<color=E34E4E> {player_name[monster_num]} </color> ¥‘¿Ã <color=FFFFFF> {player_name[player_num]} </color>¥‘¿« <color=FFFFFF> Life 1 </color>¿ª »πµÊ«’¥œ¥Ÿ.");
     }
 
     private void Print_Life()

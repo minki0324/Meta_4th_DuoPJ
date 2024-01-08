@@ -9,6 +9,21 @@ public class Minimap_Click : MonoBehaviour, IPointerClickHandler
     public RectTransform miniMapRect; // ¹Ì´Ï¸ÊÀÇ RectTransform
     public Camera miniMapCamera; // ¹Ì´Ï¸Ê Ä«¸Þ¶ó
     public Image Render_img;
+    [SerializeField] private Text timer;
+    private float current_timer;
+
+    private void Update()
+    {
+        current_timer += Time.deltaTime;
+        Print_timer();
+    }
+
+    private void Print_timer()
+    {
+        float sec = current_timer % 60f;
+        float min = current_timer / 60f;
+        timer.text = $"{(int)min} : {(int)sec}";
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {

@@ -8,7 +8,8 @@ public class Income : NetworkBehaviour
 {
     [SerializeField] private Text income_timer;
     [SerializeField] private GameObject income_panel;
-    private float current_timer;
+    [SerializeField] private Resourse resourse;
+    private float current_timer = 45f;
     private bool panel_open = false;
 
     [SerializeField] private Text P1_txt;
@@ -19,20 +20,24 @@ public class Income : NetworkBehaviour
 
     private void Update()
     {
-        if(current_timer > 45)
-        {
-            // 각 플레이어들에게 인컴 지급 및 타이머 초기화
+        // 타이머 감소
+        current_timer -= Time.deltaTime;
 
-            current_timer = 0;
+        if (current_timer <= 0)
+        {
+            // 각 플레이어들에게 인컴 지급 및 타이머 재설정
+            if(isServer)
+            {
+                RPC_Give_income();
+            }
+            current_timer = 45.0f; // 타이머를 다시 45초로 설정
         }
 
         // 인컴 판넬 동기화 및 업데이트
-        if(isServer)
+        if (isServer)
         {
             RPC_Print_income_Timer();
         }
-
-        current_timer += Time.deltaTime;
     }
     #endregion
     #region SyncVar
@@ -58,6 +63,27 @@ public class Income : NetworkBehaviour
         P3_txt.text = string.Format("{0:N0}\n1", P3_income);
         P4_txt.text = string.Format("{0:N0}\n1", P4_income);
         income_timer.text = $"NEXT INCOME : " + (int)current_timer;
+    }
+
+    [ClientRpc]
+    private void RPC_Give_income()
+    {
+        switch((int)GameManager.instance.Player_Num)
+        {
+            case 1:
+                resourse.current_mineral += P1_income;
+                break;
+            case 2:
+                resourse.current_mineral += P2_income;
+                break;
+            case 3:
+                resourse.current_mineral += P3_income;
+                break;
+            case 4:
+                resourse.current_mineral += P4_income;
+                break;
+        }
+        resourse.current_crystal += 1;
     }
     #endregion
     #region Hook Method
@@ -85,7 +111,7 @@ public class Income : NetworkBehaviour
         StartCoroutine(Move_IncomePanel_co(panel_open));
     }
 
-        // 실제 판넬 열고 닫는 메소드
+    // 실제 판넬 열고 닫는 메소드
     private IEnumerator Move_IncomePanel_co(bool isStart)
     {
         RectTransform textPanelRectTransform_1 = income_panel.GetComponent<RectTransform>();
@@ -104,4 +130,6 @@ public class Income : NetworkBehaviour
         textPanelRectTransform_1.anchoredPosition = new Vector2(targetX, textPanelRectTransform_1.anchoredPosition.y);
         panel_open = !panel_open;
     }
+
+    
 }
