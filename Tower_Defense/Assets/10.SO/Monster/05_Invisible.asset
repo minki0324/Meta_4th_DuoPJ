@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: 05_Invisible
   m_EditorClassIdentifier: 
   mon_img: {fileID: 21300000, guid: bc97f770f93f3db448da00089e19113d, type: 3}
+  monsterName: "\uC778\uBE44"
+  monsterType: "\uC740\uC2E0"
   MonsterID: 5
   level: 1
   type: 5

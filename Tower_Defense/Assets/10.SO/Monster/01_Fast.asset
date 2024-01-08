@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: 01_Fast
   m_EditorClassIdentifier: 
   mon_img: {fileID: 21300000, guid: 897eefabc625a9a40a09b0c7d1793c77, type: 3}
+  monsterName: "\uD328\uC2A4\uD2B8"
+  monsterType: "\uC2A4\uD53C\uB4DC"
   MonsterID: 1
   level: 1
   type: 2

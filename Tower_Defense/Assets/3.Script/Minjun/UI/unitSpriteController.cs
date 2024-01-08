@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class unitSpriteController : MonoBehaviour
 {
     public Tower myObject;
+    public Monster_Control monster;
     public Image spriteColor;
     public Image AngleColor;
     public Color CurrentColor;
@@ -29,8 +30,17 @@ public class unitSpriteController : MonoBehaviour
  
     private void Update()
     {
-      
-        greenValue = myObject.currentHP / myObject.maxHP;
+        if (myObject != null)
+        {
+            greenValue = myObject.currentHP / myObject.maxHP;
+        }
+        else if(monster != null)
+        {
+            greenValue = monster.M_currentHP / monster.M_maxHp;
+        }else
+        {
+            greenValue = 1;
+        }
         redValue = 1 - greenValue;
         CurrentColor = new Color(redValue - greenValue, greenValue, 0 , 200);
 
@@ -48,10 +58,7 @@ public class unitSpriteController : MonoBehaviour
     }
     public void SpriteClick()
     {
-        //밥먹고 여기 수정하세요 십알
 
-
-        Debug.Log("불리긴하냐");
         //리스트 초기화하고 클릭한버튼에 해당하는 오브젝트 다시 list담기
         /*InfoCo*/
         InfoConecttoUI info = transform.root.gameObject.GetComponent<InfoConecttoUI>();

@@ -15,7 +15,8 @@ public class MonsterState : ScriptableObject
         Invisible
     }
     public Sprite mon_img;
-
+    public string monsterName;
+    public string monsterType;
     public int MonsterID;
     public int level;
     public monType type;
