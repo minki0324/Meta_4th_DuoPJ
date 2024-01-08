@@ -91,10 +91,7 @@ public class Life_Manager : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CMD_Setting_Name_Sprite(int player_num, int sprite_index, string name)
     {
-        player_image[player_num].sprite = image_array[sprite_index];
-        player_name[player_num] = name;
-        img_index[player_num] = sprite_index;
-        RPC_Setting_Name_Sprite(img_index, player_name);
+        delay_LifeSet(player_num, sprite_index, name);
     }
     #endregion
     #region ClientRPC
@@ -203,5 +200,15 @@ public class Life_Manager : NetworkBehaviour
             }
             Life_Txt[i].text = $"{player_name[i]} / {life}";
         }
+    }
+
+    private IEnumerator delay_LifeSet(int player_num, int sprite_index, string name)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        player_image[player_num].sprite = image_array[sprite_index];
+        player_name[player_num] = name;
+        img_index[player_num] = sprite_index;
+        RPC_Setting_Name_Sprite(img_index, player_name);
     }
 }

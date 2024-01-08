@@ -17,6 +17,7 @@ public class Monster_Spawn : NetworkBehaviour
 
     [SerializeField] private Monster_Pooling pools;
     [SerializeField] private GameObject[] Mon_Prefabs;
+    [SerializeField] private Income income;
 
     #region SyncVar
     
@@ -46,6 +47,7 @@ public class Monster_Spawn : NetworkBehaviour
         //NetworkServer.Spawn(monster);
         // 태그 할당
         monster.tag = $"{player_num}P";
+        Plus_Income(index, (int)GameManager.instance.Player_Num);
 
         Monster_Control monster_con = monster.GetComponent<Monster_Control>();
         AllMonster.Add(monster_con);
@@ -121,6 +123,50 @@ public class Monster_Spawn : NetworkBehaviour
                 return FinPoint[0];
             default:
                 return null;
+        }
+    }
+
+    private void Plus_Income(int index, int player_num)
+    {
+        Debug.Log("불림?");
+        int incomeIncrease = 0;
+
+        switch (index)
+        {
+            case 0:
+                incomeIncrease = 2;
+                break;
+            case 1:
+                incomeIncrease = 3;
+                break;
+            case 2:
+                incomeIncrease = 5;
+                break;
+            case 3:
+                incomeIncrease = 6;
+                break;
+            case 4:
+                incomeIncrease = 4;
+                break;
+            case 5:
+                incomeIncrease = 7;
+                break;
+        }
+
+        switch (player_num)
+        {
+            case 1:
+                income.P1_income += incomeIncrease;
+                break;
+            case 2:
+                income.P2_income += incomeIncrease;
+                break;
+            case 3:
+                income.P3_income += incomeIncrease;
+                break;
+            case 4:
+                income.P4_income += incomeIncrease;
+                break;
         }
     }
 }
