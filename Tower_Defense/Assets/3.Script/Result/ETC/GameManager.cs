@@ -88,7 +88,7 @@ public class GameManager : NetworkBehaviour
         {
             life = FindObjectOfType<Life_Manager>();
         }
-        if(isClient)
+        if(!isServer)
         {
             life.CMD_Setting_Name_Sprite((int)Player_Num-1, img_index, Nickname);
         }

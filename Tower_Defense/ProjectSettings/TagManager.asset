@@ -12,6 +12,7 @@ TagManager:
   - FinPoint
   - Fly
   - Life
+  - Loading
   layers:
   - Default
   - TransparentFX

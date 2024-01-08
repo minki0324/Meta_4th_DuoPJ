@@ -44,7 +44,7 @@ public class Fade : MonoBehaviour
         }
     }
 
-    public IEnumerator fade_out(Image image, bool isFadeIn)
+    public IEnumerator fade_out(Image image, bool isFadeIn, float duration, GameObject obj = null)
     {
         float startAlpha = isFadeIn ? 0f : 1f;
         float endAlpha = isFadeIn ? 1f : 0f;
@@ -54,13 +54,43 @@ public class Fade : MonoBehaviour
 
         float t = 0f;
 
-        while (t < 2f)
+        while (t < duration)
         {
             t += Time.deltaTime / fadeDuration;
             Color newColor = image.color;
             newColor.a = Mathf.Lerp(startAlpha, endAlpha, t);
             image.color = newColor;
             yield return null; // 다음 프레임까지 대기
+            if (obj != null && t > duration * 0.45f)
+            {
+                obj.SetActive(false);
+            }
         }
+    }
+
+    public IEnumerator fade_out(Text text, bool isFadeIn, float duration, GameObject obj = null)
+    {
+        Debug.Log("??");
+        float startAlpha = isFadeIn ? 0f : 1f;
+        float endAlpha = isFadeIn ? 1f : 0f;
+
+        // 시작 시간을 기록
+        startTime = Time.time;
+
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime / fadeDuration;
+            Color newColor = text.color;
+            newColor.a = Mathf.Lerp(startAlpha, endAlpha, t);
+            text.color = newColor;
+            yield return null; // 다음 프레임까지 대기
+            if(obj != null && t > duration * 0.45f)
+            {
+                obj.SetActive(false);
+            }
+        }
+
     }
 }

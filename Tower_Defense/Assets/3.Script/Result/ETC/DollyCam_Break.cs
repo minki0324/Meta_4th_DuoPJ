@@ -40,7 +40,7 @@ public class DollyCam_Break : MonoBehaviour
         dollyCart.m_Speed = 0f;
         yield return new WaitForSeconds(3f);
 
-        StartCoroutine(Fade.instance.fade_out(blur, true));
+        StartCoroutine(Fade.instance.fade_out(blur, true, 2));
         while (currentDistance < 36100)
         {
             float accelerationSpeed = 100f;
@@ -63,7 +63,7 @@ public class DollyCam_Break : MonoBehaviour
         MainCamera.transform.rotation = Quaternion.Euler(75, 0, 0);
 
         yield return new WaitForSeconds(1f);
-        StartCoroutine(Fade.instance.fade_out(blur, false));
+        StartCoroutine(Fade.instance.fade_out(blur, false, 2));
         MainUI.SetActive(true);
 
         // 게임매니저에 불값 켜주기
