@@ -17,13 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/1.Scene/MinJun.unity
     guid: a965c55f42506154ab5f8336bd939aac
-  - enabled: 1
-    path: Assets/1.Scene/Life.unity
-    guid: cb0dc96f245c6e744bf9b182a0c7b71d
-  - enabled: 1
-    path: Assets/1.Scene/Income.unity
-    guid: 17e404f27b5d91146b0dcf1db9b7e485
   m_configObjects: {}

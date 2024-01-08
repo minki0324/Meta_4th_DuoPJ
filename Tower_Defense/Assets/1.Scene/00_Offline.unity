@@ -3841,7 +3841,7 @@ MonoBehaviour:
   onlineScene: Assets/1.Scene/01_Room.unity
   transport: {fileID: 893505135}
   networkAddress: localhost
-  maxConnections: 2
+  maxConnections: 4
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
@@ -3850,7 +3850,6 @@ MonoBehaviour:
   playerSpawnMethod: 1
   spawnPrefabs:
   - {fileID: 5616818532696494380, guid: 9643ef1a132d1e848a19b8dde55e351e, type: 3}
-  - {fileID: 4413417171863260773, guid: 3f7d96517e50a584fb71ed9cd97ada1a, type: 3}
   - {fileID: 2156367174078436003, guid: 2f2517bbfbd46e94bbf0daab533d0d33, type: 3}
   - {fileID: 9214614053171815319, guid: 974204383f7364a498cd076b21d7bb23, type: 3}
   - {fileID: 8588166508417776201, guid: 55351d3645f34494f8746ce0a5529b2d, type: 3}
@@ -3905,7 +3904,6 @@ MonoBehaviour:
   - {fileID: 100000, guid: bfa7781c328a236468eda51a8ae2be55, type: 3}
   - {fileID: 100002, guid: ca6dec307275d294ba519247d04b6733, type: 3}
   - {fileID: 100000, guid: e496166a742ada640b89650ebebbd052, type: 3}
-  - {fileID: 5570101636851869295, guid: f26d17866e0cf7544b10cdac144d7f15, type: 3}
   - {fileID: 642199066967557856, guid: 3f16a79998519fe4eaad8fcf78a4971d, type: 3}
   - {fileID: 180358175359967910, guid: a737bcd1d6e897648b6890be06114a43, type: 3}
   - {fileID: 5455908541158610472, guid: 425aa863a466a684b930ebef5bb6eafe, type: 3}
@@ -3928,7 +3926,7 @@ MonoBehaviour:
   minPlayers: 2
   roomPlayerPrefab: {fileID: 3945291912152814873, guid: 952f3b5d21ceb5b4aa5bc8b1be050269, type: 3}
   RoomScene: Assets/1.Scene/01_Room.unity
-  GameplayScene: Assets/1.Scene/Income.unity
+  GameplayScene: Assets/1.Scene/02_MainGame.unity
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0

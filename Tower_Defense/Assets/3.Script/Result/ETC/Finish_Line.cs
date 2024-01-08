@@ -7,7 +7,6 @@ using Pathfinding;
 public class Finish_Line : NetworkBehaviour
 {
     [SerializeField] private Monster_Spawn point;
-    [SerializeField] private Life_Manager life;
 
     #region Unity Callback
     private void OnTriggerEnter(Collider other)
@@ -21,12 +20,8 @@ public class Finish_Line : NetworkBehaviour
             int player_num = Convert_num(other);
             int col_num = Convert_num(gameObject.GetComponent<Collider>());
             int index = (mon_con.goalCount % 3);
-            if(life == null)
-            {
-                life = FindObjectOfType<Life_Manager>();
-            }
 
-            life.Life_Set(col_num, player_num);
+            Life_Manager.instance.Life_Set(col_num, player_num);
 
             switch (col_num)
             {
