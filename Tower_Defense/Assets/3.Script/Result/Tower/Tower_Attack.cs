@@ -24,7 +24,8 @@ public class Tower_Attack : NetworkBehaviour
     [SerializeField] private Transform mount;
     
     [SerializeField] private LayerMask target_Layer;
-
+    public string towerName;
+    public string towerType;
     public int H_Cost;
     public float H_Rot_Speed;
     public float H_Damage;

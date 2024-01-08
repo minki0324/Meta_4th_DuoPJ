@@ -30,7 +30,10 @@ public class Tower : NetworkBehaviour
     public int level;
     [SyncVar]
     public bool isActive;
-    
+    [SyncVar]
+    public string towerName;
+    [SyncVar]
+    public string towerType;
     public Sprite unitSprite;
     private bool isDestroy;
 
@@ -67,10 +70,16 @@ public class Tower : NetworkBehaviour
         Speed = "-";
         level = 1;
         unitSprite = head.head_Data.towerImage;
+        towerName = head.head_Data.name_;
+        towerType = head.head_Data.weapon_Type.ToString();
     }
   
     public void Selectunit()
     {
+        if (!GameManager.instance.CompareEnumWithTag(tag))
+        {
+            marker.GetComponent<SpriteRenderer>().color = new Color(1f, 0.2039f, 0.2235f);
+        }
         marker.SetActive(true);
 
     }

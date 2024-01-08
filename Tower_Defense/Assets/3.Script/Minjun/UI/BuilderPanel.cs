@@ -27,7 +27,8 @@ public class BuilderPanel : MonoBehaviour
 
         for (int i = 4; i < orderButtons.Length; i++)
         {
-            orderButtons[i].GetComponent<Image>().sprite = NoneImage;
+            if(i!= 6) orderButtons[i].GetComponent<Image>().sprite = NoneImage;
         }
+
     }
 }

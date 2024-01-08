@@ -165,6 +165,11 @@ public class BuildManager : NetworkBehaviour
         {
             BuildSetting(3);
         }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log("업데이트 속도체크");
+            builder.isCanDestroyTower = true;
+        }
     }
     public void BuildSetting(int index)
     {
@@ -290,8 +295,16 @@ public class BuildManager : NetworkBehaviour
             return;
         }
     }
+    [Command(requiresAuthority = false)]
+    public void ClitoCMD_DestroyTower(GameObject newTower)
+    {
+        RPC_DestroyTower(newTower);
+        RTSControlSystem.Instance.Destroytower(newTower.GetComponent<Tower>());
+        Destroy(newTower);
+      
 
-   [Server]
+    }
+    [Server]
     public void CMD_DestroyTower(GameObject newTower)
     {
         RPC_DestroyTower(newTower);

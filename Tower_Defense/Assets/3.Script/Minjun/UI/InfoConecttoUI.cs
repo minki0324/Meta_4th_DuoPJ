@@ -23,19 +23,18 @@ public class InfoConecttoUI : MonoBehaviour
     [SerializeField] private Text MaxHP_CurrentHP;
     [SerializeField] private Text Lvl_Speed;
     [SerializeField] private Text Atk_Range_AS;
+    [SerializeField] private Text Name;
+    [SerializeField] private Text style;
     [SerializeField] private Image unitImage;
     [SerializeField] private GameObject[] unitInfoButton; // 인덱스에 맞는 유닛의 단일유닛info패널로 바꿈.
     [SerializeField] private GameObject[] orderUI;
     [SerializeField] private Monster_Spawn spawner;
+    [SerializeField] private Sprite BuilderImage;
     public Type type;
     private bool isSingle;
     private bool isMultiple;
-    Dictionary<KeyCode, int> keyMappings = new Dictionary<KeyCode, int>
-{
-    { KeyCode.Q, 0 },
-    { KeyCode.W, 1 },
-    { KeyCode.E, 2 },
-};
+    public bool isMonsterClick;
+    public bool isBuilderClick;
 
 
 
@@ -59,34 +58,40 @@ public class InfoConecttoUI : MonoBehaviour
         //원래같으면 Hook 사용으로 갱신될때마다 부르는게 맞으나 이게편함 ㅇㅇ
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            rts.DeSelectAll();
             BuildManager.Instance.builder.isSelectBuilder = true;
+            isMonsterClick = false;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            rts.DeSelectAll();
             BuildManager.Instance.builder.isSelectBuilder = false;
+            isMonsterClick = false;
             type = Type.Spawner;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            rts.DeSelectAll();
             BuildManager.Instance.builder.isSelectBuilder = false;
+            isMonsterClick = false;
             type = Type.Upgrade;
         }
-        UpdateUI();
+        Debug.Log(isMonsterClick);
+            UpdateUI();
 
     }
 
     public void UpdateUI()
     {
-
-        if (rts.selectTowers.Count == 0)
+        if (!isBuilderClick &&!isMonsterClick && rts.selectTowers.Count == 0)
         {
-            if (isSingle || isMultiple)
-            {
-                isSingle = false;
-                isMultiple = false;
-                panel.SetActive(false);
-                ButtonActiveReset();
-            }
+            isSingle = false;
+            isMultiple = false;
+            panel.SetActive(false);
+            ButtonActiveReset();
+        }else if (isBuilderClick)
+        {
+            BuilderInfoUI();
         }
         else if (isSingle)
         {
@@ -138,6 +143,18 @@ public class InfoConecttoUI : MonoBehaviour
         }
     }
 
+    public void BuilderInfoUI()
+    {
+        ButtonActiveReset();
+        panel.SetActive(true);
+        Lvl_Speed.text = string.Format("{0} \n {1}", 99, '-');
+        Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", '-', '-', '-');
+        MaxHP_CurrentHP.text = string.Format("{0} / {1}", 9999, 9999);
+        unitImage.sprite = BuilderImage;
+        Name.text = "해피";
+        style.text = "건설자";
+    }
+
     private void SettingOrderUI(int index)
     {
         for (int i = 0; i < orderUI.Length; i++)
@@ -155,7 +172,7 @@ public class InfoConecttoUI : MonoBehaviour
 
     public void SetInfoPanel()
     {
-        if (rts.selectTowers.Count == 0)
+        if ( rts.selectTowers.Count == 0)
         {
             isSingle = false;
             isMultiple = false;
@@ -197,6 +214,21 @@ public class InfoConecttoUI : MonoBehaviour
         Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", rts.selectTowers[0].damage, rts.selectTowers[0].range, rts.selectTowers[0].atkSpeed);
         MaxHP_CurrentHP.text = string.Format("{0} / {1}", rts.selectTowers[0].maxHP, rts.selectTowers[0].currentHP);
         unitImage.sprite = rts.selectTowers[0].unitSprite;
+        Name.text = rts.selectTowers[0].towerName;
+        style.text = rts.selectTowers[0].towerType;
+    }
+    public void MonsterInfoSetting(Monster_Control monster)
+    {
+        ButtonActiveReset();
+        panel.SetActive(true);
+        //rts.selectTowers[0].maxHP;
+        unitImage.gameObject.GetComponent<unitSpriteController>().monster = monster;
+        Lvl_Speed.text = string.Format("{0} \n {1}", monster.Lvl, monster.M_speed);
+        Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", monster.M_damage, '-', '-');
+        MaxHP_CurrentHP.text = string.Format("{0} / {1}", monster.M_maxHp, monster.M_currentHP);
+        unitImage.sprite = monster.unitImage;
+        Name.text = monster.state.monsterName;
+        style.text = monster.state.monsterType;
     }
     private void MultiInfoSetting()
     {

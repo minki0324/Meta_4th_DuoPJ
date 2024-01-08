@@ -25,9 +25,11 @@ public class Monster_Control : NetworkBehaviour
     public bool isInvi;
     [SyncVar]
     public bool isDie;
+    [SyncVar]
+    public int Lvl;
     [SerializeField]
     public GameObject marker;
-
+    public Sprite unitImage;
     #region Unity Callback
     private void Start()
     {
@@ -89,6 +91,8 @@ public class Monster_Control : NetworkBehaviour
         M_speed = monsterState.speed;
         M_damage = monsterState.damage;
         M_cost = monsterState.cost;
+        unitImage = monsterState.mon_img;
+        Lvl = monsterState.level;
         isDie = false;
     }
     public void Selectunit()

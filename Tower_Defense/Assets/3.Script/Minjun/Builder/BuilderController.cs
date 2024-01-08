@@ -18,13 +18,13 @@ public class BuilderController : NetworkBehaviour
     private Transform[] SpawnPoints;
     private Transform mySpawnPoint;
     [SerializeField] private LayerMask GroundLayer;
-    [SyncVar]
     public bool isSelectBuilder;
     public bool tempisSelectBuilder;
     [SyncVar]
     public bool isMoving;
     [SyncVar]
     public bool isGoBuild;
+    public bool isCanDestroyTower;
     private Coroutine currentCoroutine;
     private void Awake()
     {
@@ -46,16 +46,29 @@ public class BuilderController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        InfoConecttoUI.Instance.isBuilderClick = isSelectBuilder;
         if (isSelectBuilder)
         {
             TargerSet();
             if (InfoConecttoUI.Instance.type != InfoConecttoUI.Type.Builder)
             {
                 InfoConecttoUI.Instance.type = InfoConecttoUI.Type.Builder;
+
+                InfoConecttoUI.Instance.isBuilderClick = true;
             }
         }
         
+        if (isCanDestroyTower)
+        {
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.D))
+            {
 
+            }
+            else if (Input.anyKeyDown)
+            {
+                isCanDestroyTower = false;
+            }
+        }
         if (isMoving)
         {
             BuilderMove();
@@ -108,7 +121,16 @@ public class BuilderController : NetworkBehaviour
      
 
     }
-    private IEnumerator BuildOrder_co(Vector3 targetPos, int[] towerindex, int teamIndex)
+    [Client]
+    public void DestroyOrder(GameObject destroyTower)
+    {
+        isGoBuild = true;
+        isMoving = false;
+        StopAllCoroutines();
+        StartCoroutine(BuilderDestroyOrder_co(destroyTower));
+
+    }
+        private IEnumerator BuildOrder_co(Vector3 targetPos, int[] towerindex, int teamIndex)
     {
         transform.LookAt(targetPos);// 타워짓는곳을 바라보는 코드
         while (isGoBuild)
@@ -117,6 +139,22 @@ public class BuilderController : NetworkBehaviour
             if (Vector3.Distance(transform.position, targetPos) <= 1)
             {
                 BuildManager.Instance.ClientBuildOrder(targetPos, towerindex, teamIndex);
+                isGoBuild = false;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+    private IEnumerator BuilderDestroyOrder_co(GameObject destroyTower)
+    {
+        transform.LookAt(destroyTower.transform.position);// 타워짓는곳을 바라보는 코드
+        while (isGoBuild)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, destroyTower.transform.position, moveSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, destroyTower.transform.position) <= 1)
+            {
+                BuildManager.Instance.ClitoCMD_DestroyTower(destroyTower);
+                isCanDestroyTower = false;
                 isGoBuild = false;
                 yield break;
             }
