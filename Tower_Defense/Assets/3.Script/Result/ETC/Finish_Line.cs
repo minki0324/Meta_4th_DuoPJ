@@ -9,114 +9,71 @@ public class Finish_Line : NetworkBehaviour
     [SerializeField] private Monster_Spawn point;
 
     #region Unity Callback
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 6 && isServer)
         {
             GameObject mon = other.gameObject;
+            int col_num = Convert_num(gameObject.GetComponent<Collider>());
             Monster_Control mon_con = other.GetComponent<Monster_Control>();
             AIDestinationSetter monAI = mon.GetComponent<AIDestinationSetter>();
-            mon_con.goalCount++;
             int player_num = Convert_num(other);
-            int col_num = Convert_num(gameObject.GetComponent<Collider>());
-            int index = (mon_con.goalCount % 3);
-
             Life_Manager.instance.Life_Set(col_num, player_num);
-
-            switch (col_num)
+            int lineNum = mon_con.currentLineNum;
+            lineNum++;
+            while (Life_Manager.instance.IsPlayerDead(lineNum) || lineNum == player_num)
             {
-                // 나중에 플레이어 죽으면 건너뛰는 로직 넣어야됨
-                case 1: // 1p 피니시라인
-                    if (player_num == 2) // 2p 몬스터일때
-                    {
-                        mon.transform.position = point.SpawnPoint[2].position + NextRandomSpawnPos(mon);
-                        if(mon_con.state.type != MonsterState.monType.Fly)
-                        monAI.target = point.FinPoint[2];
-                    }
-                    else
-                    {
-                        mon.transform.position = point.SpawnPoint[1].position + NextRandomSpawnPos(mon);
-                        if (mon_con.state.type != MonsterState.monType.Fly)
-                            monAI.target = point.FinPoint[1];
-                    }
-                    break;
-                case 2: // 2p 피니시라인
-                    if (player_num == 3) // 3p 몬스터일때
-                    {
-                        mon.transform.position = point.SpawnPoint[3].position + NextRandomSpawnPos(mon);
-                        if (mon_con.state.type != MonsterState.monType.Fly)
-                            monAI.target = point.FinPoint[3];
-                    }
-                    else
-                    {
-                        mon.transform.position = point.SpawnPoint[2].position + NextRandomSpawnPos(mon);
-                        if (mon_con.state.type != MonsterState.monType.Fly)
-                            monAI.target = point.FinPoint[2];
-                    }
-                    break;
-                case 3: // 3p 피니시라인
-                    if (player_num == 4) // 4p 몬스터일때
-                    {
-                        mon.transform.position = point.SpawnPoint[0].position + NextRandomSpawnPos(mon);
-                        if (mon_con.state.type != MonsterState.monType.Fly)
-                            monAI.target = point.FinPoint[0];
-                    }
-                    else
-                    {
-                        mon.transform.position = point.SpawnPoint[3].position + NextRandomSpawnPos(mon);
-                        if (mon_con.state.type != MonsterState.monType.Fly)
-                            monAI.target = point.FinPoint[3];
-                    }
-                    break;
-                case 4: // 4p 피니시라인
-                    if (player_num == 1) // 1p 몬스터일때
-                    {
-                        mon.transform.position = point.SpawnPoint[1].position + NextRandomSpawnPos(mon);
-                        if (mon_con.state.type != MonsterState.monType.Fly)
-                            monAI.target = point.FinPoint[1];
-                    }
-                    else
-                    {
-                        mon.transform.position = point.SpawnPoint[0].position + NextRandomSpawnPos(mon);
-                        if (mon_con.state.type != MonsterState.monType.Fly)
-                            monAI.target = point.FinPoint[0];
-                    }
-                    break;
+                lineNum++;
+                if (lineNum > 4)
+                {
+                    lineNum = 1;
+                }
+                //적들의 isDie 불값을 모두가져와서 모두 죽었을때 break걸고 승리조건 만들어야함
+                if (Life_Manager.instance.isVectoryCheck(player_num))
+                {
+                    Debug.Log(player_num + "플레이어가 승리하였습니다!");
+                    return;
+                }
             }
+            mon_con.currentLineNum = lineNum;
+            mon.transform.position = point.SpawnPoint[lineNum - 1].position + NextRandomSpawnPos(mon);
+            if (mon_con.state.type != MonsterState.monType.Fly && mon_con.state.type != MonsterState.monType.Attack)
+            {
+                monAI.target = point.FinPoint[lineNum - 1];
+            }
+
+
+
+
+            /*
+                        mon.transform.position = point.SpawnPoint[point_].position + NextRandomSpawnPos(mon);
+                        if (mon_con.state.type != MonsterState.monType.Fly || mon_con.state.type != MonsterState.monType.Attack)
+                            monAI.target = point.FinPoint[point_];*/
         }
     }
+
     #endregion
     #region SyncVar
     #endregion
     #region Client
-    [Client]
-    private void Life_Set(int Player_Num, int Target_Num, bool isdead)
-    {
-        Debug.Log("플레이어 넘버 : " + Player_Num);
-        Debug.Log("몬스터 넘버 : " + Target_Num);
-        Debug.Log("죽었는지 살았는지 : " + isdead);
-    }
-
+ 
     #endregion
     #region Command
+ 
     #endregion
     #region ClientRPC
-    [ClientRpc]
-    private void RPC_UpdateLifeOnClients(int newLife)
-    {
-        // 클라이언트에서 라이프 UI 등을 업데이트합니다.
-    }
     #endregion
     #region Hook Method
     #endregion
-    private Vector3 NextRandomSpawnPos(GameObject mon )
-{
-    int randIndexX = Random.Range(-10, 11);
-    int randIndexZ = Random.Range(-1, 2);
-    Vector3 spawnPos = new Vector3(randIndexX,  mon.transform.position.y, randIndexZ);
+    private Vector3 NextRandomSpawnPos(GameObject mon)
+    {
+        int randIndexX = Random.Range(-10, 11);
+        int randIndexZ = Random.Range(-1, 2);
+        Vector3 spawnPos = new Vector3(randIndexX, mon.transform.position.y, randIndexZ);
 
         return spawnPos;
-}
+    }
 
     private int Convert_num(Collider col)
     {
@@ -142,12 +99,45 @@ public class Finish_Line : NetworkBehaviour
         }
     }
 
-   
-    private GameManager FindPlayerGameManager(int playerNum)
+    private int Die_Check(int num, int goalcount)
     {
-        // 이 메소드는 네트워크 상의 플레이어를 찾아 해당하는 GameManager 인스턴스를 반환합니다.
-        // playerNum에 해당하는 플레이어를 찾고, 그 플레이어의 GameManager 인스턴스를 반환합니다.
-        // 찾는 방법은 게임의 구현에 따라 다를 수 있습니다.
-        return null; // 예시를 위한 더미 반환값
+        // 각 col_num에 대응하는 순회 순서
+        int[][] spawnOrder = new int[][]
+        {
+            new int[] { 1, 2, 3 }, // 1P의 순회 순서
+            new int[] { 2, 3, 0 }, // 2P의 순회 순서
+            new int[] { 3, 0, 1 }, // 3P의 순회 순서
+            new int[] { 0, 1, 2 }  // 4P의 순회 순서
+        };
+
+        int[] order = spawnOrder[num]; // col_num에 해당하는 순회 순서 배열
+
+        foreach (int point in order)
+        {
+            // 죽은 플레이어의 스폰 포인트는 건너뛰기
+            if (!IsPlayerDead(point))
+            {
+                return point;
+            }
+        }
+
+        return -1;
+    }
+
+    private bool IsPlayerDead(int playerNum)
+    {
+        switch (playerNum)
+        {
+            case 1:
+                return Life_Manager.instance.P1_isDead;
+            case 2:
+                return Life_Manager.instance.P2_isDead;
+            case 3:
+                return Life_Manager.instance.P3_isDead;
+            case 4:
+                return Life_Manager.instance.P4_isDead;
+            default:
+                return true; // 잘못된 플레이어 번호
+        }
     }
 }

@@ -27,7 +27,6 @@ public class Room_PlayerSet : NetworkBehaviour
             img_index = index;
             Nickname = name;
             CMD_Set_Playerinfo(img_index, Nickname, (int)netId - 1);
-            Debug.Log("클라");
         }
     }
     #endregion
@@ -35,8 +34,6 @@ public class Room_PlayerSet : NetworkBehaviour
     [Command(requiresAuthority = false)]
     private void CMD_Set_Playerinfo(int index, string name, int player_index)
     {
-        Debug.Log("커맨드");
-        Debug.Log("플레이어 인덱스 : " + player_index);
         Room_PrintPlayerInfo[] infos = FindObjectsOfType<Room_PrintPlayerInfo>();
         foreach (var info in infos)
         {
@@ -46,7 +43,6 @@ public class Room_PlayerSet : NetworkBehaviour
                 case 2:
                 case 3:
                 case 4:
-                    Debug.Log("이넘 넘버 : " + (int)info.num);
                     if (player_index != (int)info.num) continue;
                     info.Player_Image.sprite = info.Image_Set[index];
                     info.Player_Name.text = name;
@@ -61,8 +57,6 @@ public class Room_PlayerSet : NetworkBehaviour
     private void RPC_Print_info(int index, string name, int player_index)
     {
         Room_PrintPlayerInfo[] infos = FindObjectsOfType<Room_PrintPlayerInfo>();
-        Debug.Log("인포 랭쓰 : " + infos.Length);
-        Debug.Log("플레이어 인덱스 : " + player_index);
         foreach (var info in infos)
         {
             switch ((int)info.num)

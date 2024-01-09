@@ -30,7 +30,6 @@ public class Minimap_Click : MonoBehaviour, IPointerClickHandler
         Vector2 localPoint;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(miniMapRect, eventData.position, eventData.pressEventCamera, out localPoint))
         {
-            Debug.Log(localPoint);
             Vector2 miniMapSize = miniMapRect.sizeDelta;
             Vector3 worldPosition = ConvertMiniMapPositionToWorld(localPoint, miniMapSize);
             MoveMainCamera(worldPosition);
