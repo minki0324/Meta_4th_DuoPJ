@@ -7,9 +7,9 @@ using Pathfinding;
 public class Monster_Spawn : NetworkBehaviour
 {
     /*
-        ¸ó½ºÅÍ ½ºÆù ¹× ¿ÀºêÁ§Æ® Ç®¸µ ½ºÅ©¸³Æ®
-        1. ÇÃ·¹ÀÌ¾î ÇÁ¸®ÆÕ¿¡ ÀÖ´Â ½ºÆù Æ÷ÀÎÆ®ÀÇ ·£´ı ±¸¿ª¿¡¼­ ¸ó½ºÅÍ ½ºÆù
-        2. ¸®½ºÆ®¿¡ ´ã¾Æ³õ°í ºñÈ°¼ºÈ­ µÇ¾îÀÖ´Â ¸ó½ºÅÍ°¡ ÀÖÀ¸¸é ÇØ´ç ¸ó½ºÅÍ¸¦ È°¼ºÈ­ÇÏ¸é¼­ ½ºÆù
+        ëª¬ìŠ¤í„° ìŠ¤í° ë° ì˜¤ë¸Œì íŠ¸ í’€ë§ ìŠ¤í¬ë¦½íŠ¸
+        1. í”Œë ˆì´ì–´ í”„ë¦¬íŒ¹ì— ìˆëŠ” ìŠ¤í° í¬ì¸íŠ¸ì˜ ëœë¤ êµ¬ì—­ì—ì„œ ëª¬ìŠ¤í„° ìŠ¤í°
+        2. ë¦¬ìŠ¤íŠ¸ì— ë‹´ì•„ë†“ê³  ë¹„í™œì„±í™” ë˜ì–´ìˆëŠ” ëª¬ìŠ¤í„°ê°€ ìˆìœ¼ë©´ í•´ë‹¹ ëª¬ìŠ¤í„°ë¥¼ í™œì„±í™”í•˜ë©´ì„œ ìŠ¤í°
     */
 
     public Transform[] SpawnPoint;
@@ -31,7 +31,7 @@ public class Monster_Spawn : NetworkBehaviour
     public void Onclick(int index)
     {
 
-        //¼ÒÁö±İÈ®ÀÎ
+        //ì†Œì§€ê¸ˆí™•ì¸
         CheckCost(index);
        
     }
@@ -39,14 +39,14 @@ public class Monster_Spawn : NetworkBehaviour
     private void CheckCost(int index)
     {
         float Cost = Mon_Prefabs[index].GetComponent<Monster_Control>().state.cost;
-        if (Cost <= resourse.current_mineral) //¼ÒÁö±İÀÌ ´õ¸¹À¸¸é ½ºÆù
+        if (Cost <= resourse.current_mineral) //ì†Œì§€ê¸ˆì´ ë”ë§ìœ¼ë©´ ìŠ¤í°
         {
             resourse.current_mineral -= (int)Cost ;
             CMD_SpawnMonster(index, (int)GameManager.instance.Player_Num);
         }
-        else //¾øÀ¸¸é ¸®ÅÏ
+        else //ì—†ìœ¼ë©´ ë¦¬í„´
         {
-            //¿¡·¯¸Ş¼¼Áö
+            //ì—ëŸ¬ë©”ì„¸ì§€
 
             return;
         }
@@ -57,22 +57,40 @@ public class Monster_Spawn : NetworkBehaviour
     [Command(requiresAuthority = false)]
     private void CMD_SpawnMonster(int index, int player_num)
     {
-        // ÃÊ±âÈ­ ¸Ş¼Òµå °¡Á®¿Í¾ßµÊ
-        Transform spawnpoint = Get_SpawnPoint(player_num);
+        GameObject monster = pools.GetMonster(index);
+        Monster_Control monster_con = monster.GetComponent<Monster_Control>();
+        monster_con.currentLineNum = player_num + 1;
+        while (Life_Manager.instance.IsPlayerDead(monster_con.currentLineNum) || monster_con.currentLineNum == player_num)
+        {
+            monster_con.currentLineNum++;
+            if (monster_con.currentLineNum > 4)
+            {
+                monster_con.currentLineNum = 1;
+            }
+            //ì ë“¤ì˜ isDie ë¶ˆê°’ì„ ëª¨ë‘ê°€ì ¸ì™€ì„œ ëª¨ë‘ ì£½ì—ˆì„ë•Œ breakê±¸ê³  ìŠ¹ë¦¬ì¡°ê±´ ë§Œë“¤ì–´ì•¼í•¨
+            if (Life_Manager.instance.isVectoryCheck(player_num))
+            {
+                Debug.Log(player_num + "ê²Œì„ì¢…ë£Œë¡œ ì¸í•´ ìŠ¤í°ì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.");
+                return;
+            }
+
+        }
+        // ì´ˆê¸°í™” ë©”ì†Œë“œ ê°€ì ¸ì™€ì•¼ë¨
+        Transform spawnpoint = Get_SpawnPoint(monster_con.currentLineNum);
+        Transform finpoint = Get_FinPoint(monster_con.currentLineNum);
         int randIndexX = Random.Range(-10, 11);
         int randIndexZ = Random.Range(-1, 2);
         Vector3 spawnPos = new Vector3(spawnpoint.position.x + randIndexX, spawnpoint.position.y+ Mon_Prefabs[index].transform.position.y, spawnpoint.position.z + randIndexZ);
-        GameObject monster = pools.GetMonster(index);
         monster.transform.SetPositionAndRotation(spawnPos, Mon_Prefabs[index].transform.rotation);
         //NetworkServer.Spawn(monster);
-        // ÅÂ±× ÇÒ´ç
+        // íƒœê·¸ í• ë‹¹
         monster.tag = $"{player_num}P";
         Plus_Income(index, player_num);
 
-        Monster_Control monster_con = monster.GetComponent<Monster_Control>();
+
+
         AllMonster.Add(monster_con);
-        Transform finpoint = Get_FinPoint(player_num);
-        //ÇÃ¶óÀÌ´Â ¿¡ÀÌ½ºÅ¸¾È¾¸
+        //í”Œë¼ì´ëŠ” ì—ì´ìŠ¤íƒ€ì•ˆì”€
         if (monster_con.state.type != MonsterState.monType.Fly &&
             monster_con.state.type != MonsterState.monType.Attack
             )
@@ -99,7 +117,7 @@ public class Monster_Spawn : NetworkBehaviour
     {
         if (!isServer)
         {
-            // ÅÂ±× ÇÒ´ç
+            // íƒœê·¸ í• ë‹¹
             mon.tag = $"{player_num}P";
         }
     }
@@ -112,16 +130,16 @@ public class Monster_Spawn : NetworkBehaviour
         switch(player_num)
         {
             /*
-                ³ªÁß¿¡ ÇÃ·¹ÀÌ¾î ¸ñ¼û ´ÙÇÏ¸é ´ÙÀ½ ÇÃ·¹ÀÌ¾î·Î ¼ÒÈ¯ÇÏ´Â ·ÎÁ÷ ÇÊ¿äÇÔ Todo 
+                ë‚˜ì¤‘ì— í”Œë ˆì´ì–´ ëª©ìˆ¨ ë‹¤í•˜ë©´ ë‹¤ìŒ í”Œë ˆì´ì–´ë¡œ ì†Œí™˜í•˜ëŠ” ë¡œì§ í•„ìš”í•¨ Todo 
             */
             case 1:
-                return SpawnPoint[1];
-            case 2:
-                return SpawnPoint[2];
-            case 3:
-                return SpawnPoint[3];
-            case 4:
                 return SpawnPoint[0];
+            case 2:
+                return SpawnPoint[1];
+            case 3:
+                return SpawnPoint[2];
+            case 4:
+                return SpawnPoint[3];
             default:
                 return null;
         }
@@ -131,16 +149,16 @@ public class Monster_Spawn : NetworkBehaviour
         switch (player_num)
         {
             /*
-                ³ªÁß¿¡ ÇÇ´Ï½Ã¶óÀÎ ³Ñ¾î°¬À» ¶§ ±× ´ÙÀ½ ÇÃ·¹ÀÌ¾î¿¡°Ô °¡´Â ·ÎÁ÷ ÇÊ¿äÇÔ Todo
+                ë‚˜ì¤‘ì— í”¼ë‹ˆì‹œë¼ì¸ ë„˜ì–´ê°”ì„ ë•Œ ê·¸ ë‹¤ìŒ í”Œë ˆì´ì–´ì—ê²Œ ê°€ëŠ” ë¡œì§ í•„ìš”í•¨ Todo
             */
             case 1:
-                return FinPoint[1];
-            case 2:
-                return FinPoint[2];
-            case 3:
-                return FinPoint[3];
-            case 4:
                 return FinPoint[0];
+            case 2:
+                return FinPoint[1];
+            case 3:
+                return FinPoint[2];
+            case 4:
+                return FinPoint[3];
             default:
                 return null;
         }
@@ -148,31 +166,8 @@ public class Monster_Spawn : NetworkBehaviour
 
     private void Plus_Income(int index, int player_num)
     {
-        Debug.Log("ºÒ¸²?");
         int incomeIncrease = 1;
-        //switch (index)
-        //{
-        //    case 0:
-        //        incomeIncrease = 2;
-        //        break;
-        //    case 1:
-        //        incomeIncrease = 3;
-        //        break;
-        //    case 2:
-        //        incomeIncrease = 5;
-        //        break;
-        //    case 3:
-        //        incomeIncrease = 6;
-        //        break;
-        //    case 4:
-        //        incomeIncrease = 7;
-        //        break;
-        //    case 5:
-        //        incomeIncrease = 7;
-        //        break;
-        //}
 
-        Debug.Log("ÇÃ·¹ÀÌ¾î ³Ñ¹ö : " + player_num);
         switch (player_num)
         {
             case 1:

@@ -68,14 +68,8 @@ public class GameManager : NetworkBehaviour
         towerArrayIndex.Add(Tower_2_index);
         towerArrayIndex.Add(Tower_3_index);
         towerArrayIndex.Add(Tower_4_index);
-        Debug.Log(towerArrayIndex.Count);
-        for (int i = 0; i < Tower_4_index.Length; i++)
-        {
-            Debug.Log(Tower_4_index[i]);
-
-        }
-       
     }
+
     public int[] GetCost()
     {
         return Cost;
@@ -90,8 +84,8 @@ public class GameManager : NetworkBehaviour
         CMD_ActiveSet(isActive, monster);
     }
 
-    // ³» ´Ð³×ÀÓ°ú ½ºÇÁ¶óÀÌÆ® ÀÎµ¦½º º¸³»ÁÖ±â
-    // Ä«¸Þ¶ó ÃÊ±âÈ­ ½ÃÁ¡¿¡ º¸³»Áà¾ßÇÔ
+    // ë‚´ ë‹‰ë„¤ìž„ê³¼ ìŠ¤í”„ë¼ì´íŠ¸ ì¸ë±ìŠ¤ ë³´ë‚´ì£¼ê¸°
+    // ì¹´ë©”ë¼ ì´ˆê¸°í™” ì‹œì ì— ë³´ë‚´ì¤˜ì•¼í•¨
     [Client]
     public void Send_name_sprite()
     {
@@ -188,13 +182,13 @@ public class GameManager : NetworkBehaviour
         return player_index;
     }
 
-    //³ªÀÇ ÆÀÀÎµ¦½º¿Í , ¿ÀºêÁ§Æ®ÀÇ ÅÂ±×¸¦ ºñ±³ÇØ¼­ ³ªÀÇ¼ÒÀ¯ÀÎÁö È®ÀÎÇÏ´Â ¸Þ¼Òµå
+    //ë‚˜ì˜ íŒ€ì¸ë±ìŠ¤ì™€ , ì˜¤ë¸Œì íŠ¸ì˜ íƒœê·¸ë¥¼ ë¹„êµí•´ì„œ ë‚˜ì˜ì†Œìœ ì¸ì§€ í™•ì¸í•˜ëŠ” ë©”ì†Œë“œ
     public bool CompareEnumWithTag(string tag)
     {
-        // Enum °ªÀ» ¹®ÀÚ¿­·Î º¯È¯ÇÕ´Ï´Ù.
+        // Enum ê°’ì„ ë¬¸ìžì—´ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
         string enumString = Player_Num.ToString();
 
-        // Enum ¹®ÀÚ¿­¿¡¼­ ¾ÕÀÇ ¼ýÀÚ¸¦ ÃßÃâÇÕ´Ï´Ù.
+        // Enum ë¬¸ìžì—´ì—ì„œ ì•žì˜ ìˆ«ìžë¥¼ ì¶”ì¶œí•©ë‹ˆë‹¤.
         string enumNumber = new string(enumString.Where(char.IsDigit).ToArray());
         string newenumString = enumNumber + 'P';
         /*Debug.Log(newenumString);*/

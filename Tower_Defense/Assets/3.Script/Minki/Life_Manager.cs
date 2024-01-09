@@ -33,9 +33,9 @@ public class Life_Manager : NetworkBehaviour
 
     private void Start()
     {
-        Life_Txt = new Text[2];
-        player_image = new Image[2];
-        img_index = new int[2];
+        Life_Txt = new Text[4];
+        player_image = new Image[4];
+        img_index = new int[4];
         StartCoroutine(init_data());
     }
 
@@ -52,7 +52,7 @@ public class Life_Manager : NetworkBehaviour
         yield return new WaitForSeconds(0.5f);
         GameObject panel = GameObject.FindGameObjectWithTag("Life");
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < player_name.Length; i++)
         {
             player_image[i] = panel.transform.GetChild(i).GetChild(0).GetComponent<Image>();
             Life_Txt[i] = panel.transform.GetChild(i).GetChild(3).GetComponent<Text>();
@@ -98,7 +98,7 @@ public class Life_Manager : NetworkBehaviour
     [ClientRpc]
     private void RPC_Setting_Name_Sprite(int[] image_index, string[] names)
     {
-        for(int i = 0; i < 2; i++)
+        for(int i = 0; i < player_name.Length; i++)
         {
             player_image[i].sprite = image_array[image_index[i]];
         }
@@ -151,34 +151,41 @@ public class Life_Manager : NetworkBehaviour
             case 2:
                 P2_Life--;
                 break;
-           /* case 3:
+            case 3:
                 P3_Life--;
                 break;
             case 4:
                 P4_Life--;
-                break;*/
+                break;
         }
-        switch(monster_num)
+        if (!IsPlayerDead(player_num))
         {
-            case 1:
-                P1_Life++;
-                break;
-            case 2:
-                P2_Life++;
-                break;
-          /*  case 3:
-                P3_Life++;
-                break;
-            case 4:
-                P4_Life++;
-                break;*/
+            switch (monster_num)
+            {
+                case 1:
+                    P1_Life++;
+                    break;
+                case 2:
+                    P2_Life++;
+                    break;
+                case 3:
+                    P3_Life++;
+                    break;
+                case 4:
+                    P4_Life++;
+                    break;
+            }
+        if (isServer)
+        {
+            Kill_Log.instance.Adding_Message($"<color=E34E4E> {player_name[monster_num-1]} </color> ¥‘¿Ã <color=FFFFFF> {player_name[player_num-1]} </color>¥‘¿« <color=FFFFFF> Life 1 </color>¿ª »πµÊ«’¥œ¥Ÿ.");
         }
-        Kill_Log.instance.Adding_Message($"<color=E34E4E> {player_name[monster_num]} </color> ¥‘¿Ã <color=FFFFFF> {player_name[player_num]} </color>¥‘¿« <color=FFFFFF> Life 1 </color>¿ª »πµÊ«’¥œ¥Ÿ.");
+        }
+        Die(player_num);
     }
 
     private void Print_Life()
     {
-        for(int i = 0; i < 2; i++)
+        for(int i = 0; i < player_name.Length; i++)
         {
             int life;
             switch(i)
@@ -211,5 +218,68 @@ public class Life_Manager : NetworkBehaviour
         player_name[player_num] = name;
         img_index[player_num] = sprite_index;
         RPC_Setting_Name_Sprite(img_index, player_name);
+    }
+
+    private void Die(int player_num)
+    {
+        switch(player_num)
+        {
+            case 1:
+                if(P1_Life <= 0)
+                {
+                    P1_isDead = true;
+                }
+                break;
+            case 2:
+                if (P2_Life <= 0)
+                {
+                    P2_isDead = true;
+                }
+                break;
+            case 3:
+                if (P3_Life <= 0)
+                {
+                    P3_isDead = true;
+                }
+                break;
+            case 4:
+                if (P4_Life <= 0)
+                {
+                    P4_isDead = true;
+                }
+                break;
+        }
+    }
+    public bool IsPlayerDead(int playerNum)
+    {
+        switch (playerNum)
+        {
+            case 1:
+                return P1_isDead;
+            case 2:
+                return P2_isDead;
+            case 3:
+                return P3_isDead;
+            case 4:
+                return P4_isDead;
+            default:
+                return true; // ¿ﬂ∏¯µ» «√∑π¿ÃæÓ π¯»£
+        }
+    }
+    public bool isVectoryCheck(int playerNum)
+    {
+        switch (playerNum)
+        {
+            case 1:
+                return P2_isDead && P3_isDead && P4_isDead;
+            case 2:
+                return P1_isDead && P3_isDead && P4_isDead;
+            case 3:
+                return P1_isDead && P2_isDead && P4_isDead;
+            case 4:
+                return P1_isDead && P2_isDead && P3_isDead;
+            default:
+                return true; // ¿ﬂ∏¯µ» «√∑π¿ÃæÓ π¯»£
+        }
     }
 }
