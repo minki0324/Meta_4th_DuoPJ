@@ -19,6 +19,5 @@ public class AttackRangeManager : MonoBehaviour
         if (range == 0) return;
         Vector3 scale = new Vector3(range * 2f, transform.localScale.y, range * 2f);
         transform.localScale = scale;
-        Debug.Log(transform.localScale);
     }
 }

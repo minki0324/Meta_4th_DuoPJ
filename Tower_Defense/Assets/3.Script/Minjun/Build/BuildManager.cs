@@ -183,7 +183,6 @@ public class BuildManager : NetworkBehaviour
         currentTower = tower;
         //베이스 콜라이더 끄기
         TowerBaseFrame.GetChild(SelectTowerIndexArray[2]).GetComponent<BoxCollider>().enabled = false;
-        Debug.Log(tower);
         float range =  tower.GetComponent<Tower>().head.head_Data.ATK_Range;
         tower.GetComponentInChildren<AttackRangeManager>().RangeSet(range);
         isBuilding = true;

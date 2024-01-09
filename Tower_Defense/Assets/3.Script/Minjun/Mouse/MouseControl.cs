@@ -9,11 +9,11 @@ public class MouseControl : MonoBehaviour
 {
     [SerializeField] private BuildManager bm;
     [SerializeField] public InfoConecttoUI infoUI;
-    private BuilderController builder;
     private Camera maincamera;
     private RTSControlSystem rts;
     private bool isCanDouble;
     Monster_Control monster;
+    [SerializeField] private LayerMask targetLayer; //몬스터 , 타워 , 빌더
 
 
     private void Awake()
@@ -69,7 +69,7 @@ public class MouseControl : MonoBehaviour
             if (IsPointerOverUI()) return;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (Physics.Raycast(ray, out RaycastHit hit , targetLayer))
             {
                 LayerMask hitLayer = hit.collider.gameObject.layer;
                 string layerName = LayerMask.LayerToName(hitLayer);
@@ -201,7 +201,6 @@ public class MouseControl : MonoBehaviour
         //todo 나중에 적팀꺼 클릭했을때 단일UI 라도 보이게 하기
         //builder = hit.transform.root.GetComponent<BuilderController>();
 
-        if (builder == null) return;
         //마커 띄우기 --완료
         rts.DeSelectAll();
         BuildManager.Instance.builder.isSelectBuilder = true;

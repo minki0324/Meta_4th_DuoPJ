@@ -73,26 +73,32 @@ public class Room_FinalData : MonoBehaviour
         {
             Prefab_1_index = index.Return_index();
             Slot_1 = true;
-            Empty_Btn[0].SetActive(false);
-            Ready_Btn[0].SetActive(true);
-            GameManager.instance.Cost[0] = Cost;
+            Send_Data(index.tower_index);
         }
         else if(index.tower_index == 1)
         {
             Prefab_2_index = index.Return_index();
             Slot_2 = true;
-            Empty_Btn[1].SetActive(false);
-            Ready_Btn[1].SetActive(true);
-            GameManager.instance.Cost[1] = Cost;
+            Send_Data(index.tower_index);
         }
         else
         {
             Prefab_3_index = index.Return_index();
             Slot_3 = true;
-            Empty_Btn[2].SetActive(false);
-            Ready_Btn[2].SetActive(true);
-            GameManager.instance.Cost[2] = Cost;
+            Send_Data(index.tower_index);
         }
+    }
+
+    private void Send_Data(int index)
+    {
+        Empty_Btn[index].SetActive(false);
+        Ready_Btn[index].SetActive(true);
+        GameManager.instance.Cost[index] = Cost;
+        GameManager.instance.Damage[index] = Damage;
+        GameManager.instance.ATK_Speed[index] = ATK_Speed;
+        GameManager.instance.Head_Rot_speed[index] = Head_Rot_Speed;
+        GameManager.instance.Range[index] = ATK_Range;
+        GameManager.instance.Health[index] = Health;
     }
 
     public void Change_Prefabs(int index)

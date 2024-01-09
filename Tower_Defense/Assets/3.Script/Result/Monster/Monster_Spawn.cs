@@ -7,9 +7,9 @@ using Pathfinding;
 public class Monster_Spawn : NetworkBehaviour
 {
     /*
-        ¸ó½ºÅÍ ½ºÆù ¹× ¿ÀºêÁ§Æ® Ç®¸µ ½ºÅ©¸³Æ®
-        1. ÇÃ·¹ÀÌ¾î ÇÁ¸®ÆÕ¿¡ ÀÖ´Â ½ºÆù Æ÷ÀÎÆ®ÀÇ ·£´ı ±¸¿ª¿¡¼­ ¸ó½ºÅÍ ½ºÆù
-        2. ¸®½ºÆ®¿¡ ´ã¾Æ³õ°í ºñÈ°¼ºÈ­ µÇ¾îÀÖ´Â ¸ó½ºÅÍ°¡ ÀÖÀ¸¸é ÇØ´ç ¸ó½ºÅÍ¸¦ È°¼ºÈ­ÇÏ¸é¼­ ½ºÆù
+        ëª¬ìŠ¤í„° ìŠ¤í° ë° ì˜¤ë¸Œì íŠ¸ í’€ë§ ìŠ¤í¬ë¦½íŠ¸
+        1. í”Œë ˆì´ì–´ í”„ë¦¬íŒ¹ì— ìˆëŠ” ìŠ¤í° í¬ì¸íŠ¸ì˜ ëœë¤ êµ¬ì—­ì—ì„œ ëª¬ìŠ¤í„° ìŠ¤í°
+        2. ë¦¬ìŠ¤íŠ¸ì— ë‹´ì•„ë†“ê³  ë¹„í™œì„±í™” ë˜ì–´ìˆëŠ” ëª¬ìŠ¤í„°ê°€ ìˆìœ¼ë©´ í•´ë‹¹ ëª¬ìŠ¤í„°ë¥¼ í™œì„±í™”í•˜ë©´ì„œ ìŠ¤í°
     */
 
     public Transform[] SpawnPoint;
@@ -18,7 +18,7 @@ public class Monster_Spawn : NetworkBehaviour
     [SerializeField] private Monster_Pooling pools;
     [SerializeField] private GameObject[] Mon_Prefabs;
     [SerializeField] private Income income;
-
+    [SerializeField] private Resourse resourse;
     #region SyncVar
     
     public SyncList<Monster_Control> AllMonster = new SyncList<Monster_Control>();
@@ -30,7 +30,27 @@ public class Monster_Spawn : NetworkBehaviour
     [Client]
     public void Onclick(int index)
     {
-        CMD_SpawnMonster(index, (int)GameManager.instance.Player_Num);
+
+        //ì†Œì§€ê¸ˆí™•ì¸
+        CheckCost(index);
+       
+    }
+
+    private void CheckCost(int index)
+    {
+        float Cost = Mon_Prefabs[index].GetComponent<Monster_Control>().state.cost;
+        if (Cost <= resourse.current_mineral) //ì†Œì§€ê¸ˆì´ ë”ë§ìœ¼ë©´ ìŠ¤í°
+        {
+            resourse.current_mineral -= (int)Cost ;
+            CMD_SpawnMonster(index, (int)GameManager.instance.Player_Num);
+        }
+        else //ì—†ìœ¼ë©´ ë¦¬í„´
+        {
+            //ì—ëŸ¬ë©”ì„¸ì§€
+
+            return;
+        }
+
     }
     #endregion
     #region Command
@@ -47,15 +67,15 @@ public class Monster_Spawn : NetworkBehaviour
             {
                 monster_con.currentLineNum = 1;
             }
-            //ÀûµéÀÇ isDie ºÒ°ªÀ» ¸ğµÎ°¡Á®¿Í¼­ ¸ğµÎ Á×¾úÀ»¶§ break°É°í ½Â¸®Á¶°Ç ¸¸µé¾î¾ßÇÔ
+            //ì ë“¤ì˜ isDie ë¶ˆê°’ì„ ëª¨ë‘ê°€ì ¸ì™€ì„œ ëª¨ë‘ ì£½ì—ˆì„ë•Œ breakê±¸ê³  ìŠ¹ë¦¬ì¡°ê±´ ë§Œë“¤ì–´ì•¼í•¨
             if (Life_Manager.instance.isVectoryCheck(player_num))
             {
-                Debug.Log(player_num + "°ÔÀÓÁ¾·á·Î ÀÎÇØ ½ºÆùÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù.");
+                Debug.Log(player_num + "ê²Œì„ì¢…ë£Œë¡œ ì¸í•´ ìŠ¤í°ì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.");
                 return;
             }
 
         }
-        // ÃÊ±âÈ­ ¸Ş¼Òµå °¡Á®¿Í¾ßµÊ
+        // ì´ˆê¸°í™” ë©”ì†Œë“œ ê°€ì ¸ì™€ì•¼ë¨
         Transform spawnpoint = Get_SpawnPoint(monster_con.currentLineNum);
         Transform finpoint = Get_FinPoint(monster_con.currentLineNum);
         int randIndexX = Random.Range(-10, 11);
@@ -63,14 +83,14 @@ public class Monster_Spawn : NetworkBehaviour
         Vector3 spawnPos = new Vector3(spawnpoint.position.x + randIndexX, spawnpoint.position.y+ Mon_Prefabs[index].transform.position.y, spawnpoint.position.z + randIndexZ);
         monster.transform.SetPositionAndRotation(spawnPos, Mon_Prefabs[index].transform.rotation);
         //NetworkServer.Spawn(monster);
-        // ÅÂ±× ÇÒ´ç
+        // íƒœê·¸ í• ë‹¹
         monster.tag = $"{player_num}P";
         Plus_Income(index, player_num);
 
 
 
         AllMonster.Add(monster_con);
-        //ÇÃ¶óÀÌ´Â ¿¡ÀÌ½ºÅ¸¾È¾¸
+        //í”Œë¼ì´ëŠ” ì—ì´ìŠ¤íƒ€ì•ˆì”€
         if (monster_con.state.type != MonsterState.monType.Fly &&
             monster_con.state.type != MonsterState.monType.Attack
             )
@@ -97,7 +117,7 @@ public class Monster_Spawn : NetworkBehaviour
     {
         if (!isServer)
         {
-            // ÅÂ±× ÇÒ´ç
+            // íƒœê·¸ í• ë‹¹
             mon.tag = $"{player_num}P";
         }
     }
@@ -110,7 +130,7 @@ public class Monster_Spawn : NetworkBehaviour
         switch(player_num)
         {
             /*
-                ³ªÁß¿¡ ÇÃ·¹ÀÌ¾î ¸ñ¼û ´ÙÇÏ¸é ´ÙÀ½ ÇÃ·¹ÀÌ¾î·Î ¼ÒÈ¯ÇÏ´Â ·ÎÁ÷ ÇÊ¿äÇÔ Todo 
+                ë‚˜ì¤‘ì— í”Œë ˆì´ì–´ ëª©ìˆ¨ ë‹¤í•˜ë©´ ë‹¤ìŒ í”Œë ˆì´ì–´ë¡œ ì†Œí™˜í•˜ëŠ” ë¡œì§ í•„ìš”í•¨ Todo 
             */
             case 1:
                 return SpawnPoint[0];
@@ -129,7 +149,7 @@ public class Monster_Spawn : NetworkBehaviour
         switch (player_num)
         {
             /*
-                ³ªÁß¿¡ ÇÇ´Ï½Ã¶óÀÎ ³Ñ¾î°¬À» ¶§ ±× ´ÙÀ½ ÇÃ·¹ÀÌ¾î¿¡°Ô °¡´Â ·ÎÁ÷ ÇÊ¿äÇÔ Todo
+                ë‚˜ì¤‘ì— í”¼ë‹ˆì‹œë¼ì¸ ë„˜ì–´ê°”ì„ ë•Œ ê·¸ ë‹¤ìŒ í”Œë ˆì´ì–´ì—ê²Œ ê°€ëŠ” ë¡œì§ í•„ìš”í•¨ Todo
             */
             case 1:
                 return FinPoint[0];
@@ -146,29 +166,7 @@ public class Monster_Spawn : NetworkBehaviour
 
     private void Plus_Income(int index, int player_num)
     {
-        int incomeIncrease = 0;
-
-        switch (index)
-        {
-            case 0:
-                incomeIncrease = 2;
-                break;
-            case 1:
-                incomeIncrease = 3;
-                break;
-            case 2:
-                incomeIncrease = 5;
-                break;
-            case 3:
-                incomeIncrease = 6;
-                break;
-            case 4:
-                incomeIncrease = 4;
-                break;
-            case 5:
-                incomeIncrease = 7;
-                break;
-        }
+        int incomeIncrease = 1;
 
         switch (player_num)
         {

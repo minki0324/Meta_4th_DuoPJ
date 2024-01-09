@@ -14,33 +14,5 @@ public class ScanTower : MonoBehaviour
     {
         mount.Rotate(new Vector3(0, 45, 0) * Time.deltaTime);
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
-        {
-            Monster_Control mon = other.GetComponent<Monster_Control>();
-            if (mon.isDie) return;
-            if (mon.state.type == MonsterState.monType.Invisible)
-            {
-
-                IvisibleControl ivisibleControl = other/*.transform.root*/.GetComponent<IvisibleControl>();
-                // ivisibleControl이 null이 아닌 경우 DisInvisible() 메서드를 호출하고, 그렇지 않으면 아무것도 수행하지 않습니다.
-                ivisibleControl?.DisInvisible();
-            }
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
-        {
-
-            Monster_Control mon = other.GetComponent<Monster_Control>();
-            if (mon.state.type == MonsterState.monType.Invisible)
-            {
-                IvisibleControl ivisibleControl = other/*.transform.root*/.GetComponent<IvisibleControl>();
-                // ivisibleControl이 null이 아닌 경우 DisInvisible() 메서드를 호출하고, 그렇지 않으면 아무것도 수행하지 않습니다.
-                ivisibleControl?.OnInvisible();
-            }
-        }
-    }
+   
 }

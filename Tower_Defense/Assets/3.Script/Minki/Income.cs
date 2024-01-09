@@ -6,7 +6,7 @@ using Mirror;
 
 public class Income : NetworkBehaviour
 {
-    [SerializeField] private Text income_timer;
+    [SerializeField] public Text income_timer;
     [SerializeField] private GameObject income_panel;
     [SerializeField] private Resourse resourse;
     private float current_timer = 45f;
@@ -18,6 +18,9 @@ public class Income : NetworkBehaviour
     [SerializeField] private Text P4_txt;
     #region Unity Callback
 
+    private void Start()
+    {
+    }
     private void Update()
     {
         // 타이머 감소
@@ -42,13 +45,13 @@ public class Income : NetworkBehaviour
     #endregion
     #region SyncVar
     [SyncVar(hook = nameof(Hook_P1_income))]
-    public int P1_income = 5;
+    public int P1_income = 50;
     [SyncVar(hook = nameof(Hook_P2_income))]
-    public int P2_income = 5;
+    public int P2_income = 50;
     [SyncVar(hook = nameof(Hook_P3_income))]
-    public int P3_income = 5;
+    public int P3_income = 50;
     [SyncVar(hook = nameof(Hook_P4_income))]
-    public int P4_income = 5;
+    public int P4_income = 50;
     #endregion
     #region Client
     #endregion

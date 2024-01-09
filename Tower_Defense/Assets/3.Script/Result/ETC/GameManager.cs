@@ -27,6 +27,12 @@ public class GameManager : NetworkBehaviour
     public int[] Tower_3_index = new int[3];
     public int[] Tower_4_index = { 8, 4, 5 };
     public int[] Cost;
+    public float[] Damage;
+    public float[] Range;
+    public float[] ATK_Speed;
+    public float[] Head_Rot_speed;
+    public float[] Health;
+
 
     public Room_Manager manager;
     public Life_Manager life;
@@ -49,7 +55,11 @@ public class GameManager : NetworkBehaviour
         }
         manager = FindObjectOfType<Room_Manager>();
 
-
+        
+    }
+    private void Start()
+    {
+        Init_Data();
     }
     public void ListSet()
     {
@@ -74,8 +84,8 @@ public class GameManager : NetworkBehaviour
         CMD_ActiveSet(isActive, monster);
     }
 
-    // ³» ´Ğ³×ÀÓ°ú ½ºÇÁ¶óÀÌÆ® ÀÎµ¦½º º¸³»ÁÖ±â
-    // Ä«¸Ş¶ó ÃÊ±âÈ­ ½ÃÁ¡¿¡ º¸³»Áà¾ßÇÔ
+    // ë‚´ ë‹‰ë„¤ì„ê³¼ ìŠ¤í”„ë¼ì´íŠ¸ ì¸ë±ìŠ¤ ë³´ë‚´ì£¼ê¸°
+    // ì¹´ë©”ë¼ ì´ˆê¸°í™” ì‹œì ì— ë³´ë‚´ì¤˜ì•¼í•¨
     [Client]
     public void Send_name_sprite()
     {
@@ -135,6 +145,16 @@ public class GameManager : NetworkBehaviour
     #region Hook Method
     #endregion
 
+    private void Init_Data()
+    {
+        Cost = new int[4];
+        Damage = new float[4];
+        Range = new float[4];
+        Head_Rot_speed = new float[4];
+        ATK_Speed = new float[4];
+        Health = new float[4];
+    }
+
     public void Set_Player_Num()
     {
         Room_Player[] players = FindObjectsOfType<Room_Player>();
@@ -162,13 +182,13 @@ public class GameManager : NetworkBehaviour
         return player_index;
     }
 
-    //³ªÀÇ ÆÀÀÎµ¦½º¿Í , ¿ÀºêÁ§Æ®ÀÇ ÅÂ±×¸¦ ºñ±³ÇØ¼­ ³ªÀÇ¼ÒÀ¯ÀÎÁö È®ÀÎÇÏ´Â ¸Ş¼Òµå
+    //ë‚˜ì˜ íŒ€ì¸ë±ìŠ¤ì™€ , ì˜¤ë¸Œì íŠ¸ì˜ íƒœê·¸ë¥¼ ë¹„êµí•´ì„œ ë‚˜ì˜ì†Œìœ ì¸ì§€ í™•ì¸í•˜ëŠ” ë©”ì†Œë“œ
     public bool CompareEnumWithTag(string tag)
     {
-        // Enum °ªÀ» ¹®ÀÚ¿­·Î º¯È¯ÇÕ´Ï´Ù.
+        // Enum ê°’ì„ ë¬¸ìì—´ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
         string enumString = Player_Num.ToString();
 
-        // Enum ¹®ÀÚ¿­¿¡¼­ ¾ÕÀÇ ¼ıÀÚ¸¦ ÃßÃâÇÕ´Ï´Ù.
+        // Enum ë¬¸ìì—´ì—ì„œ ì•ì˜ ìˆ«ìë¥¼ ì¶”ì¶œí•©ë‹ˆë‹¤.
         string enumNumber = new string(enumString.Where(char.IsDigit).ToArray());
         string newenumString = enumNumber + 'P';
         /*Debug.Log(newenumString);*/

@@ -22,7 +22,6 @@ public class unitSpriteController : MonoBehaviour
         else
         {
             AngleColor = GetComponent<Image>();
-            Debug.Log("단일선택시에만 떠야하는 디버그임");
             //단일선택시에만 떠야하는 디버그임
         }
 

@@ -1994,13 +1994,17 @@ MonoBehaviour:
   targetposition: {x: 0, y: 0, z: 0}
   SpawnPoint: {fileID: 5627280209841059133, guid: e71a81b1a5b2066418f1fbfb1c95f981, type: 3}
   Marker: {fileID: 2590067908020000974}
-  GroundLayer:
+  IgnoreCast:
+    serializedVersion: 2
+    m_Bits: 2276
+  groundLayer:
     serializedVersion: 2
     m_Bits: 512
   isSelectBuilder: 0
   tempisSelectBuilder: 0
   isMoving: 0
   isGoBuild: 0
+  isCanDestroyTower: 0
 --- !u!136 &6189400449736649104
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2436,6 +2440,8 @@ MonoBehaviour:
   - 
   - 
   - 
+  img_index: 
+  isInit: 0
   P1_Life: 30
   P2_Life: 30
   P3_Life: 30
