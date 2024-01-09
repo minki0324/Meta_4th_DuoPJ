@@ -18,7 +18,7 @@ public class Monster_Spawn : NetworkBehaviour
     [SerializeField] private Monster_Pooling pools;
     [SerializeField] private GameObject[] Mon_Prefabs;
     [SerializeField] private Income income;
-
+    [SerializeField] private Resourse resourse;
     #region SyncVar
     
     public SyncList<Monster_Control> AllMonster = new SyncList<Monster_Control>();
@@ -30,7 +30,27 @@ public class Monster_Spawn : NetworkBehaviour
     [Client]
     public void Onclick(int index)
     {
-        CMD_SpawnMonster(index, (int)GameManager.instance.Player_Num);
+
+        //소지금확인
+        CheckCost(index);
+       
+    }
+
+    private void CheckCost(int index)
+    {
+        float Cost = Mon_Prefabs[index].GetComponent<Monster_Control>().state.cost;
+        if (Cost <= resourse.current_mineral) //소지금이 더많으면 스폰
+        {
+            resourse.current_mineral -= (int)Cost ;
+            CMD_SpawnMonster(index, (int)GameManager.instance.Player_Num);
+        }
+        else //없으면 리턴
+        {
+            //에러메세지
+
+            return;
+        }
+
     }
     #endregion
     #region Command
@@ -129,29 +149,28 @@ public class Monster_Spawn : NetworkBehaviour
     private void Plus_Income(int index, int player_num)
     {
         Debug.Log("불림?");
-        int incomeIncrease = 0;
-
-        switch (index)
-        {
-            case 0:
-                incomeIncrease = 2;
-                break;
-            case 1:
-                incomeIncrease = 3;
-                break;
-            case 2:
-                incomeIncrease = 5;
-                break;
-            case 3:
-                incomeIncrease = 6;
-                break;
-            case 4:
-                incomeIncrease = 4;
-                break;
-            case 5:
-                incomeIncrease = 7;
-                break;
-        }
+        int incomeIncrease = 1;
+        //switch (index)
+        //{
+        //    case 0:
+        //        incomeIncrease = 2;
+        //        break;
+        //    case 1:
+        //        incomeIncrease = 3;
+        //        break;
+        //    case 2:
+        //        incomeIncrease = 5;
+        //        break;
+        //    case 3:
+        //        incomeIncrease = 6;
+        //        break;
+        //    case 4:
+        //        incomeIncrease = 7;
+        //        break;
+        //    case 5:
+        //        incomeIncrease = 7;
+        //        break;
+        //}
 
         Debug.Log("플레이어 넘버 : " + player_num);
         switch (player_num)

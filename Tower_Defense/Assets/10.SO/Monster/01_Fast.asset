@@ -20,8 +20,8 @@ MonoBehaviour:
   type: 2
   maxHp: 200
   currentHP: 200
-  speed: 5
+  speed: 10
   damage: 5000
-  cost: 50
+  cost: 30
   attackSpeed: 10
   isDie: 0

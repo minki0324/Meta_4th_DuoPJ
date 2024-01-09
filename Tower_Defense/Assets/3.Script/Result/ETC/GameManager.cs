@@ -27,6 +27,12 @@ public class GameManager : NetworkBehaviour
     public int[] Tower_3_index = new int[3];
     public int[] Tower_4_index = { 8, 4, 5 };
     public int[] Cost;
+    public float[] Damage;
+    public float[] Range;
+    public float[] ATK_Speed;
+    public float[] Head_Rot_speed;
+    public float[] Health;
+
 
     public Room_Manager manager;
     public Life_Manager life;
@@ -49,7 +55,11 @@ public class GameManager : NetworkBehaviour
         }
         manager = FindObjectOfType<Room_Manager>();
 
-
+        
+    }
+    private void Start()
+    {
+        Init_Data();
     }
     public void ListSet()
     {
@@ -64,6 +74,7 @@ public class GameManager : NetworkBehaviour
             Debug.Log(Tower_4_index[i]);
 
         }
+       
     }
     public int[] GetCost()
     {
@@ -139,6 +150,16 @@ public class GameManager : NetworkBehaviour
     #endregion
     #region Hook Method
     #endregion
+
+    private void Init_Data()
+    {
+        Cost = new int[4];
+        Damage = new float[4];
+        Range = new float[4];
+        Head_Rot_speed = new float[4];
+        ATK_Speed = new float[4];
+        Health = new float[4];
+    }
 
     public void Set_Player_Num()
     {

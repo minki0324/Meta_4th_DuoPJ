@@ -7,7 +7,7 @@ using System;
 
 public class BuilderController : NetworkBehaviour
 {
-   
+
 
     //[SerializeField] private AIPath aipath;
     //[SerializeField] private AIDestinationSetter aIDestinationSetter;
@@ -17,7 +17,8 @@ public class BuilderController : NetworkBehaviour
     [SerializeField] private GameObject Marker;
     private Transform[] SpawnPoints;
     private Transform mySpawnPoint;
-    [SerializeField] private LayerMask GroundLayer;
+    //[SerializeField] private LayerMask IgnoreCast;
+    [SerializeField] private LayerMask groundLayer;
     public bool isSelectBuilder;
     public bool tempisSelectBuilder;
     [SyncVar]
@@ -25,7 +26,10 @@ public class BuilderController : NetworkBehaviour
     [SyncVar]
     public bool isGoBuild;
     public bool isCanDestroyTower;
-    private Coroutine currentCoroutine;
+    private Coroutine OrderCoroutine;
+    private Coroutine DestroyCoroutine;
+    private float minX;
+    private float maxX;
     private void Awake()
     {
         SpawnPoints = new Transform[SpawnPoint.childCount];
@@ -33,14 +37,17 @@ public class BuilderController : NetworkBehaviour
         {
             SpawnPoints[i] = SpawnPoint.GetChild(i);
         }
-       
+
     }
 
- 
+
 
     void Start()
     {
         Initialsettings();
+        minX =transform.position.x -  30f;
+        maxX = transform.position.x +  30f;
+
     }
 
     // Update is called once per frame
@@ -57,7 +64,7 @@ public class BuilderController : NetworkBehaviour
                 InfoConecttoUI.Instance.isBuilderClick = true;
             }
         }
-        
+
         if (isCanDestroyTower)
         {
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.D))
@@ -74,7 +81,15 @@ public class BuilderController : NetworkBehaviour
             BuilderMove();
         }
         onMarker();
+        //ClampBuilderPosition();
     }
+
+    private void ClampBuilderPosition()
+    {
+      float Xpos = Mathf.Clamp(transform.position.x, minX, maxX);
+        transform.position = new Vector3(Xpos, transform.position.y, transform.position.z);
+    }
+
     private void Initialsettings()
     {
         if (isLocalPlayer && !isServer)
@@ -116,9 +131,9 @@ public class BuilderController : NetworkBehaviour
     {
         isGoBuild = true;
         isMoving = false;
-        StopAllCoroutines();
-        StartCoroutine(BuildOrder_co(targetPos, towerindex, teamIndex));
-     
+        CustomAllStopCo();
+        OrderCoroutine = StartCoroutine(BuildOrder_co(targetPos, towerindex, teamIndex)); ;
+
 
     }
     [Client]
@@ -126,11 +141,25 @@ public class BuilderController : NetworkBehaviour
     {
         isGoBuild = true;
         isMoving = false;
-        StopAllCoroutines();
-        StartCoroutine(BuilderDestroyOrder_co(destroyTower));
+
+        CustomAllStopCo();
+        DestroyCoroutine = StartCoroutine(BuilderDestroyOrder_co(destroyTower));
 
     }
-        private IEnumerator BuildOrder_co(Vector3 targetPos, int[] towerindex, int teamIndex)
+
+    private void CustomAllStopCo()
+    {
+        if (OrderCoroutine != null)
+        {
+            StopCoroutine(OrderCoroutine);
+        }
+        if (DestroyCoroutine != null)
+        {
+            StopCoroutine(DestroyCoroutine);
+        }
+    }
+
+    private IEnumerator BuildOrder_co(Vector3 targetPos, int[] towerindex, int teamIndex)
     {
         transform.LookAt(targetPos);// 타워짓는곳을 바라보는 코드
         while (isGoBuild)
@@ -176,13 +205,14 @@ public class BuilderController : NetworkBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            StopAllCoroutines();
+            CustomAllStopCo();
             isGoBuild = false;
             Vector3 mousePosition = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, GroundLayer))
+            if (Physics.Raycast(ray, out hit, groundLayer ))
             {
+                Debug.Log(hit.transform.gameObject.layer);
                 targetposition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                 transform.LookAt(targetposition);
             }
@@ -198,7 +228,7 @@ public class BuilderController : NetworkBehaviour
     }
     #endregion
     #region Command
-  
+
     [Command]
     private void CMDTag(GameObject builder, string tag)
     {

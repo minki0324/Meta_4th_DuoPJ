@@ -76,7 +76,6 @@ public class InfoConecttoUI : MonoBehaviour
             isMonsterClick = false;
             type = Type.Upgrade;
         }
-        Debug.Log(isMonsterClick);
             UpdateUI();
 
     }

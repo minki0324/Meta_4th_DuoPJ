@@ -27465,6 +27465,7 @@ MonoBehaviour:
   - {fileID: 9214614053171815319, guid: 974204383f7364a498cd076b21d7bb23, type: 3}
   - {fileID: 956331631191889180, guid: efa339c240a5a034a80b44fe208859c4, type: 3}
   income: {fileID: 1863573619}
+  resourse: {fileID: 241365793}
 --- !u!114 &468102003457515453
 MonoBehaviour:
   m_ObjectHideFlags: 0

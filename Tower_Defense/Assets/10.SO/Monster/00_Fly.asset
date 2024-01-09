@@ -18,10 +18,10 @@ MonoBehaviour:
   MonsterID: 0
   level: 1
   type: 3
-  maxHp: 20
-  currentHP: 20
+  maxHp: 500
+  currentHP: 500
   speed: 5
   damage: 0
-  cost: 70
+  cost: 40
   attackSpeed: 10
   isDie: 0

@@ -202,13 +202,6 @@ public class Tower_Attack : NetworkBehaviour
             }
         }
     }
-    private void OnDrawGizmos()
-    {
-        // 디버그 렌더링을 통해 원통 모양의 캡슐을 에디터에서 시각적으로 표시
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position + transform.forward, 1.5f); // 캡슐의 시작점
-    }
     private IEnumerator Calculate_Fire(Transform _target)
     {
         Monster_Control mon = _target.GetComponent<Monster_Control>();

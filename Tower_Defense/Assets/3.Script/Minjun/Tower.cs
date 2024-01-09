@@ -71,7 +71,7 @@ public class Tower : NetworkBehaviour
         level = 1;
         unitSprite = head.head_Data.towerImage;
         towerName = head.head_Data.name_;
-        towerType = head.head_Data.weapon_Type.ToString();
+        towerType = head.head_Data.weapon_Type.ToString();  
     }
   
     public void Selectunit()
@@ -113,7 +113,6 @@ public class Tower : NetworkBehaviour
     }
     private void DestroyCheck()
     {
-        Debug.Log(currentHP);
         if (currentHP <= 0)
         {
             if (!isDestroy)

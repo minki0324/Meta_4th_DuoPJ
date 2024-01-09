@@ -21,9 +21,11 @@ MonoBehaviour:
   Position: {x: 0, y: 0, z: 0}
   DelayTime: 0.12
   towerImage: {fileID: 21300000, guid: 8a9c7018987d7094694542bada3a04e7, type: 3}
+  descirption: "\uAE34 \uC0AC\uC815\uAC70\uB9AC\uB97C \uC9C0\uB2CC \uC989\uBC1C \uD615\uC2DD\uC758
+    \uD0C0\uC6CC\uC785\uB2C8\uB2E4."
   Cost: 20
   Rot_Speed: 60
-  Damage: 10
-  ATK_Speed: 1.5
+  Damage: 30
+  ATK_Speed: 3
   ATK_Range: 20
   Reload: 0
