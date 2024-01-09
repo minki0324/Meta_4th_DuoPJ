@@ -37,21 +37,39 @@ public class Monster_Spawn : NetworkBehaviour
     [Command(requiresAuthority = false)]
     private void CMD_SpawnMonster(int index, int player_num)
     {
+        GameObject monster = pools.GetMonster(index);
+        Monster_Control monster_con = monster.GetComponent<Monster_Control>();
+        monster_con.currentLineNum = player_num + 1;
+        while (Life_Manager.instance.IsPlayerDead(monster_con.currentLineNum) || monster_con.currentLineNum == player_num)
+        {
+            monster_con.currentLineNum++;
+            if (monster_con.currentLineNum > 4)
+            {
+                monster_con.currentLineNum = 1;
+            }
+            //적들의 isDie 불값을 모두가져와서 모두 죽었을때 break걸고 승리조건 만들어야함
+            if (Life_Manager.instance.isVectoryCheck(player_num))
+            {
+                Debug.Log(player_num + "게임종료로 인해 스폰이 불가능합니다.");
+                return;
+            }
+
+        }
         // 초기화 메소드 가져와야됨
-        Transform spawnpoint = Get_SpawnPoint(player_num);
+        Transform spawnpoint = Get_SpawnPoint(monster_con.currentLineNum);
+        Transform finpoint = Get_FinPoint(monster_con.currentLineNum);
         int randIndexX = Random.Range(-10, 11);
         int randIndexZ = Random.Range(-1, 2);
         Vector3 spawnPos = new Vector3(spawnpoint.position.x + randIndexX, spawnpoint.position.y+ Mon_Prefabs[index].transform.position.y, spawnpoint.position.z + randIndexZ);
-        GameObject monster = pools.GetMonster(index);
         monster.transform.SetPositionAndRotation(spawnPos, Mon_Prefabs[index].transform.rotation);
         //NetworkServer.Spawn(monster);
         // 태그 할당
         monster.tag = $"{player_num}P";
         Plus_Income(index, player_num);
 
-        Monster_Control monster_con = monster.GetComponent<Monster_Control>();
+
+
         AllMonster.Add(monster_con);
-        Transform finpoint = Get_FinPoint(player_num);
         //플라이는 에이스타안씀
         if (monster_con.state.type != MonsterState.monType.Fly &&
             monster_con.state.type != MonsterState.monType.Attack
@@ -95,13 +113,13 @@ public class Monster_Spawn : NetworkBehaviour
                 나중에 플레이어 목숨 다하면 다음 플레이어로 소환하는 로직 필요함 Todo 
             */
             case 1:
-                return SpawnPoint[1];
-            case 2:
-                return SpawnPoint[2];
-            case 3:
-                return SpawnPoint[3];
-            case 4:
                 return SpawnPoint[0];
+            case 2:
+                return SpawnPoint[1];
+            case 3:
+                return SpawnPoint[2];
+            case 4:
+                return SpawnPoint[3];
             default:
                 return null;
         }
@@ -114,13 +132,13 @@ public class Monster_Spawn : NetworkBehaviour
                 나중에 피니시라인 넘어갔을 때 그 다음 플레이어에게 가는 로직 필요함 Todo
             */
             case 1:
-                return FinPoint[1];
-            case 2:
-                return FinPoint[2];
-            case 3:
-                return FinPoint[3];
-            case 4:
                 return FinPoint[0];
+            case 2:
+                return FinPoint[1];
+            case 3:
+                return FinPoint[2];
+            case 4:
+                return FinPoint[3];
             default:
                 return null;
         }
@@ -128,7 +146,6 @@ public class Monster_Spawn : NetworkBehaviour
 
     private void Plus_Income(int index, int player_num)
     {
-        Debug.Log("불림?");
         int incomeIncrease = 0;
 
         switch (index)
@@ -153,7 +170,6 @@ public class Monster_Spawn : NetworkBehaviour
                 break;
         }
 
-        Debug.Log("플레이어 넘버 : " + player_num);
         switch (player_num)
         {
             case 1:

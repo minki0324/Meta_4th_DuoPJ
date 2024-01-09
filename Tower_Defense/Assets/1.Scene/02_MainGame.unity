@@ -21382,6 +21382,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1266958661}
     - target: {fileID: 1863573611, guid: 146ea88087fb3bd49acbe24e5f72bb1f, type: 3}
+      propertyPath: miniMapRect
+      value: 
+      objectReference: {fileID: 1863573621}
+    - target: {fileID: 1863573611, guid: 146ea88087fb3bd49acbe24e5f72bb1f, type: 3}
       propertyPath: miniMapCamera
       value: 
       objectReference: {fileID: 1645511613}
@@ -21665,7 +21669,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 241365791, guid: 146ea88087fb3bd49acbe24e5f72bb1f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 146ea88087fb3bd49acbe24e5f72bb1f, type: 3}
 --- !u!114 &1863573608 stripped
 MonoBehaviour:

@@ -12,6 +12,8 @@ public class Monster_Control : NetworkBehaviour
     private NetworkAnimator netAni;
     //[SerializeField] private Material DieMaterial;
     [SyncVar]
+    public int currentLineNum;
+    [SyncVar]
     public float M_maxHp;
     [SyncVar]
     public float M_currentHP;
@@ -53,7 +55,7 @@ public class Monster_Control : NetworkBehaviour
 
     private void Update()
     {
-
+        
         //죽는거 체크함
         //CheckDie();
 
