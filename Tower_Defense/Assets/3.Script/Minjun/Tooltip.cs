@@ -11,13 +11,17 @@ public class Tooltip : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
     [SerializeField] private GameObject Spawner_tooltip;
     [SerializeField] private GameObject Upgrade_tooltip;
 
+    [Header("타워")]
+    [SerializeField] private BuilderPanel tower_data;
     [SerializeField] private Text name_txt;
     [SerializeField] private Text Cost_txt;
     [SerializeField] private Text Des_txt;
     [SerializeField] private Text Data_txt;
+    [SerializeField] private Text Q_txt;
 
-    [Header("타워")]
-    [SerializeField] private BuilderPanel tower_data;
+
+    [Header("몬스터")]
+    [SerializeField] private MonsterState[] monster_data;
 
     public void OnPointerEnter(PointerEventData eventData)
     {

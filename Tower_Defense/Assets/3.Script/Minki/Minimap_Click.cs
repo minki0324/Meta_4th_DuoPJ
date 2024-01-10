@@ -10,7 +10,7 @@ public class Minimap_Click : MonoBehaviour, IPointerClickHandler
     public Camera miniMapCamera; // 미니맵 카메라
     public Image Render_img;
     [SerializeField] private Text timer;
-    private float current_timer;
+    public float current_timer;
 
     private void Update()
     {

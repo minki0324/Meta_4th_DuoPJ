@@ -8,6 +8,8 @@ public class Life_Manager : NetworkBehaviour
 {
     public static Life_Manager instance;
     [SerializeField] private Text[] Life_Txt;
+    private Minimap_Click timer;
+
     public Sprite[] image_array;
     public Image[] player_image;
     public string[] player_name;
@@ -36,6 +38,7 @@ public class Life_Manager : NetworkBehaviour
         Life_Txt = new Text[4];
         player_image = new Image[4];
         img_index = new int[4];
+        timer = FindObjectOfType<Minimap_Click>();
         StartCoroutine(init_data());
     }
 
@@ -143,7 +146,7 @@ public class Life_Manager : NetworkBehaviour
 
     public void Life_Set(int player_num, int monster_num)
     {
-        switch(player_num)
+        switch (player_num)
         {
             case 1:
                 P1_Life--;
@@ -175,10 +178,13 @@ public class Life_Manager : NetworkBehaviour
                     P4_Life++;
                     break;
             }
-        if (isServer)
-        {
-            Kill_Log.instance.Adding_Message($"<color=E34E4E> {player_name[monster_num-1]} </color> ¥‘¿Ã <color=FFFFFF> {player_name[player_num-1]} </color>¥‘¿« <color=FFFFFF> Life 1 </color>¿ª »πµÊ«’¥œ¥Ÿ.");
-        }
+            if (isServer)
+            {
+                float time = timer.current_timer;
+                float sec = time % 60f;
+                float min = time / 60f;
+                Kill_Log.instance.Adding_Message($"<color=FFFFFF>[{(int)min} : {(int)sec}]</color>  <color=E34E4E> {player_name[monster_num - 1]} </color> ¥‘¿Ã <color=FFFFFF> {player_name[player_num - 1]} </color>¥‘¿« <color=FFFFFF> Life 1 </color>¿ª »πµÊ«’¥œ¥Ÿ.");
+            }
         }
         Die(player_num);
     }
@@ -222,29 +228,36 @@ public class Life_Manager : NetworkBehaviour
 
     private void Die(int player_num)
     {
-        switch(player_num)
+        float time = timer.current_timer;
+        float sec = time % 60f;
+        float min = time / 60f;
+        switch (player_num)
         {
             case 1:
                 if(P1_Life <= 0)
                 {
+                    Kill_Log.instance.Adding_Message($"<color=FFFFFF>[{(int)min} : {(int)sec}]</color>  <color=E34E4E> {player_name[player_num]} </color> ¥‘¿Ã ∆–πË«ﬂΩ¿¥œ¥Ÿ.");
                     P1_isDead = true;
                 }
                 break;
             case 2:
                 if (P2_Life <= 0)
                 {
+                    Kill_Log.instance.Adding_Message($"<color=FFFFFF>[{(int)min} : {(int)sec}]</color>  <color=E34E4E> {player_name[player_num]} </color> ¥‘¿Ã ∆–πË«ﬂΩ¿¥œ¥Ÿ.");
                     P2_isDead = true;
                 }
                 break;
             case 3:
                 if (P3_Life <= 0)
                 {
+                    Kill_Log.instance.Adding_Message($"<color=FFFFFF>[{(int)min} : {(int)sec}]</color>  <color=E34E4E> {player_name[player_num]} </color> ¥‘¿Ã ∆–πË«ﬂΩ¿¥œ¥Ÿ.");
                     P3_isDead = true;
                 }
                 break;
             case 4:
                 if (P4_Life <= 0)
                 {
+                    Kill_Log.instance.Adding_Message($"<color=FFFFFF>[{(int)min} : {(int)sec}]</color>  <color=E34E4E> {player_name[player_num]} </color> ¥‘¿Ã ∆–πË«ﬂΩ¿¥œ¥Ÿ.");
                     P4_isDead = true;
                 }
                 break;
