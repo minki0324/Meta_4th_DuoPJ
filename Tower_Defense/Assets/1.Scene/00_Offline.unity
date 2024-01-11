@@ -3855,7 +3855,7 @@ MonoBehaviour:
   - {fileID: 8588166508417776201, guid: 55351d3645f34494f8746ce0a5529b2d, type: 3}
   - {fileID: 3974143642561148006, guid: cbd36af795bcb0240a3c97ba33d71bdb, type: 3}
   - {fileID: 956331631191889180, guid: efa339c240a5a034a80b44fe208859c4, type: 3}
-  - {fileID: 1475727715842951599, guid: e97a2db2018be2744b846da20027cb7a, type: 3}
+  - {fileID: 4604956518485097609, guid: 9efeccb6c35797c4398620ab3c869870, type: 3}
   - {fileID: 3761308563669819811, guid: 68ada55d3f7bc17448e0e23e4e42eff6, type: 3}
   - {fileID: 8382315727152946744, guid: 12dbac7caa44d8b4e8ff66b418c1556e, type: 3}
   - {fileID: 1722666483129094422, guid: 62edb8d53fad5374d97b79921e445cfd, type: 3}
@@ -3886,6 +3886,8 @@ MonoBehaviour:
   - {fileID: 100000, guid: 49ca46ce7082ccf4c91329cd9b7c4b61, type: 3}
   - {fileID: 100010, guid: 762a17aff08aa1f40ac72b27c15fe2d1, type: 3}
   - {fileID: 100004, guid: 43a8e47b31adb9a47b81c4653b412e5c, type: 3}
+  - {fileID: 3673398942280209292, guid: 7ca9cb3688e041446818e02266025359, type: 3}
+  - {fileID: 182453349207164020, guid: f1d687bb762230248a6aa6f71498e40f, type: 3}
   - {fileID: 100000, guid: 5f10243d9632db04bb987838fb3b36b7, type: 3}
   - {fileID: 100002, guid: 0072b525437a5ed4891ebd255ec94fe6, type: 3}
   - {fileID: 100000, guid: 12e7c1b739173c946b6fa3d40e9f62d1, type: 3}
@@ -3905,7 +3907,6 @@ MonoBehaviour:
   - {fileID: 2110457930456749143, guid: 29bc421ca3b44074da42a914a7f5a736, type: 3}
   - {fileID: 8077211683498879351, guid: ab902d2fd78cd474abcd3cc76d492bd1, type: 3}
   - {fileID: 5413785698696387914, guid: f8172a43e562ffc4b9898520f8495f98, type: 3}
-  - {fileID: 4706724424994590651, guid: cebc6fa4cc6051c48b8d0a3be2a64cda, type: 3}
   - {fileID: 100000, guid: bfa7781c328a236468eda51a8ae2be55, type: 3}
   - {fileID: 100002, guid: ca6dec307275d294ba519247d04b6733, type: 3}
   - {fileID: 100000, guid: e496166a742ada640b89650ebebbd052, type: 3}
@@ -3928,7 +3929,7 @@ MonoBehaviour:
   minPlayers: 2
   roomPlayerPrefab: {fileID: 3945291912152814873, guid: 952f3b5d21ceb5b4aa5bc8b1be050269, type: 3}
   RoomScene: Assets/1.Scene/01_Room.unity
-  GameplayScene: Assets/1.Scene/02_MainGame.unity
+  GameplayScene: Assets/1.Scene/Tooltip.unity
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
