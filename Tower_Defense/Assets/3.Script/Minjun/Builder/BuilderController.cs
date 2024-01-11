@@ -167,7 +167,13 @@ public class BuilderController : NetworkBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
             if (Vector3.Distance(transform.position, targetPos) <= 1)
             {
-                BuildManager.Instance.ClientBuildOrder(targetPos, towerindex, teamIndex);
+                if (BuildManager.Instance.MonneyCheck(BuildManager.Instance.currentTowerindex))
+                {
+                    BuildManager.Instance.resourse.current_mineral -= GameManager.instance.Cost[BuildManager.Instance.currentTowerindex];
+                    BuildManager.Instance.ClientBuildOrder(targetPos, towerindex, teamIndex);
+                }
+
+              
                 isGoBuild = false;
                 yield break;
             }

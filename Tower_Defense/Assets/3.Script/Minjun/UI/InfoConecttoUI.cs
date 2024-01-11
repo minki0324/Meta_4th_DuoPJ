@@ -111,34 +111,95 @@ public class InfoConecttoUI : MonoBehaviour
                 break;
             case Type.Spawner:
                 SettingOrderUI(2);
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    spawner.Onclick(0);
-                }
-                if (Input.GetKeyDown(KeyCode.W))
-                {
-                    spawner.Onclick(1);
-                }
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    spawner.Onclick(2);
-                }
-                if (Input.GetKeyDown(KeyCode.R))
-                {
-                    spawner.Onclick(3);
-                }
-                if (Input.GetKeyDown(KeyCode.A))
-                {
-                    spawner.Onclick(4);
-                }
-                if (Input.GetKeyDown(KeyCode.S))
-                {
-                    spawner.Onclick(5);
-                }
+                SpawnerShortcutKey();
+                
                 break;
             case Type.Upgrade:
                 SettingOrderUI(3);
+                UpgradeShortcutKey();
+                
                 break;
+        }
+    }
+
+    private void UpgradeShortcutKey()
+    {
+        if (Input.GetKeyDown(KeyCode.Q) && UpgradeCostCheck(100))
+        {
+            UpgradeManager.Instance.onClickUp(0, 0);
+        }
+        else if (Input.GetKeyDown(KeyCode.W) && UpgradeCostCheck(100))
+        {
+            UpgradeManager.Instance.onClickUp(1, 0);
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && UpgradeCostCheck(100))
+        {
+            UpgradeManager.Instance.onClickUp(2, 0);
+        }
+        else if (Input.GetKeyDown(KeyCode.R) && UpgradeCostCheck(100))
+        {
+            //스캔범위
+            UpgradeManager.Instance.onClickUp(3, 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.A) && UpgradeCostCheck(100))
+        {
+            UpgradeManager.Instance.onClickUp(0, 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.S) && UpgradeCostCheck(100))
+        {
+            UpgradeManager.Instance.onClickUp(1, 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.D) && UpgradeCostCheck(100))
+        {
+            UpgradeManager.Instance.onClickUp(2, 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.F) && UpgradeCostCheck(100))
+        {
+            //라이프증가
+        }
+        else if (Input.GetKeyDown(KeyCode.Z) && UpgradeCostCheck(100))
+        {
+            UpgradeManager.Instance.onClickUp(0, 2);
+        }
+        else if (Input.GetKeyDown(KeyCode.X) && UpgradeCostCheck(100))
+        {
+            UpgradeManager.Instance.onClickUp(1, 2);
+        }
+        else if (Input.GetKeyDown(KeyCode.C) && UpgradeCostCheck(100))
+        {
+            UpgradeManager.Instance.onClickUp(2, 2);
+        }
+        else if (Input.GetKeyDown(KeyCode.V) && UpgradeCostCheck(100))
+        {
+            //인구증가
+        }
+    }
+
+    private void SpawnerShortcutKey()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            spawner.Onclick(0);
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            spawner.Onclick(1);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            spawner.Onclick(2);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            spawner.Onclick(3);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            spawner.Onclick(4);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            spawner.Onclick(5);
         }
     }
 
@@ -209,13 +270,54 @@ public class InfoConecttoUI : MonoBehaviour
         panel.SetActive(true);
         unitImage.gameObject.GetComponent<unitSpriteController>().myObject = rts.selectTowers[0];
         //rts.selectTowers[0].maxHP;
-        Lvl_Speed.text = string.Format("{0} \n {1}", rts.selectTowers[0].level, rts.selectTowers[0].Speed);
-        Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", rts.selectTowers[0].damage, rts.selectTowers[0].range, rts.selectTowers[0].atkSpeed);
+        bool isAttackUp = rts.selectTowers[0].AttackLevel > 0;
+        bool isRangeUp = rts.selectTowers[0].RangeLevel > 0;
+
+        //소수점 셋째자리수까지만 반올림해서 살림
+        float upDamage = rts.selectTowers[0].upDamage;
+        float upAS = rts.selectTowers[0].upAS;
+        float upRange = rts.selectTowers[0].upRange;
+
+        if (isAttackUp && isRangeUp)
+        {
+            Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", $"{rts.selectTowers[0].damage} +{upDamage}", $"{rts.selectTowers[0].range} +{upRange}", $"{rts.selectTowers[0].atkSpeed} -{upAS}");
+        }
+        else if (isAttackUp || isRangeUp)
+        {
+            if (isAttackUp)
+            {
+                Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", $"{rts.selectTowers[0].damage} +{upDamage}", rts.selectTowers[0].range, $"{rts.selectTowers[0].atkSpeed} -{upAS}");
+            }
+            else if (isRangeUp)
+            {
+                Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", rts.selectTowers[0].damage, $"{rts.selectTowers[0].range} +{upRange}", rts.selectTowers[0].atkSpeed);
+
+            }
+
+        }
+        else
+        {
+            Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", rts.selectTowers[0].damage, rts.selectTowers[0].range, rts.selectTowers[0].atkSpeed);
+        }
+
         MaxHP_CurrentHP.text = string.Format("{0} / {1}", rts.selectTowers[0].maxHP, rts.selectTowers[0].currentHP);
+        Lvl_Speed.text = string.Format("{0} \n {1}", rts.selectTowers[0].level, rts.selectTowers[0].Speed);
+
+        //Atk_Range_AS.text = $"{rts.selectTowers[0].damage} +{upDamage}\n" +
+        //      $"{rts.selectTowers[0].range} +{upRange}\n" +
+        //      $"{rts.selectTowers[0].atkSpeed} +{upAS}";
+
         unitImage.sprite = rts.selectTowers[0].unitSprite;
         Name.text = rts.selectTowers[0].towerName;
         style.text = rts.selectTowers[0].towerType;
     }
+
+
+    private float F3Round(float temp)
+    {
+        return Mathf.Round(temp * 1000) / 100f;
+    }
+
     public void MonsterInfoSetting(Monster_Control monster)
     {
         ButtonActiveReset();
@@ -224,7 +326,7 @@ public class InfoConecttoUI : MonoBehaviour
         unitImage.gameObject.GetComponent<unitSpriteController>().monster = monster;
         Lvl_Speed.text = string.Format("{0} \n {1}", monster.Lvl, monster.M_speed);
         Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", monster.M_damage, '-', '-');
-        MaxHP_CurrentHP.text = string.Format("{0} / {1}", monster.M_maxHp, monster.M_currentHP);
+        MaxHP_CurrentHP.text = string.Format("{0} / {1}", monster.M_maxHp, (int)monster.M_currentHP);
         unitImage.sprite = monster.unitImage;
         Name.text = monster.state.monsterName;
         style.text = monster.state.monsterType;
@@ -252,5 +354,17 @@ public class InfoConecttoUI : MonoBehaviour
         SingleInfoSetting();
 
     }
+    public bool UpgradeCostCheck(int UpgradeCost)
+    {
+       if( BuildManager.Instance.resourse.current_mineral >= UpgradeCost)
+        {
 
+            BuildManager.Instance.resourse.current_mineral -= UpgradeCost;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

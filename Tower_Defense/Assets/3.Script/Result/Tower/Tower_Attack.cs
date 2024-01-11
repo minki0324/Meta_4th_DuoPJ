@@ -22,7 +22,7 @@ public class Tower_Attack : NetworkBehaviour
     [SerializeField] private F3DFXController start_fire;
     [SerializeField] private Effect_Pooling pool;
     [SerializeField] private Transform mount;
-    
+    private Tower tower;
     [SerializeField] private LayerMask target_Layer;
     public string towerName;
     public string towerType;
@@ -35,10 +35,13 @@ public class Tower_Attack : NetworkBehaviour
     public Transform target;
     public Transform testTarget;
     public float current_ATK_Speed = 0;
+
+  
     #region Unity Callback
     private void Start()
     {
         // Initialize singleton  
+        tower = transform.root.GetComponent<Tower>();
         instance = this;
         mount = transform.parent;
         Init_Data(head_Data);
@@ -148,7 +151,7 @@ public class Tower_Attack : NetworkBehaviour
             {
                 StartCoroutine(Calculate_Fire(target));
                 
-                current_ATK_Speed = H_ATK_Speed;
+                current_ATK_Speed = tower.RealAS;
             }
         }
     }
@@ -162,10 +165,11 @@ public class Tower_Attack : NetworkBehaviour
         H_ATK_Range = head_Data.ATK_Range;
         H_Reload = head_Data.Reload;
     }
+ 
 
     private void Search_Enemy()
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, H_ATK_Range, target_Layer);
+        Collider[] cols = Physics.OverlapSphere(transform.position, tower.RealRange, target_Layer);
 
         if(cols.Length > 0 && target == null)
         {
@@ -195,7 +199,7 @@ public class Tower_Attack : NetworkBehaviour
         if (target != null)
         {
             float distanceToTarget = Vector3.Distance(transform.position, target.position);
-            if (distanceToTarget > H_ATK_Range)
+            if (distanceToTarget > tower.RealRange)
             {
                 // 타겟이 공격 범위를 벗어났으므로 null로 설정
                 target = null;
@@ -210,7 +214,8 @@ public class Tower_Attack : NetworkBehaviour
             case Head_Data.Weapon_Type.Targeting:
                 Fire();
                 yield return new WaitForSeconds(head_Data.DelayTime);
-                mon.M_currentHP -= H_Damage;
+                
+                mon.M_currentHP -= tower.RealDamage;
                 if (mon.M_currentHP <= 0)
                 {
                     StartCoroutine(mon.onDie());
@@ -241,8 +246,8 @@ public class Tower_Attack : NetworkBehaviour
             //item.collider.gameObject
             Monster_Control monster = item.gameObject.GetComponent<Monster_Control>();
             if (monster.isDie || monster.isInvi ) continue;
-
-            monster.M_currentHP -= H_Damage;
+          
+            monster.M_currentHP -= tower.RealDamage;
             if (monster.M_currentHP <= 0)
             {
                 StartCoroutine(monster.onDie());
@@ -264,12 +269,11 @@ public class Tower_Attack : NetworkBehaviour
 
     private void FlameAttack()
     {
-        Collider[] col = Physics.OverlapCapsule(transform.position + transform.forward, transform.position + transform.forward * 6.0f, 1.5f, target_Layer);
-        Debug.Log(col.Length);
+
+        Collider[] col = Physics.OverlapCapsule(transform.position + transform.forward, transform.position + transform.forward * (int)(tower.RealRange - 2 ), 1.5f, target_Layer);
 
         UnitsInRange_Damage(col);
     }
-
     private void Projectile(Head_Data.Atk_Type atk_Type, int Muzzle_index, int Pro_index)
     {
         var offset = Quaternion.Euler(Random.onUnitSphere);

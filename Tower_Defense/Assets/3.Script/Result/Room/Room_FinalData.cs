@@ -42,9 +42,9 @@ public class Room_FinalData : MonoBehaviour
     {
         Set_Data();
         Print_Data();
-        Prefab_1_index = new int[] { 1, 1, 1 };
-        Prefab_2_index = new int[] { 2, 2, 2 };
-        Prefab_3_index = new int[] { 3, 3, 3 };
+        Prefab_1_index = new int[] { 1, 1, 1 ,1 };
+        Prefab_2_index = new int[] { 2, 2, 2 ,2};
+        Prefab_3_index = new int[] { 3, 3, 3 ,3};
     }
 
     public void Set_Data()
@@ -71,19 +71,19 @@ public class Room_FinalData : MonoBehaviour
     {
         if (index.tower_index == 0)
         {
-            Prefab_1_index = index.Return_index();
+            Prefab_1_index = index.Return_index(0);
             Slot_1 = true;
             Send_Data(index.tower_index);
         }
         else if(index.tower_index == 1)
         {
-            Prefab_2_index = index.Return_index();
+            Prefab_2_index = index.Return_index(1);
             Slot_2 = true;
             Send_Data(index.tower_index);
         }
         else
         {
-            Prefab_3_index = index.Return_index();
+            Prefab_3_index = index.Return_index(2);
             Slot_3 = true;
             Send_Data(index.tower_index);
         }

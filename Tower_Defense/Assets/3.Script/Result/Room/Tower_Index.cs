@@ -48,8 +48,8 @@ public class Tower_Index : MonoBehaviour
         }
     }
 
-    public int[] Return_index()
+    public int[] Return_index(int num)
     {
-        return new int[] { head_index, mount_index, base_index };
+        return new int[] { head_index, mount_index, base_index , num };
     }
 }

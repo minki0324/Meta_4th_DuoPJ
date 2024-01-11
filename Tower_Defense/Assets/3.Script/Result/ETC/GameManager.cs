@@ -22,10 +22,10 @@ public class GameManager : NetworkBehaviour
 
     public List<int[]> towerArrayIndex;
     public int towerIndexCount = 0;
-    public int[] Tower_1_index = new int[3];
-    public int[] Tower_2_index = new int[3];
-    public int[] Tower_3_index = new int[3];
-    public int[] Tower_4_index = { 8, 4, 5 };
+    public int[] Tower_1_index = new int[4];
+    public int[] Tower_2_index = new int[4];
+    public int[] Tower_3_index = new int[4];
+    public int[] Tower_4_index;
     public int[] Cost;
     public float[] Damage;
     public float[] Range;
@@ -54,12 +54,13 @@ public class GameManager : NetworkBehaviour
             return;
         }
         manager = FindObjectOfType<Room_Manager>();
+        Tower_4_index =new int[] { 8, 4, 5 ,3};
 
-        
     }
     private void Start()
     {
         Init_Data();
+        Cost[3] = 50;
     }
     public void ListSet()
     {

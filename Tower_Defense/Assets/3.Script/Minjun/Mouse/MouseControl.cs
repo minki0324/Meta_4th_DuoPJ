@@ -73,7 +73,11 @@ public class MouseControl : MonoBehaviour
             {
                 LayerMask hitLayer = hit.collider.gameObject.layer;
                 string layerName = LayerMask.LayerToName(hitLayer);
+                if(BuildManager.Instance.builder != null)
+                {
+
                 BuildManager.Instance.builder.isSelectBuilder = false;
+                }
                 infoUI.isMonsterClick = false;
                 switch (layerName)
                 {
@@ -116,7 +120,13 @@ public class MouseControl : MonoBehaviour
 
     private void ResetInfo()
     {
+        if(BuildManager.Instance.builder != null) { 
         BuildManager.Instance.builder.isSelectBuilder = false;
+        }
+        else
+        {
+            Debug.Log("빌더널");
+        }
         infoUI.isMonsterClick = false;
         //땅클릭시 Shift 안누르면 초기화
         if (!Input.GetKey(KeyCode.LeftShift))
