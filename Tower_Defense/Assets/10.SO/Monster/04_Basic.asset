@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 04_Basic
   m_EditorClassIdentifier: 
   mon_img: {fileID: 21300000, guid: 5566f1eab30828a44966aad379c6c64e, type: 3}
-  monsterName: "\uBCA0\uC774\uC9C1"
+  monsterName: Zombie Roid
   monsterType: "\uAE30\uBCF8"
   MonsterID: 4
   level: 1
@@ -21,7 +21,10 @@ MonoBehaviour:
   maxHp: 100
   currentHP: 100
   speed: 5
-  damage: 5000
+  damage: 0
   cost: 10
   attackSpeed: 10
+  income: 1
   isDie: 0
+  Description: "\uAC00\uC7A5 \uAE30\uBCF8\uD615 \uBAAC\uC2A4\uD130\uB85C \uADE0\uB4F1\uD55C
+    \uB2A5\uB825\uC744 \uC9C0\uB2CC \uBAAC\uC2A4\uD130\uC785\uB2C8\uB2E4."

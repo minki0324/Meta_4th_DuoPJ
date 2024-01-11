@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 02_Attack
   m_EditorClassIdentifier: 
   mon_img: {fileID: 21300000, guid: 8b13a49499afc9140bc6d4947b67d4ff, type: 3}
-  monsterName: "\uC5B4\uD0DD"
+  monsterName: War Smasher
   monsterType: "\uC804\uD22C"
   MonsterID: 2
   level: 1
@@ -23,5 +23,7 @@ MonoBehaviour:
   speed: 5
   damage: 5
   cost: 100
-  attackSpeed: 2
+  attackSpeed: 1
+  income: 5
   isDie: 0
+  Description: "\uD0C0\uC6CC\uB97C \uACF5\uACA9\uD558\uB294 \uACF5\uACA9\uD615 \uBAAC\uC2A4\uD130\uC785\uB2C8\uB2E4."

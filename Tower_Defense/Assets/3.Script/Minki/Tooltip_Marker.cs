@@ -1,0 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Tooltip_Marker : MonoBehaviour
+{
+    void Update()
+    {
+        transform.Rotate(new Vector3(0, 0, 45) * Time.deltaTime);
+    }
+}

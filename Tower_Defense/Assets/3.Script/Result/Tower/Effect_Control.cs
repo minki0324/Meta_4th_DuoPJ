@@ -73,11 +73,13 @@ public class Effect_Control : NetworkBehaviour
     public Transform target_;
     public Quaternion current_Rot;
     [SerializeField] private float homingSpeed = 5f;
+    private SFX_Manager manager;
 
     #region Unity Callback
     private void Awake()
     {
         pool = FindObjectOfType<Effect_Pooling>();
+        manager = FindObjectOfType<SFX_Manager>();
         transform = GetComponent<Transform>();
         // 변환 캐시 및 연결된 모든 입자 시스템 가져오기
         if (type == Effect_type.projectile)
@@ -183,12 +185,14 @@ public class Effect_Control : NetworkBehaviour
         {
             case Head_Data.Atk_Type.Vulcan:
                 GameObject vul_impact = pool.GetEffect(index);
+                manager.SFX_VulcanHit(pos);
                 Transform_Set(vul_impact, pos, Quaternion.identity);
                 GameManager.instance.RPC_TransformSet(vul_impact, pos, Quaternion.identity);
                 break;
             case Head_Data.Atk_Type.Sniper:
                 GameObject sni_impact = pool.GetEffect(index);
                 Transform_Set(sni_impact, pos, Quaternion.identity);
+                manager.SFX_SniperHit(pos);
                 GameManager.instance.RPC_TransformSet(sni_impact, pos, Quaternion.identity);
                 break;
             case Head_Data.Atk_Type.Missile:
@@ -196,23 +200,61 @@ public class Effect_Control : NetworkBehaviour
             case Head_Data.Atk_Type.Seeker:
                 GameObject Seeker_impact = pool.GetEffect(index);
                 Transform_Set(Seeker_impact, pos, Quaternion.identity);
+                manager.SFX_SeekerHit(pos);
                 GameManager.instance.RPC_TransformSet(Seeker_impact, pos, Quaternion.identity);
                 break;
             case Head_Data.Atk_Type.Air:
                 GameObject Air_impact = pool.GetEffect(index);
                 Transform_Set(Air_impact, pos, Quaternion.identity);
+                manager.SFX_AirHit(pos);
                 GameManager.instance.RPC_TransformSet(Air_impact, pos, Quaternion.identity);
                 break;
             case Head_Data.Atk_Type.LaserImpulse:
                 GameObject LaserImpulse_impact = pool.GetEffect(index);
                 Transform_Set(LaserImpulse_impact, pos, Quaternion.identity);
+                manager.SFX_LaserImpulseHit(pos);
                 GameManager.instance.RPC_TransformSet(LaserImpulse_impact, pos, Quaternion.identity);
                 break;
         }
     }
     #endregion
     #region ClientRPC
+    [ClientRpc]
+    private void RPC_Update_LineRenderer(Vector3 muzzlepos, Vector3 directionToTarget, Vector3 hitpoint, float beamLength_)
+    {
+        // 구조체 초기화 및 레이 생성
+        hitPoint = new RaycastHit();
+
+        Ray ray = new Ray(muzzlepos, directionToTarget);
+        Debug.DrawRay(ray.origin, ray.direction * MaxBeamLength, Color.red, 1f);
+
+        // 기본 스케일 및 최대 길이를 기반으로한 기본 빔 비율 계수 계산
+        float propMult = MaxBeamLength * (beamScale / 10f);
+        // 레이캐스트
+        if (Physics.Raycast(ray, out hitPoint, MaxBeamLength, layerMask))
+        {
+            Render(beamLength_);
+
+            // 현재 길이를 기반으로한 기본 빔 비율 계수 계산
+            propMult = beamLength_ * (beamScale / 10f);
+
+            // 충돌 효과 위치 조정
+            if (rayImpact)
+                rayImpact.position = hitpoint - transform.forward * 0.5f;
+        }
+        // 머즐 위치 조정
+        if (rayMuzzle)
+            rayMuzzle.position = transform.position + transform.forward * 0.1f;
+
+        // 빔 길이에 따라 빔 스케일 조정
+        lineRenderer.material.SetTextureScale("_BaseMap", new Vector2(propMult, 1f));
+
+    }
     #endregion
+    private void Render(float beamlength)
+    {
+        lineRenderer.SetPosition(1, new Vector3(0f, 0f, beamlength));
+    }
     #region Hook Method
     #endregion
     private void active()
@@ -346,11 +388,16 @@ public class Effect_Control : NetworkBehaviour
     {
         // 구조체 초기화 및 레이 생성
         hitPoint = new RaycastHit();
-        
-        Vector3 directionToTarget = (target_.position - transform.position).normalized;
 
-        Ray ray = new Ray(transform.position, directionToTarget);
+        // 레이의 시작 위치를 터렛의 총구 위치로 설정
+        Vector3 rayStart = rayMuzzle.position;
+
+        // 레이의 방향을 타겟 위치로 설정
+        Vector3 directionToTarget = (target_.position - rayStart).normalized;
+
+        Ray ray = new Ray(rayStart, directionToTarget);
         Debug.DrawRay(ray.origin, ray.direction * MaxBeamLength, Color.red, 1f);
+
         // 기본 스케일 및 최대 길이를 기반으로한 기본 빔 비율 계수 계산
         float propMult = MaxBeamLength * (beamScale / 10f);
         // 레이캐스트
@@ -359,6 +406,7 @@ public class Effect_Control : NetworkBehaviour
             // 현재 빔 길이 가져오고 라인 렌더러 업데이트
             beamLength = Vector3.Distance(transform.position, hitPoint.point);
             lineRenderer.SetPosition(1, new Vector3(0f, 0f, beamLength));
+            RPC_Update_LineRenderer(rayStart, directionToTarget, hitPoint.point, beamLength);
 
             // 현재 길이를 기반으로한 기본 빔 비율 계수 계산
             propMult = beamLength * (beamScale / 10f);
@@ -376,7 +424,7 @@ public class Effect_Control : NetworkBehaviour
                 rayImpact.position = hitPoint.point - transform.forward * 0.5f;
         }
         // 2D 모드에서 확인
-        else
+        /*else
         {
             RaycastHit2D ray2D = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y),
                 new Vector2(transform.forward.x, transform.forward.y), beamLength, layerMask);
@@ -415,7 +463,7 @@ public class Effect_Control : NetworkBehaviour
                     rayImpact.position = transform.position + transform.forward * beamLength;
             }
         }
-
+*/
         // 머즐 위치 조정
         if (rayMuzzle)
             rayMuzzle.position = transform.position + transform.forward * 0.1f;

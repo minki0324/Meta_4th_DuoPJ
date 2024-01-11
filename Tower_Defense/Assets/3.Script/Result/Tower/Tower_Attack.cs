@@ -22,7 +22,8 @@ public class Tower_Attack : NetworkBehaviour
     [SerializeField] private F3DFXController start_fire;
     [SerializeField] private Effect_Pooling pool;
     [SerializeField] private Transform mount;
-    
+    [SerializeField] private SFX_Manager manager;
+
     [SerializeField] private LayerMask target_Layer;
     public string towerName;
     public string towerType;
@@ -35,6 +36,7 @@ public class Tower_Attack : NetworkBehaviour
     public Transform target;
     public Transform testTarget;
     public float current_ATK_Speed = 0;
+
     #region Unity Callback
     private void Start()
     {
@@ -43,6 +45,7 @@ public class Tower_Attack : NetworkBehaviour
         mount = transform.parent;
         Init_Data(head_Data);
         pool = FindObjectOfType<Effect_Pooling>();
+        manager = FindObjectOfType<SFX_Manager>();
         //if (isServer)
         //{
         //    InvokeRepeating("Search_Enemy", 0f, 0.05f);
@@ -52,6 +55,7 @@ public class Tower_Attack : NetworkBehaviour
     private void Update()
     {
         if (head_Data.atk_Type == Head_Data.Atk_Type.Scan) return;
+       
         if (isServer)
         {
             Search_Enemy();
@@ -287,6 +291,8 @@ public class Tower_Attack : NetworkBehaviour
                 var proj_vul = Projectile_vul.gameObject.GetComponent<Effect_Control>();
                 proj_vul.target_ = target;
                 if (proj_vul) { proj_vul.SetOffset(vulcanOffset); }
+
+                manager.SFX_VulcanShot(turretSocket[curSocket].position);
                 break;
             case Head_Data.Atk_Type.Missile:
                 // 시간 남으면 구현
@@ -301,6 +307,8 @@ public class Tower_Attack : NetworkBehaviour
                 var proj_seeker = Projectile_seeker.gameObject.GetComponent<Effect_Control>();
                 proj_seeker.target_ = target;
                 if (proj_seeker) { proj_seeker.SetOffset(seekerOffset); }
+
+                manager.SFX_SeekerShot(turretSocket[curSocket].position);
                 break;
             case Head_Data.Atk_Type.Air:
                 GameObject Muzzle_Air = pool.GetEffect(Muzzle_index);
@@ -312,6 +320,8 @@ public class Tower_Attack : NetworkBehaviour
                 var proj_Air = Projectile_Air.gameObject.GetComponent<Effect_Control>();
                 proj_Air.target_ = target;
                 if (proj_Air) { proj_Air.SetOffset(soloGunOffset); }
+
+                manager.SFX_AirShot(turretSocket[curSocket].position);
                 break;
             case Head_Data.Atk_Type.LaserImpulse:
                 GameObject Muzzle_LaserImpulse = pool.GetEffect(Muzzle_index);
@@ -323,6 +333,8 @@ public class Tower_Attack : NetworkBehaviour
                 var proj_LaserImpulse = Projectile_LaserImpulse.gameObject.GetComponent<Effect_Control>();
                 proj_LaserImpulse.target_ = target;
                 if (proj_LaserImpulse) { proj_LaserImpulse.SetOffset(soloGunOffset); }
+
+                manager.SFX_LaserImpulseShot(turretSocket[curSocket].position);
                 break;
         }
 
@@ -347,6 +359,8 @@ public class Tower_Attack : NetworkBehaviour
                 var beam = Projectile_sni.GetComponent<Effect_Control>();
                 beam.target_ = target;
                 if (beam) { beam.SetOffset(sniperOffset); }
+
+                manager.SFX_SniperShot(turretSocket[curSocket].position);
                 break;
             case Head_Data.Atk_Type.Laser:
                 for(int i = 0; i < turretSocket.Length; i++)
@@ -359,11 +373,13 @@ public class Tower_Attack : NetworkBehaviour
                     }
                     Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);
                 }
+                manager.SFX_Laser(turretSocket[0].position, 0.1f);
                 break;
             case Head_Data.Atk_Type.Flame:
                 GameObject flame = pool.GetEffect(Muzzle_index);
                 var flame_ = GetComponent<Effect_Control>();
                 Set_Pos_Rot(flame, turretSocket[0].position, turretSocket[0].rotation);
+                manager.SFX_Flame(turretSocket[0].position, 0.1f);
                 break;
             case Head_Data.Atk_Type.PlasmaBeam:
                 for (int i = 0; i < turretSocket.Length; i++)
@@ -373,6 +389,7 @@ public class Tower_Attack : NetworkBehaviour
                     plasma.target_ = target;
                     Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);
                 }
+                manager.SFX_Plasma(turretSocket[0].position);
                 break;
         }
 
