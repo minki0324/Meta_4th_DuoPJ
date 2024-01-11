@@ -482,6 +482,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -684,6 +686,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -1257,6 +1261,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -1579,6 +1585,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -1737,6 +1745,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -1938,6 +1948,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -2420,6 +2432,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -2578,6 +2592,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -4184,6 +4200,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -4615,16 +4633,10 @@ MonoBehaviour:
   atkSpeed: 0
   Speed: 
   level: 0
+  isActive: 0
+  towerName: 
+  towerType: 
   unitSprite: {fileID: 21300000, guid: 55555f6d78c5b8146b4f6fb460167495, type: 3}
-  Cost: 0
-  Head_Rot_Speed: 0
-  Mount_Rot_Speed: 0
-  Damage: 0
-  ATK_Speed: 0
-  ATK_Range: 0
-  Reload: 0
-  Health: 0
-  BuildArea: 
 --- !u!114 &-1669186763215510089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5785,6 +5797,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -6439,6 +6453,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -6678,6 +6694,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -6835,6 +6853,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -7249,6 +7269,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -7650,6 +7672,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -8000,6 +8024,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -8303,6 +8329,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -8978,6 +9006,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -9247,6 +9277,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -10033,6 +10065,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -10189,6 +10223,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -11097,6 +11133,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -11496,6 +11534,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -11734,6 +11774,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -12144,6 +12186,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -13024,6 +13068,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -13469,6 +13515,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -13640,6 +13688,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -13881,6 +13931,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -14232,6 +14284,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -14697,6 +14751,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -15000,6 +15056,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -15525,6 +15583,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -16128,6 +16188,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -16400,6 +16462,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -16638,6 +16702,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -16796,6 +16862,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -16956,6 +17024,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -17692,6 +17762,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -18124,6 +18196,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -19507,6 +19581,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -19663,6 +19739,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -19985,6 +20063,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -20720,6 +20800,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -20876,6 +20958,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -21034,6 +21118,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -21667,6 +21753,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -23132,6 +23220,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -24864,6 +24954,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -25228,6 +25320,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -25801,6 +25895,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -26040,6 +26136,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -26359,6 +26457,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -26550,6 +26650,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -26775,7 +26877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1309685590650218520
 Transform:
   m_ObjectHideFlags: 0
@@ -26817,7 +26919,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8655cc3469fe86d4f849325a93febbbf, type: 2}
+  - {fileID: 2100000, guid: d62cba8d2f5af6441a7fa23e1aa9363a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27079,6 +27181,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
@@ -27444,6 +27548,8 @@ MonoBehaviour:
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
+  towerName: 
+  towerType: 
   H_Cost: 0
   H_Rot_Speed: 0
   H_Damage: 0
