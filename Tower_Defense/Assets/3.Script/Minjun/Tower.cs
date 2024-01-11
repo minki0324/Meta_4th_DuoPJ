@@ -13,7 +13,7 @@ public class Tower : NetworkBehaviour
     [SerializeField] private Material holoColor;
     [SerializeField] public Tower_Attack head;
     [SerializeField] public GameObject towerbase;
-
+    [SerializeField] public Material holo;
     [SyncVar]
     public int towerNum;
     ////////////////////////////////타워 업그레이드 계수
@@ -154,8 +154,7 @@ public class Tower : NetworkBehaviour
     }
     public void HologramTower(GameObject gameObject)
     {
-        MeshRenderer renderer = AttackRange.GetComponent<MeshRenderer>();
-        Material temp = renderer.material;
+       
         MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
         if (meshRenderer )
         {
@@ -167,7 +166,7 @@ public class Tower : NetworkBehaviour
         {
             HologramTower(child.gameObject);
         }
-        renderer.material = temp;
+        renderer.material = holo;
     }
     private void DestroyCheck()
     {

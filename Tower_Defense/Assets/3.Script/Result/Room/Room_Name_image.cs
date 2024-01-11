@@ -11,6 +11,7 @@ public class Room_Name_image : MonoBehaviour
     [SerializeField] private Button[] btn;
     [SerializeField] private InputField Nick_input;
     [SerializeField] private Room_Manager manager;
+    [SerializeField] private Room_Scene ready;
     public Room_PlayerSet[] room_;
     public int current_index = 0;
 
@@ -19,6 +20,14 @@ public class Room_Name_image : MonoBehaviour
     private void Awake()
     {
         manager = FindObjectOfType<Room_Manager>();
+    }
+
+    private void Update()
+    {
+        if(isReady)
+        {
+            ready.Image_Ready = true;
+        }
     }
 
     public void onClick_Front()

@@ -22,6 +22,10 @@ public class Room_Scene : MonoBehaviour
     [SerializeField] private GameObject Prefabs_Panel;
     [SerializeField] private GameObject info_Panel;
 
+    public bool Tower_Ready = false;
+    public bool Image_Ready = false;
+    [SerializeField] private GameObject Ready_Btn;
+
     #region Unity Callback
     private void Start()
     {
@@ -31,6 +35,10 @@ public class Room_Scene : MonoBehaviour
     private void Update()
     {
         Ready_Check();
+        if(Tower_Ready && Image_Ready)
+        {
+            Ready_Btn.SetActive(true);
+        }
     }
     #endregion
 

@@ -186,6 +186,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -455,6 +456,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -855,6 +857,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -1369,6 +1372,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -1987,6 +1991,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -2255,6 +2260,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -2414,6 +2420,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -3555,6 +3562,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -3906,6 +3914,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -4662,163 +4671,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129663949}
   m_Mesh: {fileID: 3420990202202596191, guid: 6525b1015234b6b45a4dfdebe0ca6c95, type: 3}
---- !u!1 &129671218
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 129671219}
-  - component: {fileID: 129671222}
-  - component: {fileID: 129671221}
-  - component: {fileID: 129671220}
-  m_Layer: 5
-  m_Name: Button
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &129671219
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129671218}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1829611202}
-  m_Father: {fileID: 1394181232}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 311, y: -461}
-  m_SizeDelta: {x: 200, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &129671220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129671218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 129671221}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1394181228}
-        m_TargetAssemblyTypeName: Room_Scene, Assembly-CSharp
-        m_MethodName: OnReadyBtn_Click
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 502245493}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Set_Player_Num
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 502245493}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Set_Tower_Index
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &129671221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129671218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &129671222
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129671218}
-  m_CullTransparentMesh: 1
 --- !u!1 &130225503
 GameObject:
   m_ObjectHideFlags: 0
@@ -4895,6 +4747,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -5454,6 +5307,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -6182,6 +6036,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -7148,6 +7003,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -7512,6 +7368,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -7674,6 +7531,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -7946,6 +7804,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -8152,6 +8011,7 @@ MonoBehaviour:
   - {fileID: 1529076502}
   Nick_input: {fileID: 915501485}
   manager: {fileID: 0}
+  ready: {fileID: 1394181228}
   room_: []
   current_index: 0
   isReady: 0
@@ -8380,6 +8240,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -8776,6 +8637,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -9030,6 +8892,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -9526,6 +9389,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -10039,6 +9903,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -10311,6 +10176,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -10736,6 +10602,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -12813,6 +12680,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -13192,6 +13060,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -13761,6 +13630,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -14312,6 +14182,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -14472,6 +14343,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -14742,6 +14614,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -15045,6 +14918,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -16017,6 +15891,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -16338,6 +16213,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -17218,6 +17094,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -17974,6 +17851,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -20600,6 +20478,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -22085,6 +21964,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -23859,6 +23739,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -25162,6 +25043,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -25324,6 +25206,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -25486,6 +25369,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -25808,6 +25692,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -26484,6 +26369,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -26785,6 +26671,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -27910,6 +27797,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -28184,6 +28072,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -28651,6 +28540,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -30097,6 +29987,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -30603,6 +30494,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -31297,6 +31189,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -33181,6 +33074,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -34117,6 +34011,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -34495,6 +34390,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -34655,6 +34551,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -35344,6 +35241,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -35998,6 +35896,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -36241,6 +36140,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -36947,6 +36847,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -37286,6 +37187,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -37540,6 +37442,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -38599,6 +38502,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -38772,6 +38676,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -39361,6 +39266,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -40636,6 +40542,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -41279,6 +41186,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -41437,6 +41345,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -41963,6 +41872,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -42682,6 +42592,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -43061,6 +42972,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -43223,6 +43135,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -43635,6 +43548,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -43890,6 +43804,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -44079,6 +43994,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -44431,6 +44347,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -45764,6 +45681,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -46787,6 +46705,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -47139,6 +47058,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -47410,6 +47330,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -47854,6 +47775,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -48108,6 +48030,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -48854,6 +48777,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -50118,6 +50042,9 @@ MonoBehaviour:
   manager: {fileID: 0}
   Prefabs_Panel: {fileID: 1471364977}
   info_Panel: {fileID: 227519916}
+  Tower_Ready: 0
+  Image_Ready: 0
+  Ready_Btn: {fileID: 1578116612}
 --- !u!114 &1394181229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50196,7 +50123,6 @@ RectTransform:
   - {fileID: 269561525}
   - {fileID: 41639023}
   - {fileID: 1063700776}
-  - {fileID: 129671219}
   - {fileID: 1517617643}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -50635,6 +50561,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -51465,6 +51392,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -52253,6 +52181,7 @@ MonoBehaviour:
   - {fileID: 8400000, guid: e204983c38f657846b9ea5399195fc0e, type: 2}
   - {fileID: 8400000, guid: be2e5ac5cd0a94a4bb4f87ffb253440b, type: 2}
   image: {fileID: 669190166}
+  ready: {fileID: 1394181228}
   Cost: 0
   Head_Rot_Speed: 0
   Mount_Rot_Speed: 0
@@ -52331,6 +52260,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -52874,6 +52804,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -53109,6 +53040,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -53352,6 +53284,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -54206,6 +54139,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -54557,6 +54491,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -54960,6 +54895,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -55118,6 +55054,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -55822,6 +55759,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -56061,6 +55999,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -56221,6 +56160,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -57080,7 +57020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1578116613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -58632,6 +58572,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -59076,6 +59017,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -59537,6 +59479,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -60494,6 +60437,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -60733,6 +60677,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -61846,6 +61791,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -62526,6 +62472,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -64065,6 +64012,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -64335,6 +64283,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -64681,6 +64630,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -65174,6 +65124,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -65899,6 +65850,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -66331,6 +66283,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -66652,85 +66605,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827450416}
   m_Mesh: {fileID: 6635656143624312241, guid: 667ac20273daec84099a68d1e0e724be, type: 3}
---- !u!1 &1829611201
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1829611202}
-  - component: {fileID: 1829611204}
-  - component: {fileID: 1829611203}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1829611202
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829611201}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 129671219}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1829611203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829611201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Button
---- !u!222 &1829611204
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1829611201}
-  m_CullTransparentMesh: 1
 --- !u!1 &1830745870
 GameObject:
   m_ObjectHideFlags: 0
@@ -66954,6 +66828,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -67189,6 +67064,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -67837,6 +67713,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -68731,6 +68608,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -68974,6 +68852,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -69217,6 +69096,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -69375,6 +69255,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -69712,6 +69593,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -69871,6 +69753,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -70459,6 +70342,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -71156,6 +71040,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -71508,6 +71393,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -72061,6 +71947,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -75025,6 +74912,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -75229,6 +75117,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -75388,6 +75277,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -75824,6 +75714,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -75986,6 +75877,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -76144,6 +76036,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -76446,6 +76339,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -76686,6 +76580,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -76845,6 +76740,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -78520,6 +78416,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -78695,6 +78592,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -79302,6 +79200,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -79669,6 +79568,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -79850,6 +79750,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -80017,6 +79918,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -80750,6 +80652,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -80977,6 +80880,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -81504,6 +81408,7 @@ MonoBehaviour:
   holoColor: {fileID: 0}
   head: {fileID: 0}
   towerbase: {fileID: 0}
+  towerNum: 0
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -81515,6 +81420,15 @@ MonoBehaviour:
   towerName: 
   towerType: 
   unitSprite: {fileID: 0}
+  AttackLevel: 0
+  RangeLevel: 0
+  HPLevel: 0
+  upDamage: 0
+  upAS: 0
+  upRange: 0
+  RealDamage: 0
+  RealRange: 0
+  RealAS: 0
 --- !u!4 &642199066757484879
 Transform:
   m_ObjectHideFlags: 0
@@ -82896,6 +82810,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -84009,6 +83924,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -84294,6 +84210,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -84747,6 +84664,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -85048,6 +84966,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -85452,6 +85371,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -85606,6 +85526,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -85990,6 +85911,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -86453,6 +86375,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -86866,6 +86789,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -87614,6 +87538,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -88189,6 +88114,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -88529,6 +88455,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -88771,6 +88698,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -89059,6 +88987,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -89969,6 +89898,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -90084,6 +90014,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -90577,6 +90508,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -91681,6 +91613,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -92120,6 +92053,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -92427,6 +92361,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -93406,6 +93341,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -93698,6 +93634,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -94223,6 +94160,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -94450,6 +94388,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -94737,6 +94676,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -94910,6 +94850,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -95455,6 +95396,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -95820,6 +95762,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -96401,6 +96344,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -96653,6 +96597,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -96914,6 +96859,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -97074,6 +97020,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -97956,6 +97903,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -99101,6 +99049,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -99680,6 +99629,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -100053,6 +100003,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -100295,6 +100246,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -100454,6 +100406,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -100695,6 +100648,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -101121,6 +101075,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -101323,6 +101278,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -101466,6 +101422,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -101837,6 +101794,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -102863,6 +102821,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -103333,6 +103292,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -103715,6 +103675,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -103896,6 +103857,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -109781,6 +109743,7 @@ MonoBehaviour:
   holoColor: {fileID: 0}
   head: {fileID: 0}
   towerbase: {fileID: 0}
+  towerNum: 0
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -109792,6 +109755,15 @@ MonoBehaviour:
   towerName: 
   towerType: 
   unitSprite: {fileID: 0}
+  AttackLevel: 0
+  RangeLevel: 0
+  HPLevel: 0
+  upDamage: 0
+  upAS: 0
+  upRange: 0
+  RealDamage: 0
+  RealRange: 0
+  RealAS: 0
 --- !u!4 &4484110877666333056
 Transform:
   m_ObjectHideFlags: 0
@@ -110298,6 +110270,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -110564,6 +110537,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -112265,6 +112239,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -113293,6 +113268,7 @@ MonoBehaviour:
   holoColor: {fileID: 0}
   head: {fileID: 0}
   towerbase: {fileID: 0}
+  towerNum: 0
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -113304,6 +113280,15 @@ MonoBehaviour:
   towerName: 
   towerType: 
   unitSprite: {fileID: 0}
+  AttackLevel: 0
+  RangeLevel: 0
+  HPLevel: 0
+  upDamage: 0
+  upAS: 0
+  upRange: 0
+  RealDamage: 0
+  RealRange: 0
+  RealAS: 0
 --- !u!1 &6908543891734074935
 GameObject:
   m_ObjectHideFlags: 0
@@ -113523,6 +113508,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -113564,6 +113550,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -113982,6 +113969,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -114176,6 +114164,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64
@@ -115703,6 +115692,7 @@ MonoBehaviour:
   start_fire: {fileID: 0}
   pool: {fileID: 0}
   mount: {fileID: 0}
+  manager: {fileID: 0}
   target_Layer:
     serializedVersion: 2
     m_Bits: 64

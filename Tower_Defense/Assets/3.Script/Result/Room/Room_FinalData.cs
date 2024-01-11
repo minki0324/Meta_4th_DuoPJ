@@ -20,6 +20,8 @@ public class Room_FinalData : MonoBehaviour
     [SerializeField] private RenderTexture[] Prefabs_Image;
     [SerializeField] private RawImage image;
 
+    [SerializeField] private Room_Scene ready;
+
     public int Cost;
     public float Head_Rot_Speed;
     public float Mount_Rot_Speed;
@@ -45,6 +47,14 @@ public class Room_FinalData : MonoBehaviour
         Prefab_1_index = new int[] { 1, 1, 1 ,1 };
         Prefab_2_index = new int[] { 2, 2, 2 ,2};
         Prefab_3_index = new int[] { 3, 3, 3 ,3};
+    }
+
+    private void Update()
+    {
+        if(Slot_1 && Slot_2 && Slot_3)
+        {
+            ready.Tower_Ready = true;
+        }
     }
 
     public void Set_Data()
