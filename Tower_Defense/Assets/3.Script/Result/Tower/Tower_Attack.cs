@@ -23,6 +23,7 @@ public class Tower_Attack : NetworkBehaviour
     [SerializeField] private Effect_Pooling pool;
     [SerializeField] private Transform mount;
     private Tower tower;
+    [SerializeField] private SFX_Manager manager;
     [SerializeField] private LayerMask target_Layer;
     public string towerName;
     public string towerType;
@@ -36,7 +37,6 @@ public class Tower_Attack : NetworkBehaviour
     public Transform testTarget;
     public float current_ATK_Speed = 0;
 
-  
     #region Unity Callback
     private void Start()
     {
@@ -46,6 +46,7 @@ public class Tower_Attack : NetworkBehaviour
         mount = transform.parent;
         Init_Data(head_Data);
         pool = FindObjectOfType<Effect_Pooling>();
+        manager = FindObjectOfType<SFX_Manager>();
         //if (isServer)
         //{
         //    InvokeRepeating("Search_Enemy", 0f, 0.05f);
@@ -55,6 +56,7 @@ public class Tower_Attack : NetworkBehaviour
     private void Update()
     {
         if (head_Data.atk_Type == Head_Data.Atk_Type.Scan) return;
+       
         if (isServer)
         {
             Search_Enemy();
@@ -128,11 +130,11 @@ public class Tower_Attack : NetworkBehaviour
 
     private void Look_Target()
     {
-        // Á¶°Ç¿¡ ¾È¸ÂÀ¸¸é ±×³É »±»±ÀÌ
+        // ì¡°ê±´ì— ì•ˆë§ìœ¼ë©´ ê·¸ëƒ¥ ëº‘ëº‘ì´
         Monster_Control mon = target.gameObject.GetComponent<Monster_Control>();
         if (mon.state.type == MonsterState.monType.Fly && head_Data.atk_Area == Head_Data.Atk_Area.Ground) return;
         else if (mon.state.type != MonsterState.monType.Fly && head_Data.atk_Area == Head_Data.Atk_Area.Air) return;
-        else if (mon.isInvi || mon.isDie) return; //´ë»óÀÌ Åõ¸í»óÅÂÀÌ¸é °ø°İ¸øÇÔ / Á×¾îµµ °ø°İ¾ÈÇÔ
+        else if (mon.isInvi || mon.isDie) return; //ëŒ€ìƒì´ íˆ¬ëª…ìƒíƒœì´ë©´ ê³µê²©ëª»í•¨ / ì£½ì–´ë„ ê³µê²©ì•ˆí•¨
 
         float M_Rot_Speed = mount.gameObject.GetComponent<Tower_Mount>().M_Rot_Speed;
         Quaternion look_Rot = Quaternion.LookRotation(target.position - transform.position);
@@ -201,7 +203,7 @@ public class Tower_Attack : NetworkBehaviour
             float distanceToTarget = Vector3.Distance(transform.position, target.position);
             if (distanceToTarget > tower.RealRange)
             {
-                // Å¸°ÙÀÌ °ø°İ ¹üÀ§¸¦ ¹ş¾î³µÀ¸¹Ç·Î null·Î ¼³Á¤
+                // íƒ€ê²Ÿì´ ê³µê²© ë²”ìœ„ë¥¼ ë²—ì–´ë‚¬ìœ¼ë¯€ë¡œ nullë¡œ ì„¤ì •
                 target = null;
             }
         }
@@ -281,7 +283,7 @@ public class Tower_Attack : NetworkBehaviour
         switch (atk_Type)
         {
             case Head_Data.Atk_Type.Vulcan:
-                // ÃÑ½Å ÀÌÆåÆ®
+                // ì´ì‹  ì´í™íŠ¸
                 GameObject Muzzle_vul = pool.GetEffect(Muzzle_index);
                 Set_Pos_Rot(Muzzle_vul, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
 
@@ -291,9 +293,11 @@ public class Tower_Attack : NetworkBehaviour
                 var proj_vul = Projectile_vul.gameObject.GetComponent<Effect_Control>();
                 proj_vul.target_ = target;
                 if (proj_vul) { proj_vul.SetOffset(vulcanOffset); }
+
+                manager.SFX_VulcanShot(turretSocket[curSocket].position);
                 break;
             case Head_Data.Atk_Type.Missile:
-                // ½Ã°£ ³²À¸¸é ±¸Çö
+                // ì‹œê°„ ë‚¨ìœ¼ë©´ êµ¬í˜„
                 break;
             case Head_Data.Atk_Type.Seeker:
                 GameObject Muzzle_seeker = pool.GetEffect(Muzzle_index);
@@ -305,6 +309,8 @@ public class Tower_Attack : NetworkBehaviour
                 var proj_seeker = Projectile_seeker.gameObject.GetComponent<Effect_Control>();
                 proj_seeker.target_ = target;
                 if (proj_seeker) { proj_seeker.SetOffset(seekerOffset); }
+
+                manager.SFX_SeekerShot(turretSocket[curSocket].position);
                 break;
             case Head_Data.Atk_Type.Air:
                 GameObject Muzzle_Air = pool.GetEffect(Muzzle_index);
@@ -316,6 +322,8 @@ public class Tower_Attack : NetworkBehaviour
                 var proj_Air = Projectile_Air.gameObject.GetComponent<Effect_Control>();
                 proj_Air.target_ = target;
                 if (proj_Air) { proj_Air.SetOffset(soloGunOffset); }
+
+                manager.SFX_AirShot(turretSocket[curSocket].position);
                 break;
             case Head_Data.Atk_Type.LaserImpulse:
                 GameObject Muzzle_LaserImpulse = pool.GetEffect(Muzzle_index);
@@ -327,10 +335,12 @@ public class Tower_Attack : NetworkBehaviour
                 var proj_LaserImpulse = Projectile_LaserImpulse.gameObject.GetComponent<Effect_Control>();
                 proj_LaserImpulse.target_ = target;
                 if (proj_LaserImpulse) { proj_LaserImpulse.SetOffset(soloGunOffset); }
+
+                manager.SFX_LaserImpulseShot(turretSocket[curSocket].position);
                 break;
         }
 
-        // ´ÙÀ½ ÃÑ½Å¿¡¼­ ¹ß»ç
+        // ë‹¤ìŒ ì´ì‹ ì—ì„œ ë°œì‚¬
         AdvanceSocket();
         RPC_AdvanceSocket();
     }
@@ -341,7 +351,7 @@ public class Tower_Attack : NetworkBehaviour
         {
             case Head_Data.Atk_Type.Sniper:
                 var offset = Quaternion.Euler(Random.onUnitSphere);
-                // ÃÑ½Å ÀÌÆåÆ®
+                // ì´ì‹  ì´í™íŠ¸
                 GameObject Muzzle_sni = pool.GetEffect(Muzzle_index);
                 Set_Pos_Rot(Muzzle_sni, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
 
@@ -351,6 +361,8 @@ public class Tower_Attack : NetworkBehaviour
                 var beam = Projectile_sni.GetComponent<Effect_Control>();
                 beam.target_ = target;
                 if (beam) { beam.SetOffset(sniperOffset); }
+
+                manager.SFX_SniperShot(turretSocket[curSocket].position);
                 break;
             case Head_Data.Atk_Type.Laser:
                 for(int i = 0; i < turretSocket.Length; i++)
@@ -363,11 +375,13 @@ public class Tower_Attack : NetworkBehaviour
                     }
                     Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);
                 }
+                manager.SFX_Laser(turretSocket[0].position, 0.1f);
                 break;
             case Head_Data.Atk_Type.Flame:
                 GameObject flame = pool.GetEffect(Muzzle_index);
                 var flame_ = GetComponent<Effect_Control>();
                 Set_Pos_Rot(flame, turretSocket[0].position, turretSocket[0].rotation);
+                manager.SFX_Flame(turretSocket[0].position, 0.1f);
                 break;
             case Head_Data.Atk_Type.PlasmaBeam:
                 for (int i = 0; i < turretSocket.Length; i++)
@@ -377,10 +391,11 @@ public class Tower_Attack : NetworkBehaviour
                     plasma.target_ = target;
                     Set_Pos_Rot(laser, turretSocket[i].position, turretSocket[i].rotation);
                 }
+                manager.SFX_Plasma(turretSocket[0].position);
                 break;
         }
 
-        // ´ÙÀ½ ÃÑ½Å¿¡¼­ ¹ß»ç
+        // ë‹¤ìŒ ì´ì‹ ì—ì„œ ë°œì‚¬
         AdvanceSocket();
         RPC_AdvanceSocket();
     }
@@ -398,15 +413,15 @@ public class Tower_Attack : NetworkBehaviour
         obj.transform.position = pos;
         if (target != null)
         {
-            // ¸ÓÁñ¿¡¼­ Å¸°ÙÀ» ÇâÇÏ´Â º¤ÅÍ
+            // ë¨¸ì¦ì—ì„œ íƒ€ê²Ÿì„ í–¥í•˜ëŠ” ë²¡í„°
             Vector3 directionToTarget = target.position - pos;
-            // ÇöÀç ¹æÇâ
+            // í˜„ì¬ ë°©í–¥
             Vector3 currentDirection = rot * Vector3.forward;
 
-            // µÎ º¤ÅÍ °£ÀÇ È¸Àü°ª °è»ê
+            // ë‘ ë²¡í„° ê°„ì˜ íšŒì „ê°’ ê³„ì‚°
             Quaternion rotationToTarget = Quaternion.FromToRotation(currentDirection, directionToTarget);
 
-            // ÇöÀç ·ÎÅ×ÀÌ¼Ç¿¡ µÎ º¤ÅÍ °£ÀÇ È¸Àü°ªÀ» ´õÇÏ¿© »õ·Î¿î ·ÎÅ×ÀÌ¼Ç °è»ê
+            // í˜„ì¬ ë¡œí…Œì´ì…˜ì— ë‘ ë²¡í„° ê°„ì˜ íšŒì „ê°’ì„ ë”í•˜ì—¬ ìƒˆë¡œìš´ ë¡œí…Œì´ì…˜ ê³„ì‚°
             Quaternion finalRotation = rot * rotationToTarget;
 
             obj.transform.rotation = finalRotation;

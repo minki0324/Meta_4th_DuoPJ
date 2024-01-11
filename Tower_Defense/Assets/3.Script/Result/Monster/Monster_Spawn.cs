@@ -85,7 +85,7 @@ public class Monster_Spawn : NetworkBehaviour
         //NetworkServer.Spawn(monster);
         // 태그 할당
         monster.tag = $"{player_num}P";
-        Plus_Income(index, player_num);
+        Plus_Income(index, player_num, monster_con);
 
 
 
@@ -164,23 +164,23 @@ public class Monster_Spawn : NetworkBehaviour
         }
     }
 
-    private void Plus_Income(int index, int player_num)
+    private void Plus_Income(int index, int player_num, Monster_Control mon)
     {
-        int incomeIncrease = 1;
+        int incomeincrease = mon.state.income;
 
         switch (player_num)
         {
             case 1:
-                income.P1_income += incomeIncrease;
+                income.P1_income += incomeincrease;
                 break;
             case 2:
-                income.P2_income += incomeIncrease;
+                income.P2_income += incomeincrease;
                 break;
             case 3:
-                income.P3_income += incomeIncrease;
+                income.P3_income += incomeincrease;
                 break;
             case 4:
-                income.P4_income += incomeIncrease;
+                income.P4_income += incomeincrease;
                 break;
         }
     }

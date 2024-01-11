@@ -10,7 +10,7 @@ Material:
   m_Name: Holographic_Red
   m_Shader: {fileID: 4800000, guid: 346a1905b11196d4a9a5a567f7a9dc2a, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 1
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -28,6 +28,7 @@ Material:
         m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AlphaCutoff: 0.5
     - _Fade: 1
     - _Flicker: 0.29
     - _FresMult: 1.04
@@ -38,9 +39,11 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _Inter: {r: 6.65, g: 200, b: 4, a: 55}
     - _InterScale: {r: 0.1, g: 200, b: 100, a: 0}
     - _TintColor: {r: 0.2352941, g: 0.7784991, b: 1, a: 1}
     - _bLayerColorA: {r: 0.34558818, g: 0.19838005, b: 0.040657416, a: 0.5019608}
     - _bLayerColorB: {r: 1, g: 0.587627, b: 0.21323532, a: 0.5019608}
     - _bLayerColorC: {r: 0.61764705, g: 0.41769466, b: 0.23615909, a: 0.5019608}
+  m_BuildTextureStacks: []
