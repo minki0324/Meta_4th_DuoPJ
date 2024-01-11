@@ -154,7 +154,8 @@ public class Tower : NetworkBehaviour
     }
     public void HologramTower(GameObject gameObject)
     {
-       
+        MeshRenderer renderer = AttackRange.GetComponent<MeshRenderer>();
+        Material temp = renderer.material;
         MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
         if (meshRenderer )
         {
