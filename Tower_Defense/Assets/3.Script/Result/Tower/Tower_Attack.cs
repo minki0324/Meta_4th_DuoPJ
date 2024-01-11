@@ -22,8 +22,8 @@ public class Tower_Attack : NetworkBehaviour
     [SerializeField] private F3DFXController start_fire;
     [SerializeField] private Effect_Pooling pool;
     [SerializeField] private Transform mount;
+    private Tower tower;
     [SerializeField] private SFX_Manager manager;
-
     [SerializeField] private LayerMask target_Layer;
     public string towerName;
     public string towerType;
@@ -41,6 +41,7 @@ public class Tower_Attack : NetworkBehaviour
     private void Start()
     {
         // Initialize singleton  
+        tower = transform.root.GetComponent<Tower>();
         instance = this;
         mount = transform.parent;
         Init_Data(head_Data);
@@ -129,11 +130,11 @@ public class Tower_Attack : NetworkBehaviour
 
     private void Look_Target()
     {
-        // Á¶°Ç¿¡ ¾È¸ÂÀ¸¸é ±×³É »±»±ÀÌ
+        // ì¡°ê±´ì— ì•ˆë§ìœ¼ë©´ ê·¸ëƒ¥ ëº‘ëº‘ì´
         Monster_Control mon = target.gameObject.GetComponent<Monster_Control>();
         if (mon.state.type == MonsterState.monType.Fly && head_Data.atk_Area == Head_Data.Atk_Area.Ground) return;
         else if (mon.state.type != MonsterState.monType.Fly && head_Data.atk_Area == Head_Data.Atk_Area.Air) return;
-        else if (mon.isInvi || mon.isDie) return; //´ë»óÀÌ Åõ¸í»óÅÂÀÌ¸é °ø°İ¸øÇÔ / Á×¾îµµ °ø°İ¾ÈÇÔ
+        else if (mon.isInvi || mon.isDie) return; //ëŒ€ìƒì´ íˆ¬ëª…ìƒíƒœì´ë©´ ê³µê²©ëª»í•¨ / ì£½ì–´ë„ ê³µê²©ì•ˆí•¨
 
         float M_Rot_Speed = mount.gameObject.GetComponent<Tower_Mount>().M_Rot_Speed;
         Quaternion look_Rot = Quaternion.LookRotation(target.position - transform.position);
@@ -152,7 +153,7 @@ public class Tower_Attack : NetworkBehaviour
             {
                 StartCoroutine(Calculate_Fire(target));
                 
-                current_ATK_Speed = H_ATK_Speed;
+                current_ATK_Speed = tower.RealAS;
             }
         }
     }
@@ -166,10 +167,11 @@ public class Tower_Attack : NetworkBehaviour
         H_ATK_Range = head_Data.ATK_Range;
         H_Reload = head_Data.Reload;
     }
+ 
 
     private void Search_Enemy()
     {
-        Collider[] cols = Physics.OverlapSphere(transform.position, H_ATK_Range, target_Layer);
+        Collider[] cols = Physics.OverlapSphere(transform.position, tower.RealRange, target_Layer);
 
         if(cols.Length > 0 && target == null)
         {
@@ -199,9 +201,9 @@ public class Tower_Attack : NetworkBehaviour
         if (target != null)
         {
             float distanceToTarget = Vector3.Distance(transform.position, target.position);
-            if (distanceToTarget > H_ATK_Range)
+            if (distanceToTarget > tower.RealRange)
             {
-                // Å¸°ÙÀÌ °ø°İ ¹üÀ§¸¦ ¹ş¾î³µÀ¸¹Ç·Î null·Î ¼³Á¤
+                // íƒ€ê²Ÿì´ ê³µê²© ë²”ìœ„ë¥¼ ë²—ì–´ë‚¬ìœ¼ë¯€ë¡œ nullë¡œ ì„¤ì •
                 target = null;
             }
         }
@@ -214,7 +216,8 @@ public class Tower_Attack : NetworkBehaviour
             case Head_Data.Weapon_Type.Targeting:
                 Fire();
                 yield return new WaitForSeconds(head_Data.DelayTime);
-                mon.M_currentHP -= H_Damage;
+                
+                mon.M_currentHP -= tower.RealDamage;
                 if (mon.M_currentHP <= 0)
                 {
                     StartCoroutine(mon.onDie());
@@ -245,8 +248,8 @@ public class Tower_Attack : NetworkBehaviour
             //item.collider.gameObject
             Monster_Control monster = item.gameObject.GetComponent<Monster_Control>();
             if (monster.isDie || monster.isInvi ) continue;
-
-            monster.M_currentHP -= H_Damage;
+          
+            monster.M_currentHP -= tower.RealDamage;
             if (monster.M_currentHP <= 0)
             {
                 StartCoroutine(monster.onDie());
@@ -268,12 +271,11 @@ public class Tower_Attack : NetworkBehaviour
 
     private void FlameAttack()
     {
-        Collider[] col = Physics.OverlapCapsule(transform.position + transform.forward, transform.position + transform.forward * 6.0f, 1.5f, target_Layer);
-        Debug.Log(col.Length);
+
+        Collider[] col = Physics.OverlapCapsule(transform.position + transform.forward, transform.position + transform.forward * (int)(tower.RealRange - 2 ), 1.5f, target_Layer);
 
         UnitsInRange_Damage(col);
     }
-
     private void Projectile(Head_Data.Atk_Type atk_Type, int Muzzle_index, int Pro_index)
     {
         var offset = Quaternion.Euler(Random.onUnitSphere);
@@ -281,7 +283,7 @@ public class Tower_Attack : NetworkBehaviour
         switch (atk_Type)
         {
             case Head_Data.Atk_Type.Vulcan:
-                // ÃÑ½Å ÀÌÆåÆ®
+                // ì´ì‹  ì´í™íŠ¸
                 GameObject Muzzle_vul = pool.GetEffect(Muzzle_index);
                 Set_Pos_Rot(Muzzle_vul, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
 
@@ -295,7 +297,7 @@ public class Tower_Attack : NetworkBehaviour
                 manager.SFX_VulcanShot(turretSocket[curSocket].position);
                 break;
             case Head_Data.Atk_Type.Missile:
-                // ½Ã°£ ³²À¸¸é ±¸Çö
+                // ì‹œê°„ ë‚¨ìœ¼ë©´ êµ¬í˜„
                 break;
             case Head_Data.Atk_Type.Seeker:
                 GameObject Muzzle_seeker = pool.GetEffect(Muzzle_index);
@@ -338,7 +340,7 @@ public class Tower_Attack : NetworkBehaviour
                 break;
         }
 
-        // ´ÙÀ½ ÃÑ½Å¿¡¼­ ¹ß»ç
+        // ë‹¤ìŒ ì´ì‹ ì—ì„œ ë°œì‚¬
         AdvanceSocket();
         RPC_AdvanceSocket();
     }
@@ -349,7 +351,7 @@ public class Tower_Attack : NetworkBehaviour
         {
             case Head_Data.Atk_Type.Sniper:
                 var offset = Quaternion.Euler(Random.onUnitSphere);
-                // ÃÑ½Å ÀÌÆåÆ®
+                // ì´ì‹  ì´í™íŠ¸
                 GameObject Muzzle_sni = pool.GetEffect(Muzzle_index);
                 Set_Pos_Rot(Muzzle_sni, turretSocket[curSocket].position, turretSocket[curSocket].rotation);
 
@@ -393,7 +395,7 @@ public class Tower_Attack : NetworkBehaviour
                 break;
         }
 
-        // ´ÙÀ½ ÃÑ½Å¿¡¼­ ¹ß»ç
+        // ë‹¤ìŒ ì´ì‹ ì—ì„œ ë°œì‚¬
         AdvanceSocket();
         RPC_AdvanceSocket();
     }
@@ -411,15 +413,15 @@ public class Tower_Attack : NetworkBehaviour
         obj.transform.position = pos;
         if (target != null)
         {
-            // ¸ÓÁñ¿¡¼­ Å¸°ÙÀ» ÇâÇÏ´Â º¤ÅÍ
+            // ë¨¸ì¦ì—ì„œ íƒ€ê²Ÿì„ í–¥í•˜ëŠ” ë²¡í„°
             Vector3 directionToTarget = target.position - pos;
-            // ÇöÀç ¹æÇâ
+            // í˜„ì¬ ë°©í–¥
             Vector3 currentDirection = rot * Vector3.forward;
 
-            // µÎ º¤ÅÍ °£ÀÇ È¸Àü°ª °è»ê
+            // ë‘ ë²¡í„° ê°„ì˜ íšŒì „ê°’ ê³„ì‚°
             Quaternion rotationToTarget = Quaternion.FromToRotation(currentDirection, directionToTarget);
 
-            // ÇöÀç ·ÎÅ×ÀÌ¼Ç¿¡ µÎ º¤ÅÍ °£ÀÇ È¸Àü°ªÀ» ´õÇÏ¿© »õ·Î¿î ·ÎÅ×ÀÌ¼Ç °è»ê
+            // í˜„ì¬ ë¡œí…Œì´ì…˜ì— ë‘ ë²¡í„° ê°„ì˜ íšŒì „ê°’ì„ ë”í•˜ì—¬ ìƒˆë¡œìš´ ë¡œí…Œì´ì…˜ ê³„ì‚°
             Quaternion finalRotation = rot * rotationToTarget;
 
             obj.transform.rotation = finalRotation;

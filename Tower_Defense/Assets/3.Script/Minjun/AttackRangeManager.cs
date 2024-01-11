@@ -10,9 +10,13 @@ public class AttackRangeManager : MonoBehaviour
     {
         transform.root.TryGetComponent(out tower);
     }
+    private void OnEnable()
+    {
+        RangeSet(tower.RealRange);
+    }
     private void Start()
     {
-        RangeSet(tower.range);
+        RangeSet(tower.RealRange);
     }
     public void RangeSet(float range)
     {

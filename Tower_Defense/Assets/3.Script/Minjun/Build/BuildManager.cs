@@ -11,7 +11,7 @@ public class BuildManager : NetworkBehaviour
     public static BuildManager Instance;
     public BuilderController builder;
     public GameObject pointPrefab; // 가상의 점을 나타낼 프리팹
-    public bool isCanBuild ;  // BuildArea에서 한개라도 적색으로 변할 시 false 반환함.
+    public bool isCanBuild;  // BuildArea에서 한개라도 적색으로 변할 시 false 반환함.
     public bool isBuilding;
     private int[] SelectTowerIndexArray;
     private Transform TowerBaseFrame;
@@ -25,9 +25,10 @@ public class BuildManager : NetworkBehaviour
 
     [SerializeField] private Transform SeekerStart;
     [SerializeField] private Transform SeekerEnd;
+    [SerializeField] public Resourse resourse; //직접참좀
     private Transform ServerSeekerStart;
     private Transform ServerSeekerEnd;
-
+    public int currentTowerindex;
     #region SyncVar
     public SyncList<Tower> AllTower = new SyncList<Tower>();
     #endregion
@@ -48,7 +49,7 @@ public class BuildManager : NetworkBehaviour
         }
         isCanBuild = true;
 
-        SelectTowerIndexArray = new int[3];
+        SelectTowerIndexArray = new int[4];
         GameManager.instance.ListSet();
     }
     private void Start()
@@ -61,7 +62,7 @@ public class BuildManager : NetworkBehaviour
         SeekerStart = SeekerSet(SeekerStart);
         SeekerEnd = SeekerSet(SeekerEnd);
     }
-   
+
 
     private void Update()
     {
@@ -90,7 +91,7 @@ public class BuildManager : NetworkBehaviour
     }
     private Transform SeekerSet(Transform seeker)
     {
-       
+
         for (int i = 0; i < seeker.childCount; i++)
         {
             if (GameManager.instance.CompareEnumWithTag(seeker.GetChild(i).tag))
@@ -101,7 +102,7 @@ public class BuildManager : NetworkBehaviour
         }
         return null;
     }
-    private Transform SeekerSet(Transform seeker ,string clitag)
+    private Transform SeekerSet(Transform seeker, string clitag)
     {
 
         for (int i = 0; i < seeker.childCount; i++)
@@ -119,13 +120,16 @@ public class BuildManager : NetworkBehaviour
         currentTower.transform.position = currentArea.transform.position;
         if (Input.GetMouseButtonDown(0) && isCanBuild)
         {
-            Vector3 targetPos = currentTower.transform.position;
-            //본인의 팀인덱스 줘야함
-            int TeamIndex = ((int)GameManager.instance.Player_Num);
-            builder.isGoBuild = true;
-            builder.BuildOrder(targetPos, SelectTowerIndexArray, TeamIndex);
-            //ClientBuildOrder(targetPos , SelectTowerIndexArray , TeamIndex);
+            //resourse.current_mineral -= GameManager.instance.Cost[towerindex];
+            if (MonneyCheck(currentTowerindex))
+            {
+                Vector3 targetPos = currentTower.transform.position;
+                //본인의 팀인덱스 줘야함
+                int TeamIndex = ((int)GameManager.instance.Player_Num);
+                builder.isGoBuild = true;
 
+                builder.BuildOrder(targetPos, SelectTowerIndexArray, TeamIndex);
+            }
             Destroy(currentTower);
             currentArea.SetActive(false);
             isBuilding = false;
@@ -144,46 +148,77 @@ public class BuildManager : NetworkBehaviour
 
     private void BuildReady()
     {
+        //여기서 
+
         if (builder != null)
         {
             if (!builder.isSelectBuilder) return;
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && MonneyCheck(0))
         {
+
             BuildSetting(0);
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.W) && MonneyCheck(1))
         {
             BuildSetting(1);
 
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.E) && MonneyCheck(2))
         {
             BuildSetting(2);
         }
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetKeyDown(KeyCode.R) && MonneyCheck(3))
         {
             BuildSetting(3);
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            Debug.Log("업데이트 속도체크");
             builder.isCanDestroyTower = true;
         }
     }
+
+    public bool MonneyCheck(int towerindex)
+    {
+        if (GameManager.instance.Cost[towerindex] <= resourse.current_mineral)
+        {
+
+            currentTowerindex = towerindex;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+    //private bool MonneyCheck()
+    //{
+    //    if (GameManager.instance.Cost[towerindex] <= resourse.current_mineral)
+    //    {
+
+    //        currentTowerCost = GameManager.instance.Cost[towerindex];
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+
+    //}
     public void BuildSetting(int index)
     {
         //내가 선택한 타워인덱스 배열 가져오기
         SelectTowerIndexArray = GameManager.instance.towerArrayIndex[index];
         GameObject tower = Instantiate(towerFrame, area[0].transform.position, Quaternion.identity);
         //몇번킬지 설정해야함
-        TowerAssembly(tower , SelectTowerIndexArray);             //타워조립
+        TowerAssembly(tower, SelectTowerIndexArray);             //타워조립
         AreaActiveTrue(currentArea);
         HologramTower(tower);
         currentTower = tower;
         //베이스 콜라이더 끄기
         TowerBaseFrame.GetChild(SelectTowerIndexArray[2]).GetComponent<BoxCollider>().enabled = false;
-        float range =  tower.GetComponent<Tower>().head.head_Data.ATK_Range;
+        float range = tower.GetComponent<Tower>().head.head_Data.ATK_Range;
         tower.GetComponentInChildren<AttackRangeManager>().RangeSet(range);
         isBuilding = true;
 
@@ -205,6 +240,8 @@ public class BuildManager : NetworkBehaviour
         TowerMountFrame.GetChild(SelectTowerIndex[1]).gameObject.SetActive(true); //마운트프레임에서 TowerNumber 타워의 마운트 활성화
         TowerHeadFrame.GetChild(SelectTowerIndex[0]).gameObject.SetActive(true); //해드프레임에서 TowerNumber 타워의 해드 활성화
         Tower newtower = tower.GetComponent<Tower>();
+        Debug.Log(SelectTowerIndex[3]);
+        newtower.towerNum = SelectTowerIndex[3];
         newtower.head = TowerHeadFrame.GetChild(SelectTowerIndex[0]).GetComponent<Tower_Attack>();
         newtower.towerbase = TowerBaseFrame.GetChild(SelectTowerIndex[2]).gameObject;
         int towerAreaIndex = newtower.towerbase.GetComponent<BaseData>().baseData.BuildAreaIndex;
@@ -238,7 +275,7 @@ public class BuildManager : NetworkBehaviour
         }
         currentArea.SetActive(true);
     }
-    private bool CheckIfPathClear(Transform Start , Transform End)
+    private bool CheckIfPathClear(Transform Start, Transform End)
     {
 
         // 시작 위치와 끝 위치를 노드로 변환
@@ -253,23 +290,26 @@ public class BuildManager : NetworkBehaviour
 
     #region Client
     [Client]
-    public void ClientBuildOrder(Vector3 targetPos, int[] towerindex , int teamIndex)
+    public void ClientBuildOrder(Vector3 targetPos, int[] towerindex, int teamIndex)
     {
-        CMDBuildOrder(targetPos, towerindex , teamIndex ,SeekerStart.tag , SeekerEnd.tag);
+        int Atkvalue = UpgradeManager.Instance.TowerUpgradesArray[towerindex[3], 0];
+        int Rangevalue = UpgradeManager.Instance.TowerUpgradesArray[towerindex[3], 1];
+        int HPvalue = UpgradeManager.Instance.TowerUpgradesArray[towerindex[3], 2];
+        CMDBuildOrder(targetPos, towerindex, teamIndex, SeekerStart.tag, SeekerEnd.tag, Atkvalue, Rangevalue, HPvalue);
 
     }
     [Client]
     public void Client_Destroy(GameObject newTower)
     {
-        Debug.Log("클라디스트로이 : " +newTower);
+        Debug.Log("클라디스트로이 : " + newTower);
         CMD_DestroyTower(newTower);
     }
     #endregion
     #region Command
     [Command(requiresAuthority = false)]
-    private void CMDBuildOrder( Vector3 targetPos, int[] towerindex, int teamIndex, String Start, String End)
+    private void CMDBuildOrder(Vector3 targetPos, int[] towerindex, int teamIndex, String Start, String End, int Atkvalue, int Rangevalue, int HPvalue)
     {
-        ServerSeekerStart = SeekerSet(SeekerStart , Start);
+        ServerSeekerStart = SeekerSet(SeekerStart, Start);
         ServerSeekerEnd = SeekerSet(SeekerEnd, End);
 
         GameObject newTower = Instantiate(towerFrame, targetPos, Quaternion.identity);
@@ -278,6 +318,13 @@ public class BuildManager : NetworkBehaviour
         NetworkServer.Spawn(newTower/* , senderConnection*/);
 
         Tower towerScript = newTower.GetComponent<Tower>();
+        //타워 업그레이드 계수 전해주기 (몇번타워?)
+
+        //커맨드의 업그레이드...계수
+        towerScript.AttackLevel = Atkvalue;
+        towerScript.RangeLevel = Rangevalue;
+        towerScript.HPLevel = HPvalue;
+        towerScript.UpgradeUpdate();
         newTower.tag = $"{teamIndex}P";
         RPC_TowerAssembly(newTower, towerindex);
         Rpc_SpawnMonster(newTower, teamIndex);
@@ -300,7 +347,7 @@ public class BuildManager : NetworkBehaviour
         RPC_DestroyTower(newTower);
         RTSControlSystem.Instance.Destroytower(newTower.GetComponent<Tower>());
         Destroy(newTower);
-      
+
 
     }
     [Server]

@@ -35,10 +35,12 @@ public class MouseDrag : MonoBehaviour
     private void SelectUnits()
     {
         //모든 빌더를 담은 배열을 이용해 아래 포이치문 돌려서 빌더부터 검사후 아무도 없다면 그때 타워부터
+        if(BuildManager.Instance.builder != null) { 
         if (dragRect.Contains(maincamera.WorldToScreenPoint(BuildManager.Instance.builder.transform.position))){
             BuildManager.Instance.builder.isSelectBuilder = true;
             rts.DeSelectAll();
             return;
+        }
         }
 
         foreach (Tower tower in BuildManager.Instance.AllTower)

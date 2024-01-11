@@ -16,5 +16,5 @@ MonoBehaviour:
   BaseID: 2
   Level: 0
   Position: {x: 0, y: 0.8, z: 0}
-  Cost: 20
+  Cost: 0
   Rot_Speed: 700
