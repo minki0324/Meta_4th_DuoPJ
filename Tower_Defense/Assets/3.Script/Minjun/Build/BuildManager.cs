@@ -288,6 +288,11 @@ public class BuildManager : NetworkBehaviour
         return pathExists;
     }
 
+    //public IEnumerator DestroyMotion_co()
+    //{
+    //    //메테리얼변경 , 타워기능 정지 , 모션후 타워 파괴
+    //}
+
     #region Client
     [Client]
     public void ClientBuildOrder(Vector3 targetPos, int[] towerindex, int teamIndex)

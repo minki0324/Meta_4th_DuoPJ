@@ -20,7 +20,9 @@ MonoBehaviour:
   Level: 0
   Position: {x: 0, y: 0, z: 0}
   DelayTime: 0.12
-  Cost: 20
+  towerImage: {fileID: 0}
+  descirption: 
+  Cost: 70
   Rot_Speed: 60
   Damage: 30
   ATK_Speed: 3
