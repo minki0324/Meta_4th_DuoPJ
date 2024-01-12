@@ -82,6 +82,7 @@ public class Monster_Spawn : NetworkBehaviour
         int randIndexZ = Random.Range(-1, 2);
         Vector3 spawnPos = new Vector3(spawnpoint.position.x + randIndexX, spawnpoint.position.y+ Mon_Prefabs[index].transform.position.y, spawnpoint.position.z + randIndexZ);
         monster.transform.SetPositionAndRotation(spawnPos, Mon_Prefabs[index].transform.rotation);
+        RPC_Pos_Rot(monster, spawnPos);
         //NetworkServer.Spawn(monster);
         // 태그 할당
         monster.tag = $"{player_num}P";
@@ -112,6 +113,12 @@ public class Monster_Spawn : NetworkBehaviour
     }
     #endregion
     #region ClientRPC
+    [ClientRpc]
+    private void RPC_Pos_Rot(GameObject monster , Vector3 spawnPos)
+    {
+        monster.transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
+    }
+
     [ClientRpc]
     private void Rpc_SpawnMonster(GameObject mon, int player_num)
     {

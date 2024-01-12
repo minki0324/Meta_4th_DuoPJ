@@ -1391,7 +1391,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.235
+  m_Radius: 0.15
   m_Height: 2.05
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -1429,6 +1429,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 8232b39aa03fcb64bbf055ad3c385dee, type: 2}
   Astar: {fileID: 4776383732518339368}
   aiPath: {fileID: 4668268303699712955}
+  currentLineNum: 0
   M_maxHp: 0
   M_currentHP: 0
   M_speed: 0

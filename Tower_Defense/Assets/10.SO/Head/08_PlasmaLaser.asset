@@ -23,7 +23,7 @@ MonoBehaviour:
   towerImage: {fileID: 21300000, guid: c3baa433bcd40954f9600e18eda70a21, type: 3}
   descirption: "\uC989\uBC1C \uD615\uC2DD\uC758 \uACF5\uACA9\uC744 \uD558\uB294 \uB808\uC774\uC800
     \uD3EC\uD0D1\uC785\uB2C8\uB2E4."
-  Cost: 100
+  Cost: 50
   Rot_Speed: 50
   Damage: 2
   ATK_Speed: 0.1

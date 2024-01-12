@@ -38,8 +38,14 @@ public class AttackMonster : MonoBehaviour
         {
             if (AttackDelay > mon.state.attackSpeed)
             {
+                if (!TargetTower.isDestroy) { 
                 TargetTower.currentHP -= mon.state.damage;
                 AttackDelay = 0f;
+                }
+                else
+                {
+                    TargetTower = null;
+                }
             }
         }
         AttackDelay += Time.deltaTime;
@@ -53,8 +59,10 @@ public class AttackMonster : MonoBehaviour
         float mindis = float.MaxValue;
         foreach (Collider tower in towers)
         {
+            Tower towerScrip = tower.transform.root.GetComponent<Tower>();
+            if (towerScrip.isDestroy) continue;
             float distance = Vector3.Distance(tower.transform.position, transform.position);
-            if (mindis > distance)
+            if (mindis > distance )
             {
                 mindis = distance;
                 TempTower = tower.gameObject;

@@ -25,7 +25,7 @@ public class MouseControl : MonoBehaviour
     {
 
         //화면안에 마우스를 가두는 메소드 나중에 주석풀기
-        //Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()

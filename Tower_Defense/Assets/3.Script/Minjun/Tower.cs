@@ -99,7 +99,7 @@ public class Tower : NetworkBehaviour
         if (isActive &&isServer)
         {
             DestroyCheck();
-          
+
         }
 
         if (isActive && isDestroy)
@@ -108,12 +108,14 @@ public class Tower : NetworkBehaviour
             if (!BurnStart)
             {
                 BurnStart = true;
-                BuildManager.Instance.resourse.current_food -= 1;
+                if (isLocalPlayer)
+                {
+                    BuildManager.Instance.resourse.current_food -= 1;
+                }
                 StartCoroutine(DestroyMotion());
             }
         }
     }
-
     public IEnumerator DestroyMotion() {
 
         timer += Time.deltaTime;

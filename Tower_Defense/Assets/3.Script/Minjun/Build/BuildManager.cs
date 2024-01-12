@@ -339,10 +339,13 @@ public class BuildManager : NetworkBehaviour
         Debug.Log(CheckIfPathClear(ServerSeekerStart, ServerSeekerEnd));
         if (!CheckIfPathClear(ServerSeekerStart, ServerSeekerEnd))
         {
+            newTower.GetComponent<Tower>().isDestroy = true;
             RPC_DestroyTower(newTower);
             RTSControlSystem.Instance.Destroytower(newTower.GetComponent<Tower>());
             Destroy(newTower);
+
             Debug.Log("길이막혀서 타워가 파괴되었습니다!");
+            AstarPath.active.Scan();
             return;
         }
     }
@@ -390,5 +393,6 @@ public class BuildManager : NetworkBehaviour
         }
         Destroy(newTower);
     }
+
     #endregion
 }

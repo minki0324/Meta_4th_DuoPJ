@@ -85,7 +85,9 @@ public class BuilderController : NetworkBehaviour
             BuilderMove();
         }
         onMarker();
-        //ClampBuilderPosition();
+        if (isLocalPlayer) { 
+        ClampBuilderPosition();
+        }
     }
 
     private void ClampBuilderPosition()
@@ -207,6 +209,7 @@ private void CustomAllStopCo()
                 bool foodCheck = BuildManager.Instance.resourse.current_food < BuildManager.Instance.resourse.max_food;
                 if (BuildManager.Instance.MonneyCheck(BuildManager.Instance.currentTowerindex) && foodCheck)
                 {
+
                     BuildManager.Instance.resourse.current_mineral -= GameManager.instance.Cost[BuildManager.Instance.currentTowerindex];
                     BuildManager.Instance.resourse.current_food += 1;
                     BuildManager.Instance.ClientBuildOrder(targetPos, towerindex, teamIndex);
@@ -230,6 +233,7 @@ private void CustomAllStopCo()
                 TargetDestroyTower(destroyTower);
                 //BuildManager.Instance.ClitoCMD_DestroyTower(destroyTower);
                 BuildManager.Instance.resourse.current_mineral += (int)(GameManager.instance.Cost[destroyTower.GetComponent<Tower>().towerNum] * 0.6f);
+                AstarPath.active.Scan();
                 //BuildManager.Instance.resourse.current_food -= 1;
                 isCanDestroyTower = false;
                 isGoBuild = false;

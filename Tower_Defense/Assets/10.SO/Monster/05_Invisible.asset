@@ -24,7 +24,7 @@ MonoBehaviour:
   damage: 0
   cost: 300
   attackSpeed: 10
-  income: 10
+  income: 25
   isDie: 0
   Description: "\uC0C1\uC2DC \uC740\uC2E0 \uC0C1\uD0DC\uC778 \uBAAC\uC2A4\uD130\uC785\uB2C8\uB2E4.
     \uD574\uB2F9 \uBAAC\uC2A4\uD130\uB294 \uC2A4\uCE94 \uD0C0\uC6CC\uB85C \uBE44\uCD94\uC5B4\uC57C

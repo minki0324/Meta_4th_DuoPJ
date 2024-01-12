@@ -1349,6 +1349,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 7ddb651d1c1d32a4ab9f0e17cad57b65, type: 2}
   Astar: {fileID: 0}
   aiPath: {fileID: 0}
+  currentLineNum: 0
   M_maxHp: 0
   M_currentHP: 0
   M_speed: 0

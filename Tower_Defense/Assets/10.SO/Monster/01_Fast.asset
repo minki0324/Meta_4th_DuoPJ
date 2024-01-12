@@ -22,8 +22,8 @@ MonoBehaviour:
   currentHP: 200
   speed: 10
   damage: 0
-  cost: 30
+  cost: 60
   attackSpeed: 10
-  income: 2
+  income: 5
   isDie: 0
   Description: "\uC774\uB3D9\uC18D\uB3C4\uAC00 \uBE60\uB978 \uBAAC\uC2A4\uD130\uC785\uB2C8\uB2E4."

@@ -15453,10 +15453,10 @@ MonoBehaviour:
   P2_txt: {fileID: 5273869426659575247}
   P3_txt: {fileID: 2941332086875845898}
   P4_txt: {fileID: 1422703489960689994}
-  P1_income: 50
-  P2_income: 50
-  P3_income: 50
-  P4_income: 50
+  P1_income: 100
+  P2_income: 100
+  P3_income: 100
+  P4_income: 100
 --- !u!1 &2226615137326217658
 GameObject:
   m_ObjectHideFlags: 0
@@ -30593,6 +30593,11 @@ MonoBehaviour:
   M_Des_txt: {fileID: 603655312}
   M_Data_txt: {fileID: 1184922831}
   M_Quick_txt: {fileID: 708839292}
+  U_name_txt: {fileID: 0}
+  U_Mineral_txt: {fileID: 0}
+  U_Crystal_txt: {fileID: 0}
+  U_Des_txt: {fileID: 0}
+  U_Quick_txt: {fileID: 0}
 --- !u!1 &6515335575094663793
 GameObject:
   m_ObjectHideFlags: 0
@@ -33719,7 +33724,7 @@ MonoBehaviour:
   Mineral_txt: {fileID: 8553715322366796396}
   Crystal_txt: {fileID: 3158758660003199835}
   Food_txt: {fileID: 259284166813784262}
-  current_mineral: 500
+  current_mineral: 5000
   current_crystal: 1
   current_food: 0
   max_food: 30

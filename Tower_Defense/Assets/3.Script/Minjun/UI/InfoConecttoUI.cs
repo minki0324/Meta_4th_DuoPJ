@@ -156,6 +156,8 @@ public class InfoConecttoUI : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.F) && UpgradeCostCheck(100, 1))
         {
             //라이프증가
+            //BuildManager.Instance.resourse.life += 5;
+            //보류
         }
         else if (Input.GetKeyDown(KeyCode.Z) && UpgradeCostCheck(100, 1))
         {
@@ -172,6 +174,7 @@ public class InfoConecttoUI : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.V) && UpgradeCostCheck(100, 1))
         {
             //인구증가
+            BuildManager.Instance.resourse.max_food += 5;
         }
     }
 
