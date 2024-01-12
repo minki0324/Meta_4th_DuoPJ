@@ -45,8 +45,12 @@ public class BuilderController : NetworkBehaviour
     void Start()
     {
         Initialsettings();
-        minX =transform.position.x -  30f;
-        maxX = transform.position.x +  30f;
+        minX = transform.position.x - 30f;
+        maxX = transform.position.x + 30f;
+        if (isLocalPlayer)
+        {
+            PlayerEnter();
+        }
 
     }
 
@@ -146,8 +150,41 @@ public class BuilderController : NetworkBehaviour
         DestroyCoroutine = StartCoroutine(BuilderDestroyOrder_co(destroyTower));
 
     }
+    [Client]
+    public void PlayerEnter()
+    {
+        int playernum = (int)GameManager.instance.Player_Num;
 
-    private void CustomAllStopCo()
+
+        CMD_PlayerEnter(playernum);
+    }
+    [Command]
+    private void CMD_PlayerEnter(int playerNum)
+    {
+        switch ((playerNum)
+)
+        {
+            case 1:
+                Life_Manager.instance.P1_Life = 30;
+                Life_Manager.instance.P1_isDead = false;
+                break;
+            case 2:
+                Life_Manager.instance.P2_Life = 30;
+                Life_Manager.instance.P2_isDead = false;
+                break;
+            case 3:
+                Life_Manager.instance.P3_Life = 30;
+                Life_Manager.instance.P3_isDead = false;
+                break;
+            case 4:
+                Life_Manager.instance.P4_Life = 30;
+                Life_Manager.instance.P4_isDead = false;
+                break;
+        }
+    }
+
+
+private void CustomAllStopCo()
     {
         if (OrderCoroutine != null)
         {
@@ -167,9 +204,11 @@ public class BuilderController : NetworkBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
             if (Vector3.Distance(transform.position, targetPos) <= 1)
             {
-                if (BuildManager.Instance.MonneyCheck(BuildManager.Instance.currentTowerindex))
+                bool foodCheck = BuildManager.Instance.resourse.current_food < BuildManager.Instance.resourse.max_food;
+                if (BuildManager.Instance.MonneyCheck(BuildManager.Instance.currentTowerindex) && foodCheck)
                 {
                     BuildManager.Instance.resourse.current_mineral -= GameManager.instance.Cost[BuildManager.Instance.currentTowerindex];
+                    BuildManager.Instance.resourse.current_food += 1;
                     BuildManager.Instance.ClientBuildOrder(targetPos, towerindex, teamIndex);
                 }
 
@@ -188,13 +227,21 @@ public class BuilderController : NetworkBehaviour
             transform.position = Vector3.MoveTowards(transform.position, destroyTower.transform.position, moveSpeed * Time.deltaTime);
             if (Vector3.Distance(transform.position, destroyTower.transform.position) <= 1)
             {
-                BuildManager.Instance.ClitoCMD_DestroyTower(destroyTower);
+                TargetDestroyTower(destroyTower);
+                //BuildManager.Instance.ClitoCMD_DestroyTower(destroyTower);
+                BuildManager.Instance.resourse.current_mineral += (int)(GameManager.instance.Cost[destroyTower.GetComponent<Tower>().towerNum] * 0.6f);
+                //BuildManager.Instance.resourse.current_food -= 1;
                 isCanDestroyTower = false;
                 isGoBuild = false;
                 yield break;
             }
             yield return null;
         }
+    }
+    [Command]
+    public void TargetDestroyTower(GameObject tower)
+    {
+        tower.GetComponent<Tower>().isDestroy = true;
     }
     public void BuilderMove()
     {

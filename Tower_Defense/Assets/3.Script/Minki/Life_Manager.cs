@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
+using System;
 
 public class Life_Manager : NetworkBehaviour
 {
@@ -31,6 +32,11 @@ public class Life_Manager : NetworkBehaviour
             Destroy(gameObject);
             return;
         }
+    }
+
+    private void PlayerCheck()
+    {
+       
     }
 
     private void Start()
@@ -70,22 +76,22 @@ public class Life_Manager : NetworkBehaviour
     #endregion
     #region SyncVar
     [SyncVar(hook = nameof(P1_LifeChanged))]
-    public int P1_Life = 30;
+    public int P1_Life = 0;
     [SyncVar(hook = nameof(P2_LifeChanged))]
-    public int P2_Life = 30;
+    public int P2_Life = 0;
     [SyncVar(hook = nameof(P3_LifeChanged))]
-    public int P3_Life = 30;
+    public int P3_Life = 0;
     [SyncVar(hook = nameof(P4_LifeChanged))]
-    public int P4_Life = 30;
+    public int P4_Life = 0;
 
     [SyncVar(hook = nameof(P1_Dead_BoolChange))]
-    public bool P1_isDead = false;
+    public bool P1_isDead = true;
     [SyncVar(hook = nameof(P2_Dead_BoolChange))]
-    public bool P2_isDead = false;
+    public bool P2_isDead = true;
     [SyncVar(hook = nameof(P3_Dead_BoolChange))]
-    public bool P3_isDead = false;
+    public bool P3_isDead = true;
     [SyncVar(hook = nameof(P4_Dead_BoolChange))]
-    public bool P4_isDead = false;
+    public bool P4_isDead = true;
 
     #endregion
     #region Client

@@ -101,9 +101,6 @@ public class UpgradeManager : NetworkBehaviour
     [Command(requiresAuthority = false)]
     private void CMD_Upgrade(int towerNum ,int upgradeTarget, string mytag ,int value)
     {
-        
-            Debug.Log("들어오 널");
-        Debug.Log(mytag);
         foreach (Tower tower in BuildManager.Instance.AllTower)
         {
             if(tower.towerNum == towerNum && tower.gameObject.tag == mytag)

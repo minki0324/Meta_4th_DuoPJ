@@ -2440,14 +2440,14 @@ MonoBehaviour:
   - 
   img_index: 
   isInit: 0
-  P1_Life: 30
-  P2_Life: 30
-  P3_Life: 30
-  P4_Life: 30
-  P1_isDead: 0
-  P2_isDead: 0
-  P3_isDead: 0
-  P4_isDead: 0
+  P1_Life: 0
+  P2_Life: 0
+  P3_Life: 0
+  P4_Life: 0
+  P1_isDead: 1
+  P2_isDead: 1
+  P3_isDead: 1
+  P4_isDead: 1
 --- !u!1 &9161252345369653585
 GameObject:
   m_ObjectHideFlags: 0

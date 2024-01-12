@@ -57,7 +57,7 @@ public class Tower_Attack : NetworkBehaviour
     {
         if (head_Data.atk_Type == Head_Data.Atk_Type.Scan) return;
        
-        if (isServer)
+        if (!tower.isDestroy && isServer)
         {
             Search_Enemy();
 
