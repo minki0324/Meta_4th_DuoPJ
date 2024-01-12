@@ -124,52 +124,52 @@ public class InfoConecttoUI : MonoBehaviour
 
     private void UpgradeShortcutKey()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && UpgradeCostCheck(100))
+        if (Input.GetKeyDown(KeyCode.Q) && UpgradeCostCheck(100, 1))
         {
             UpgradeManager.Instance.onClickUp(0, 0);
         }
-        else if (Input.GetKeyDown(KeyCode.W) && UpgradeCostCheck(100))
+        else if (Input.GetKeyDown(KeyCode.W) && UpgradeCostCheck(100, 1))
         {
             UpgradeManager.Instance.onClickUp(1, 0);
         }
-        else if (Input.GetKeyDown(KeyCode.E) && UpgradeCostCheck(100))
+        else if (Input.GetKeyDown(KeyCode.E) && UpgradeCostCheck(100, 1))
         {
             UpgradeManager.Instance.onClickUp(2, 0);
         }
-        else if (Input.GetKeyDown(KeyCode.R) && UpgradeCostCheck(100))
+        else if (Input.GetKeyDown(KeyCode.R) && UpgradeCostCheck(100, 1))
         {
             //스캔범위
             UpgradeManager.Instance.onClickUp(3, 1);
         }
-        else if (Input.GetKeyDown(KeyCode.A) && UpgradeCostCheck(100))
+        else if (Input.GetKeyDown(KeyCode.A) && UpgradeCostCheck(100, 1))
         {
             UpgradeManager.Instance.onClickUp(0, 1);
         }
-        else if (Input.GetKeyDown(KeyCode.S) && UpgradeCostCheck(100))
+        else if (Input.GetKeyDown(KeyCode.S) && UpgradeCostCheck(100, 1))
         {
             UpgradeManager.Instance.onClickUp(1, 1);
         }
-        else if (Input.GetKeyDown(KeyCode.D) && UpgradeCostCheck(100))
+        else if (Input.GetKeyDown(KeyCode.D) && UpgradeCostCheck(100, 1))
         {
             UpgradeManager.Instance.onClickUp(2, 1);
         }
-        else if (Input.GetKeyDown(KeyCode.F) && UpgradeCostCheck(100))
+        else if (Input.GetKeyDown(KeyCode.F) && UpgradeCostCheck(100, 1))
         {
             //라이프증가
         }
-        else if (Input.GetKeyDown(KeyCode.Z) && UpgradeCostCheck(100))
+        else if (Input.GetKeyDown(KeyCode.Z) && UpgradeCostCheck(100, 1))
         {
             UpgradeManager.Instance.onClickUp(0, 2);
         }
-        else if (Input.GetKeyDown(KeyCode.X) && UpgradeCostCheck(100))
+        else if (Input.GetKeyDown(KeyCode.X) && UpgradeCostCheck(100, 1))
         {
             UpgradeManager.Instance.onClickUp(1, 2);
         }
-        else if (Input.GetKeyDown(KeyCode.C) && UpgradeCostCheck(100))
+        else if (Input.GetKeyDown(KeyCode.C) && UpgradeCostCheck(100, 1))
         {
             UpgradeManager.Instance.onClickUp(2, 2);
         }
-        else if (Input.GetKeyDown(KeyCode.V) && UpgradeCostCheck(100))
+        else if (Input.GetKeyDown(KeyCode.V) && UpgradeCostCheck(100, 1))
         {
             //인구증가
         }
@@ -354,12 +354,12 @@ public class InfoConecttoUI : MonoBehaviour
         SingleInfoSetting();
 
     }
-    public bool UpgradeCostCheck(int UpgradeCost)
+    public bool UpgradeCostCheck(int mineralCost, int CrystalCost)
     {
-       if( BuildManager.Instance.resourse.current_mineral >= UpgradeCost)
+        if (BuildManager.Instance.resourse.current_mineral >= mineralCost && BuildManager.Instance.resourse.current_crystal >= CrystalCost)
         {
-
-            BuildManager.Instance.resourse.current_mineral -= UpgradeCost;
+            BuildManager.Instance.resourse.current_mineral -= mineralCost;
+            BuildManager.Instance.resourse.current_crystal -= CrystalCost;
             return true;
         }
         else

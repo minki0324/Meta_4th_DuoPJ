@@ -74,7 +74,7 @@ public class UpgradePanel : MonoBehaviour
     public void buttonClick(int index)
     {
        
-        if (!InfoConecttoUI.Instance.UpgradeCostCheck(100)) return; 
+        if (!InfoConecttoUI.Instance.UpgradeCostCheck(100, 1)) return; 
         switch (index)
         {
             case 0:

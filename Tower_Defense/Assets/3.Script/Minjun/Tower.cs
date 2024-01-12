@@ -167,7 +167,7 @@ public class Tower : NetworkBehaviour
         {
             HologramTower(child.gameObject);
         }
-        renderer.material = holo;
+        renderer.material = temp;
     }
     private void DestroyCheck()
     {
