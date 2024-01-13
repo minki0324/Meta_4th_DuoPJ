@@ -9,12 +9,17 @@ public class Room_Scene : MonoBehaviour
     [SerializeField] private GameObject P1_Wait;
     [SerializeField] private GameObject P2_Ready;
     [SerializeField] private GameObject P2_Wait;
+    [SerializeField] private GameObject P3_Wait;
+    [SerializeField] private GameObject P3_Ready;
+    [SerializeField] private GameObject P4_Wait;
+    [SerializeField] private GameObject P4_Ready;
 
     [SerializeField] private Image P1_Character;
     [SerializeField] private Image P2_Character;
 
     [SerializeField] private Sprite[] Cha_img;
 
+    [SerializeField] private Room_Player[] players;
     [SerializeField] private Room_Player P1_Component;
     [SerializeField] private Room_Player P2_Component;
     [SerializeField] private Room_Manager manager;
@@ -35,7 +40,7 @@ public class Room_Scene : MonoBehaviour
     private void Update()
     {
         Ready_Check();
-        if(Tower_Ready && Image_Ready)
+        if (Tower_Ready && Image_Ready)
         {
             Ready_Btn.SetActive(true);
         }
@@ -49,117 +54,74 @@ public class Room_Scene : MonoBehaviour
         info_Panel.SetActive(switch_);
     }
 
-    private void Find_Player()
-    {
-        if (manager.roomSlots.Count == 0)
-        {
-            return;
-        }
-        else if (manager.roomSlots.Count == 2)
-        {
-            P1_Component = manager.roomSlots[0].GetComponent<Room_Player>();
-            P1_Character.sprite = Cha_img[0];
-            P2_Component = manager.roomSlots[1].GetComponent<Room_Player>();
-            P2_Character.sprite = Cha_img[1];
-        }
-        else if (manager.roomSlots.Count == 1)
-        {
-            P1_Component = manager.roomSlots[0].GetComponent<Room_Player>();
-            P1_Character.sprite = Cha_img[0];
-            P2_Character.sprite = null;
-        }
-    }
-
     private void Ready_Check()
     {
-        if (manager.roomSlots.Count == 1)
+        Room_Player currentPlayer;
+
+        for (int i = 0; i < manager.roomSlots.Count; i++)
         {
-            P1_Component = manager.roomSlots[0].GetComponent<Room_Player>();
-            if (P1_Component.readyToBegin)
+            currentPlayer = manager.roomSlots[i].GetComponent<Room_Player>();
+
+            if (currentPlayer != null && currentPlayer.readyToBegin)
             {
-                P1_Wait.SetActive(false);
-                P1_Ready.SetActive(true);
+                if (i == 0)
+                {
+                    P1_Wait.SetActive(false);
+                    P1_Ready.SetActive(true);
+                }
+                else if (i == 1)
+                {
+                    P2_Wait.SetActive(false);
+                    P2_Ready.SetActive(true);
+                }
+                else if (i == 2)
+                {
+                    P3_Wait.SetActive(false);
+                    P3_Ready.SetActive(true);
+                }
+                else if (i == 3)
+                {
+                    P4_Wait.SetActive(false);
+                    P4_Ready.SetActive(true);
+                }
             }
             else
             {
-                P1_Ready.SetActive(false);
-                P1_Wait.SetActive(true);
-            }
-        }
-        else if (manager.roomSlots.Count == 2)
-        {
-            P1_Component = manager.roomSlots[0].GetComponent<Room_Player>();
-            if (P1_Component.readyToBegin)
-            {
-                P1_Wait.SetActive(false);
-                P1_Ready.SetActive(true);
-            }
-            else
-            {
-                P1_Ready.SetActive(false);
-                P1_Wait.SetActive(true);
-            }
-            P2_Component = manager.roomSlots[1].GetComponent<Room_Player>();
-            if (P2_Component.readyToBegin)
-            {
-                P2_Wait.SetActive(false);
-                P2_Ready.SetActive(true);
-            }
-            else
-            {
-                P2_Ready.SetActive(false);
-                P2_Wait.SetActive(true);
+                if (i == 0)
+                {
+                    P1_Ready.SetActive(false);
+                    P1_Wait.SetActive(true);
+                }
+                else if (i == 1)
+                {
+                    P2_Ready.SetActive(false);
+                    P2_Wait.SetActive(true);
+                }
+                else if (i == 2)
+                {
+                    P3_Ready.SetActive(false);
+                    P3_Wait.SetActive(true);
+                }
+                else if (i == 3)
+                {
+                    P4_Ready.SetActive(false);
+                    P4_Wait.SetActive(true);
+                }
             }
         }
     }
 
     public void OnReadyBtn_Click()
     {
-        if (manager.roomSlots.Count == 1)
+        for (int i = 0; i < manager.roomSlots.Count; i++)
         {
-            if (P1_Component.isLocalPlayer)
+            Room_Player currentPlayer = manager.roomSlots[i].GetComponent<Room_Player>();
+
+            // 현재 로컬 플레이어인 경우에만 상태 변경
+            if (currentPlayer != null && currentPlayer.isLocalPlayer)
             {
-                if (P1_Component.readyToBegin)
-                {
-                    P1_Component.CmdChangeReadyState(false);
-                }
-                else
-                {
-                    P1_Component.CmdChangeReadyState(true);
-                }
-            }
-            else
-            {
-                return;
-            }
-        }
-        else if (manager.roomSlots.Count == 2)
-        {
-            if (P1_Component.isLocalPlayer)
-            {
-                if (P1_Component.readyToBegin)
-                {
-                    P1_Component.CmdChangeReadyState(false);
-                }
-                else
-                {
-                    P1_Component.CmdChangeReadyState(true);
-                }
-            }
-            else if (P2_Component.isLocalPlayer)
-            {
-                if (P2_Component.readyToBegin)
-                {
-                    P2_Component.CmdChangeReadyState(false);
-                }
-                else
-                {
-                    P2_Component.CmdChangeReadyState(true);
-                }
-            }
-            else
-            {
-                return;
+                currentPlayer.CmdChangeReadyState(!currentPlayer.readyToBegin);
+                break; // 상태를 변경한 후 반복문 종료
             }
         }
     }

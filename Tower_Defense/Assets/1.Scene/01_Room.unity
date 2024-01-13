@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12947175, g: 0.08724087, b: 0.057682842, a: 1}
+  m_IndirectSpecularColor: {r: 0.12948766, g: 0.087180324, b: 0.057536997, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -50032,11 +50032,16 @@ MonoBehaviour:
   P1_Wait: {fileID: 114959276}
   P2_Ready: {fileID: 2016626882}
   P2_Wait: {fileID: 1521511108}
+  P3_Wait: {fileID: 1738237868}
+  P3_Ready: {fileID: 580697863}
+  P4_Wait: {fileID: 1389079512}
+  P4_Ready: {fileID: 1751551299}
   P1_Character: {fileID: 1927869118}
   P2_Character: {fileID: 878608210}
   Cha_img:
   - {fileID: 21300000, guid: 25ffd0599e69e9c47bd3f4f3b49ccded, type: 3}
   - {fileID: 21300000, guid: 22e7edc72d2772640b5cc41407a9686c, type: 3}
+  players: []
   P1_Component: {fileID: 0}
   P2_Component: {fileID: 0}
   manager: {fileID: 0}
@@ -81408,7 +81413,10 @@ MonoBehaviour:
   holoColor: {fileID: 0}
   head: {fileID: 0}
   towerbase: {fileID: 0}
+  Burnout: {fileID: 0}
   towerNum: 0
+  Heat: []
+  _turretParts: []
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -81420,6 +81428,7 @@ MonoBehaviour:
   towerName: 
   towerType: 
   unitSprite: {fileID: 0}
+  isDestroy: 0
   AttackLevel: 0
   RangeLevel: 0
   HPLevel: 0
@@ -109743,7 +109752,10 @@ MonoBehaviour:
   holoColor: {fileID: 0}
   head: {fileID: 0}
   towerbase: {fileID: 0}
+  Burnout: {fileID: 0}
   towerNum: 0
+  Heat: []
+  _turretParts: []
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -109755,6 +109767,7 @@ MonoBehaviour:
   towerName: 
   towerType: 
   unitSprite: {fileID: 0}
+  isDestroy: 0
   AttackLevel: 0
   RangeLevel: 0
   HPLevel: 0
@@ -113268,7 +113281,10 @@ MonoBehaviour:
   holoColor: {fileID: 0}
   head: {fileID: 0}
   towerbase: {fileID: 0}
+  Burnout: {fileID: 0}
   towerNum: 0
+  Heat: []
+  _turretParts: []
   maxHP: 0
   currentHP: 0
   damage: 0
@@ -113280,6 +113296,7 @@ MonoBehaviour:
   towerName: 
   towerType: 
   unitSprite: {fileID: 0}
+  isDestroy: 0
   AttackLevel: 0
   RangeLevel: 0
   HPLevel: 0
