@@ -113,7 +113,11 @@ public class Monster_Pooling : NetworkBehaviour
             }
         }
 
-        GameObject newMonster = Instantiate(MonsterPrefab[index], Vector3.zero, Quaternion.identity);
+        int randomSpawnX = Random.Range(-110, -90);
+        int randomSpawnZ = Random.Range(-110, -90);
+
+        Vector3 newSpawnPoint = new Vector3(randomSpawnX, 100.5f, randomSpawnZ);
+        GameObject newMonster = Instantiate(MonsterPrefab[index], newSpawnPoint, MonsterPrefab[index].transform.rotation);
         NetworkServer.Spawn(newMonster);
         targetList.Add(newMonster);
 
