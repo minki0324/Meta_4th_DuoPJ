@@ -234,6 +234,9 @@ MonoBehaviour:
   MaxBeamLength: 500
   pLight: {fileID: 0}
   heat: {fileID: 0}
+  target_: {fileID: 0}
+  current_Rot: {x: 0, y: 0, z: 0, w: 0}
+  homingSpeed: 5
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0

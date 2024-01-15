@@ -14469,3 +14469,6 @@ MonoBehaviour:
   MaxBeamLength: 0
   pLight: {fileID: 0}
   heat: {fileID: 0}
+  target_: {fileID: 0}
+  current_Rot: {x: 0, y: 0, z: 0, w: 0}
+  homingSpeed: 5

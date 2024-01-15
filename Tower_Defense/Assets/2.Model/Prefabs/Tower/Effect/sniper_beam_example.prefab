@@ -202,7 +202,7 @@ MonoBehaviour:
   delayedParticles: []
   velocity: 300
   rayImpact: {fileID: 0}
-  rayMuzzle: {fileID: 0}
+  rayMuzzle: {fileID: 400000}
   RaycastAdvance: 2
   layerMask:
     serializedVersion: 2
