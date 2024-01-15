@@ -116,7 +116,7 @@ public class Monster_Spawn : NetworkBehaviour
     [ClientRpc]
     private void RPC_Pos_Rot(GameObject monster , Vector3 spawnPos)
     {
-        monster.transform.SetPositionAndRotation(spawnPos, Quaternion.identity);
+        monster.transform.SetPositionAndRotation(spawnPos, monster.transform.rotation);
     }
 
     [ClientRpc]
