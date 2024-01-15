@@ -25,7 +25,7 @@ MonoBehaviour:
     \uD3EC\uD0D1\uC785\uB2C8\uB2E4."
   Cost: 50
   Rot_Speed: 50
-  Damage: 2
+  Damage: 5
   ATK_Speed: 0.1
   ATK_Range: 20
   Reload: 0

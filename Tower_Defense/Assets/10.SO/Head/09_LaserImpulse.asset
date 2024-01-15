@@ -27,5 +27,5 @@ MonoBehaviour:
   Rot_Speed: 70
   Damage: 100
   ATK_Speed: 2
-  ATK_Range: 30
+  ATK_Range: 15
   Reload: 0

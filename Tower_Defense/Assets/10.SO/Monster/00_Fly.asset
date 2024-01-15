@@ -18,13 +18,13 @@ MonoBehaviour:
   MonsterID: 0
   level: 1
   type: 3
-  maxHp: 500
-  currentHP: 500
+  maxHp: 1000
+  currentHP: 1000
   speed: 5
   damage: 0
-  cost: 80
-  attackSpeed: 10
-  income: 6
+  cost: 300
+  attackSpeed: 0
+  income: 60
   isDie: 0
   Description: "\uC9C0\uD615\uC744 \uBB34\uC2DC\uD558\uACE0 \uBE44\uD589\uD558\uB294
     \uBAAC\uC2A4\uD130\uC785\uB2C8\uB2E4."

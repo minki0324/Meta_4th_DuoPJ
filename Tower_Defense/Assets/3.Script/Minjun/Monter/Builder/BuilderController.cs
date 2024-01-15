@@ -167,19 +167,19 @@ public class BuilderController : NetworkBehaviour
 )
         {
             case 1:
-                Life_Manager.instance.P1_Life = 30;
+                Life_Manager.instance.P1_Life = 50;
                 Life_Manager.instance.P1_isDead = false;
                 break;
             case 2:
-                Life_Manager.instance.P2_Life = 30;
+                Life_Manager.instance.P2_Life = 50;
                 Life_Manager.instance.P2_isDead = false;
                 break;
             case 3:
-                Life_Manager.instance.P3_Life = 30;
+                Life_Manager.instance.P3_Life = 50;
                 Life_Manager.instance.P3_isDead = false;
                 break;
             case 4:
-                Life_Manager.instance.P4_Life = 30;
+                Life_Manager.instance.P4_Life = 50;
                 Life_Manager.instance.P4_isDead = false;
                 break;
         }

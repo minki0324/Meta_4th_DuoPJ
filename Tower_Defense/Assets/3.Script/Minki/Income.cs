@@ -9,7 +9,7 @@ public class Income : NetworkBehaviour
     [SerializeField] public Text income_timer;
     [SerializeField] private GameObject income_panel;
     [SerializeField] private Resourse resourse;
-    private float current_timer = 45f;
+    private float current_timer = 25;
     private bool panel_open = false;
 
     [SerializeField] private Text P1_txt;
@@ -33,7 +33,7 @@ public class Income : NetworkBehaviour
             {
                 RPC_Give_income();
             }
-            current_timer = 45.0f; // 타이머를 다시 45초로 설정
+            current_timer = 25.0f; // 타이머를 다시 45초로 설정
         }
 
         // 인컴 판넬 동기화 및 업데이트
@@ -45,13 +45,13 @@ public class Income : NetworkBehaviour
     #endregion
     #region SyncVar
     [SyncVar(hook = nameof(Hook_P1_income))]
-    public int P1_income = 50;
+    public int P1_income = 100;
     [SyncVar(hook = nameof(Hook_P2_income))]
-    public int P2_income = 50;
+    public int P2_income = 100;
     [SyncVar(hook = nameof(Hook_P3_income))]
-    public int P3_income = 50;
+    public int P3_income = 100;
     [SyncVar(hook = nameof(Hook_P4_income))]
-    public int P4_income = 50;
+    public int P4_income = 100;
     #endregion
     #region Client
     #endregion
