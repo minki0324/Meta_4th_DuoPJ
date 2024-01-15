@@ -86,7 +86,6 @@ public class Tower : NetworkBehaviour
             SetSprite();
         }
         _burnoutId = Shader.PropertyToID("_Burnout");
-        Debug.Log(_burnoutId);
         for (var i = 0; i < Heat.Length; i++)
         {
             Heat[i].Stop(true, ParticleSystemStopBehavior.StopEmitting);
@@ -108,14 +107,12 @@ public class Tower : NetworkBehaviour
             if (!BurnStart)
             {
                 BurnStart = true;
-                if (isLocalPlayer)
-                {
-                    BuildManager.Instance.resourse.current_food -= 1;
-                }
+             
                 StartCoroutine(DestroyMotion());
             }
         }
     }
+
     public IEnumerator DestroyMotion() {
 
         timer += Time.deltaTime;
@@ -137,12 +134,10 @@ public class Tower : NetworkBehaviour
         {
             Heat[i].Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
-        Debug.Log("들어오니");
         for (var i = 0; i < _turretParts.Length; i++)
             _turretParts[i].material.SetFloat(_burnoutId, 0);
 
         yield return new WaitForSeconds(0.2f);
-        Debug.Log("죽음");
         if (isServer)
         {
             BuildManager.Instance.CMD_DestroyTower(gameObject);
@@ -152,6 +147,14 @@ public class Tower : NetworkBehaviour
 
 
 
+    }
+    private void OnDestroy()
+    {
+        if (GameManager.instance.CompareEnumWithTag(tag))
+        {
+            Debug.Log("인구삭제");
+            BuildManager.Instance.resourse.current_food -= 1;
+        }
     }
     public void MeterialBurnout(GameObject tower)
     {
@@ -268,6 +271,30 @@ public class Tower : NetworkBehaviour
                 isDestroy = true;
                 //BuildManager.Instance.CMD_DestroyTower(gameObject);
             }
+        }
+    }
+    [Server]
+    private void Server_PlayerEnter(int playerNum)
+    {
+        switch ((playerNum)
+)
+        {
+            case 1:
+                Life_Manager.instance.P1_Life = 30;
+                Life_Manager.instance.P1_isDead = false;
+                break;
+            case 2:
+                Life_Manager.instance.P2_Life = 30;
+                Life_Manager.instance.P2_isDead = false;
+                break;
+            case 3:
+                Life_Manager.instance.P3_Life = 30;
+                Life_Manager.instance.P3_isDead = false;
+                break;
+            case 4:
+                Life_Manager.instance.P4_Life = 30;
+                Life_Manager.instance.P4_isDead = false;
+                break;
         }
     }
     [ClientRpc]

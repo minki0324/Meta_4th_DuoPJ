@@ -31,8 +31,8 @@ public class InfoConecttoUI : MonoBehaviour
     [SerializeField] private Monster_Spawn spawner;
     [SerializeField] private Sprite BuilderImage;
     public Type type;
-    private bool isSingle;
-    private bool isMultiple;
+    public bool isSingle;
+    public bool isMultiple;
     public bool isMonsterClick;
     public bool isBuilderClick;
 

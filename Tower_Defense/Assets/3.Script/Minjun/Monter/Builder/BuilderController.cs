@@ -231,7 +231,6 @@ private void CustomAllStopCo()
             if (Vector3.Distance(transform.position, destroyTower.transform.position) <= 1)
             {
                 TargetDestroyTower(destroyTower);
-                //BuildManager.Instance.ClitoCMD_DestroyTower(destroyTower);
                 BuildManager.Instance.resourse.current_mineral += (int)(GameManager.instance.Cost[destroyTower.GetComponent<Tower>().towerNum] * 0.6f);
                 AstarPath.active.Scan();
                 //BuildManager.Instance.resourse.current_food -= 1;
@@ -269,7 +268,6 @@ private void CustomAllStopCo()
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, groundLayer ))
             {
-                Debug.Log(hit.transform.gameObject.layer);
                 targetposition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                 transform.LookAt(targetposition);
             }

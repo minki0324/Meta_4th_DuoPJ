@@ -99,6 +99,7 @@ public class UpgradePanel : MonoBehaviour
                 UpgradeManager.Instance.onClickUp(2, 1);
                 break;
             case 7:
+
                 break;
             case 8:
                 UpgradeManager.Instance.onClickUp(0, 2);
@@ -110,6 +111,7 @@ public class UpgradePanel : MonoBehaviour
                 UpgradeManager.Instance.onClickUp(2, 2);
                 break;
             case 11:
+                BuildManager.Instance.resourse.current_food += 5;
                 break;
 
         }

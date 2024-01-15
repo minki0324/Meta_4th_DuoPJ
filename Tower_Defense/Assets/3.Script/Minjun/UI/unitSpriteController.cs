@@ -60,9 +60,12 @@ public class unitSpriteController : MonoBehaviour
 
         //리스트 초기화하고 클릭한버튼에 해당하는 오브젝트 다시 list담기
         /*InfoCo*/
+
         InfoConecttoUI info = transform.root.gameObject.GetComponent<InfoConecttoUI>();
         info.rts.DeSelectAll();
         info.rts.SelectUnit(GetComponent<unitSpriteController>().myObject);
+        info.isSingle = true;
+        info.isMultiple = false;
         info.SingleInfoSetting();
 
     }

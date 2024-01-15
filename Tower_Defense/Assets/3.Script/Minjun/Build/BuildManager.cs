@@ -174,7 +174,7 @@ public class BuildManager : NetworkBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            builder.isCanDestroyTower = true;
+            DestroyButton();
         }
     }
 
@@ -191,6 +191,10 @@ public class BuildManager : NetworkBehaviour
             return false;
         }
         
+    }
+    public void DestroyButton()
+    {
+        builder.isCanDestroyTower = true;
     }
     //private bool MonneyCheck()
     //{
@@ -240,7 +244,6 @@ public class BuildManager : NetworkBehaviour
         TowerMountFrame.GetChild(SelectTowerIndex[1]).gameObject.SetActive(true); //마운트프레임에서 TowerNumber 타워의 마운트 활성화
         TowerHeadFrame.GetChild(SelectTowerIndex[0]).gameObject.SetActive(true); //해드프레임에서 TowerNumber 타워의 해드 활성화
         Tower newtower = tower.GetComponent<Tower>();
-        Debug.Log(SelectTowerIndex[3]);
         newtower.towerNum = SelectTowerIndex[3];
         newtower.head = TowerHeadFrame.GetChild(SelectTowerIndex[0]).GetComponent<Tower_Attack>();
         newtower.towerbase = TowerBaseFrame.GetChild(SelectTowerIndex[2]).gameObject;
@@ -287,7 +290,20 @@ public class BuildManager : NetworkBehaviour
 
         return pathExists;
     }
+    private void Roadblock(GameObject newTower)
+    {
+        if (!CheckIfPathClear(ServerSeekerStart, ServerSeekerEnd))
+        {
+            RPC_DestroyTower(newTower);
+            RTSControlSystem.Instance.Destroytower(newTower.GetComponent<Tower>());
+            Destroy(newTower);
 
+            Debug.Log("길이막혀서 타워가 파괴되었습니다!");
+            AstarPath.active.Scan();
+
+            return;
+        }
+    }
     //public IEnumerator DestroyMotion_co()
     //{
     //    //메테리얼변경 , 타워기능 정지 , 모션후 타워 파괴
@@ -302,6 +318,7 @@ public class BuildManager : NetworkBehaviour
         int HPvalue = UpgradeManager.Instance.TowerUpgradesArray[towerindex[3], 2];
         CMDBuildOrder(targetPos, towerindex, teamIndex, SeekerStart.tag, SeekerEnd.tag, Atkvalue, Rangevalue, HPvalue);
 
+
     }
     [Client]
     public void Client_Destroy(GameObject newTower)
@@ -314,41 +331,38 @@ public class BuildManager : NetworkBehaviour
     [Command(requiresAuthority = false)]
     private void CMDBuildOrder(Vector3 targetPos, int[] towerindex, int teamIndex, String Start, String End, int Atkvalue, int Rangevalue, int HPvalue)
     {
-        ServerSeekerStart = SeekerSet(SeekerStart, Start);
+        ServerSeekerStart = SeekerSet(SeekerStart, Start); // 막힌지안막힌지 체크하는 시커들
         ServerSeekerEnd = SeekerSet(SeekerEnd, End);
 
-        GameObject newTower = Instantiate(towerFrame, targetPos, Quaternion.identity);
-        TowerAssembly(newTower, towerindex);
-        //여기서 길찾기검사후 길막으면 파괴하기
-        NetworkServer.Spawn(newTower/* , senderConnection*/);
+        GameObject newTower = Instantiate(towerFrame, targetPos, Quaternion.identity); 
+        TowerAssembly(newTower, towerindex); //커스텀한 타워 조립하고 Tower에있는 변수들 할당
+        NetworkServer.Spawn(newTower);  //네트워크스폰해서 동기화
 
         Tower towerScript = newTower.GetComponent<Tower>();
         //타워 업그레이드 계수 전해주기 (몇번타워?)
 
-        //커맨드의 업그레이드...계수
+        //이미업글되있던 값들 새로운타워에게도 적용해주기
         towerScript.AttackLevel = Atkvalue;
         towerScript.RangeLevel = Rangevalue;
         towerScript.HPLevel = HPvalue;
         towerScript.UpgradeUpdate();
+
+        //태그부여
         newTower.tag = $"{teamIndex}P";
+
         RPC_TowerAssembly(newTower, towerindex);
         Rpc_SpawnMonster(newTower, teamIndex);
+        //서버가 관리하는 타워리스트에 추가
         AllTower.Add(towerScript);
+        //타워 활동시작.
         towerScript.isActive = true;
+        //Astar 지형업데이트
         AstarPath.active.Scan();
-        Debug.Log(CheckIfPathClear(ServerSeekerStart, ServerSeekerEnd));
-        if (!CheckIfPathClear(ServerSeekerStart, ServerSeekerEnd))
-        {
-            newTower.GetComponent<Tower>().isDestroy = true;
-            RPC_DestroyTower(newTower);
-            RTSControlSystem.Instance.Destroytower(newTower.GetComponent<Tower>());
-            Destroy(newTower);
-
-            Debug.Log("길이막혀서 타워가 파괴되었습니다!");
-            AstarPath.active.Scan();
-            return;
-        }
+        //길막확인
+        Roadblock(newTower);
     }
+  
+
     [Command(requiresAuthority = false)]
     public void ClitoCMD_DestroyTower(GameObject newTower)
     {
@@ -369,6 +383,8 @@ public class BuildManager : NetworkBehaviour
 
     #endregion
     #region ClientRPC
+
+
     [ClientRpc]
     private void RPC_TowerAssembly(GameObject tower, int[] SelectTowerIndex)
     {
