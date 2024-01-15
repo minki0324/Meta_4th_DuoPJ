@@ -17,10 +17,6 @@ public class Resourse : MonoBehaviour
     private void Update()
     {
         Print_Resourse();
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            Error_Log.instance.Print_Log(Error_Log.instance.mineral);
-        }
     }
 
     private void Print_Resourse()

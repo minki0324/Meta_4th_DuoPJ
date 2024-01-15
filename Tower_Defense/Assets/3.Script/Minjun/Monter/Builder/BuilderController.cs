@@ -214,6 +214,10 @@ private void CustomAllStopCo()
                     BuildManager.Instance.resourse.current_food += 1;
                     BuildManager.Instance.ClientBuildOrder(targetPos, towerindex, teamIndex);
                 }
+                else if(!foodCheck)
+                {
+                    Error_Log.instance.Print_Log("타워를 건설할 인구가 가득 찼습니다.");
+                }
 
               
                 isGoBuild = false;

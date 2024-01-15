@@ -290,7 +290,7 @@ public class BuildManager : NetworkBehaviour
 
         return pathExists;
     }
-    private void Roadblock(GameObject newTower)
+    private void Roadblock(GameObject newTower, Player_Num player)
     {
         if (!CheckIfPathClear(ServerSeekerStart, ServerSeekerEnd))
         {
@@ -298,7 +298,7 @@ public class BuildManager : NetworkBehaviour
             RTSControlSystem.Instance.Destroytower(newTower.GetComponent<Tower>());
             Destroy(newTower);
 
-            Debug.Log("길이막혀서 타워가 파괴되었습니다!");
+            Error_Log.instance.RPC_LogTarget("몬스터의 진행 경로에 타워를 건설할 수 없습니다.", player);
             AstarPath.active.Scan();
 
             return;
@@ -316,7 +316,7 @@ public class BuildManager : NetworkBehaviour
         int Atkvalue = UpgradeManager.Instance.TowerUpgradesArray[towerindex[3], 0];
         int Rangevalue = UpgradeManager.Instance.TowerUpgradesArray[towerindex[3], 1];
         int HPvalue = UpgradeManager.Instance.TowerUpgradesArray[towerindex[3], 2];
-        CMDBuildOrder(targetPos, towerindex, teamIndex, SeekerStart.tag, SeekerEnd.tag, Atkvalue, Rangevalue, HPvalue);
+        CMDBuildOrder(targetPos, towerindex, teamIndex, SeekerStart.tag, SeekerEnd.tag, Atkvalue, Rangevalue, HPvalue, GameManager.instance.Player_Num);
 
 
     }
@@ -329,7 +329,7 @@ public class BuildManager : NetworkBehaviour
     #endregion
     #region Command
     [Command(requiresAuthority = false)]
-    private void CMDBuildOrder(Vector3 targetPos, int[] towerindex, int teamIndex, String Start, String End, int Atkvalue, int Rangevalue, int HPvalue)
+    private void CMDBuildOrder(Vector3 targetPos, int[] towerindex, int teamIndex, String Start, String End, int Atkvalue, int Rangevalue, int HPvalue, Player_Num player)
     {
         ServerSeekerStart = SeekerSet(SeekerStart, Start); // 막힌지안막힌지 체크하는 시커들
         ServerSeekerEnd = SeekerSet(SeekerEnd, End);
@@ -359,7 +359,7 @@ public class BuildManager : NetworkBehaviour
         //Astar 지형업데이트
         AstarPath.active.Scan();
         //길막확인
-        Roadblock(newTower);
+        Roadblock(newTower, player);
     }
   
 

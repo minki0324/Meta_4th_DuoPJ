@@ -47,7 +47,7 @@ public class Monster_Spawn : NetworkBehaviour
         else //없으면 리턴
         {
             //에러메세지
-
+            Error_Log.instance.Print_Log("소환에 필요한 미네랄이 부족합니다.");
             return;
         }
 
