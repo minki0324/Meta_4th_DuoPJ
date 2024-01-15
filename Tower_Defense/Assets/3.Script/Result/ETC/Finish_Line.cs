@@ -32,7 +32,7 @@ public class Finish_Line : NetworkBehaviour
                 //적들의 isDie 불값을 모두가져와서 모두 죽었을때 break걸고 승리조건 만들어야함
                 if (Life_Manager.instance.isVectoryCheck(player_num))
                 {
-                    Debug.Log(player_num + "플레이어가 승리하였습니다!");
+                    Error_Log.instance.RPC_Log($"{player_num} 플레이어가 승리했습니다.");
                     return;
                 }
             }

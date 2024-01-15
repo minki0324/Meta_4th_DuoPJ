@@ -167,6 +167,12 @@ public class Life_Manager : NetworkBehaviour
                 P4_Life--;
                 break;
         }
+
+        if (P1_Life == 10 || P2_Life == 10 || P3_Life == 10 || P4_Life == 10) 
+        {
+           Error_Log.instance.RPC_Log($"{player_name[player_num - 1]}님의 라이프가 10 밖에 남지 않았습니다.");
+        }
+
         if (!IsPlayerDead(player_num))
         {
             switch (monster_num)
@@ -243,6 +249,7 @@ public class Life_Manager : NetworkBehaviour
                 if(P1_Life <= 0)
                 {
                     Kill_Log.instance.Adding_Message($"<color=FFFFFF>[{(int)min} : {(int)sec}]</color>  <color=E34E4E> {player_name[player_num]} </color> 님이 패배했습니다.");
+                    Error_Log.instance.Print_Log($"{player_name[player_num]}님이 패배 했습니다.");
                     P1_isDead = true;
                 }
                 break;
@@ -250,6 +257,7 @@ public class Life_Manager : NetworkBehaviour
                 if (P2_Life <= 0)
                 {
                     Kill_Log.instance.Adding_Message($"<color=FFFFFF>[{(int)min} : {(int)sec}]</color>  <color=E34E4E> {player_name[player_num]} </color> 님이 패배했습니다.");
+                    Error_Log.instance.Print_Log($"{player_name[player_num]}님이 패배 했습니다.");
                     P2_isDead = true;
                 }
                 break;
@@ -257,6 +265,7 @@ public class Life_Manager : NetworkBehaviour
                 if (P3_Life <= 0)
                 {
                     Kill_Log.instance.Adding_Message($"<color=FFFFFF>[{(int)min} : {(int)sec}]</color>  <color=E34E4E> {player_name[player_num]} </color> 님이 패배했습니다.");
+                    Error_Log.instance.Print_Log($"{player_name[player_num]}님이 패배 했습니다.");
                     P3_isDead = true;
                 }
                 break;
@@ -264,6 +273,7 @@ public class Life_Manager : NetworkBehaviour
                 if (P4_Life <= 0)
                 {
                     Kill_Log.instance.Adding_Message($"<color=FFFFFF>[{(int)min} : {(int)sec}]</color>  <color=E34E4E> {player_name[player_num]} </color> 님이 패배했습니다.");
+                    Error_Log.instance.Print_Log($"{player_name[player_num]}님이 패배 했습니다.");
                     P4_isDead = true;
                 }
                 break;

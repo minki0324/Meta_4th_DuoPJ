@@ -365,8 +365,14 @@ public class InfoConecttoUI : MonoBehaviour
             BuildManager.Instance.resourse.current_crystal -= CrystalCost;
             return true;
         }
+        else if(BuildManager.Instance.resourse.current_mineral < mineralCost)
+        {
+            Error_Log.instance.Print_Log("업그레이드에 필요한 미네랄이 부족합니다.");
+            return false;
+        }
         else
         {
+            Error_Log.instance.Print_Log("업그레이드에 필요한 크리스탈이 부족합니다.");
             return false;
         }
     }
