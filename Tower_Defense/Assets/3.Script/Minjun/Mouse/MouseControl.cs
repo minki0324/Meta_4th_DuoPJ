@@ -54,7 +54,6 @@ public class MouseControl : MonoBehaviour
             return;
         }
         if (BuildManager.Instance.isBuilding) return;
-        if (IsPointerOverUI()) return;
         onClickObject();
 
 
@@ -189,7 +188,7 @@ public class MouseControl : MonoBehaviour
         }
         else // 단일선택시 나오는 메소드
         {
-            if (BuildManager.Instance.builder.isCanDestroyTower)
+            if (BuildManager.Instance.builder.isCanDestroyTower && !hitTower.isDestroy)
             {
                 BuildManager.Instance.builder.DestroyOrder(hitTower.gameObject);
                 BuildManager.Instance.builder.isSelectBuilder = true;
