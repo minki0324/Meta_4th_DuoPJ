@@ -8,7 +8,10 @@ public class MouseCameraCon : MonoBehaviour
     public float mouseMoveSpeed = 35f;
     public float KeyMoveSpeed = 35f;
     private float edgeThreshold = 3f;
+    public float AddValue =0.5f;
+    public float Yvalue;
     [SerializeField] private BoxCollider CameraZoneCol;
+    [SerializeField] private Slider YvalueSlider;
     private Bounds CameraZone;
     private bool isScreenLock;
     private Vector3 previousCameraPosition; // 이전 프레임의 카메라 위치
@@ -21,10 +24,12 @@ public class MouseCameraCon : MonoBehaviour
         previousCameraPosition = Camera.main.transform.position;
         CameraZone = CameraZoneCol.bounds;
         UpdateRenderImagePosition(Camera.main.transform.position);
+        CameraYSet();
     }
 
     private void Update()
     {
+        CameraYSet();
         if (Input.GetKeyDown(KeyCode.L))
         {
             isScreenLock = !isScreenLock;
@@ -77,7 +82,7 @@ public class MouseCameraCon : MonoBehaviour
         float clampedZ = Mathf.Clamp(Camera.main.transform.position.z, CameraZone.min.z, CameraZone.max.z);
 
         // 카메라 위치를 설정
-        Camera.main.transform.position = new Vector3(clampedX, 30 ,clampedZ);
+        Camera.main.transform.position = new Vector3(clampedX, Yvalue, clampedZ);
     }
 
     private void KeybordMove()
@@ -103,7 +108,7 @@ public class MouseCameraCon : MonoBehaviour
         float clampedZ = Mathf.Clamp(Camera.main.transform.position.z, CameraZone.min.z, CameraZone.max.z);
 
         // 카메라 위치를 설정
-        Camera.main.transform.position = new Vector3(clampedX, 30, clampedZ);
+        Camera.main.transform.position = new Vector3(clampedX, Yvalue, clampedZ);
     }
 
     private void UpdateRenderImagePosition(Vector3 worldPosition)
@@ -115,5 +120,10 @@ public class MouseCameraCon : MonoBehaviour
         // Render_img의 RectTransform을 업데이트
         Render_img.rectTransform.anchoredPosition = newPosition;
         // 이미지의 위치 업데이트
+    }
+    public void CameraYSet()
+    {
+        Yvalue = 25 + (YvalueSlider.value * 10);
+        transform.position = new Vector3(transform.position.x, Yvalue, transform.position.z);
     }
 }

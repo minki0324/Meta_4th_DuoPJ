@@ -30,6 +30,7 @@ public class InfoConecttoUI : MonoBehaviour
     [SerializeField] private GameObject[] orderUI;
     [SerializeField] private Monster_Spawn spawner;
     [SerializeField] private Sprite BuilderImage;
+    [SerializeField] private GameObject miniOption;
     public Type type;
     public bool isSingle;
     public bool isMultiple;
@@ -79,7 +80,16 @@ public class InfoConecttoUI : MonoBehaviour
             UpdateUI();
 
     }
+    public void OpenMiniOption()
+    {
+        miniOption.SetActive(true);
+    }
 
+    public void BackOption()
+    {
+        miniOption.SetActive(false);
+    }
+   
     public void UpdateUI()
     {
         if (!isBuilderClick &&!isMonsterClick && rts.selectTowers.Count == 0)
