@@ -5,10 +5,17 @@ using UnityEngine.UI;
 
 public class MiniOption : MonoBehaviour
 {
+    [SerializeField] private GameObject Option_Panel;
+    [SerializeField] private GameObject ViewPos_Panel;
+
     [SerializeField] private Slider master;
     [SerializeField] private Slider bgm;
     [SerializeField] private Slider sfx;
 
+    [SerializeField] private Slider mouse;
+
+    [SerializeField] private GameObject camera_;
+    
 
     private void Start()
     {
@@ -21,5 +28,21 @@ public class MiniOption : MonoBehaviour
         AudioManager.instance.SFXVolume = sfx;
         AudioManager.instance.MasterVolume = master;
 
+    }
+
+    
+
+    public void Open_Option()
+    {
+        bool active = Option_Panel.activeSelf;
+        ViewPos_Panel.SetActive(false);
+        Option_Panel.SetActive(!active);
+    }
+
+    public void Open_ViewPos()
+    {
+        bool active = ViewPos_Panel.activeSelf;
+        Option_Panel.SetActive(false);
+        ViewPos_Panel.SetActive(!active);
     }
 }

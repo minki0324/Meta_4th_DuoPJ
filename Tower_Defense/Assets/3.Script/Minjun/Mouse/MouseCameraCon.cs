@@ -9,7 +9,6 @@ public class MouseCameraCon : MonoBehaviour
     public float KeyMoveSpeed = 35f;
     private float edgeThreshold = 3f;
     public float AddValue =0.5f;
-    public float Yvalue;
     [SerializeField] private BoxCollider CameraZoneCol;
     [SerializeField] private Slider YvalueSlider;
     private Bounds CameraZone;
@@ -18,18 +17,20 @@ public class MouseCameraCon : MonoBehaviour
     public Image Render_img;
     public RectTransform miniMapRect; // 미니맵의 RectTransform
 
+    private float cameraY = 20f; // 초기 카메라 Y 위치
+    private float minCameraY = 16f; // 최소 카메라 Y 위치
+    private float maxCameraY = 24f; // 최대 카메라 Y 위치
+
     private void Start()
     {
         // 초기 카메라 위치 저장
         previousCameraPosition = Camera.main.transform.position;
         CameraZone = CameraZoneCol.bounds;
         UpdateRenderImagePosition(Camera.main.transform.position);
-        CameraYSet();
     }
 
     private void Update()
     {
-        CameraYSet();
         if (Input.GetKeyDown(KeyCode.L))
         {
             isScreenLock = !isScreenLock;
@@ -82,7 +83,7 @@ public class MouseCameraCon : MonoBehaviour
         float clampedZ = Mathf.Clamp(Camera.main.transform.position.z, CameraZone.min.z, CameraZone.max.z);
 
         // 카메라 위치를 설정
-        Camera.main.transform.position = new Vector3(clampedX, Yvalue, clampedZ);
+        Camera.main.transform.position = new Vector3(clampedX, cameraY, clampedZ);
     }
 
     private void KeybordMove()
@@ -108,7 +109,7 @@ public class MouseCameraCon : MonoBehaviour
         float clampedZ = Mathf.Clamp(Camera.main.transform.position.z, CameraZone.min.z, CameraZone.max.z);
 
         // 카메라 위치를 설정
-        Camera.main.transform.position = new Vector3(clampedX, Yvalue, clampedZ);
+        Camera.main.transform.position = new Vector3(clampedX, cameraY, clampedZ);
     }
 
     private void UpdateRenderImagePosition(Vector3 worldPosition)
@@ -121,9 +122,16 @@ public class MouseCameraCon : MonoBehaviour
         Render_img.rectTransform.anchoredPosition = newPosition;
         // 이미지의 위치 업데이트
     }
-    public void CameraYSet()
+
+    public void ViewPos(bool zoomIn)
     {
-        Yvalue = 25 + (YvalueSlider.value * 10);
-        transform.position = new Vector3(transform.position.x, Yvalue, transform.position.z);
+        if (zoomIn)
+        {
+            cameraY = Mathf.Clamp(cameraY + 1f, minCameraY, maxCameraY);
+        }
+        else
+        {
+            cameraY = Mathf.Clamp(cameraY - 1f, minCameraY, maxCameraY);
+        }
     }
 }
