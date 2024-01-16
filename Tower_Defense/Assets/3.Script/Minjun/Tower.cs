@@ -155,6 +155,10 @@ public class Tower : NetworkBehaviour
             Debug.Log("인구삭제");
             BuildManager.Instance.resourse.current_food -= 1;
         }
+        if (isServer)
+        {
+            BuildManager.Instance.ReScan();
+        }
     }
     public void MeterialBurnout(GameObject tower)
     {

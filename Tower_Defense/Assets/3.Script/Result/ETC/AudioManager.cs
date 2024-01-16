@@ -98,12 +98,12 @@ public class AudioManager : MonoBehaviour
         //랜덤넘버로 BGM 재생
         //바로 전에 나오는 BGM은 안나오게 예외
         int temp = randNum;
-        randNum = Random.Range(1, 8);
+        randNum = Random.Range(0, 8);
          
         while (randNum == temp)
         {
             temp = randNum;
-            randNum = Random.Range(1, 9);
+            randNum = Random.Range(0, 8);
         }
      
         PlayBGM(bgm[randNum].name);

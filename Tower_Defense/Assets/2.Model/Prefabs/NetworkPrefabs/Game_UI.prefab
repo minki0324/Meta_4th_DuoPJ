@@ -38572,7 +38572,7 @@ MonoBehaviour:
   Mineral_txt: {fileID: 8553715322366796396}
   Crystal_txt: {fileID: 3158758660003199835}
   Food_txt: {fileID: 259284166813784262}
-  current_mineral: 500000
+  current_mineral: 500
   current_crystal: 3
   current_food: 0
   max_food: 50

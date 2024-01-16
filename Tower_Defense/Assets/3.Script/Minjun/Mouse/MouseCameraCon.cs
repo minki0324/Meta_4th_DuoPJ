@@ -17,7 +17,7 @@ public class MouseCameraCon : MonoBehaviour
     public Image Render_img;
     public RectTransform miniMapRect; // 미니맵의 RectTransform
 
-    private float cameraY = 20f; // 초기 카메라 Y 위치
+    private float cameraY = 30f; // 초기 카메라 Y 위치
     private float minCameraY = 16f; // 최소 카메라 Y 위치
     private float maxCameraY = 24f; // 최대 카메라 Y 위치
 

@@ -196,20 +196,18 @@ public class BuildManager : NetworkBehaviour
     {
         builder.isCanDestroyTower = true;
     }
-    //private bool MonneyCheck()
-    //{
-    //    if (GameManager.instance.Cost[towerindex] <= resourse.current_mineral)
-    //    {
+    [Server]
+    public void ReScan()
+    {
+        StartCoroutine(AstarScan());
+    }
 
-    //        currentTowerCost = GameManager.instance.Cost[towerindex];
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
+    public IEnumerator AstarScan()
+    {
+        yield return new WaitForSeconds(0.5f);
+        AstarPath.active.Scan();
+    }
 
-    //}
     public void BuildSetting(int index)
     {
         //내가 선택한 타워인덱스 배열 가져오기
@@ -380,6 +378,7 @@ public class BuildManager : NetworkBehaviour
         Destroy(newTower);
 
     }
+
 
     #endregion
     #region ClientRPC
