@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Sound
@@ -12,13 +13,21 @@ public class Sound
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-
-    [SerializeField] private Sound[] sfx = null;
+    private int randNum;
+   [SerializeField] private Sound[] sfx = null;
     [SerializeField] private Sound[] bgm = null;
 
-    [SerializeField] private AudioSource bgmPlayer = null;
-    [SerializeField] private AudioSource[] sfxPlayer = null;
-
+    [SerializeField] public AudioSource bgmPlayer = null;
+    [SerializeField] public AudioSource[] sfxPlayer = null;
+    //[SerializeField] private GameObject Option;
+    [SerializeField] public Slider MasterVolume;
+    [SerializeField] public Slider SFXVolume;
+    [SerializeField] public Slider BGMVolume;
+    public float tempBGM;
+    public float tempSFX;
+    public float tempMaster;
+    [SerializeField] private Text Label;
+    [SerializeField] private Dropdown dropdown;
     private Dictionary<string, AudioSource> sfxPlayers = new Dictionary<string, AudioSource>();
 
 
@@ -44,7 +53,65 @@ public class AudioManager : MonoBehaviour
             sfxPlayers.Add(sound.name, sfxSource);
         }
     }
+    private void Start()
+    {
+        RandomPlay();
+        dropdown.value = randNum;
+        MasterVolume.value = 0.5f;
+        SFXVolume.value = 0.5f;
+        BGMVolume.value = 0.0f;
+        
+    }
+    private void Update()
+    {
+      
+            if (!bgmPlayer.isPlaying)
+            {
+                RandomPlay();
+            }
+      
+      
+        if(BGMVolume !=null && SFXVolume != null)
+        {
+            bgmPlayer.volume = BGMVolume.value * MasterVolume.value;
+            SFXVolumeSet();
 
+            tempSFX = SFXVolume.value;
+            tempBGM = BGMVolume.value;
+            tempMaster = MasterVolume.value;
+        }
+
+
+    }
+
+    private void SFXVolumeSet()
+    {
+          foreach (AudioSource sound in sfxPlayer)
+        {
+            sound.volume = SFXVolume.value * MasterVolume.value;
+        }
+    }
+
+    private void RandomPlay()
+    {
+        //시작하면 랜덤넘버 뽑고
+        //랜덤넘버로 BGM 재생
+        //바로 전에 나오는 BGM은 안나오게 예외
+        int temp = randNum;
+        randNum = Random.Range(1, 9);
+         
+        while (randNum == temp)
+        {
+            temp = randNum;
+            randNum = Random.Range(1, 9);
+        }
+     
+        PlayBGM(bgm[randNum].name);
+    }
+    public void LabelChange()
+    {
+        PlayBGM(Label.text);
+    }
     public void PlayBGM(string p_bgmName)
     {
         for (int i = 0; i < bgm.Length; i++)
@@ -84,5 +151,13 @@ public class AudioManager : MonoBehaviour
         {
             sfxSource.Stop();
         }
+    }
+    public void ScreenFullScreenMode()
+    {
+        Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+    }
+    public void WindowSCreenMode()
+    {
+        Screen.fullScreenMode = FullScreenMode.Windowed;
     }
 }
