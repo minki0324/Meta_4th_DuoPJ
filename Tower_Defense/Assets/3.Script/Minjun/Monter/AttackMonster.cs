@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class AttackMonster : MonoBehaviour
+public class AttackMonster : NetworkBehaviour
 {
 
     //어택 전용 무브먼트입니다
@@ -13,21 +14,25 @@ public class AttackMonster : MonoBehaviour
     [SerializeField]private Tower TargetTower;
     float AttackDelay =1000f;
     //public monType type;
+    private NetworkAnimator ani;
+
     private void Start()
     {
         TryGetComponent(out mon);
+        TryGetComponent(out ani);
     }
     private void Update()
     {
         if (mon.isDie) return;
         if (TargetTower != null)
         {
-
             isAttack = true;
+            ani.animator.SetBool("Target", true);
         }
         else
         {
             isAttack = false;
+            ani.animator.SetBool("Target", false);
         }
         if (!isAttack)
         {
@@ -38,9 +43,12 @@ public class AttackMonster : MonoBehaviour
         {
             if (AttackDelay > mon.state.attackSpeed)
             {
-                if (!TargetTower.isDestroy) { 
-                TargetTower.currentHP -= mon.state.damage;
-                AttackDelay = 0f;
+                if (!TargetTower.isDestroy)
+                {
+                    transform.LookAt(TargetTower.transform);
+                    ani.animator.SetTrigger("Attack");
+                    TargetTower.currentHP -= mon.state.damage;
+                    AttackDelay = 0f;
                 }
                 else
                 {

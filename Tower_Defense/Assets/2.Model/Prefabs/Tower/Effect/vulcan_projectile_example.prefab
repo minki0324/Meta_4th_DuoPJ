@@ -146,7 +146,7 @@ MonoBehaviour:
   syncInterval: 0
   head_Data: {fileID: 11400000, guid: 6b7d7654f4ef0c5469d8c8f92210c8cb, type: 2}
   type: 1
-  delay: 1
+  delay: 0.1
   despawnDelay: 0.05
   timer: 0
   DelayDespawn: 0
