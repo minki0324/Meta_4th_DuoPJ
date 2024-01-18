@@ -30,6 +30,7 @@ public class BuilderController : NetworkBehaviour
     private Coroutine DestroyCoroutine;
     private float minX;
     private float maxX;
+
     private void Awake()
     {
         SpawnPoints = new Transform[SpawnPoint.childCount];
@@ -106,6 +107,8 @@ public class BuilderController : NetworkBehaviour
             FindPoint();
             CliTag(gameObject, tag);
             transform.position = mySpawnPoint.position;
+            Vector3 camerapos = new Vector3(mySpawnPoint.position.x, 30, mySpawnPoint.position.z);
+            Camera.main.transform.position = camerapos;
         }
     }
     private void FindPoint()
