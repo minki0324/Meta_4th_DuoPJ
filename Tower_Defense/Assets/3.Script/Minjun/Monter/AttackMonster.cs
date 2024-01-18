@@ -21,6 +21,11 @@ public class AttackMonster : NetworkBehaviour
         TryGetComponent(out mon);
         TryGetComponent(out ani);
     }
+
+    private void OnDisable()
+    {
+        TargetTower = null;
+    }
     private void Update()
     {
         if (mon.isDie) return;
