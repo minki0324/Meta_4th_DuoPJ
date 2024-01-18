@@ -4895,7 +4895,7 @@ MonoBehaviour:
   syncInterval: 0
   head_Data: {fileID: 0}
   type: 4
-  delay: 1
+  delay: 0.05
   despawnDelay: 0
   timer: 0
   DelayDespawn: 0
@@ -4917,6 +4917,9 @@ MonoBehaviour:
   MaxBeamLength: 0
   pLight: {fileID: 0}
   heat: {fileID: 0}
+  target_: {fileID: 0}
+  current_Rot: {x: 0, y: 0, z: 0, w: 0}
+  homingSpeed: 5
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
