@@ -22,6 +22,7 @@ public class Room_FinalData : MonoBehaviour
 
     [SerializeField] private Room_Scene ready;
 
+
     public int Cost;
     public float Head_Rot_Speed;
     public float Mount_Rot_Speed;
@@ -59,6 +60,7 @@ public class Room_FinalData : MonoBehaviour
 
     public void Set_Data()
     {
+
         Cost = head_script.head[head_script.current_index].Cost + mount_script.mount[mount_script.current_index].Cost + base_script.base_[base_script.current_index].Cost;
         Head_Rot_Speed = head_script.head[head_script.current_index].Rot_Speed;
         Mount_Rot_Speed = mount_script.mount[mount_script.current_index].Rot_Speed;
@@ -116,6 +118,7 @@ public class Room_FinalData : MonoBehaviour
         this.index.tower_index = index;
         if(index == 0)
         {
+            name_.text = "No.1 Tower";
             head_script.current_index = Prefab_1_index[0];
             mount_script.current_index = Prefab_1_index[1];
             base_script.current_index = Prefab_1_index[2];
@@ -123,6 +126,7 @@ public class Room_FinalData : MonoBehaviour
         }
         else if(index == 1)
         {
+            name_.text = "No.2 Tower";
             head_script.current_index = Prefab_2_index[0];
             mount_script.current_index = Prefab_2_index[1];
             base_script.current_index = Prefab_2_index[2];
@@ -130,6 +134,7 @@ public class Room_FinalData : MonoBehaviour
         }
         else
         {
+            name_.text = "No.3 Tower";
             head_script.current_index = Prefab_3_index[0];
             mount_script.current_index = Prefab_3_index[1];
             base_script.current_index = Prefab_3_index[2];

@@ -293,13 +293,13 @@ public class InfoConecttoUI : MonoBehaviour
 
         if (isAttackUp && isRangeUp)
         {
-            Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", $"{rts.selectTowers[0].damage} +{upDamage}", $"{rts.selectTowers[0].range} +{upRange}", $"{rts.selectTowers[0].atkSpeed} -{upAS}");
+            Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", $"{rts.selectTowers[0].damage} +{upDamage.ToString("F3")}", $"{rts.selectTowers[0].range} +{upRange}", $"{rts.selectTowers[0].atkSpeed} -{upAS.ToString("F3")}");
         }
         else if (isAttackUp || isRangeUp)
         {
             if (isAttackUp)
             {
-                Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", $"{rts.selectTowers[0].damage} +{upDamage}", rts.selectTowers[0].range, $"{rts.selectTowers[0].atkSpeed} -{upAS}");
+                Atk_Range_AS.text = string.Format("{0} \n {1}\n {2}", $"{rts.selectTowers[0].damage} +{upDamage.ToString("F3")}", rts.selectTowers[0].range, $"{rts.selectTowers[0].atkSpeed} -{upAS.ToString("F3")}");
             }
             else if (isRangeUp)
             {

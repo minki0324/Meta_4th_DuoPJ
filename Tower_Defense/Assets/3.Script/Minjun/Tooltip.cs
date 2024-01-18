@@ -91,6 +91,10 @@ public class Tooltip : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
                 $"{tower_data.datas[index].weapon_Type}\n" +
                 $"{tower_data.datas[index].atk_Area}";
         }
+        else if(index == 7)
+        {
+
+        }
         else
         {
             T_name_txt.text = tower_data.datas[index].name_;

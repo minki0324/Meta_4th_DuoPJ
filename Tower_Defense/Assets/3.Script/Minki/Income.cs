@@ -9,7 +9,7 @@ public class Income : NetworkBehaviour
     [SerializeField] public Text income_timer;
     [SerializeField] private GameObject income_panel;
     [SerializeField] private Resourse resourse;
-    private float current_timer = 45;
+    private float current_timer = 22;
     private bool panel_open = false;
 
     [SerializeField] private Text P1_txt;
@@ -29,18 +29,12 @@ public class Income : NetworkBehaviour
         if (current_timer <= 0)
         {
             // 각 플레이어들에게 인컴 지급 및 타이머 재설정
-            if(isServer)
-            {
-                RPC_Give_income();
-            }
-            current_timer = 45.0f; // 타이머를 다시 45초로 설정
+            Give_income();
+            current_timer += 22.0f; // 타이머를 다시 45초로 설정
         }
 
         // 인컴 판넬 동기화 및 업데이트
-        if (isServer)
-        {
-            RPC_Print_income_Timer();
-        }
+        Print_income_Timer();
     }
     #endregion
     #region SyncVar
@@ -58,8 +52,7 @@ public class Income : NetworkBehaviour
     #region Command
     #endregion
     #region ClientRPC
-    [ClientRpc]
-    private void RPC_Print_income_Timer()
+    private void Print_income_Timer()
     {
         P1_txt.text = string.Format("{0:N0}\n1", P1_income);
         P2_txt.text = string.Format("{0:N0}\n1", P2_income);
@@ -68,8 +61,8 @@ public class Income : NetworkBehaviour
         income_timer.text = $"NEXT INCOME : " + (int)current_timer;
     }
 
-    [ClientRpc]
-    private void RPC_Give_income()
+    [Client]
+    private void Give_income()
     {
         switch((int)GameManager.instance.Player_Num)
         {

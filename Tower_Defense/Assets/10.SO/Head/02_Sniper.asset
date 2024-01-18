@@ -26,6 +26,6 @@ MonoBehaviour:
   Cost: 20
   Rot_Speed: 60
   Damage: 50
-  ATK_Speed: 3
-  ATK_Range: 20
+  ATK_Speed: 2
+  ATK_Range: 22
   Reload: 0
