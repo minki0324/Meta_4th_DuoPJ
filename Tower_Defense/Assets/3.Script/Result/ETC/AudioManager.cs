@@ -53,25 +53,25 @@ public class AudioManager : MonoBehaviour
             sfxPlayers.Add(sound.name, sfxSource);
         }
     }
-    private void Start()
+   /* private void Start()
     {
         RandomPlay();
         dropdown.value = randNum;
         MasterVolume.value = 0.5f;
         SFXVolume.value = 0.5f;
         BGMVolume.value = 0.0f;
-        
+
     }
     private void Update()
     {
-      
-            if (!bgmPlayer.isPlaying)
-            {
-                RandomPlay();
-            }
-      
-      
-        if(BGMVolume !=null && SFXVolume != null)
+
+        if (!bgmPlayer.isPlaying)
+        {
+            RandomPlay();
+        }
+
+
+        if (BGMVolume != null && SFXVolume != null)
         {
             bgmPlayer.volume = BGMVolume.value * MasterVolume.value;
             SFXVolumeSet();
@@ -82,7 +82,7 @@ public class AudioManager : MonoBehaviour
         }
 
 
-    }
+    }*/
 
     private void SFXVolumeSet()
     {

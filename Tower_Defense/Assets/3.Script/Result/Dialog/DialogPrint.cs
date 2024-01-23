@@ -139,7 +139,10 @@ public class DialogPrint : MonoBehaviour
     private void Convert_Sound()
     {
         // 이전 SFX 정지
-        StopCurrentSFX();
+        if(currentSFXSource != null)
+        {
+            StopCurrentSFX();
+        }
 
         currentSFXSource = null;  // currentSFXSource 초기화
 
